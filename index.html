@@ -791,7 +791,7 @@
     }
     
     // Send to WhatsApp
-    const whatsappNumber = '919414700737'; // Replace with your WhatsApp number (include country code, no +)
+    const whatsappNumber = '9414700737'; // Replace with your WhatsApp number (include country code, no +)
     const whatsappMessage = `New Inquiry:\nName: ${inquiry.name}\nPhone: ${inquiry.phone}\nClass: ${inquiry.studentClass}\nMessage: ${inquiry.message}\nDate: ${inquiry.date}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
