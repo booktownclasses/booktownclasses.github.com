@@ -168,7 +168,7 @@
     }
 
     .whatsapp-btn {
-      background: #25d366;
+      background: #00c851;
       color: white;
       padding: 0.9rem 2rem;
       border-radius: 48px;
@@ -177,10 +177,10 @@
       display: inline-block;
       transition: 0.2s;
       margin-top: 1rem;
-      box-shadow: 0 4px 8px rgba(37, 211, 102, 0.2);
+      box-shadow: 0 4px 8px rgba(0, 200, 81, 0.2);
     }
     .whatsapp-btn:hover {
-      background: #128c7e;
+      background: #009846;
       transform: translateY(-2px);
     }
 
@@ -693,7 +693,7 @@
         <input type="email" id="email" placeholder="Email address" required>
         <input type="text" id="phone" placeholder="Phone (optional)">
         <textarea rows="2" id="message" placeholder="Tell us about your child's grade / interests..."></textarea>
-        <a href="https://wa.me/919414700737?text=Hello%20from%20BookTown%20Classes%20website" target="_blank" class="whatsapp-btn">💬 Contact via WhatsApp</a>
+        <button id="whatsappBtn" class="whatsapp-btn">💬 Contact via WhatsApp</button>
       </div>
       <p style="margin-top: 1.5rem; font-size: 0.9rem;">📞 Or call 9414700737 </p>
     </div>
@@ -779,7 +779,7 @@
     }
     
     // Send to WhatsApp
-    const whatsappNumber = '1234567890'; // Replace with your WhatsApp number (include country code, no +)
+    const whatsappNumber = '919414700737'; // Replace with your WhatsApp number (include country code, no +)
     const whatsappMessage = `New Inquiry:\nName: ${inquiry.name}\nEmail: ${inquiry.email}\nPhone: ${inquiry.phone}\nMessage: ${inquiry.message}\nDate: ${inquiry.date}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
@@ -799,6 +799,17 @@
         feedbackDiv.style.opacity = "0.6";
       }
     }, 5000);
+  });
+
+  // WhatsApp button handler
+  document.getElementById('whatsappBtn').addEventListener('click', () => {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const text = `Inquiry from ${name}: ${message}. Email: ${email}, Phone: ${phone}`;
+    const url = `https://wa.me/919414700737?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
   });
 </script>
 </body>
