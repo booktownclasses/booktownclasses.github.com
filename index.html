@@ -705,7 +705,7 @@
           <option value="Class 10">Class 10</option>
         </select>
         <textarea rows="2" id="message" placeholder="Tell us about your child's interests..."></textarea>
-        <button id="whatsappBtn" class="whatsapp-btn">💬 Contact via WhatsApp</button>
+        <button id="submitFormBtn">📚 Request callback via WhatsApp</button>
       </div>
       <p style="margin-top: 1.5rem; font-size: 0.9rem;">📞 Or call 9414700737 </p>
     </div>
@@ -807,17 +807,6 @@
         feedbackDiv.style.opacity = "0.6";
       }
     }, 5000);
-  });
-
-  // WhatsApp button handler
-  document.getElementById('whatsappBtn').addEventListener('click', () => {
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const studentClass = document.getElementById('studentClass').value;
-    const message = document.getElementById('message').value.trim();
-    const text = `Inquiry from ${name}: ${message}. Phone: ${phone}, Class: ${studentClass}`;
-    const url = `https://wa.me/919414700737?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank');
   });
 </script>
 </body>
