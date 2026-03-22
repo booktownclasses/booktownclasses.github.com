@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>BookTown Classes | Coaching for Curious Minds</title>
+  <!-- Google Fonts & simple reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefaf5;
+      color: #2e241f;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* header / nav */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      flex-wrap: wrap;
+      background: #fffaf3;
+      border-bottom: 1px solid #f0e2d4;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(2px);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #b45f2b, #7a3e1a);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .logo span {
+      background: none;
+      color: #4b2a14;
+      font-weight: 700;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #4a3729;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #bc6f2c;
+      border-bottom: 2px solid #bc6f2c;
+      padding-bottom: 4px;
+    }
+    .btn-cta-small {
+      background: #bc6f2c;
+      color: white !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 40px;
+      border-bottom: none !important;
+      font-weight: 600;
+    }
+    .btn-cta-small:hover {
+      background: #9b551f;
+      transform: scale(0.97);
+      border-bottom: none !important;
+    }
+
+    /* hero */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 4rem 0 5rem;
+    }
+    .hero-content {
+      flex: 1;
+      min-width: 280px;
+    }
+    .hero-content h1 {
+      font-size: 3.3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #2c1b12;
+      margin-bottom: 1rem;
+    }
+    .hero-content .highlight {
+      color: #bc6f2c;
+      border-bottom: 3px solid #ffd9b5;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #5b3e2c;
+      margin: 1.2rem 0 1.8rem;
+      max-width: 550px;
+    }
+    .hero-image {
+      flex: 1;
+      text-align: center;
+    }
+    .hero-image svg {
+      max-width: 100%;
+      width: 380px;
+      height: auto;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.05));
+    }
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: #bc6f2c;
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 48px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(188,111,44,0.2);
+    }
+    .btn-primary:hover {
+      background: #9b551f;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid #bc6f2c;
+      color: #bc6f2c;
+      padding: 0.9rem 2rem;
+      border-radius: 48px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .btn-secondary:hover {
+      background: #fff0e3;
+      transform: translateY(-2px);
+    }
+
+    /* section style */
+    section {
+      padding: 4rem 0;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: #2c1b12;
+      position: relative;
+    }
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 3px;
+      background: #bc6f2c;
+      margin: 0.6rem auto 0;
+      border-radius: 4px;
+    }
+
+    /* Programs grid */
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .program-card {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 10px 25px -8px rgba(0,0,0,0.05);
+      transition: all 0.25s;
+      border: 1px solid #faeadc;
+      text-align: center;
+    }
+    .program-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+      border-color: #eedbcb;
+    }
+    .program-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+    .program-card h3 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .program-card p {
+      color: #5e4736;
+      margin: 0.8rem 0;
+    }
+    .badge {
+      display: inline-block;
+      background: #fae3cf;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #a6581f;
+      margin-top: 0.7rem;
+    }
+
+    /* coaching features */
+    .features {
+      background: #fff7f0;
+      border-radius: 48px;
+      margin: 1rem 0;
+    }
+    .features-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      padding: 1rem 0;
+    }
+    .feature-item {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      padding: 1rem;
+    }
+    .feature-item .emoji {
+      font-size: 2.5rem;
+    }
+    .feature-item h4 {
+      font-size: 1.3rem;
+      margin: 0.8rem 0 0.3rem;
+    }
+
+    /* about section */
+    .about-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-text {
+      flex: 1.5;
+    }
+    .about-text h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .about-text p {
+      margin-bottom: 1rem;
+      color: #3f2d21;
+    }
+    .about-stats {
+      flex: 1;
+      background: white;
+      padding: 2rem;
+      border-radius: 32px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    }
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #bc6f2c;
+    }
+
+    /* testimonials */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .testimonial {
+      background: white;
+      border-radius: 28px;
+      padding: 1.8rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+      border: 1px solid #f3e3d7;
+    }
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 1rem;
+      color: #2f241e;
+    }
+    .testimonial h4 {
+      font-weight: 700;
+      margin-top: 0.5rem;
+      color: #b16027;
+    }
+
+    /* contact + cta */
+    .contact-cta {
+      background: linear-gradient(145deg, #fff1e6, #fff8f2);
+      border-radius: 48px;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .contact-cta h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .contact-form {
+      max-width: 550px;
+      margin: 2rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: 1rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid #e2cfbf;
+      font-family: inherit;
+      background: white;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.2s;
+    }
+    .contact-form textarea {
+      border-radius: 28px;
+      resize: vertical;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #bc6f2c;
+      box-shadow: 0 0 0 2px rgba(188,111,44,0.2);
+    }
+    .contact-form button {
+      background: #bc6f2c;
+      border: none;
+      padding: 0.9rem;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 60px;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .contact-form button:hover {
+      background: #9b551f;
+    }
+    .form-message {
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      color: #2d6a4f;
+    }
+
+    footer {
+      background: #2e241f;
+      color: #eedbcb;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      border-radius: 32px 32px 0 0;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #ffddbb;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: white;
+    }
+    @media (max-width: 780px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .section-title {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">📚 BookTown <span>Classes</span></div>
+  <div class="nav-links">
+    <a href="#home" class="active">Home</a>
+    <a href="#programs">Programs</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="btn-cta-small">Join Now</a>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero section -->
+  <div class="container" id="home">
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Coaching that <span class="highlight">turns pages</span> into progress.</h1>
+        <p>BookTown Classes — where young minds grow through story, structure & success. Personalised coaching for every learner.</p>
+        <div class="btn-group">
+          <a href="#contact" class="btn-primary">📖 Enroll today</a>
+          <a href="#programs" class="btn-secondary">Explore courses</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <svg viewBox="0 0 300 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="60" width="200" height="130" rx="16" fill="#FBE9D7" stroke="#D4A373" stroke-width="2"/>
+          <path d="M85 100 L215 100" stroke="#BC6F2C" stroke-width="3" stroke-linecap="round"/>
+          <path d="M85 130 L195 130" stroke="#BC6F2C" stroke-width="3" stroke-linecap="round"/>
+          <path d="M85 160 L175 160" stroke="#BC6F2C" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="250" cy="100" r="28" fill="#FFE0B5" stroke="#BC6F2C" stroke-width="2"/>
+          <text x="242" y="108" font-size="18" fill="#8B5A2B">📘</text>
+          <path d="M45 190 L255 190" stroke="#E9C9AF" stroke-width="3" stroke-dasharray="6 6"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Programs section -->
+  <div class="container" id="programs">
+    <h2 class="section-title">📘 Our coaching programs</h2>
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-icon">📖✨</div>
+        <h3>Young Readers' Hub</h3>
+        <p>Phonics, comprehension & creative expression for grades 1–5. Build confidence through stories.</p>
+        <div class="badge">Age 6-10</div>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">✍️📚</div>
+        <h3>Writers' Atelier</h3>
+        <p>Essay writing, grammar mastery & storytelling. Perfect for middle school & beyond.</p>
+        <div class="badge">Grade 6-9</div>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">🎯🏆</div>
+        <h3>Exam Edge Coaching</h3>
+        <p>SAT*, competitive exams & academic mentoring. Strategic prep + mental clarity.</p>
+        <div class="badge">High School</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features highlight -->
+  <div class="container features">
+    <div class="features-flex">
+      <div class="feature-item"><div class="emoji">🧑‍🏫</div><h4>Expert Mentors</h4><p>Passionate educators with 8+ years experience</p></div>
+      <div class="feature-item"><div class="emoji">📅</div><h4>Flexible Schedules</h4><p>Weekday & weekend batches, hybrid options</p></div>
+      <div class="feature-item"><div class="emoji">🏆</div><h4>Proven Results</h4><p>90% of students show grade improvement</p></div>
+      <div class="feature-item"><div class="emoji">📘</div><h4>BookTown Method</h4><p>Story-based learning + smart goals</p></div>
+    </div>
+  </div>
+
+  <!-- About / Philosophy -->
+  <div class="container" id="about">
+    <div class="about-wrap">
+      <div class="about-text">
+        <h3>📖 Why BookTown Classes?</h3>
+        <p>Founded by educators who believe every child deserves a coach who listens, adapts, and inspires. We combine academic excellence with a love for reading — because great learners are great thinkers.</p>
+        <p>Our small batch sizes (max 6 students) ensure personalized attention. We don't just teach subjects; we nurture curiosity, discipline, and joy for lifelong learning.</p>
+        <p>📍 Based in the heart of the community, also offering online sessions worldwide.</p>
+      </div>
+      <div class="about-stats">
+        <div><span class="stat-number">98%</span> <br/>parent satisfaction rate</div>
+        <div style="margin-top: 1.5rem;"><span class="stat-number">1200+</span> <br/>students guided</div>
+        <div style="margin-top: 1.5rem;"><span class="stat-number">15+</span> <br/>award-winning coaches</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="container">
+    <h2 class="section-title">❤️ What families say</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <p>“BookTown Classes transformed my daughter’s attitude toward reading. Within 3 months, she went from reluctant reader to bookworm! The teachers are so warm and skilled.”</p>
+        <h4>— Meera S., parent</h4>
+      </div>
+      <div class="testimonial">
+        <p>“The Exam Edge program gave my son the structure and confidence he needed for his high school entrance exams. Incredible support!”</p>
+        <h4>— Rajiv K.</h4>
+      </div>
+      <div class="testimonial">
+        <p>“I love my writing class! My coach makes everything fun and I even published a story in the school magazine. Thanks BookTown!”</p>
+        <h4>— Aanya, age 12</h4>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact + CTA with simple form handling (GitHub Pages friendly) -->
+  <div class="container" id="contact">
+    <div class="contact-cta">
+      <h2>✉️ Start your learning journey</h2>
+      <p>Fill out the form and our coaching advisor will reach out within 24h.</p>
+      <div class="contact-form" id="contactForm">
+        <input type="text" id="name" placeholder="Your name" required>
+        <input type="email" id="email" placeholder="Email address" required>
+        <input type="text" id="phone" placeholder="Phone (optional)">
+        <textarea rows="2" id="message" placeholder="Tell us about your child's grade / interests..."></textarea>
+        <button id="submitFormBtn">📚 Request callback →</button>
+        <div id="formFeedback" class="form-message"></div>
+      </div>
+      <p style="margin-top: 1.5rem; font-size: 0.9rem;">📞 Or call us: +1 (555) 234-7890 | ✉️ hello@booktownclasses.com</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#programs">Programs</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p>© 2025 BookTown Classes — Coaching for bright futures. 📖✨</p>
+  <p style="margin-top: 0.5rem; font-size: 0.8rem;">📍 123 Story Lane, BookTown | Serving students worldwide</p>
+</footer>
+
+<script>
+  // Simple contact form handling without backend (stores locally & shows success)
+  const formBtn = document.getElementById('submitFormBtn');
+  const feedbackDiv = document.getElementById('formFeedback');
+  
+  formBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    
+    if (!name || !email) {
+      feedbackDiv.style.color = "#c33";
+      feedbackDiv.innerText = "❌ Please provide your name and email address.";
+      return;
+    }
+    if (!email.includes('@') || !email.includes('.')) {
+      feedbackDiv.style.color = "#c33";
+      feedbackDiv.innerText = "❌ Please enter a valid email address.";
+      return;
+    }
+    
+    // For GitHub Pages demo: just simulate submission and show a friendly message
+    // Store in localStorage for optional demo persistence, or just alert
+    const inquiry = {
+      name: name,
+      email: email,
+      phone: document.getElementById('phone').value,
+      message: message || "No additional message",
+      date: new Date().toLocaleString()
+    };
+    // Save to localStorage for mock purpose (not required but keeps last inquiry)
+    let inquiries = localStorage.getItem('booktown_inquiries');
+    if(inquiries) {
+      let arr = JSON.parse(inquiries);
+      arr.push(inquiry);
+      localStorage.setItem('booktown_inquiries', JSON.stringify(arr));
+    } else {
+      localStorage.setItem('booktown_inquiries', JSON.stringify([inquiry]));
+    }
+    
+    feedbackDiv.style.color = "#2d6a4f";
+    feedbackDiv.innerHTML = "✅ Thanks " + name + "! Our team will get back to you soon. 📖✨";
+    // Optionally clear sensitive fields but keep name/email for user experience? reset only message area
+    document.getElementById('message').value = '';
+    document.getElementById('phone').value = '';
+    // (we keep name and email for convenience but not required)
+    // you can also reset form if you like:
+    // document.getElementById('contactForm').reset(); but that would remove everything. We'll keep name visible.
+    // Actually, better keep name/email to avoid confusion, just clear phone/message.
+    // we also reset form feedback after 6 seconds optionally
+    setTimeout(() => {
+      if(feedbackDiv.innerHTML.includes("Thanks")) {
+        feedbackDiv.style.opacity = "0.6";
+      }
+    }, 5000);
+  });
+</script>
+</body>
+</html>
