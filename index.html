@@ -43,13 +43,15 @@
     }
 
     .logo {
-      font-size: 1.8rem;
+      font-size: 2.8rem;
       font-weight: 800;
       letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #b45f2b, #7a3e1a);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
+      color: black;
+      padding: 0.5rem;
+      border-radius: 8px;
+    }
+    .logo span {
+      color: black;
     }
     .logo span {
       background: none;
@@ -162,6 +164,23 @@
     }
     .btn-secondary:hover {
       background: #fff0e3;
+      transform: translateY(-2px);
+    }
+
+    .whatsapp-btn {
+      background: #25d366;
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 48px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.2s;
+      margin-top: 1rem;
+      box-shadow: 0 4px 8px rgba(37, 211, 102, 0.2);
+    }
+    .whatsapp-btn:hover {
+      background: #128c7e;
       transform: translateY(-2px);
     }
 
@@ -281,6 +300,52 @@
       font-weight: 600;
       color: #a6581f;
       margin-top: 0.7rem;
+    }
+
+    /* Faculty grid */
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .faculty-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid #f0e2d4;
+    }
+    .faculty-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    }
+    .faculty-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 4px solid #fae3cf;
+    }
+    .faculty-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #2c1b12;
+    }
+    .role {
+      font-size: 1rem;
+      color: #bc6f2c;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .faculty-card p {
+      font-size: 0.9rem;
+      color: #5b3e2c;
+      line-height: 1.5;
     }
 
     /* coaching features */
@@ -461,11 +526,12 @@
 <body>
 
 <nav class="navbar">
-  <div class="logo">📚 BookTown <span>Classes</span></div>
+  <div class="logo">📚 BookTown Classes</span></div>
   <div class="nav-links">
     <a href="#home" class="active">Home</a>
     <a href="#programs">Programs</a>
     <a href="#about">About</a>
+    <a href="#faculty">Faculty</a>
     <a href="#contact" class="btn-cta-small">Join Now</a>
   </div>
 </nav>
@@ -475,7 +541,7 @@
   <div class="container" id="home">
     <div class="hero">
       <div class="hero-content">
-        <h1>Coaching that <span class="highlight">turns pages</span> into progress.</h1>
+        <h1>Coaching that <span class="highlight">changes tomorrow</span> Today with lifetime of learning.</h1>
         <p>BookTown Classes — where young minds grow through story, structure & success. Personalised coaching for every learner.</p>
         <div class="btn-group">
           <a href="#contact" class="btn-primary">📖 Enroll today</a>
@@ -519,21 +585,21 @@
     <div class="programs-grid">
       <div class="program-card">
         <div class="program-icon">📖✨</div>
-        <h3>Young Readers' Hub</h3>
+        <h3>Young Learners</h3>
         <p>Phonics, comprehension & creative expression for grades 1–5. Build confidence through stories.</p>
-        <div class="badge">Age 6-10</div>
+        <div class="badge">Grade 1-5</div>
       </div>
       <div class="program-card">
         <div class="program-icon">✍️📚</div>
-        <h3>Writers' Atelier</h3>
+        <h3>Young Writers</h3>
         <p>Essay writing, grammar mastery & storytelling. Perfect for middle school & beyond.</p>
-        <div class="badge">Grade 6-9</div>
+        <div class="badge">Grade 6-8</div>
       </div>
       <div class="program-card">
         <div class="program-icon">🎯🏆</div>
-        <h3>Exam Edge Coaching</h3>
-        <p>SAT*, competitive exams & academic mentoring. Strategic prep + mental clarity.</p>
-        <div class="badge">High School</div>
+        <h3>Board and Preboard Exam</h3>
+        <p>with extensive focus on test based approch on weekly basis to judge the student progress effectively</p>
+        <div class="badge">Grade 9-10</div>
       </div>
     </div>
   </div>
@@ -565,21 +631,54 @@
     </div>
   </div>
 
+  <!-- Faculty Section -->
+  <div class="container" id="faculty">
+    <h2 class="section-title">👨‍🏫 Meet Our Expert Faculty</h2>
+    <div class="faculty-grid">
+      <div class="faculty-card">
+        <img src="images/teacher1.jpg" alt="Nishat Afroz">
+        <h3>Nishat Afroz</h3>
+        <p class="role">Director & Founder</p>
+        <p>B.ed, English M.A. 5+ years teaching experience. Specializes in teaching  young learners.</p>
+      </div>
+      <div class="faculty-card">
+        <img src="images/tayyab.png" alt="Mohd Tayyab">
+        <h3>Mohd Tayyab</h3>
+        <p class="role">Expert Faculty</p>
+        <p>Teaches class 9-10 with a focus on exam preparation and academic excellence.</p>
+      </div>
+     
+    </div>
+  </div>
+
   <!-- Testimonials -->
   <div class="container">
     <h2 class="section-title">❤️ What families say</h2>
     <div class="testimonial-grid">
       <div class="testimonial">
-        <p>“BookTown Classes transformed my daughter’s attitude toward reading. Within 3 months, she went from reluctant reader to bookworm! The teachers are so warm and skilled.”</p>
-        <h4>— Meera S., parent</h4>
+        <p>“Had a really good experience with this tuition. Teaching style is easy to follow and the teacher is very patient and supportive. All doubts are cleared without any hesitation and regular practice helps a lot. Overall, it’s a nice place to study and improve.”</p>
+        <h4>— Harim Athar</h4>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
       </div>
       <div class="testimonial">
-        <p>“The Exam Edge program gave my son the structure and confidence he needed for his high school entrance exams. Incredible support!”</p>
-        <h4>— Rajiv K.</h4>
+        <p>“The coaching is good and there teachers are very good 👍😊 very friendly 😊 love the coaching”</p>
+        <h4>— Musab Bin Umair</h4>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
       </div>
       <div class="testimonial">
-        <p>“I love my writing class! My coach makes everything fun and I even published a story in the school magazine. Thanks BookTown!”</p>
-        <h4>— Aanya, age 12</h4>
+        <p>“My coaching classes have been very helpful for my studies. The teachers explain concepts clearly and solve all doubts patiently. The environment is supportive and motivating, which helps me improve my confidence. Regular tests and practice sessions help me prepare better for exams. I am really satisfied with my learning experience here”</p>
+        <h4>— Sabiha Hayat, student</h4>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+      </div>
+      <div class="testimonial">
+        <p>“Outstanding teaching standards with a disciplined and student-focused approach. The teachers are highly experienced and committed to academic excellence. Strongly recommended.”</p>
+        <h4>— Asna</h4>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+      </div>
+      <div class="testimonial">
+        <p>“My tuition is very helpful and well-organized. The teacher explains every topic clearly and in an easy way, which makes even difficult chapters simple to understand. All concepts are explained step-by-step with proper examples. Regular tests and practice questions are given, which help in improving performance and building confidence for exams. Doubts are always cleared patiently, and personal attention is given to every student. Overall, this tuition is excellent for Class 10 students who want to score good marks and understand subjects properly. I am very satisfied with the teaching and guidance.”</p>
+        <h4>— Tausim Khan</h4>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
       </div>
     </div>
   </div>
@@ -596,8 +695,9 @@
         <textarea rows="2" id="message" placeholder="Tell us about your child's grade / interests..."></textarea>
         <button id="submitFormBtn">📚 Request callback →</button>
         <div id="formFeedback" class="form-message"></div>
+        <a href="https://wa.me/919414700737?text=Hello%20from%20BookTown%20Classes%20website" target="_blank" class="whatsapp-btn">💬 Contact via WhatsApp</a>
       </div>
-      <p style="margin-top: 1.5rem; font-size: 0.9rem;">📞 Or call us: +1 (555) 234-7890 | ✉️ hello@booktownclasses.com</p>
+      <p style="margin-top: 1.5rem; font-size: 0.9rem;">📞 Or call 9414700737 </p>
     </div>
   </div>
 </main>
@@ -680,8 +780,14 @@
       localStorage.setItem('booktown_inquiries', JSON.stringify([inquiry]));
     }
     
+    // Send to WhatsApp
+    const whatsappNumber = '1234567890'; // Replace with your WhatsApp number (include country code, no +)
+    const whatsappMessage = `New Inquiry:\nName: ${inquiry.name}\nEmail: ${inquiry.email}\nPhone: ${inquiry.phone}\nMessage: ${inquiry.message}\nDate: ${inquiry.date}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappUrl, '_blank');
+    
     feedbackDiv.style.color = "#2d6a4f";
-    feedbackDiv.innerHTML = "✅ Thanks " + name + "! Our team will get back to you soon. 📖✨";
+    feedbackDiv.innerHTML = "✅ Thanks " + name + "! Opening WhatsApp to send your details. 📱✨";
     // Optionally clear sensitive fields but keep name/email for user experience? reset only message area
     document.getElementById('message').value = '';
     document.getElementById('phone').value = '';
