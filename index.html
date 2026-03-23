@@ -12,9 +12,8 @@
   <meta property="og:title" content="BookTown Classes | Premier Academic Coaching">
   <meta property="og:description" content="Transform your child's academic journey with personalized coaching. Expert faculty, small batches, proven results.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="images/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <!-- Google Fonts: Modern Academic pairing -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Lato:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,10 +59,23 @@
     /* Full width advantage section container */
     .advantage-full-width {
       width: 100%;
-      background: linear-gradient(120deg, #ffffff 0%, #fefcf7 100%);
+      background: linear-gradient(135deg, #ffffff 0%, #fefcf7 100%);
       border-top: 1px solid #e9ecef;
       border-bottom: 1px solid #e9ecef;
       margin: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .advantage-full-width::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(196,167,71,0.03) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     /* ========== MODERN ACADEMIC THEME: Navy + Gold ========== */
@@ -113,11 +125,24 @@
       color: #2c3e50;
       transition: 0.2s;
       font-size: 1rem;
+      position: relative;
     }
-    .nav-links a:hover, .nav-links a.active {
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #c4a747;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    .nav-links a:hover {
       color: #c4a747;
-      border-bottom: 2px solid #c4a747;
-      padding-bottom: 4px;
     }
     .btn-cta-small {
       background: #1e3a5f;
@@ -126,15 +151,18 @@
       border-radius: 40px;
       border-bottom: none !important;
       font-weight: 700;
-      transition: 0.2s;
+      transition: all 0.3s ease;
     }
     .btn-cta-small:hover {
       background: #0f2a44;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(30,58,95,0.2);
     }
+    .btn-cta-small::after {
+      display: none;
+    }
 
-    /* Mobile Menu Button (hidden on desktop) */
+    /* Mobile Menu Button */
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -142,6 +170,10 @@
       font-size: 1.8rem;
       color: #1e3a5f;
       cursor: pointer;
+      transition: 0.2s;
+    }
+    .mobile-menu-btn:hover {
+      color: #c4a747;
     }
 
     /* Hero Section */
@@ -158,15 +190,20 @@
       min-width: 280px;
     }
     .hero-content h1 {
-      font-size: 3.3rem;
+      font-size: 3.5rem;
       font-weight: 800;
       line-height: 1.2;
       color: #1e3a5f;
       margin-bottom: 1rem;
       font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c4a6e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .hero-content .highlight {
       color: #c4a747;
+      -webkit-text-fill-color: #c4a747;
       border-bottom: 3px solid #f5e2b0;
       display: inline-block;
     }
@@ -219,11 +256,13 @@
       font-size: 1.5rem;
       cursor: pointer;
       border-radius: 50%;
-      transition: background 0.3s;
+      transition: all 0.3s;
       z-index: 10;
+      backdrop-filter: blur(4px);
     }
     .carousel-btn:hover {
       background: #c4a747;
+      transform: translateY(-50%) scale(1.05);
     }
     .prev { left: 10px; }
     .next { right: 10px; }
@@ -234,7 +273,7 @@
       flex-wrap: wrap;
     }
     .btn-primary {
-      background: #c4a747;
+      background: linear-gradient(135deg, #c4a747 0%, #b3923a 100%);
       color: #1e3a5f;
       padding: 0.9rem 2rem;
       border-radius: 48px;
@@ -247,10 +286,9 @@
       box-shadow: 0 4px 12px rgba(196,167,71,0.3);
     }
     .btn-primary:hover {
-      background: #b3923a;
       transform: translateY(-2px);
-      color: white;
       box-shadow: 0 8px 20px rgba(196,167,71,0.4);
+      color: white;
     }
     .btn-primary:active { transform: scale(0.98); }
     .btn-secondary {
@@ -261,21 +299,23 @@
       border-radius: 48px;
       font-weight: 700;
       text-decoration: none;
-      transition: 0.2s;
+      transition: all 0.3s ease;
     }
     .btn-secondary:hover {
       background: rgba(196,167,71,0.1);
       transform: translateY(-2px);
+      border-color: #b3923a;
     }
 
-    /* ========== FULL WIDTH ADVANTAGE SECTION ========== */
+    /* ADVANTAGE SECTION - FULL WIDTH */
     .advantage-full-width {
       width: 100%;
       background: linear-gradient(135deg, #ffffff 0%, #faf8f3 100%);
       border-top: 1px solid #eef2f6;
       border-bottom: 1px solid #eef2f6;
       margin: 2rem 0;
-      padding: 3rem 0;
+      padding: 3.5rem 0;
+      position: relative;
     }
     .advantage-inner {
       max-width: 1400px;
@@ -283,7 +323,7 @@
       padding: 0 2rem;
     }
     .section-title-accent {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 800;
       text-align: center;
       margin-bottom: 0.75rem;
@@ -293,9 +333,9 @@
     .section-title-accent:after {
       content: '';
       display: block;
-      width: 70px;
+      width: 80px;
       height: 3px;
-      background: #c4a747;
+      background: linear-gradient(90deg, #c4a747, #e5c87b);
       margin: 0.8rem auto 0;
       border-radius: 4px;
     }
@@ -305,6 +345,9 @@
       margin-bottom: 2.5rem;
       font-size: 1.1rem;
       font-weight: 400;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .advantage-row {
       display: flex;
@@ -320,11 +363,27 @@
       max-width: 280px;
       background: white;
       border-radius: 28px;
-      padding: 1.8rem 1.2rem;
+      padding: 2rem 1.2rem;
       text-align: center;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       border: 1px solid #eef2f6;
       box-shadow: 0 5px 12px rgba(0,0,0,0.02);
+      position: relative;
+      overflow: hidden;
+    }
+    .advantage-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #c4a747, #e5c87b);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .advantage-card:hover::before {
+      transform: scaleX(1);
     }
     .advantage-card:hover {
       transform: translateY(-8px);
@@ -332,9 +391,9 @@
       box-shadow: 0 20px 30px -12px rgba(30,58,95,0.15);
     }
     .advantage-icon {
-      background: #f0f4fa;
-      width: 70px;
-      height: 70px;
+      background: linear-gradient(135deg, #f0f4fa 0%, #e8edf5 100%);
+      width: 75px;
+      height: 75px;
       margin: 0 auto 1.2rem;
       display: flex;
       align-items: center;
@@ -345,7 +404,7 @@
       transition: all 0.3s;
     }
     .advantage-card:hover .advantage-icon {
-      background: #c4a747;
+      background: linear-gradient(135deg, #c4a747 0%, #b3923a 100%);
       color: white;
       transform: scale(1.05);
     }
@@ -375,19 +434,19 @@
     /* Section Styles */
     section { padding: 4rem 0; }
     .section-title {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 800;
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       color: #1e3a5f;
       font-family: 'Playfair Display', serif;
     }
     .section-title:after {
       content: '';
       display: block;
-      width: 70px;
+      width: 80px;
       height: 3px;
-      background: #c4a747;
+      background: linear-gradient(90deg, #c4a747, #e5c87b);
       margin: 0.6rem auto 0;
       border-radius: 4px;
     }
@@ -403,13 +462,28 @@
       background: white;
       border-radius: 28px;
       padding: 2rem 1.5rem;
-      box-shadow: 0 10px 25px -8px rgba(0,0,0,0.05);
       transition: all 0.3s;
       border: 1px solid #eef2f6;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .program-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #c4a747, #e5c87b);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .program-card:hover::before {
+      transform: scaleX(1);
     }
     .program-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-5px);
       box-shadow: 0 20px 30px -12px rgba(30,58,95,0.12);
       border-color: #c4a747;
     }
@@ -417,11 +491,11 @@
     .program-card h3 { font-size: 1.7rem; font-weight: 800; margin-bottom: 0.75rem; color: #1e3a5f; }
     .badge {
       display: inline-block;
-      background: #f5f2ea;
-      padding: 0.2rem 1rem;
+      background: linear-gradient(135deg, #f5f2ea, #fef7e8);
+      padding: 0.3rem 1.2rem;
       border-radius: 30px;
       font-size: 0.8rem;
-      font-weight: 600;
+      font-weight: 700;
       color: #c4a747;
       margin-top: 0.7rem;
     }
@@ -429,14 +503,14 @@
     /* Faculty Grid */
     .faculty-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       margin-top: 2rem;
     }
     .faculty-card {
       background: white;
       border-radius: 28px;
-      padding: 1.8rem;
+      padding: 2rem;
       text-align: center;
       transition: all 0.3s;
       border: 1px solid #eef2f6;
@@ -447,15 +521,20 @@
       box-shadow: 0 15px 30px rgba(30,58,95,0.1);
     }
     .faculty-card img {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 1rem;
       border: 4px solid #f0e7d6;
+      transition: 0.3s;
     }
-    .faculty-card h3 { font-size: 1.4rem; font-weight: 800; color: #1e3a5f; }
-    .role { font-size: 1rem; color: #c4a747; font-weight: 700; margin-bottom: 0.75rem; }
+    .faculty-card:hover img {
+      border-color: #c4a747;
+      transform: scale(1.02);
+    }
+    .faculty-card h3 { font-size: 1.5rem; font-weight: 800; color: #1e3a5f; margin-top: 0.5rem; }
+    .role { font-size: 1rem; color: #c4a747; font-weight: 700; margin: 0.5rem 0; }
 
     /* About Section */
     .about-wrap {
@@ -463,22 +542,24 @@
       flex-wrap: wrap;
       gap: 3rem;
       align-items: center;
-      background: #ffffff;
+      background: linear-gradient(135deg, #ffffff, #fefcf7);
       border-radius: 32px;
-      padding: 2rem;
+      padding: 2.5rem;
       border: 1px solid #eef2f6;
     }
     .about-text { flex: 1.5; }
-    .about-text h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; color: #1e3a5f; font-family: 'Playfair Display', serif; }
+    .about-text h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1.2rem; color: #1e3a5f; font-family: 'Playfair Display', serif; }
+    .about-text p { margin-bottom: 1rem; color: #4a627a; line-height: 1.6; }
     .about-stats {
       flex: 1;
-      background: #f8fafd;
+      background: linear-gradient(135deg, #f8fafd, #ffffff);
       padding: 2rem;
       border-radius: 28px;
       text-align: center;
+      border: 1px solid #eef2f6;
     }
     .stat-number {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 800;
       color: #c4a747;
       font-family: 'Playfair Display', serif;
@@ -488,68 +569,106 @@
     /* Testimonials */
     .testimonial-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
     }
     .testimonial {
       background: white;
       border-radius: 28px;
-      padding: 1.8rem;
-      transition: 0.2s;
+      padding: 2rem;
+      transition: all 0.3s;
       border: 1px solid #eef2f6;
+      position: relative;
     }
-    .testimonial:hover { border-color: #c4a747; }
-    .stars { color: #c4a747; letter-spacing: 2px; margin-top: 8px; }
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 4rem;
+      color: rgba(196,167,71,0.1);
+      font-family: serif;
+    }
+    .testimonial:hover {
+      border-color: #c4a747;
+      transform: translateY(-3px);
+    }
+    .stars { color: #c4a747; letter-spacing: 2px; margin-top: 12px; font-size: 1rem; }
 
-    /* FAQ Section */
+    /* FAQ Section - FULLY FUNCTIONAL DROPDOWN */
     .faq-section {
-      background: #ffffff;
+      background: linear-gradient(135deg, #ffffff, #fefcf7);
       border-radius: 32px;
       padding: 2.5rem;
-      margin-top: 2rem;
       border: 1px solid #eef2f6;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.02);
     }
     .faq-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 1.5rem;
-      margin-top: 1.5rem;
+      margin-top: 0.5rem;
     }
     .faq-item {
-      background: #f8fafd;
+      background: #ffffff;
       border-radius: 20px;
-      padding: 1.2rem;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.3s ease;
+      border: 1px solid #eef2f6;
+      overflow: hidden;
     }
-    .faq-item:hover { background: #f0f4fa; }
+    .faq-item:hover {
+      border-color: #c4a747;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
     .faq-question {
-      font-weight: 700;
+      font-weight: 800;
       color: #1e3a5f;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 1.2rem 1.5rem;
+      background: #fafbfd;
+      transition: all 0.2s;
+      font-size: 1.05rem;
+    }
+    .faq-item.active .faq-question {
+      background: linear-gradient(135deg, #f8f4ea, #fff8f0);
+      color: #c4a747;
+      border-bottom: 1px solid rgba(196,167,71,0.2);
+    }
+    .faq-question i {
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      color: #c4a747;
+      font-size: 1rem;
+    }
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
     }
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       color: #4a627a;
-      margin-top: 0.5rem;
+      padding: 0 1.5rem;
+      line-height: 1.6;
+      background: white;
     }
-    .faq-item.active .faq-answer { max-height: 200px; }
-    .faq-item.active .faq-question i { transform: rotate(180deg); }
+    .faq-item.active .faq-answer {
+      max-height: 250px;
+      padding: 0 1.5rem 1.2rem 1.5rem;
+    }
 
     /* Contact Form */
     .contact-cta {
-      background: #ffffff;
+      background: linear-gradient(135deg, #ffffff, #fefcf7);
       border-radius: 48px;
       text-align: center;
       padding: 3rem 2rem;
       border: 1px solid #eef2f6;
     }
     .contact-form {
-      max-width: 550px;
+      max-width: 600px;
       margin: 2rem auto 0;
       display: flex;
       flex-direction: column;
@@ -561,7 +680,7 @@
       border: 1px solid #dee2e6;
       font-family: 'Lato', sans-serif;
       font-size: 1rem;
-      transition: 0.2s;
+      transition: all 0.3s;
     }
     .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
       border-color: #c4a747;
@@ -569,25 +688,28 @@
       outline: none;
     }
     .contact-form button {
-      background: #1e3a5f;
+      background: linear-gradient(135deg, #1e3a5f, #0f2a44);
       border: none;
-      padding: 0.9rem;
+      padding: 1rem;
       font-weight: 800;
       font-size: 1rem;
       border-radius: 60px;
       color: white;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.3s;
     }
-    .contact-form button:hover { background: #0f2a44; transform: translateY(-2px); }
-    .form-message { margin-top: 0.8rem; font-size: 0.9rem; }
+    .contact-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(30,58,95,0.3);
+    }
+    .form-message { margin-top: 0.8rem; font-size: 0.9rem; font-weight: 600; }
 
     /* Floating WhatsApp Button */
     .whatsapp-float {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      background: #25D366;
+      background: linear-gradient(135deg, #25D366, #20b859);
       color: white;
       width: 60px;
       height: 60px;
@@ -602,19 +724,19 @@
       text-decoration: none;
     }
     .whatsapp-float:hover {
-      transform: scale(1.1);
-      background: #20b859;
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 25px rgba(37,211,102,0.5);
     }
 
     footer {
-      background: #1e3a5f;
+      background: linear-gradient(135deg, #1e3a5f, #142b44);
       color: #eef2f6;
       text-align: center;
-      padding: 2rem;
+      padding: 2.5rem;
       margin-top: 3rem;
     }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
-    .footer-links a { color: #f0e7d6; text-decoration: none; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: #f0e7d6; text-decoration: none; transition: 0.2s; }
     .footer-links a:hover { color: #c4a747; }
 
     /* Responsive */
@@ -632,6 +754,9 @@
       .advantage-row { flex-wrap: wrap; justify-content: center; }
       .advantage-card { min-width: 260px; max-width: none; }
       .container { padding: 0 1.5rem; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 1.8rem; }
+      .faq-question { font-size: 0.95rem; padding: 1rem; }
     }
   </style>
 </head>
@@ -684,11 +809,11 @@
         <h2 class="section-title-accent"><i class="fas fa-award"></i> The BookTown Advantage</h2>
         <div class="advantage-sub">Academic excellence, personalized mentorship & proven methodology — designed for success.</div>
         <div class="advantage-row">
-          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Elite Mentors</h3><p>5+ years experienced educators with subject mastery.</p><div class="advantage-tag">100% certified</div></div>
-          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-calendar-alt"></i></div><h3>Smart Scheduling</h3><p>Weekday/weekend + morning slots. Hybrid mode available.</p><div class="advantage-tag">Flexible timings</div></div>
-          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-trophy"></i></div><h3>Proven Results</h3><p>90% grade improvement with consistent tracking.</p><div class="advantage-tag">Top rankers</div></div>
-          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-users"></i></div><h3>Small Batches</h3><p>6–16 students per batch for personalized attention.</p><div class="advantage-tag">Individual focus</div></div>
-          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-brain"></i></div><h3>BookTown Method™</h3><p>Ranking-based learning & smart goals for intellectual edge.</p><div class="advantage-tag">Future-ready</div></div>
+          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Elite Mentors</h3><p>5+ years experienced educators with subject mastery and passion for teaching.</p><div class="advantage-tag">100% certified</div></div>
+          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-calendar-alt"></i></div><h3>Smart Scheduling</h3><p>Weekday/weekend batches + morning slots for evening school students.</p><div class="advantage-tag">Flexible timings</div></div>
+          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-trophy"></i></div><h3>Proven Results</h3><p>90% grade improvement with consistent tracking and personalized feedback.</p><div class="advantage-tag">Top rankers</div></div>
+          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-users"></i></div><h3>Small Batches</h3><p>Limited to 6–16 students per batch for deep personalized attention.</p><div class="advantage-tag">Individual focus</div></div>
+          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-brain"></i></div><h3>BookTown Method™</h3><p>Ranking-based learning & smart goals for intellectual edge and exam readiness.</p><div class="advantage-tag">Future-ready</div></div>
         </div>
       </div>
     </div>
@@ -697,8 +822,8 @@
     <div class="container" id="faculty">
       <h2 class="section-title"><i class="fas fa-user-graduate"></i> Meet Our Expert Faculty</h2>
       <div class="faculty-grid">
-        <div class="faculty-card"><img src="images/nishat.jpeg" alt="Nishat Afroz" loading="lazy"><h3>Nishat Afroz</h3><p class="role">Director & Founder</p><p><b>B.Ed, M.A. (English)</b> — 5+ years experience, English literature specialist.</p></div>
-        <div class="faculty-card"><img src="images/tayyab2.jpeg" alt="Mohd Tayyab" loading="lazy"><h3>Mohd Tayyab</h3><p class="role">Expert Faculty</p><p><b>MTech (CS), JMI</b> — 3+ years, exam preparation & confidence building.</p></div>
+        <div class="faculty-card"><img src="images/nishat.jpeg" alt="Nishat Afroz" loading="lazy"><h3>Nishat Afroz</h3><p class="role">Director & Founder</p><p><b>B.Ed, M.A. (English)</b><br>5+ years experience, English literature specialist, passionate mentor.</p></div>
+        <div class="faculty-card"><img src="images/tayyab2.jpeg" alt="Mohd Tayyab" loading="lazy"><h3>Mohd Tayyab</h3><p class="role">Expert Faculty</p><p><b>MTech (CS), JMI</b><br>3+ years experience, exam preparation & confidence building expert.</p></div>
       </div>
     </div>
 
@@ -706,17 +831,21 @@
     <div class="container" id="programs">
       <h2 class="section-title"><i class="fas fa-layer-group"></i> Our Coaching Programs</h2>
       <div class="programs-grid">
-        <div class="program-card"><div class="program-icon">📖✨</div><h3>Young Learners</h3><p>Phonics, comprehension & creative expression for grades 1–5.</p><div class="badge">Grade 1-5</div></div>
-        <div class="program-card"><div class="program-icon">✍️📚</div><h3>Young Writers</h3><p>Essay writing, grammar mastery & storytelling for grades 6–8.</p><div class="badge">Grade 6-8</div></div>
-        <div class="program-card"><div class="program-icon">🎯🏆</div><h3>Board & Preboard</h3><p>Weekly test-based approach for grades 9–10 exam preparation.</p><div class="badge">Grade 9-10</div></div>
+        <div class="program-card"><div class="program-icon">📖✨</div><h3>Young Learners</h3><p>Phonics, comprehension & creative expression for grades 1–5. Build confidence through stories.</p><div class="badge">Grade 1-5</div></div>
+        <div class="program-card"><div class="program-icon">✍️📚</div><h3>Young Writers</h3><p>Essay writing, grammar mastery & storytelling for grades 6–8. Strong foundation building.</p><div class="badge">Grade 6-8</div></div>
+        <div class="program-card"><div class="program-icon">🎯🏆</div><h3>Board & Preboard</h3><p>Weekly test-based approach, extensive practice for grades 9–10 exam preparation.</p><div class="badge">Grade 9-10</div></div>
       </div>
     </div>
 
-    <!-- About Section with Animated Stats -->
+    <!-- About Section -->
     <div class="container" id="about">
       <div class="about-wrap">
         <div class="about-text"><h3><i class="fas fa-landmark"></i> Why BookTown Classes?</h3><p>Founded by educators who believe every child deserves a coach who listens, adapts, and inspires. We combine academic excellence with a love for reading — because great learners are great thinkers.</p><p>Small batch sizes (6-16 students) ensure personalized attention. We nurture curiosity, discipline, and joy for lifelong learning.</p><p>📍 Based in the heart of the community, also offering online sessions worldwide.</p></div>
-        <div class="about-stats"><div class="stat-item"><span class="stat-number" id="statSatisfaction">85</span>% <br/>parent satisfaction</div><div class="stat-item"><span class="stat-number" id="statStudents">100</span>+ <br/>students guided</div><div class="stat-item"><span class="stat-number" id="statRating">4.9</span>★ <br/>parent rating</div></div>
+        <div class="about-stats">
+          <div class="stat-item"><span class="stat-number" id="statSatisfaction">85</span>% <br/>parent satisfaction</div>
+          <div class="stat-item"><span class="stat-number" id="statStudents">100</span>+ <br/>students guided</div>
+          <div class="stat-item"><span class="stat-number" id="statRating">4.9</span>★ <br/>parent rating</div>
+        </div>
       </div>
     </div>
 
@@ -731,15 +860,27 @@
       </div>
     </div>
 
-    <!-- FAQ Section -->
+    <!-- FAQ SECTION - FULLY FUNCTIONAL DROPDOWN (Online classes removed) -->
     <div class="container" id="faq">
       <h2 class="section-title"><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
       <div class="faq-section">
         <div class="faq-grid">
-          <div class="faq-item"><div class="faq-question">What is the batch size? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Maximum 16 students per batch to ensure personalized attention and effective learning.</div></div>
-          <div class="faq-item"><div class="faq-question">Do you offer online classes? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes! We offer hybrid learning — both offline classroom and live online sessions available.</div></div>
-          <div class="faq-item"><div class="faq-question">What are the fees? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Fee varies by grade and program. Contact us for a personalized fee structure and scholarship info.</div></div>
-          <div class="faq-item"><div class="faq-question">Is there a trial class? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes, we offer a free demo class. Fill the form to schedule your trial session.</div></div>
+          <div class="faq-item">
+            <div class="faq-question">What is the batch size? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Maximum 16 students per batch to ensure personalized attention and effective learning. This small batch size allows our faculty to focus on each student's individual learning needs.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What are the fees structure? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Fee varies by grade and program. We offer competitive pricing with flexible payment options. Contact us for a personalized fee structure and scholarship information. Scholarships available for meritorious students.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Is there a trial class available? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Yes, we offer a free demo class for all new students. Fill out the contact form to schedule your trial session and experience our teaching methodology firsthand.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What teaching methodology do you follow? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">We follow the BookTown Method™ — a unique blend of concept clarity, regular assessments, personalized feedback, and smart goal setting. Our approach ensures deep understanding rather than rote learning.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -757,10 +898,156 @@
           <textarea rows="2" id="message" placeholder="Tell us about your child's interests..."></textarea>
           <button id="submitFormBtn"><i class="fab fa-whatsapp"></i> Request callback via WhatsApp</button>
         </div>
-        <p style="margin-top: 1.5rem;">📞 Call us: <a href="tel:9414700737" style="color:#1e3a5f; font-weight:bold;">9414700737</a> | 📧 hello@booktownclasses.com</p>
+        <p style="margin-top: 1.5rem;">📞 Call us: <a href="tel:9414700737" style="color:#1e3a5f; font-weight:bold; text-decoration:none;">9414700737</a> | 📧 hello@booktownclasses.com</p>
       </div>
     </div>
   </main>
 
   <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/9414700737?text
+  <a href="https://wa.me/919414700737?text=Hello%21%20I%27m%20interested%20in%20BookTown%20Classes.%20Please%20share%20more%20details." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#programs">Programs</a>
+      <a href="#about">About</a>
+      <a href="#faculty">Faculty</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p>© 2025 BookTown Classes — Premier Academic Coaching for Curious Minds. 📖✨</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;"><i class="fas fa-map-marker-alt"></i> Serving students with excellence | Online & Offline programs</p>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+      });
+    }
+
+    // Carousel functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+    function updateCarousel() {
+      const container = document.querySelector('.carousel-container');
+      if (container) container.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+    const nextBtn = document.querySelector('.next');
+    const prevBtn = document.querySelector('.prev');
+    if (nextBtn && prevBtn) {
+      nextBtn.addEventListener('click', () => { currentSlide = (currentSlide + 1) % totalSlides; updateCarousel(); });
+      prevBtn.addEventListener('click', () => { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateCarousel(); });
+    }
+    setInterval(() => { if (slides.length) { currentSlide = (currentSlide + 1) % totalSlides; updateCarousel(); } }, 5000);
+
+    // FAQ DROPDOWN - FULLY FUNCTIONAL
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const questionDiv = item.querySelector('.faq-question');
+      questionDiv.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Close other open FAQs
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+          }
+        });
+        // Toggle current FAQ
+        item.classList.toggle('active');
+      });
+    });
+
+    // Animated Stats Counter
+    function animateStats() {
+      const satisfactionEl = document.getElementById('statSatisfaction');
+      const studentsEl = document.getElementById('statStudents');
+      const ratingEl = document.getElementById('statRating');
+      if (!satisfactionEl) return;
+      
+      let satisfaction = 0;
+      let students = 0;
+      let rating = 0;
+      const targetSatisfaction = 85;
+      const targetStudents = 100;
+      const targetRating = 4.9;
+      
+      const interval = setInterval(() => {
+        let changed = false;
+        if (satisfaction < targetSatisfaction) {
+          satisfaction = Math.min(satisfaction + 5, targetSatisfaction);
+          satisfactionEl.textContent = satisfaction;
+          changed = true;
+        }
+        if (students < targetStudents) {
+          students = Math.min(students + 10, targetStudents);
+          studentsEl.textContent = students;
+          changed = true;
+        }
+        if (rating < targetRating) {
+          rating = Math.min(rating + 0.3, targetRating);
+          ratingEl.textContent = rating.toFixed(1);
+          changed = true;
+        }
+        if (!changed) clearInterval(interval);
+      }, 50);
+    }
+    
+    // Intersection Observer for stats animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateStats();
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+    const aboutStats = document.querySelector('.about-stats');
+    if (aboutStats) observer.observe(aboutStats);
+
+    // Contact Form Handler
+    const formBtn = document.getElementById('submitFormBtn');
+    let feedbackDiv = document.createElement('div');
+    feedbackDiv.className = 'form-message';
+    const contactFormDiv = document.getElementById('contactForm');
+    if (contactFormDiv) contactFormDiv.appendChild(feedbackDiv);
+
+    if (formBtn) {
+      formBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const studentClass = document.getElementById('studentClass').value;
+        const message = document.getElementById('message').value.trim();
+        const batch = document.getElementById('preferredBatch').value;
+
+        if (!name || !phone || !studentClass) {
+          feedbackDiv.style.color = "#c33";
+          feedbackDiv.innerHTML = "❌ Please provide your name, phone, and select student's class.";
+          return;
+        }
+
+        const inquiry = { name, phone, studentClass, batch, message: message || "No additional message", date: new Date().toLocaleString() };
+        
+        const whatsappNumber = '919414700737';
+        const whatsappMessage = `📚 *BookTown Inquiry*%0A👤 Name: ${inquiry.name}%0A📞 Phone: ${inquiry.phone}%0A🎓 Class: ${inquiry.studentClass}%0A⏰ Batch: ${inquiry.batch || 'Not specified'}%0A💬 Message: ${inquiry.message}%0A🕒 ${inquiry.date}`;
+        window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank');
+
+        feedbackDiv.style.color = "#2d6a4f";
+        feedbackDiv.innerHTML = `✅ Thanks ${name}! Opening WhatsApp to connect with our team. We'll reach out shortly.`;
+        document.getElementById('message').value = '';
+        
+        setTimeout(() => {
+          if(feedbackDiv.innerHTML.includes("Thanks")) feedbackDiv.style.opacity = "0.8";
+        }, 5000);
+      });
+    }
+  </script>
+</body>
+</html>
