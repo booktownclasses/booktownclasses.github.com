@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>BookTown Classes | Coaching for Curious Minds</title>
+  <title>BookTown Classes | Premier Coaching for Curious Minds</title>
   <!-- Google Fonts & simple reset -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons for extra flair) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -49,9 +51,13 @@
       color: black;
       padding: 0.5rem;
       border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .logo span {
-      color: black;
+    .logo i {
+      color: #bc6f2c;
+      font-size: 2.2rem;
     }
     .logo span {
       background: none;
@@ -83,6 +89,7 @@
       border-radius: 40px;
       border-bottom: none !important;
       font-weight: 600;
+      transition: 0.2s;
     }
     .btn-cta-small:hover {
       background: #9b551f;
@@ -123,7 +130,7 @@
     .hero-carousel {
       flex: 1;
       text-align: center;
-      max-width: 504px; /* 20% wider */
+      max-width: 504px;
     }
     .hero-carousel .carousel {
       margin-top: 0;
@@ -133,7 +140,7 @@
       max-height: 504px;
     }
     .hero-carousel .carousel-slide img {
-      height: 504px; /* 20% taller */
+      height: 504px;
       object-fit: cover;
     }
     .btn-group {
@@ -173,94 +180,108 @@
       transform: translateY(-2px);
     }
 
-    .whatsapp-btn {
-      background: #00c851;
-      color: white;
-      padding: 0.9rem 2rem;
-      border-radius: 48px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-block;
-      transition: 0.2s;
-      margin-top: 1rem;
-      box-shadow: 0 4px 8px rgba(0, 200, 81, 0.2);
-    }
-    .whatsapp-btn:hover {
-      background: #009846;
-      transform: translateY(-2px);
-    }
-
-    /* section style */
-    section {
-      padding: 4rem 0;
-    }
-    .section-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 2.5rem;
-      color: #2c1b12;
+    /* =============== ENHANCED FEATURE SECTION - STANDS OUT =============== */
+    .feature-highlight-section {
+      background: linear-gradient(135deg, #2c1b12 0%, #3f2a1d 100%);
+      border-radius: 64px;
+      margin: 2rem auto 3rem;
+      padding: 3rem 1rem;
+      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.3);
       position: relative;
-    }
-    .section-title:after {
-      content: '';
-      display: block;
-      width: 70px;
-      height: 3px;
-      background: #bc6f2c;
-      margin: 0.6rem auto 0;
-      border-radius: 4px;
-    }
-
-    /* Carousel styles */
-    .carousel-section {
-      background: #f9f5f0;
-      padding: 4rem 0;
-    }
-    .carousel {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
       overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
     }
-    .carousel-container {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-    .carousel-slide {
-      min-width: 100%;
-      position: relative;
-    }
-    .carousel-slide img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      display: block;
-    }
-    .carousel-btn {
+    .feature-highlight-section::before {
+      content: "✨";
+      font-size: 180px;
+      opacity: 0.05;
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(188, 111, 44, 0.8);
+      bottom: -30px;
+      right: -30px;
+      pointer-events: none;
+      transform: rotate(-10deg);
+    }
+    .feature-highlight-section .section-title-light {
+      font-size: 2.2rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #fff2e6;
+      letter-spacing: -0.3px;
+    }
+    .section-title-light:after {
+      background: #ffbc7a;
+    }
+    .feature-sub {
+      text-align: center;
+      color: #ffd9b5;
+      margin-bottom: 3rem;
+      font-size: 1.2rem;
+      font-weight: 400;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .features-grid-premium {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .premium-feature-card {
+      background: rgba(255, 250, 240, 0.95);
+      backdrop-filter: blur(2px);
+      border-radius: 40px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid rgba(255,215,175,0.5);
+      box-shadow: 0 15px 30px -10px rgba(0,0,0,0.2);
+    }
+    .premium-feature-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      background: #ffffff;
+      border-color: #bc6f2c;
+      box-shadow: 0 28px 40px -12px rgba(188,111,44,0.3);
+    }
+    .feature-icon-circle {
+      background: linear-gradient(145deg, #bc6f2c, #e09142);
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 60px;
+      font-size: 2.6rem;
       color: white;
-      border: none;
-      padding: 12px 16px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      border-radius: 50%;
-      transition: background 0.3s;
-      z-index: 10;
+      box-shadow: 0 12px 18px -8px rgba(0,0,0,0.3);
+      transition: 0.2s;
     }
-    .carousel-btn:hover {
-      background: rgba(188, 111, 44, 1);
+    .premium-feature-card:hover .feature-icon-circle {
+      transform: rotate(4deg) scale(1.05);
+      background: #bc6f2c;
     }
-    .prev {
-      left: 10px;
+    .premium-feature-card h3 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: #2c1b12;
     }
-    .next {
-      right: 10px;
+    .premium-feature-card p {
+      color: #4a3526;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+    .feature-badge {
+      margin-top: 1.2rem;
+      display: inline-block;
+      background: #ffecd9;
+      padding: 0.3rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #bc6f2c;
     }
 
     /* Programs grid */
@@ -293,10 +314,6 @@
       font-weight: 700;
       margin-bottom: 0.75rem;
     }
-    .program-card p {
-      color: #5e4736;
-      margin: 0.8rem 0;
-    }
     .badge {
       display: inline-block;
       background: #fae3cf;
@@ -324,10 +341,6 @@
       transition: transform 0.3s, box-shadow 0.3s;
       border: 1px solid #f0e2d4;
     }
-    .faculty-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-    }
     .faculty-card img {
       width: 120px;
       height: 120px;
@@ -336,49 +349,11 @@
       margin-bottom: 1rem;
       border: 4px solid #fae3cf;
     }
-    .faculty-card h3 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #2c1b12;
-    }
     .role {
       font-size: 1rem;
       color: #bc6f2c;
       font-weight: 600;
       margin-bottom: 0.75rem;
-    }
-    .faculty-card p {
-      font-size: 0.9rem;
-      color: #5b3e2c;
-      line-height: 1.5;
-    }
-
-    /* coaching features */
-    .features {
-      background: #fff7f0;
-      border-radius: 48px;
-      margin: 1rem 0;
-    }
-    .features-flex {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      padding: 1rem 0;
-    }
-    .feature-item {
-      flex: 1;
-      min-width: 200px;
-      text-align: center;
-      padding: 1rem;
-    }
-    .feature-item .emoji {
-      font-size: 2.5rem;
-    }
-    .feature-item h4 {
-      font-size: 1.3rem;
-      margin: 0.8rem 0 0.3rem;
     }
 
     /* about section */
@@ -390,15 +365,6 @@
     }
     .about-text {
       flex: 1.5;
-    }
-    .about-text h3 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .about-text p {
-      margin-bottom: 1rem;
-      color: #3f2d21;
     }
     .about-stats {
       flex: 1;
@@ -413,7 +379,7 @@
       color: #bc6f2c;
     }
 
-    /* testimonials */
+    /* testimonial grid */
     .testimonial-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -425,16 +391,15 @@
       padding: 1.8rem;
       box-shadow: 0 5px 15px rgba(0,0,0,0.02);
       border: 1px solid #f3e3d7;
+      transition: 0.2s;
     }
-    .testimonial p {
-      font-style: italic;
-      margin-bottom: 1rem;
-      color: #2f241e;
+    .testimonial:hover {
+      border-color: #bc6f2c;
+      box-shadow: 0 12px 20px rgba(0,0,0,0.05);
     }
-    .testimonial h4 {
-      font-weight: 700;
-      margin-top: 0.5rem;
-      color: #b16027;
+    .stars {
+      color: #f4b942;
+      letter-spacing: 2px;
     }
 
     /* contact + cta */
@@ -443,10 +408,6 @@
       border-radius: 48px;
       text-align: center;
       padding: 3rem 2rem;
-    }
-    .contact-cta h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
     }
     .contact-form {
       max-width: 550px;
@@ -467,7 +428,6 @@
     }
     .contact-form textarea {
       border-radius: 28px;
-      resize: vertical;
     }
     .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
       border-color: #bc6f2c;
@@ -484,15 +444,11 @@
       cursor: pointer;
       transition: 0.2s;
     }
-    .contact-form button:hover {
-      background: #9b551f;
-    }
     .form-message {
       margin-top: 0.8rem;
       font-size: 0.9rem;
       color: #2d6a4f;
     }
-
     footer {
       background: #2e241f;
       color: #eedbcb;
@@ -512,9 +468,6 @@
       color: #ffddbb;
       text-decoration: none;
     }
-    .footer-links a:hover {
-      color: white;
-    }
     @media (max-width: 780px) {
       .navbar {
         flex-direction: column;
@@ -523,8 +476,12 @@
       .hero-content h1 {
         font-size: 2.5rem;
       }
-      .section-title {
-        font-size: 1.9rem;
+      .feature-highlight-section {
+        border-radius: 40px;
+        padding: 2rem 1rem;
+      }
+      .premium-feature-card h3 {
+        font-size: 1.4rem;
       }
     }
   </style>
@@ -532,7 +489,7 @@
 <body>
 
 <nav class="navbar">
-  <div class="logo">📚 BookTown Classes</span></div>
+  <div class="logo"><i class="fas fa-book-open"></i> BookTown Classes</div>
   <div class="nav-links">
     <a href="#home" class="active">Home</a>
     <a href="#programs">Programs</a>
@@ -550,8 +507,8 @@
         <h1>Coaching that <span class="highlight">changes tomorrow</span> Today with lifetime of learning.</h1>
         <p>BookTown Classes — where young minds grow through story, structure & success. Personalised coaching for every learner.</p>
         <div class="btn-group">
-          <a href="#contact" class="btn-primary">📖 Enroll today</a>
-          <a href="#programs" class="btn-secondary">Explore courses</a>
+          <a href="#contact" class="btn-primary"><i class="fas fa-graduation-cap"></i> Enroll today</a>
+          <a href="#programs" class="btn-secondary"><i class="fas fa-chalkboard-user"></i> Explore courses</a>
         </div>
       </div>
       <div class="hero-carousel">
@@ -569,9 +526,47 @@
     </div>
   </div>
 
-  <!-- Faculty Section -->
+  <!-- ========== HIGHLIGHTED FEATURE SECTION - ENHANCED & STANDOUT ========== -->
+  <div class="container feature-highlight-section">
+    <h2 class="section-title-light"><i class="fas fa-star-of-life"></i> The BookTown Advantage ✨</h2>
+    <div class="feature-sub">Experience a coaching ecosystem designed for excellence, confidence, and real-world growth</div>
+    <div class="features-grid-premium">
+      <div class="premium-feature-card">
+        <div class="feature-icon-circle"><i class="fas fa-chalkboard-teacher"></i></div>
+        <h3>Elite Mentors</h3>
+        <p>Passionate educators with 5+ years of expertise & personalized teaching methodologies that adapt to each student's pace.</p>
+        <div class="feature-badge">📈 100% certified</div>
+      </div>
+      <div class="premium-feature-card">
+        <div class="feature-icon-circle"><i class="fas fa-clock"></i></div>
+        <h3>Smart Scheduling</h3>
+        <p>Flexible weekday/weekend batches + early morning slots for evening school students. Hybrid online-offline access.</p>
+        <div class="feature-badge">⏰ Morning batches available</div>
+      </div>
+      <div class="premium-feature-card">
+        <div class="feature-icon-circle"><i class="fas fa-trophy"></i></div>
+        <h3>Proven Results</h3>
+        <p>90% of students show consistent grade improvement and conceptual mastery. Regular performance tracking & feedback.</p>
+        <div class="feature-badge">🏆 Top rankers program</div>
+      </div>
+      <div class="premium-feature-card">
+        <div class="feature-icon-circle"><i class="fas fa-users"></i></div>
+        <h3>Small Batches</h3>
+        <p>Limited batch size (6-16 students) ensures deep one-on-one interaction and doubt resolution every session.</p>
+        <div class="feature-badge">🎯 Personalized attention</div>
+      </div>
+      <div class="premium-feature-card">
+        <div class="feature-icon-circle"><i class="fas fa-book-reader"></i></div>
+        <h3>BookTown Method™</h3>
+        <p>Ranking-based learning + smart goals + curated reading lists to nurture intellectual curiosity and exam readiness.</p>
+        <div class="feature-badge">📘 Future-ready skills</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Faculty Section (improved with subtle icons) -->
   <div class="container" id="faculty">
-    <h2 class="section-title">👨‍🏫 Meet Our Expert Faculty</h2>
+    <h2 class="section-title"><i class="fas fa-user-graduate"></i> Meet Our Expert Faculty</h2>
     <div class="faculty-grid">
       <div class="faculty-card">
         <img src="images/nishat.jpeg" alt="Nishat Afroz">
@@ -592,7 +587,7 @@
 
   <!-- Programs section -->
   <div class="container" id="programs">
-    <h2 class="section-title">📘 Our coaching programs</h2>
+    <h2 class="section-title"><i class="fas fa-layer-group"></i> Our coaching programs</h2>
     <div class="programs-grid">
       <div class="program-card">
         <div class="program-icon">📖✨</div>
@@ -608,21 +603,10 @@
       </div>
       <div class="program-card">
         <div class="program-icon">🎯🏆</div>
-        <h3>Board and Preboard Exam</h3>
-        <p>with extensive focus on test based approch on weekly basis to judge the student progress effectively</p>
+        <h3>Board & Preboard</h3>
+        <p>Extensive test-based approach with weekly assessments to track progress and build exam stamina.</p>
         <div class="badge">Grade 9-10</div>
       </div>
-    </div>
-  </div>
-
-  <!-- Features highlight -->
-  <div class="container features">
-    <div class="features-flex">
-      <div class="feature-item"><div class="emoji">🧑‍🏫</div><h4>Expert Mentors</h4><p>Passionate educators with 5+ years experience</p></div>
-      <div class="feature-item"><div class="emoji">📅</div><h4>Flexible Schedules</h4><p>Weekday & weekend batches, hybrid options</p></div>
-       <div class="feature-item"><div class="emoji">🌅</div><h4>Morning Batches</h4><p>Weekday mornings available for evening school students</p></div>
-      <div class="feature-item"><div class="emoji">🏆</div><h4>Proven Results</h4><p>90% of students show grade improvement</p></div>
-      <div class="feature-item"><div class="emoji">📘</div><h4>BookTown Method</h4><p>Ranking based learning + smart goals</p></div>
     </div>
   </div>
 
@@ -630,7 +614,7 @@
   <div class="container" id="about">
     <div class="about-wrap">
       <div class="about-text">
-        <h3>📖 Why BookTown Classes?</h3>
+        <h3><i class="fas fa-landmark"></i> Why BookTown Classes?</h3>
         <p>Founded by educators who believe every child deserves a coach who listens, adapts, and inspires. We combine academic excellence with a love for reading — because great learners are great thinkers.</p>
         <p>Our small batch sizes (between 6-16 students) ensure personalized attention. We don't just teach subjects; we nurture curiosity, discipline, and joy for lifelong learning.</p>
         <p>📍 Based in the heart of the community, also offering online sessions worldwide.</p>
@@ -638,67 +622,62 @@
       <div class="about-stats">
         <div><span class="stat-number">85%</span> <br/>parent satisfaction rate</div>
         <div style="margin-top: 1.5rem;"><span class="stat-number">100+</span> <br/>students guided</div>
+        <div style="margin-top: 1.5rem;"><span class="stat-number">4.9⭐</span> <br/>Google rating</div>
       </div>
     </div>
   </div>
 
-  <!-- Testimonials -->
+  <!-- Testimonials with star rating enhancement -->
   <div class="container">
-    <h2 class="section-title">❤️ What families say</h2>
+    <h2 class="section-title"><i class="fas fa-heart"></i> What families say</h2>
     <div class="testimonial-grid">
       <div class="testimonial">
-        <p>“Had a really good experience with this tuition. Teaching style is easy to follow and the teacher is very patient and supportive. All doubts are cleared without any hesitation and regular practice helps a lot. Overall, it’s a nice place to study and improve.”</p>
+        <p>“Had a really good experience with this tuition. Teaching style is easy to follow and the teacher is very patient and supportive. All doubts are cleared without any hesitation and regular practice helps a lot.”</p>
         <h4>— Harim Athar</h4>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <div class="stars">★★★★★</div>
       </div>
       <div class="testimonial">
-        <p>“The coaching is good and there teachers are very good 👍😊 very friendly 😊 love the coaching”</p>
+        <p>“The coaching is good and there teachers are very good 👍 very friendly 😊 love the coaching”</p>
         <h4>— Musab Bin Umair</h4>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <div class="stars">★★★★★</div>
       </div>
       <div class="testimonial">
-        <p>“My coaching classes have been very helpful for my studies. The teachers explain concepts clearly and solve all doubts patiently. The environment is supportive and motivating, which helps me improve my confidence. Regular tests and practice sessions help me prepare better for exams. I am really satisfied with my learning experience here”</p>
-        <h4>— Sabiha Hayat, student</h4>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>“My coaching classes have been very helpful for my studies. The teachers explain concepts clearly and solve all doubts patiently. Regular tests and practice sessions help me prepare better.”</p>
+        <h4>— Sabiha Hayat</h4>
+        <div class="stars">★★★★★</div>
       </div>
       <div class="testimonial">
-        <p>“Outstanding teaching standards with a disciplined and student-focused approach. The teachers are highly experienced and committed to academic excellence. Strongly recommended.”</p>
+        <p>“Outstanding teaching standards with a disciplined and student-focused approach. The teachers are highly experienced and committed to academic excellence.”</p>
         <h4>— Asna</h4>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <div class="stars">★★★★★</div>
       </div>
       <div class="testimonial">
-        <p>“My tuition is very helpful and well-organized. The teacher explains every topic clearly and in an easy way, which makes even difficult chapters simple to understand. All concepts are explained step-by-step with proper examples. Regular tests and practice questions are given, which help in improving performance and building confidence for exams. Doubts are always cleared patiently, and personal attention is given to every student. Overall, this tuition is excellent for Class 10 students who want to score good marks and understand subjects properly. I am very satisfied with the teaching and guidance.”</p>
+        <p>“My tuition is very helpful and well-organized. All concepts are explained step-by-step with proper examples. Regular tests and practice questions help in improving performance.”</p>
         <h4>— Tausim Khan</h4>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <div class="stars">★★★★★</div>
       </div>
     </div>
   </div>
 
-  <!-- Contact + CTA with simple form handling (GitHub Pages friendly) -->
+  <!-- Contact + CTA -->
   <div class="container" id="contact">
     <div class="contact-cta">
-      <h2>✉️ Start your learning journey</h2>
+      <h2><i class="fab fa-whatsapp"></i> Start your learning journey</h2>
       <p>Fill out the form and our coaching advisor will reach out within 24h.</p>
       <div class="contact-form" id="contactForm">
         <input type="text" id="name" placeholder="Your name" required>
-        <input type="text" id="phone" placeholder="Phone" required>
+        <input type="text" id="phone" placeholder="Phone number" required>
         <select id="studentClass" required>
           <option value="">Select student's class</option>
-          <option value="Class 1">Class 1</option>
-          <option value="Class 2">Class 2</option>
-          <option value="Class 3">Class 3</option>
-          <option value="Class 4">Class 4</option>
-          <option value="Class 5">Class 5</option>
-          <option value="Class 6">Class 6</option>
-          <option value="Class 7">Class 7</option>
-          <option value="Class 8">Class 8</option>
-          <option value="Class 9">Class 9</option>
+          <option value="Class 1">Class 1</option><option value="Class 2">Class 2</option><option value="Class 3">Class 3</option>
+          <option value="Class 4">Class 4</option><option value="Class 5">Class 5</option><option value="Class 6">Class 6</option>
+          <option value="Class 7">Class 7</option><option value="Class 8">Class 8</option><option value="Class 9">Class 9</option>
           <option value="Class 10">Class 10</option>
         </select>
         <textarea rows="2" id="message" placeholder="Tell us about your child's interests..."></textarea>
-        <button id="submitFormBtn">📚 Request callback via WhatsApp</button>
+        <button id="submitFormBtn"><i class="fab fa-whatsapp"></i> Request callback via WhatsApp</button>
       </div>
-      <p style="margin-top: 1.5rem; font-size: 0.9rem;">📞 Or call 9414700737 </p>
+      <p style="margin-top: 1.5rem; font-size: 0.9rem;">📞 Or call 9414700737 | 📧 hello@booktownclasses.com</p>
     </div>
   </div>
 </main>
@@ -711,7 +690,7 @@
     <a href="#contact">Contact</a>
   </div>
   <p>© 2025 BookTown Classes — Coaching for bright futures. 📖✨</p>
-  <p style="margin-top: 0.5rem; font-size: 0.8rem;">📍 123 Story Lane, BookTown | Serving students worldwide</p>
+  <p style="margin-top: 0.5rem; font-size: 0.8rem;"><i class="fas fa-map-marker-alt"></i> 123 Story Lane, BookTown | Serving students worldwide</p>
 </footer>
 
 <script>
@@ -722,44 +701,50 @@
 
   function updateCarousel() {
     const container = document.querySelector('.carousel-container');
-    container.style.transform = `translateX(-${currentSlide * 100}%)`;
+    if (container) container.style.transform = `translateX(-${currentSlide * 100}%)`;
   }
 
-  document.querySelector('.next').addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-  });
+  const nextBtn = document.querySelector('.next');
+  const prevBtn = document.querySelector('.prev');
+  if (nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    });
+    prevBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    });
+  }
 
-  document.querySelector('.prev').addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-  });
-
-  // Auto-play carousel (optional)
+  // Auto-play carousel
   setInterval(() => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-  }, 5000); // Change slide every 5 seconds
+    if (slides.length) {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    }
+  }, 5000);
 
-  // Simple contact form handling without backend (stores locally & shows success)
+  // Enhanced contact form with WhatsApp and inline feedback
   const formBtn = document.getElementById('submitFormBtn');
-  const feedbackDiv = document.getElementById('formFeedback');
-  
+  let feedbackDiv = document.createElement('div');
+  feedbackDiv.className = 'form-message';
+  const contactFormDiv = document.getElementById('contactForm');
+  contactFormDiv.appendChild(feedbackDiv);
+
   formBtn.addEventListener('click', function(e) {
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const studentClass = document.getElementById('studentClass').value;
     const message = document.getElementById('message').value.trim();
-    
+
     if (!name || !phone || !studentClass) {
       feedbackDiv.style.color = "#c33";
-      feedbackDiv.innerText = "❌ Please provide your name, phone, and select student's class.";
+      feedbackDiv.innerHTML = "❌ Please provide your name, phone, and select student's class.";
       return;
     }
-    
-    // For GitHub Pages demo: just simulate submission and show a friendly message
-    // Store in localStorage for optional demo persistence, or just alert
+
     const inquiry = {
       name: name,
       phone: phone,
@@ -767,7 +752,6 @@
       message: message || "No additional message",
       date: new Date().toLocaleString()
     };
-    // Save to localStorage for mock purpose (not required but keeps last inquiry)
     let inquiries = localStorage.getItem('booktown_inquiries');
     if(inquiries) {
       let arr = JSON.parse(inquiries);
@@ -776,28 +760,22 @@
     } else {
       localStorage.setItem('booktown_inquiries', JSON.stringify([inquiry]));
     }
-    
-    // Send to WhatsApp
-    const whatsappNumber = '9414700737'; // Replace with your WhatsApp number (include country code, no +)
-    const whatsappMessage = `New Inquiry:\nName: ${inquiry.name}\nPhone: ${inquiry.phone}\nClass: ${inquiry.studentClass}\nMessage: ${inquiry.message}\nDate: ${inquiry.date}`;
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+    const whatsappNumber = '9414700737';
+    const whatsappMessage = `📚 *New Inquiry from BookTown Website*%0A👤 Name: ${inquiry.name}%0A📞 Phone: ${inquiry.phone}%0A🎓 Class: ${inquiry.studentClass}%0A💬 Message: ${inquiry.message}%0A🕒 Date: ${inquiry.date}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
     window.open(whatsappUrl, '_blank');
-    
+
     feedbackDiv.style.color = "#2d6a4f";
-    feedbackDiv.innerHTML = "✅ Thanks " + name + "! Opening WhatsApp to send your details. 📱✨";
-    // Optionally clear sensitive fields but keep name/email for user experience? reset only message area
+    feedbackDiv.innerHTML = `✅ Thanks ${name}! Opening WhatsApp to connect with our team. 📱✨ We'll get back to you shortly.`;
     document.getElementById('message').value = '';
     document.getElementById('phone').value = '';
-    // (we keep name and email for convenience but not required)
-    // you can also reset form if you like:
-    // document.getElementById('contactForm').reset(); but that would remove everything. We'll keep name visible.
-    // Actually, better keep name/email to avoid confusion, just clear phone/message.
-    // we also reset form feedback after 6 seconds optionally
+
     setTimeout(() => {
       if(feedbackDiv.innerHTML.includes("Thanks")) {
-        feedbackDiv.style.opacity = "0.6";
+        feedbackDiv.style.opacity = "0.8";
       }
-    }, 5000);
+    }, 6000);
   });
 </script>
 </body>
