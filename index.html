@@ -120,15 +120,19 @@
       margin: 1.2rem 0 1.8rem;
       max-width: 550px;
     }
-    .hero-image {
+    .hero-carousel {
       flex: 1;
       text-align: center;
+      max-width: 420px;
     }
-    .hero-image svg {
-      max-width: 100%;
-      width: 380px;
-      height: auto;
-      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.05));
+    .hero-carousel .carousel {
+      margin-top: 0;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .hero-carousel .carousel-slide img {
+      height: 420px;
+      object-fit: cover;
     }
     .btn-group {
       display: flex;
@@ -548,36 +552,20 @@
           <a href="#programs" class="btn-secondary">Explore courses</a>
         </div>
       </div>
-      <div class="hero-image">
-        <img src="images/inside1.jpeg" alt="Students learning with books" style="max-width: 100%; width: 380px; height: auto; border-radius: 16px; filter: drop-shadow(0 12px 18px rgba(0,0,0,0.05));">
+      <div class="hero-carousel">
+        <div class="carousel">
+          <div class="carousel-container">
+            <div class="carousel-slide"><img src="images/inside1.jpeg" alt="Classroom setup with students"></div>
+            <div class="carousel-slide"><img src="images/inside2.jpeg" alt="Group study session"></div>
+            <div class="carousel-slide"><img src="images/outside1.jpeg" alt="One-on-one coaching"></div>
+            <div class="carousel-slide"><img src="images/outside2.jpeg" alt="One-on-one coaching"></div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous image">❮</button>
+          <button class="carousel-btn next" aria-label="Next image">❯</button>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- Image Carousel -->
-  <section class="carousel-section">
-    <div class="container">
-      <h2 class="section-title">📸 Our Learning Environment</h2>
-      <div class="carousel">
-        <div class="carousel-container">
-          <div class="carousel-slide">
-            <img src="images/inside1.jpeg" alt="Classroom setup with students">
-          </div>
-          <div class="carousel-slide">
-            <img src="images/inside2.jpeg" alt="Group study session">
-          </div>
-          <div class="carousel-slide">
-            <img src="images/outside1.jpeg" alt="One-on-one coaching">
-          </div>
-          <div class="carousel-slide">
-            <img src="images/outside2.jpeg" alt="One-on-one coaching">
-          </div>
-        </div>
-        <button class="carousel-btn prev" aria-label="Previous image">❮</button>
-        <button class="carousel-btn next" aria-label="Next image">❯</button>
-      </div>
-    </div>
-  </section>
 
   <!-- Programs section -->
   <div class="container" id="programs">
@@ -607,10 +595,11 @@
   <!-- Features highlight -->
   <div class="container features">
     <div class="features-flex">
-      <div class="feature-item"><div class="emoji">🧑‍🏫</div><h4>Expert Mentors</h4><p>Passionate educators with 8+ years experience</p></div>
+      <div class="feature-item"><div class="emoji">🧑‍🏫</div><h4>Expert Mentors</h4><p>Passionate educators with 5+ years experience</p></div>
       <div class="feature-item"><div class="emoji">📅</div><h4>Flexible Schedules</h4><p>Weekday & weekend batches, hybrid options</p></div>
+       <div class="feature-item"><div class="emoji">🌅</div><h4>Morning Batches</h4><p>Weekday mornings available for evening school students</p></div>
       <div class="feature-item"><div class="emoji">🏆</div><h4>Proven Results</h4><p>90% of students show grade improvement</p></div>
-      <div class="feature-item"><div class="emoji">📘</div><h4>BookTown Method</h4><p>Story-based learning + smart goals</p></div>
+      <div class="feature-item"><div class="emoji">📘</div><h4>BookTown Method</h4><p>Ranking based learning + smart goals</p></div>
     </div>
   </div>
 
@@ -620,13 +609,12 @@
       <div class="about-text">
         <h3>📖 Why BookTown Classes?</h3>
         <p>Founded by educators who believe every child deserves a coach who listens, adapts, and inspires. We combine academic excellence with a love for reading — because great learners are great thinkers.</p>
-        <p>Our small batch sizes (max 6 students) ensure personalized attention. We don't just teach subjects; we nurture curiosity, discipline, and joy for lifelong learning.</p>
+        <p>Our small batch sizes (between 6-16 students) ensure personalized attention. We don't just teach subjects; we nurture curiosity, discipline, and joy for lifelong learning.</p>
         <p>📍 Based in the heart of the community, also offering online sessions worldwide.</p>
       </div>
       <div class="about-stats">
-        <div><span class="stat-number">98%</span> <br/>parent satisfaction rate</div>
-        <div style="margin-top: 1.5rem;"><span class="stat-number">1200+</span> <br/>students guided</div>
-        <div style="margin-top: 1.5rem;"><span class="stat-number">15+</span> <br/>award-winning coaches</div>
+        <div><span class="stat-number">85%</span> <br/>parent satisfaction rate</div>
+        <div style="margin-top: 1.5rem;"><span class="stat-number">100+</span> <br/>students guided</div>
       </div>
     </div>
   </div>
@@ -636,16 +624,18 @@
     <h2 class="section-title">👨‍🏫 Meet Our Expert Faculty</h2>
     <div class="faculty-grid">
       <div class="faculty-card">
-        <img src="images/teacher1.jpg" alt="Nishat Afroz">
+        <img src="images/nishat.jpeg" alt="Nishat Afroz">
         <h3>Nishat Afroz</h3>
         <p class="role">Director & Founder</p>
-        <p>B.ed, English M.A. 5+ years teaching experience. Specializes in teaching  young learners.</p>
+        <p><b>B.Ed,  M.A(English)</b></p>
+        <p>5+ years of experience in Teaching, specializing in English language and literature. Passionate about nurturing young minds and fostering a love for learning.</p>
       </div>
       <div class="faculty-card">
-        <img src="images/tayyab.png" alt="Mohd Tayyab">
+        <img src="images/tayyab2.jpeg" alt="Mohd Tayyab">
         <h3>Mohd Tayyab</h3>
         <p class="role">Expert Faculty</p>
-        <p>Teaches class 9-10 with a focus on exam preparation and academic excellence.</p>
+        <p><b>MTech(CS) JMI</b></p>
+        <p>3+ years of experience teaching classes 9-10 with a focus on exam preparation and academic excellence.</p>
       </div>
      
     </div>
