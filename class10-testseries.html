@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>BookTown | Class 10 Test Series 2025-26</title>
+  <meta name="description" content="12 months of focused testing every Sunday. Chapter-wise tests, quarterly finals, detailed analysis, and CBSE pattern papers for Class 10 Science & Math.">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Test series specific styles */
+    .timetable-card {
+      background: rgba(30, 41, 59, 0.5);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border: 1px solid rgba(196,167,71,0.2);
+      overflow-x: auto;
+    }
+    .timetable-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .timetable-table th, .timetable-table td {
+      padding: 12px 8px;
+      text-align: center;
+      border-bottom: 1px solid rgba(196,167,71,0.2);
+    }
+    .timetable-table th {
+      background: rgba(196,167,71,0.15);
+      color: #c4a747;
+      font-weight: 800;
+    }
+    .quarter-badge {
+      background: #c4a747;
+      color: #0b0f1c;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      display: inline-block;
+      margin: 1rem 0 0.5rem;
+    }
+    .price-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .price-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 1.5rem;
+      text-align: center;
+      min-width: 200px;
+      border: 1px solid rgba(196,167,71,0.3);
+      transition: 0.3s;
+    }
+    .price-card:hover {
+      transform: translateY(-5px);
+      border-color: #c4a747;
+    }
+    .price-card .price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #c4a747;
+      margin: 0.5rem 0;
+    }
+    .test-difficulty {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .difficulty-item {
+      background: rgba(0,0,0,0.3);
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="logo"><i class="fas fa-graduation-cap"></i> BookTown <span>Classes</span></div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="coding.html">Coding</a>
+      <a href="class10.html">Class 10</a>
+      <a href="class10-testseries.html" class="active">Test Series</a>
+      <a href="english.html">English</a>
+      <a href="index.html#contact" class="btn-cta-small">Join Now</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+      <!-- Hero -->
+      <div class="hero" style="padding: 2rem 0 1rem;">
+        <div class="hero-content">
+          <h1>🎯 Class 10 <span class="highlight">Test Series 2025-26</span></h1>
+          <p>12 months of focused testing – Every Sunday. CBSE pattern papers, instant answer keys, and detailed performance analysis.</p>
+          <div class="btn-group">
+            <a href="#pricing" class="btn-primary"><i class="fas fa-rupee-sign"></i> View Plans</a>
+            <a href="#schedule" class="btn-secondary"><i class="fas fa-calendar-alt"></i> Test Schedule</a>
+          </div>
+        </div>
+        <div class="hero-carousel">
+          <div class="carousel" style="max-width: 400px;">
+            <img src="images/testseries-banner.jpg" alt="Test series" style="width:100%; border-radius: 28px;" onerror="this.src='https://placehold.co/400x300/1e293b/c4a747?text=Test+Series'">
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 Months Overview -->
+      <div class="advantage-full-width" style="margin: 1rem 0; padding: 2rem 0;">
+        <div class="advantage-inner">
+          <h2 class="section-title-accent">📅 12 Months of Focused Testing</h2>
+          <div class="advantage-sub">Every Sunday | Science & Mathematics | CBSE Pattern</div>
+        </div>
+      </div>
+
+      <!-- Quarter 1 Schedule -->
+      <h3 class="section-title" style="font-size: 1.8rem;" id="schedule">📘 Quarter 1 (Chapters 1-4)</h3>
+      <div class="timetable-card">
+        <table class="timetable-table">
+          <thead><tr><th>Month</th><th>Week</th><th>Test #</th><th>Chapters</th><th>Duration</th><th>Marks</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Month 1</td><td>Week 2</td><td>Test 1</td><td>Ch 1</td><td>80 min</td><td>50</td></tr>
+            <tr><td>Month 1</td><td>Week 4</td><td>Test 2</td><td>Ch 2</td><td>80 min</td><td>50</td></tr>
+            <tr><td>Month 2</td><td>Week 6</td><td>Test 3</td><td>Ch 1+2</td><td>100 min</td><td>70</td></tr>
+            <tr><td>Month 2</td><td>Week 8</td><td>Test 4</td><td>Ch 3</td><td>80 min</td><td>50</td></tr>
+            <tr><td>Month 3</td><td>Week 10</td><td>Test 5</td><td>Ch 4</td><td>80 min</td><td>50</td></tr>
+            <tr><td>Month 3</td><td>Week 12</td><td>Test 6</td><td>Ch 3+4</td><td>100 min</td><td>70</td></tr>
+            <tr style="background: rgba(196,167,71,0.1);"><td>Month 3</td><td>Week 13</td><td><strong>Quarterly Final</strong></td><td>Ch 1-4</td><td>3 Hr</td><td>100</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quarter 2 Schedule -->
+      <h3 class="section-title" style="font-size: 1.8rem;">📗 Quarter 2 (Chapters 5-8)</h3>
+      <div class="timetable-card">
+        <table class="timetable-table">
+          <thead><tr><th>Month</th><th>Week</th><th>Test #</th><th>Chapters</th><th>Duration</th><th>Marks</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Month 4</td><td>Week 2</td><td>Test 1</td><td>Ch 5</td><td>80 min</td><td>50</td></tr>
+            <tr><td>Month 4</td><td>Week 4</td><td>Test 2</td><td>Ch 6</td><td>80 min</td><td>50</td></tr>
+            <tr><td>Month 5</td><td>Week 6</td><td>Test 3</td><td>Ch 5+6</td><td>100 min</td><td>70</td></tr>
+            <tr><td>Month 5</td><td>Week 8</td><td>Test 4</td><td>Ch 7</td><td>80 min</td><td>50</td></tr>
+            <tr><td>Month 6</td><td>Week 10</td><td>Test 5</td><td>Ch 8</td><td>80 min</td><td>50</td></tr>
+            <tr><td>Month 6</td><td>Week 12</td><td>Test 6</td><td>Ch 7+8</td><td>100 min</td><td>70</td></tr>
+            <tr style="background: rgba(196,167,71,0.1);"><td>Month 6</td><td>Week 13</td><td><strong>Quarterly Final</strong></td><td>Ch 5-8</td><td>3 Hr</td><td>100</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Test Pattern & Marking Scheme -->
+      <div class="interview-tips" style="margin: 2rem 0;">
+        <h3><i class="fas fa-chart-bar"></i> Test Pattern & Difficulty Levels</h3>
+        <div class="test-difficulty">
+          <span class="difficulty-item">📘 Tests 1-2: 50% Easy, 30% Medium, 20% Hard</span>
+          <span class="difficulty-item">📙 Tests 4-5: 30% Easy, 40% Medium, 30% Hard</span>
+          <span class="difficulty-item">📕 Quarterly Finals: 20% Easy, 40% Medium, 40% Hard (Board Level)</span>
+        </div>
+        <p><i class="fas fa-print"></i> <strong>Printed test papers</strong> – Designed exactly like CBSE board papers.<br>
+        <i class="fas fa-key"></i> <strong>Instant answer key discussion</strong> – 30 minutes after each test – students correct their own papers and learn immediately.<br>
+        <i class="fas fa-chart-line"></i> <strong>Performance report</strong> – Chapter-wise scores, accuracy, speed, and improvement areas.<br>
+        <i class="fas fa-users"></i> <strong>Parent-teacher meetings</strong> – After each Quarterly Final – discuss progress and next steps.<br>
+        <i class="fas fa-trophy"></i> <strong>Rank & motivation</strong> – (Optional) Roll-number-based ranking to encourage healthy competition.</p>
+      </div>
+
+      <!-- What Your Child Will Receive -->
+      <h2 class="section-title">📦 What Your Child Will Receive</h2>
+      <div class="advantage-row" style="margin-bottom: 2rem;">
+        <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-file-alt"></i></div><h3>Printed Test Papers</h3><p>Exactly like CBSE board papers</p></div>
+        <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-comment-dots"></i></div><h3>Instant Answer Key</h3><p>30 min after test – self correction & learning</p></div>
+        <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-chart-simple"></i></div><h3>Performance Report</h3><p>Chapter-wise scores, accuracy, speed</p></div>
+        <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Parent-Teacher Meet</h3><p>After each quarterly final</p></div>
+      </div>
+
+      <!-- Investment & Payment Options -->
+      <h2 class="section-title" id="pricing">💰 Investment & Payment Options</h2>
+      <div class="price-grid">
+        <div class="price-card"><i class="fas fa-calendar-year"></i><h3>Full Year</h3><div class="price">₹2,200</div><p>28 tests + all quarterly reports + final exam</p><div class="advantage-tag">Best Value</div></div>
+        <div class="price-card"><i class="fas fa-calendar-alt"></i><h3>Quarterly</h3><div class="price">₹599</div><p>7 tests per quarter – renew every 3 months</p></div>
+        <div class="price-card"><i class="fas fa-walking"></i><h3>Per Test (Walk-In)</h3><div class="price">₹100</div><p>Single test + answer key only</p></div>
+      </div>
+      <p style="text-align: center; margin: 1rem 0;"><i class="fas fa-money-bill-wave"></i> Payment Methods: Cash / UPI / Bank Transfer</p>
+
+      <!-- FAQ Section (based on PDF) -->
+      <div class="faq-section" style="margin: 2rem 0;">
+        <h2 class="section-title" style="font-size: 1.8rem;">❓ Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <div class="faq-item"><div class="faq-question">Will you teach the chapters before the test? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">No – this is a test series only. We assume the student is already learning the chapters in their regular school or main coaching. The test schedule aligns with the natural progression of chapters.</div></div>
+          <div class="faq-item"><div class="faq-question">Can I pay quarterly and then decide to continue? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Absolutely. No lock-in. You pay for Quarter 1, see the results, and then decide for Quarter 2.</div></div>
+          <div class="faq-item"><div class="faq-question">What if my child finds the test too easy or too hard? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Tests are graded by difficulty level (see pattern above). Early tests are easier; later tests and quarterly finals match board difficulty.</div></div>
+          <div class="faq-item"><div class="faq-question">When are the tests conducted? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Every Sunday (except holidays). Timings: 9 AM – 12 PM for full tests, with instant answer key discussion from 12 PM – 12:30 PM.</div></div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="contact-cta" style="margin: 2rem 0 3rem;">
+        <h2>🚀 Enroll for the Test Series Today</h2>
+        <p>Limited seats per batch. Get a free sample paper and detailed schedule.</p>
+        <a href="index.html#contact" class="btn-primary" style="display: inline-block; margin-top: 1rem;"><i class="fab fa-whatsapp"></i> Register Now</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Class%2010%20Test%20Series%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="coding.html">Coding</a>
+      <a href="class10.html">Class 10</a>
+      <a href="class10-testseries.html">Test Series</a>
+      <a href="english.html">English</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds. 📖✨</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;"><i class="fas fa-map-marker-alt"></i> Every Sunday | CBSE Pattern | Instant Answer Keys</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
