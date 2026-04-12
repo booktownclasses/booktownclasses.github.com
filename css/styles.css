@@ -595,3 +595,202 @@ footer {
   .section-title { font-size: 1.8rem; }
   .coding-table { font-size: 0.85rem; }
 }
+
+
+/* ========== ENHANCED MOBILE RESPONSIVENESS ========== */
+
+/* Prevent horizontal scroll on all devices */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Make floating shapes less intrusive on mobile */
+@media (max-width: 780px) {
+  .floating-shapes {
+    display: none; /* or reduce opacity to 0.3 */
+  }
+  
+  /* Adjust container padding */
+  .container {
+    padding: 0 1rem;
+  }
+  
+  /* Stack all grids into single column */
+  .advantage-row,
+  .programs-grid,
+  .faculty-grid,
+  .testimonial-grid,
+  .faq-grid,
+  .infographics-grid,
+  .why-grid,
+  .module-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem;
+  }
+  
+  /* Reduce card padding */
+  .advantage-card,
+  .program-card,
+  .faculty-card,
+  .testimonial,
+  .infocard,
+  .why-card,
+  .module-card {
+    padding: 1.2rem;
+  }
+  
+  /* Make section titles smaller */
+  .section-title,
+  .section-title-accent {
+    font-size: 1.8rem;
+  }
+  
+  /* Increase touch target for buttons */
+  .btn-primary,
+  .btn-secondary,
+  .btn-cta-small,
+  .contact-form button,
+  .carousel-btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Navbar adjustments */
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  /* Hero section */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 0;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  
+  /* Carousel images */
+  .carousel-slide img {
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  /* Table wrapper for scrolling */
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  .curriculum-table {
+    font-size: 0.8rem;
+    min-width: 500px; /* forces scroll on small screens */
+  }
+  
+  /* Footer links wrap nicely */
+  .footer-links {
+    gap: 1rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Contact form full width */
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+  
+  /* Increase spacing between sections */
+  section, .container > div:not(:first-child) {
+    margin-top: 2rem;
+  }
+  
+  /* Fix month badge positioning */
+  .month-badge {
+    font-size: 0.75rem;
+  }
+  
+  /* Why cards stack nicely */
+  .why-card {
+    text-align: center;
+  }
+}
+
+.price-grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+@media (max-width: 780px) {
+  .price-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================= */
+/*  GEN-Z STYLISH ADDITIONS (Coding page & more) */
+/* ============================================= */
+
+/* 1. Animated gradient text for hero headings */
+.hero-content h1 {
+  background: linear-gradient(135deg, #ffffff, #c4a747, #e5b83c, #ffffff);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 2. 3D tilt effect on cards (infocard, why-card, advantage-card) */
+.infocard, .why-card, .advantage-card {
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.infocard:hover, .why-card:hover, .advantage-card:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(2deg) translateY(-5px);
+  box-shadow: 0 30px 40px -15px rgba(196,167,71,0.3);
+}
+
+/* 3. Pulse animation for WhatsApp floating button */
+.whatsapp-float {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* 4. Dynamic mesh background (subtle moving pattern) */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 40%, rgba(196,167,71,0.08) 0%, transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(100,150,255,0.05) 0%, transparent 50%),
+              repeating-linear-gradient(45deg, rgba(196,167,71,0.02) 0px, rgba(196,167,71,0.02) 2px, transparent 2px, transparent 8px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 5. Ensure content stays above the new background */
+.container, .navbar, footer, .whatsapp-float {
+  position: relative;
+  z-index: 2;
+}
+
+/* 6. Optional: smooth scroll (already in your body, but ensure it's there) */
+html {
+  scroll-behavior: smooth;
+}

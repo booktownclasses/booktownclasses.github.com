@@ -154,3 +154,30 @@ if (formBtn) {
     }, 5000);
   });
 }
+
+
+// Ripple effect for buttons
+document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    let x = e.clientX - e.target.offsetLeft;
+    let y = e.clientY - e.target.offsetTop;
+    let ripple = document.createElement('span');
+    ripple.style.position = 'absolute';
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    ripple.style.width = '0';
+    ripple.style.height = '0';
+    ripple.style.borderRadius = '50%';
+    ripple.style.backgroundColor = 'rgba(255,255,255,0.6)';
+    ripple.style.transform = 'translate(-50%, -50%)';
+    ripple.style.transition = 'width 0.4s, height 0.4s';
+    this.style.position = 'relative';
+    this.style.overflow = 'hidden';
+    this.appendChild(ripple);
+    setTimeout(() => {
+      ripple.style.width = '200px';
+      ripple.style.height = '200px';
+    }, 10);
+    setTimeout(() => ripple.remove(), 400);
+  });
+});

@@ -12,6 +12,66 @@
   <link rel="stylesheet" href="css/styles.css">
   <!-- Page‑specific styles -->
   <link rel="stylesheet" href="css/coding.css">
+  
+  <!-- Extra mobile fixes (ensures tables scroll, grids stack, touch targets large) -->
+  <style>
+    /* Force tables to scroll horizontally on mobile */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1rem 0;
+      border-radius: 24px;
+    }
+    .curriculum-table {
+      min-width: 600px; /* ensures scroll on small screens */
+    }
+    /* Mobile-specific overrides */
+    @media (max-width: 780px) {
+      /* Hide floating shapes to reduce clutter */
+      .floating-shapes {
+        display: none;
+      }
+      /* Stack all grids into one column */
+      .advantage-row,
+      .infographics-grid,
+      .why-grid,
+      .advantage-row {
+        grid-template-columns: 1fr !important;
+      }
+      /* Reduce card padding */
+      .advantage-card, .infocard, .why-card {
+        padding: 1.2rem;
+      }
+      /* Make section titles smaller */
+      .section-title, .section-title-accent {
+        font-size: 1.6rem;
+      }
+      /* Larger touch targets for buttons */
+      .btn-primary, .btn-secondary, .btn-cta-small, .contact-form button {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+      }
+      /* Adjust hero */
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-carousel {
+        max-width: 100%;
+      }
+      .carousel img {
+        max-width: 100%;
+        height: auto;
+      }
+      /* Month badges */
+      .month-badge {
+        font-size: 0.75rem;
+      }
+      /* Why cards text alignment */
+      .why-card {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="floating-shapes">
@@ -35,7 +95,7 @@
 
   <main>
     <div class="container">
-      <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
 
       <!-- Hero Section -->
       <div class="hero" style="padding: 2rem 0 1rem;">
@@ -48,7 +108,7 @@
           </div>
         </div>
         <div class="hero-carousel">
-          <div class="carousel" style="max-width: 400px;">
+          <div class="carousel" style="max-width: 400px; margin: 0 auto;">
             <img src="images/coding-banner.jpg" alt="Python coding" style="width:100%; border-radius: 28px;" onerror="this.src='https://placehold.co/400x300/1e293b/c4a747?text=Python+Coding'">
           </div>
         </div>
@@ -147,53 +207,61 @@
         </div>
 
         <!-- Course Structure at a Glance (updated weekly breakdown) -->
-        <table class="curriculum-table">
-          <thead><tr><th>Month</th><th>Focus</th><th>Weekly Breakdown (5 days/week)</th></tr></thead>
-          <tbody>
-            <tr><td data-label="Month"><strong>Month 1</strong></td><td data-label="Focus">Python Basics + Git</td><td data-label="Weekly">4 days Python + 1 day Git</td></tr>
-            <tr><td data-label="Month"><strong>Month 2</strong></td><td data-label="Focus">Python Intermediate + Linux</td><td data-label="Weekly">4 days Python + 1 day Linux</td></tr>
-            <tr><td data-label="Month"><strong>Month 3</strong></td><td data-label="Focus">Python + Database (DBMS)</td><td data-label="Weekly">2 days Python + 2 days DBMS + 1 day Project/Revision</td></tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper">
+          <table class="curriculum-table">
+            <thead><tr><th>Month</th><th>Focus</th><th>Weekly Breakdown (5 days/week)</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Month"><strong>Month 1</strong></td><td data-label="Focus">Python Basics + Git</td><td data-label="Weekly">4 days Python + 1 day Git</td></tr>
+              <tr><td data-label="Month"><strong>Month 2</strong></td><td data-label="Focus">Python Intermediate + Linux</td><td data-label="Weekly">4 days Python + 1 day Linux</td></tr>
+              <tr><td data-label="Month"><strong>Month 3</strong></td><td data-label="Focus">Python + Database (DBMS)</td><td data-label="Weekly">2 days Python + 2 days DBMS + 1 day Project/Revision</td></tr>
+            </tbody>
+          </table>
+        </div>
         <p class="advantage-sub" style="margin-top: -0.5rem;">✨ Every Python day includes a hands‑on coding exercise – learn by doing.</p>
 
         <!-- Month 1 Details -->
         <div class="month-badge">🔵 Month 1 – Python Fundamentals & Git</div>
-        <table class="curriculum-table">
-          <thead><tr><th>Week</th><th>Python Topics (4 days)</th><th>Git Topics (1 day)</th></tr></thead>
-          <tbody>
-            <tr><td data-label="Week">1</td><td data-label="Python">Print, variables, input, conditionals</td><td data-label="Git">Install Git, init, add, commit</td></tr>
-            <tr><td data-label="Week">2</td><td data-label="Python">Loops (for/while), nested loops</td><td data-label="Git">Branching, merging</td></tr>
-            <tr><td data-label="Week">3</td><td data-label="Python">Lists, tuples, list comprehension</td><td data-label="Git">GitHub: push, pull, clone</td></tr>
-            <tr><td data-label="Week">4</td><td data-label="Python">Dictionaries, sets, file reading/writing</td><td data-label="Git">Remote repo & collaboration</td></tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper">
+          <table class="curriculum-table">
+            <thead><tr><th>Week</th><th>Python Topics (4 days)</th><th>Git Topics (1 day)</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Week">1</td><td data-label="Python">Print, variables, input, conditionals</td><td data-label="Git">Install Git, init, add, commit</td></tr>
+              <tr><td data-label="Week">2</td><td data-label="Python">Loops (for/while), nested loops</td><td data-label="Git">Branching, merging</td></tr>
+              <tr><td data-label="Week">3</td><td data-label="Python">Lists, tuples, list comprehension</td><td data-label="Git">GitHub: push, pull, clone</td></tr>
+              <tr><td data-label="Week">4</td><td data-label="Python">Dictionaries, sets, file reading/writing</td><td data-label="Git">Remote repo & collaboration</td></tr>
+            </tbody>
+          </table>
+        </div>
         <div class="interview-tips"><p>✅ <strong>By end of Month 1:</strong> Write Python programs with loops, lists, conditionals, file handling – and track code on GitHub.</p></div>
 
         <!-- Month 2 Details -->
         <div class="month-badge">🟢 Month 2 – Python Intermediate & Linux Commands</div>
-        <table class="curriculum-table">
-          <thead><tr><th>Week</th><th>Python Topics (4 days)</th><th>Linux Topics (1 day)</th></tr></thead>
-          <tbody>
-            <tr><td data-label="Week">5</td><td data-label="Python">Functions, parameters, recursion</td><td data-label="Linux">Navigation: <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>rm</code></td></tr>
-            <tr><td data-label="Week">6</td><td data-label="Python">Error handling, modules, <code>random</code>, <code>math</code></td><td data-label="Linux">File ops: <code>cp</code>, <code>mv</code>, <code>grep</code>, <code>wc</code></td></tr>
-            <tr><td data-label="Week">7</td><td data-label="Python">OOP basics: classes, objects, inheritance</td><td data-label="Linux">Permissions: <code>chmod</code>, processes: <code>ps</code>, <code>kill</code></td></tr>
-            <tr><td data-label="Week">8</td><td data-label="Python">List comprehensions, lambda, <code>map/filter/reduce</code>, encapsulation</td><td data-label="Linux">Networking: <code>ping</code>, <code>curl</code>, <code>wget</code>, <code>ssh</code> basics</td></tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper">
+          <table class="curriculum-table">
+            <thead><tr><th>Week</th><th>Python Topics (4 days)</th><th>Linux Topics (1 day)</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Week">5</td><td data-label="Python">Functions, parameters, recursion</td><td data-label="Linux">Navigation: <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>rm</code></td></tr>
+              <tr><td data-label="Week">6</td><td data-label="Python">Error handling, modules, <code>random</code>, <code>math</code></td><td data-label="Linux">File ops: <code>cp</code>, <code>mv</code>, <code>grep</code>, <code>wc</code></td></tr>
+              <tr><td data-label="Week">7</td><td data-label="Python">OOP basics: classes, objects, inheritance</td><td data-label="Linux">Permissions: <code>chmod</code>, processes: <code>ps</code>, <code>kill</code></td></tr>
+              <tr><td data-label="Week">8</td><td data-label="Python">List comprehensions, lambda, <code>map/filter/reduce</code>, encapsulation</td><td data-label="Linux">Networking: <code>ping</code>, <code>curl</code>, <code>wget</code>, <code>ssh</code> basics</td></tr>
+            </tbody>
+          </table>
+        </div>
         <div class="interview-tips"><p>✅ <strong>By end of Month 2:</strong> Use functions, OOP, and error handling in Python – plus navigate and manage files in Linux terminal.</p></div>
 
         <!-- Month 3 Details -->
         <div class="month-badge">🟠 Month 3 – Python Advanced + Database (DBMS)</div>
-        <table class="curriculum-table">
-          <thead><tr><th>Week</th><th>Python Topics (2 days/week)</th><th>Database Topics (2 days/week)</th><th>Project/Revision (1 day)</th></tr></thead>
-          <tbody>
-            <tr><td data-label="Week">9</td><td data-label="Python">Iterators, generators, decorators</td><td data-label="DB">SQLite: CREATE, INSERT, SELECT, UPDATE</td><td data-label="Project">Setup & planning</td></tr>
-            <tr><td data-label="Week">10</td><td data-label="Python">JSON, APIs (fetch weather/jokes)</td><td data-label="DB">JOIN, GROUP BY, aggregate functions</td><td data-label="Project">API + DB integration</td></tr>
-            <tr><td data-label="Week">11</td><td data-label="Python">Python + SQLite integration (parameterized queries)</td><td data-label="DB">CRUD operations, CSV import/export</td><td data-label="Project">Build core features</td></tr>
-            <tr><td data-label="Week">12</td><td data-label="Python"><strong>Final Project</strong> (Library Management System)</td><td data-label="DB">Full DB design & optimization</td><td data-label="Project">Testing & presentation</td></tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper">
+          <table class="curriculum-table">
+            <thead><tr><th>Week</th><th>Python Topics (2 days/week)</th><th>Database Topics (2 days/week)</th><th>Project/Revision (1 day)</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Week">9</td><td data-label="Python">Iterators, generators, decorators</td><td data-label="DB">SQLite: CREATE, INSERT, SELECT, UPDATE</td><td data-label="Project">Setup & planning</td></tr>
+              <tr><td data-label="Week">10</td><td data-label="Python">JSON, APIs (fetch weather/jokes)</td><td data-label="DB">JOIN, GROUP BY, aggregate functions</td><td data-label="Project">API + DB integration</td></tr>
+              <tr><td data-label="Week">11</td><td data-label="Python">Python + SQLite integration (parameterized queries)</td><td data-label="DB">CRUD operations, CSV import/export</td><td data-label="Project">Build core features</td></tr>
+              <tr><td data-label="Week">12</td><td data-label="Python"><strong>Final Project</strong> (Library Management System)</td><td data-label="DB">Full DB design & optimization</td><td data-label="Project">Testing & presentation</td></tr>
+            </tbody>
+          </table>
+        </div>
         <div class="interview-tips"><p>✅ <strong>By end of Month 3:</strong> Build a complete database-driven application (Python + SQLite) and present it.</p></div>
       </div>
 
