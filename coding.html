@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>BookTown | Python Coding Batch – 3 Months</title>
-  <meta name="description" content="3-month Python coding course for grades 8-12. Learn Python, Git, Linux, SQL. 5 days/week, 1-hour sessions.">
+  <meta name="description" content="3-month Python coding course for beginners to intermediate learners. Learn Python, Git, Linux, SQL. 5 days/week, 1-hour sessions.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -146,17 +146,31 @@
       gap: 1.5rem;
       margin: 1.5rem 0;
     }
+    /* Different colors for tech stack cards */
     .infocard {
-      background: white;
       border-radius: 24px;
       padding: 1.3rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: white;
     }
+    .infocard:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+    /* Individual card color styles */
+    .infocard:nth-child(1) { background: linear-gradient(135deg, #eff6ff, #ffffff); border-bottom: 4px solid #3b82f6; }
+    .infocard:nth-child(2) { background: linear-gradient(135deg, #fff7ed, #ffffff); border-bottom: 4px solid #f97316; }
+    .infocard:nth-child(3) { background: linear-gradient(135deg, #f8fafc, #ffffff); border-bottom: 4px solid #1e293b; }
+    .infocard:nth-child(4) { background: linear-gradient(135deg, #ecfdf5, #ffffff); border-bottom: 4px solid #10b981; }
     .infocard-icon {
       font-size: 2rem;
-      color: #3b82f6;
       margin-bottom: 0.8rem;
     }
+    .infocard:nth-child(1) .infocard-icon { color: #3b82f6; }
+    .infocard:nth-child(2) .infocard-icon { color: #f97316; }
+    .infocard:nth-child(3) .infocard-icon { color: #1e293b; }
+    .infocard:nth-child(4) .infocard-icon { color: #10b981; }
     .skill-tags {
       display: flex;
       flex-wrap: wrap;
@@ -164,7 +178,7 @@
       margin-top: 0.8rem;
     }
     .skill-tag {
-      background: #eef2ff;
+      background: rgba(0,0,0,0.05);
       padding: 0.2rem 0.7rem;
       border-radius: 30px;
       font-size: 0.75rem;
@@ -289,7 +303,7 @@
   <!-- Hero -->
   <div class="hero">
     <div class="hero-content">
-      <h1>🐍 Python Coding Batch <span class="highlight">(Class 8–12)</span></h1>
+      <h1>🐍 Python Coding Batch <span class="highlight">(Beginner to Intermediate)</span></h1>
       <p>3 Months | 5 Days/Week | No prior coding needed – from basics to real projects.</p>
       <div class="btn-group">
         <a href="index.html#contact" class="btn-primary"><i class="fas fa-rocket"></i> Enroll Now</a>
@@ -310,13 +324,50 @@
     <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-clock"></i></div><h3>1‑Hour Daily Sessions</h3><p>Focused, effective, no burnout</p></div>
   </div>
 
-  <!-- Tech Stack (clean infographics) -->
+  <!-- Tech Stack (colored cards, more attractive) -->
   <h2 class="section-title">📊 Tech Stack You'll Master</h2>
   <div class="infographics-grid">
-    <div class="infocard"><div class="infocard-icon"><i class="fab fa-python"></i></div><h3>Python</h3><p>Core to OOP, APIs, file handling</p><div class="skill-tags"><span class="skill-tag">Variables</span><span class="skill-tag">Loops</span><span class="skill-tag">Functions</span><span class="skill-tag">OOP</span></div></div>
-    <div class="infocard"><div class="infocard-icon"><i class="fab fa-git-alt"></i></div><h3>Git & GitHub</h3><p>Version control, branching, collaboration</p><div class="skill-tags"><span class="skill-tag">commit</span><span class="skill-tag">branch</span><span class="skill-tag">push/pull</span></div></div>
-    <div class="infocard"><div class="infocard-icon"><i class="fab fa-linux"></i></div><h3>Linux</h3><p>Essential commands, permissions, networking</p><div class="skill-tags"><span class="skill-tag">ls/grep</span><span class="skill-tag">chmod</span><span class="skill-tag">ssh</span></div></div>
-    <div class="infocard"><div class="infocard-icon"><i class="fas fa-database"></i></div><h3>SQLite</h3><p>CRUD, JOINs, Python integration</p><div class="skill-tags"><span class="skill-tag">SELECT</span><span class="skill-tag">JOIN</span><span class="skill-tag">GROUP BY</span></div></div>
+    <div class="infocard">
+      <div class="infocard-icon"><i class="fab fa-python"></i></div>
+      <h3>Python</h3>
+      <p>Core to OOP, APIs, file handling</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Variables</span>
+        <span class="skill-tag">Loops</span>
+        <span class="skill-tag">Functions</span>
+        <span class="skill-tag">OOP</span>
+      </div>
+    </div>
+    <div class="infocard">
+      <div class="infocard-icon"><i class="fab fa-git-alt"></i></div>
+      <h3>Git & GitHub</h3>
+      <p>Version control, branching, collaboration</p>
+      <div class="skill-tags">
+        <span class="skill-tag">commit</span>
+        <span class="skill-tag">branch</span>
+        <span class="skill-tag">push/pull</span>
+      </div>
+    </div>
+    <div class="infocard">
+      <div class="infocard-icon"><i class="fab fa-linux"></i></div>
+      <h3>Linux</h3>
+      <p>Essential commands, permissions, networking</p>
+      <div class="skill-tags">
+        <span class="skill-tag">ls/grep</span>
+        <span class="skill-tag">chmod</span>
+        <span class="skill-tag">ssh</span>
+      </div>
+    </div>
+    <div class="infocard">
+      <div class="infocard-icon"><i class="fas fa-database"></i></div>
+      <h3>SQLite</h3>
+      <p>CRUD, JOINs, Python integration</p>
+      <div class="skill-tags">
+        <span class="skill-tag">SELECT</span>
+        <span class="skill-tag">JOIN</span>
+        <span class="skill-tag">GROUP BY</span>
+      </div>
+    </div>
   </div>
 
   <!-- 3-Month Curriculum (clear separation) -->
@@ -398,12 +449,12 @@
     <p>💡 Both batches cover the same curriculum at the same pace – choose the timing that fits you.</p>
   </div>
 
-  <!-- Why this course (no redundancy, key points) -->
+  <!-- Why this course (adjusted for beginner to intermediate) -->
   <h2 class="section-title">🌟 Why This Course?</h2>
   <div class="why-grid">
-    <div class="why-card"><div class="why-icon"><i class="fas fa-graduation-cap"></i></div><h3>For School Students</h3><p>Designed for Class 8–12, no prior coding needed.</p></div>
+    <div class="why-card"><div class="why-icon"><i class="fas fa-chart-line"></i></div><h3>Beginner → Intermediate</h3><p>Structured path from zero to confident coder.</p></div>
     <div class="why-card"><div class="why-icon"><i class="fas fa-briefcase"></i></div><h3>Industry Skills</h3><p>Python, Git, Linux, SQL – daily developer toolkit.</p></div>
-    <div class="why-card"><div class="why-icon"><i class="fas fa-users"></i></div><h3>Peer Learning</h3><p>Mixed age groups, mentorship & collaboration.</p></div>
+    <div class="why-card"><div class="why-icon"><i class="fas fa-users"></i></div><h3>Peer Learning</h3><p>Collaborative environment, mentorship included.</p></div>
     <div class="why-card"><div class="why-icon"><i class="fas fa-laptop-code"></i></div><h3>Project Portfolio</h3><p>6+ real projects to showcase.</p></div>
     <div class="why-card"><div class="why-icon"><i class="fas fa-clock"></i></div><h3>Focused Sessions</h3><p>1 hour daily – consistent progress without overload.</p></div>
     <div class="why-card"><div class="why-icon"><i class="fas fa-handshake"></i></div><h3>In-Person Mentorship</h3><p>Direct support, instant doubt resolution.</p></div>
@@ -432,7 +483,7 @@
 </footer>
 
 <script>
-  // Simple mobile menu toggle (removes redundancy of external JS)
+  // Simple mobile menu toggle
   const btn = document.getElementById('mobileMenuBtn');
   const navLinks = document.getElementById('navLinks');
   if(btn && navLinks) {
