@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>BookTown | Python Coding Batch – 3 Months</title>
   <meta name="description" content="3-month Python coding course for beginners to intermediate learners. Learn Python, Git, Linux, SQL. 5 days/week, 1-hour sessions.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -96,14 +96,22 @@
       border-radius: 40px;
       text-decoration: none;
       font-weight: 600;
+      transition: all 0.2s;
     }
     .btn-primary {
       background: #3b82f6;
       color: white;
     }
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
     .btn-secondary {
       background: #e2e8f0;
       color: #1e293b;
+    }
+    .btn-secondary:hover {
+      background: #cbd5e1;
     }
     .hero-carousel img {
       border-radius: 28px;
@@ -121,8 +129,12 @@
       padding: 1.5rem;
       border-radius: 24px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
       text-align: center;
+    }
+    .advantage-card:hover, .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
     }
     .advantage-icon, .why-icon {
       font-size: 2.2rem;
@@ -140,13 +152,13 @@
       border-left: none;
       text-align: center;
     }
+    /* Infographics grid (tech stack) */
     .infographics-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
       margin: 1.5rem 0;
     }
-    /* Different colors for tech stack cards */
     .infocard {
       border-radius: 24px;
       padding: 1.3rem;
@@ -182,10 +194,14 @@
       padding: 0.2rem 0.7rem;
       border-radius: 30px;
       font-size: 0.75rem;
+      font-weight: 500;
     }
+    /* Enhanced tables */
     .table-wrapper {
       overflow-x: auto;
-      margin: 1rem 0;
+      margin: 1.5rem 0;
+      border-radius: 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
     }
     .curriculum-table {
       width: 100%;
@@ -195,30 +211,108 @@
       overflow: hidden;
       min-width: 500px;
     }
-    .curriculum-table th, .curriculum-table td {
-      border: 1px solid #e2e8f0;
-      padding: 0.8rem;
-      text-align: left;
-      vertical-align: top;
-    }
     .curriculum-table th {
-      background: #f1f5f9;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: white;
       font-weight: 700;
+      padding: 1rem;
+      font-size: 1rem;
+    }
+    .curriculum-table td {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0.9rem 1rem;
+      vertical-align: top;
+      transition: background 0.2s;
+    }
+    .curriculum-table tr:hover td {
+      background: #f8fafc;
+    }
+    .curriculum-table tr:last-child td {
+      border-bottom: none;
     }
     .month-badge {
-      background: #3b82f6;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
       color: white;
-      display: inline-block;
-      padding: 0.4rem 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1.2rem;
       border-radius: 40px;
-      font-weight: 600;
+      font-weight: 700;
       margin: 1.5rem 0 0.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .interview-tips {
       background: #eef2ff;
       padding: 0.8rem 1rem;
       border-radius: 16px;
       margin: 1rem 0;
+      border-left: 4px solid #3b82f6;
+    }
+    /* New infographics: timeline and skill meters */
+    .timeline-infographic {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 2rem 0;
+      gap: 1rem;
+    }
+    .timeline-step {
+      flex: 1;
+      background: white;
+      border-radius: 28px;
+      padding: 1.2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+    .timeline-step:hover {
+      transform: translateY(-5px);
+    }
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: #3b82f6;
+      color: white;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+    }
+    .step-title {
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+    .skill-meter {
+      margin: 2rem 0;
+      background: white;
+      border-radius: 28px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .meter-item {
+      margin: 1rem 0;
+    }
+    .meter-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .meter-bar {
+      background: #e2e8f0;
+      border-radius: 20px;
+      height: 10px;
+      overflow: hidden;
+    }
+    .meter-fill {
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      width: 0%;
+      height: 100%;
+      border-radius: 20px;
+      transition: width 0.5s;
     }
     .contact-cta {
       text-align: center;
@@ -245,6 +339,10 @@
       font-weight: bold;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       z-index: 100;
+      transition: transform 0.2s;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.05);
     }
     footer {
       text-align: center;
@@ -281,6 +379,9 @@
       .btn-group {
         justify-content: center;
       }
+      .timeline-infographic {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -315,7 +416,7 @@
     </div>
   </div>
 
-  <!-- Batch Highlights - concise -->
+  <!-- Batch Highlights -->
   <h2 class="section-title-accent">✨ Batch Highlights</h2>
   <div class="advantage-row">
     <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-code"></i></div><h3>Learn Python from Scratch</h3><p>No experience needed – progressive learning</p></div>
@@ -324,58 +425,46 @@
     <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-clock"></i></div><h3>1‑Hour Daily Sessions</h3><p>Focused, effective, no burnout</p></div>
   </div>
 
-  <!-- Tech Stack (colored cards, more attractive) -->
-  <h2 class="section-title">📊 Tech Stack You'll Master</h2>
-  <div class="infographics-grid">
-    <div class="infocard">
-      <div class="infocard-icon"><i class="fab fa-python"></i></div>
-      <h3>Python</h3>
-      <p>Core to OOP, APIs, file handling</p>
-      <div class="skill-tags">
-        <span class="skill-tag">Variables</span>
-        <span class="skill-tag">Loops</span>
-        <span class="skill-tag">Functions</span>
-        <span class="skill-tag">OOP</span>
-      </div>
+  <!-- NEW: Skill Level Infographic (Meter) -->
+  <div class="skill-meter">
+    <h3 style="margin-bottom: 1rem;"><i class="fas fa-chart-line"></i> Your Learning Journey</h3>
+    <div class="meter-item">
+      <div class="meter-label"><span>Python Fundamentals</span><span>Month 1</span></div>
+      <div class="meter-bar"><div class="meter-fill" style="width: 30%;"></div></div>
     </div>
-    <div class="infocard">
-      <div class="infocard-icon"><i class="fab fa-git-alt"></i></div>
-      <h3>Git & GitHub</h3>
-      <p>Version control, branching, collaboration</p>
-      <div class="skill-tags">
-        <span class="skill-tag">commit</span>
-        <span class="skill-tag">branch</span>
-        <span class="skill-tag">push/pull</span>
-      </div>
+    <div class="meter-item">
+      <div class="meter-label"><span>Intermediate Python + Linux</span><span>Month 2</span></div>
+      <div class="meter-bar"><div class="meter-fill" style="width: 65%;"></div></div>
     </div>
-    <div class="infocard">
-      <div class="infocard-icon"><i class="fab fa-linux"></i></div>
-      <h3>Linux</h3>
-      <p>Essential commands, permissions, networking</p>
-      <div class="skill-tags">
-        <span class="skill-tag">ls/grep</span>
-        <span class="skill-tag">chmod</span>
-        <span class="skill-tag">ssh</span>
-      </div>
-    </div>
-    <div class="infocard">
-      <div class="infocard-icon"><i class="fas fa-database"></i></div>
-      <h3>SQLite</h3>
-      <p>CRUD, JOINs, Python integration</p>
-      <div class="skill-tags">
-        <span class="skill-tag">SELECT</span>
-        <span class="skill-tag">JOIN</span>
-        <span class="skill-tag">GROUP BY</span>
-      </div>
+    <div class="meter-item">
+      <div class="meter-label"><span>Databases + Advanced Python</span><span>Month 3</span></div>
+      <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
     </div>
   </div>
 
-  <!-- 3-Month Curriculum (clear separation) -->
+  <!-- Timeline Infographic -->
+  <h2 class="section-title">📅 3‑Month Learning Path</h2>
+  <div class="timeline-infographic">
+    <div class="timeline-step"><div class="step-number">1</div><div class="step-title">Month 1</div><p>Python basics + Git</p><small>Conditionals, loops, lists, version control</small></div>
+    <div class="timeline-step"><div class="step-number">2</div><div class="step-title">Month 2</div><p>Intermediate Python + Linux</p><small>Functions, OOP, file ops, terminal commands</small></div>
+    <div class="timeline-step"><div class="step-number">3</div><div class="step-title">Month 3</div><p>Databases + Final Project</p><small>SQLite, APIs, library management system</small></div>
+  </div>
+
+  <!-- Tech Stack (colored infographics) -->
+  <h2 class="section-title">📊 Tech Stack You'll Master</h2>
+  <div class="infographics-grid">
+    <div class="infocard"><div class="infocard-icon"><i class="fab fa-python"></i></div><h3>Python</h3><p>Core to OOP, APIs, file handling</p><div class="skill-tags"><span class="skill-tag">Variables</span><span class="skill-tag">Loops</span><span class="skill-tag">Functions</span><span class="skill-tag">OOP</span></div></div>
+    <div class="infocard"><div class="infocard-icon"><i class="fab fa-git-alt"></i></div><h3>Git & GitHub</h3><p>Version control, branching, collaboration</p><div class="skill-tags"><span class="skill-tag">commit</span><span class="skill-tag">branch</span><span class="skill-tag">push/pull</span></div></div>
+    <div class="infocard"><div class="infocard-icon"><i class="fab fa-linux"></i></div><h3>Linux</h3><p>Essential commands, permissions, networking</p><div class="skill-tags"><span class="skill-tag">ls/grep</span><span class="skill-tag">chmod</span><span class="skill-tag">ssh</span></div></div>
+    <div class="infocard"><div class="infocard-icon"><i class="fas fa-database"></i></div><h3>SQLite</h3><p>CRUD, JOINs, Python integration</p><div class="skill-tags"><span class="skill-tag">SELECT</span><span class="skill-tag">JOIN</span><span class="skill-tag">GROUP BY</span></div></div>
+  </div>
+
+  <!-- Curriculum with enhanced tables -->
   <div id="curriculum">
-    <h2 class="section-title">📅 3‑Month Coding Batch – Curriculum</h2>
+    <h2 class="section-title">📖 Detailed Curriculum</h2>
     <p><strong>Schedule:</strong> 5 days/week (Mon–Fri) | 1 hour/day | In‑person only</p>
 
-    <!-- Monthly overview -->
+    <!-- Monthly overview table -->
     <div class="table-wrapper">
       <table class="curriculum-table">
         <thead><tr><th>Month</th><th>Focus</th><th>Weekly Structure</th></tr></thead>
@@ -388,7 +477,7 @@
     </div>
 
     <!-- Month 1 Details -->
-    <div class="month-badge">Month 1 – Python Fundamentals & Git</div>
+    <div class="month-badge"><i class="fab fa-python"></i> Month 1 – Python Fundamentals & Git</div>
     <div class="table-wrapper">
       <table class="curriculum-table">
         <thead><tr><th>Week</th><th>Python (4 days)</th><th>Git (1 day)</th></tr></thead>
@@ -402,7 +491,7 @@
     </div>
 
     <!-- Month 2 Details -->
-    <div class="month-badge">Month 2 – Python Intermediate & Linux</div>
+    <div class="month-badge"><i class="fab fa-linux"></i> Month 2 – Python Intermediate & Linux</div>
     <div class="table-wrapper">
       <table class="curriculum-table">
         <thead><tr><th>Week</th><th>Python (4 days)</th><th>Linux (1 day)</th></tr></thead>
@@ -416,7 +505,7 @@
     </div>
 
     <!-- Month 3 Details -->
-    <div class="month-badge">Month 3 – Python Advanced + Database</div>
+    <div class="month-badge"><i class="fas fa-database"></i> Month 3 – Python Advanced + Database</div>
     <div class="table-wrapper">
       <table class="curriculum-table">
         <thead><tr><th>Week</th><th>Python (2 days)</th><th>Database (2 days)</th><th>Project/Revision (1 day)</th></tr></thead>
@@ -431,15 +520,15 @@
     <div class="interview-tips"><p>✅ <strong>By course end:</strong> Build a complete database-driven application and present your portfolio.</p></div>
   </div>
 
-  <!-- Batch Schedules - separate, clear -->
+  <!-- Batch Schedules -->
   <h2 class="section-title">📅 Batch Schedules</h2>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-    <div style="background: white; border-radius: 20px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <div style="background: white; border-radius: 20px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.2s;">
       <h3 style="color:#3b82f6;">🔵 Batch 1</h3>
       <p><strong>⏰ Schedule:</strong> Wednesday to Sunday (1 hour daily)</p>
       <p><strong>💰 Fee:</strong> ₹2,500/month or ₹7,000 for full course</p>
     </div>
-    <div style="background: white; border-radius: 20px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <div style="background: white; border-radius: 20px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.2s;">
       <h3 style="color:#2563eb;">🟢 Batch 2</h3>
       <p><strong>⏰ Schedule:</strong> Friday (1h) + Saturday (2h) + Sunday (2h)</p>
       <p><strong>💰 Fee:</strong> ₹2,500/month or ₹7,000 for full course</p>
@@ -449,7 +538,7 @@
     <p>💡 Both batches cover the same curriculum at the same pace – choose the timing that fits you.</p>
   </div>
 
-  <!-- Why this course (adjusted for beginner to intermediate) -->
+  <!-- Why this course -->
   <h2 class="section-title">🌟 Why This Course?</h2>
   <div class="why-grid">
     <div class="why-card"><div class="why-icon"><i class="fas fa-chart-line"></i></div><h3>Beginner → Intermediate</h3><p>Structured path from zero to confident coder.</p></div>
@@ -483,7 +572,6 @@
 </footer>
 
 <script>
-  // Simple mobile menu toggle
   const btn = document.getElementById('mobileMenuBtn');
   const navLinks = document.getElementById('navLinks');
   if(btn && navLinks) {
