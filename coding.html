@@ -20,9 +20,28 @@
       overflow-x: auto;
       margin: 1rem 0;
       border-radius: 24px;
+      -webkit-overflow-scrolling: touch;
     }
     .curriculum-table {
       min-width: 600px; /* ensures scroll on small screens */
+    }
+    /* Touch-friendly spacing */
+    a, button {
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Improve image loading on mobile */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    /* Better link accessibility on mobile */
+    @media (max-width: 780px) {
+      a, button, .btn-primary, .btn-secondary {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
     /* Mobile-specific overrides */
     @media (max-width: 780px) {

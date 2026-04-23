@@ -8,24 +8,48 @@
   margin: 2rem 0;
 }
 .infocard {
-  background: #fff;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0.02));
   border-radius: 20px;
   padding: 2rem 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
   border: 1px solid #e2e8f0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
 }
+/* Colorful backgrounds for each card */
+.infocard:nth-child(1) { background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(168, 85, 247, 0.03)); border-color: rgba(168, 85, 247, 0.2); }
+.infocard:nth-child(2) { background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(249, 115, 22, 0.03)); border-color: rgba(249, 115, 22, 0.2); }
+.infocard:nth-child(3) { background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.03)); border-color: rgba(239, 68, 68, 0.2); }
+.infocard:nth-child(4) { background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(34, 197, 94, 0.03)); border-color: rgba(34, 197, 94, 0.2); }
+.infocard:nth-child(5) { background: linear-gradient(135deg, rgba(06, 182, 212, 0.08), rgba(06, 182, 212, 0.03)); border-color: rgba(06, 182, 212, 0.2); }
+.infocard:nth-child(6) { background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.03)); border-color: rgba(59, 130, 246, 0.2); }
+.infocard:nth-child(7) { background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(79, 70, 229, 0.03)); border-color: rgba(79, 70, 229, 0.2); }
+
 .infocard:hover {
   transform: translateY(-8px);
-  border-color: #3b82f6;
-  box-shadow: 0 12px 24px rgba(59, 130, 246, 0.15);
+  box-shadow: 0 12px 24px rgba(59, 130, 246, 0.2);
 }
 .infocard-icon {
   font-size: 4rem;
-  color: #3b82f6;
   margin-bottom: 1rem;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
 }
+/* Colored icons for each card */
+.infocard:nth-child(1) .infocard-icon { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+.infocard:nth-child(2) .infocard-icon { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+.infocard:nth-child(3) .infocard-icon { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+.infocard:nth-child(4) .infocard-icon { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+.infocard:nth-child(5) .infocard-icon { background: rgba(06, 182, 212, 0.15); color: #06b6d4; }
+.infocard:nth-child(6) .infocard-icon { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+.infocard:nth-child(7) .infocard-icon { background: rgba(79, 70, 229, 0.15); color: #4f46e5; }
 .infocard h3 {
   font-size: 1.6rem;
   font-weight: 800;
@@ -104,7 +128,7 @@
   margin: 2rem 0;
 }
 .why-card {
-  background: #fff;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0.02));
   border-radius: 20px;
   padding: 1.8rem;
   text-align: center;
@@ -112,16 +136,37 @@
   border: 1px solid #e2e8f0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
+/* Colorful backgrounds for why-cards */
+.why-card:nth-child(1) { background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(168, 85, 247, 0.03)); border-color: rgba(168, 85, 247, 0.2); }
+.why-card:nth-child(2) { background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(249, 115, 22, 0.03)); border-color: rgba(249, 115, 22, 0.2); }
+.why-card:nth-child(3) { background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.03)); border-color: rgba(239, 68, 68, 0.2); }
+.why-card:nth-child(4) { background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(34, 197, 94, 0.03)); border-color: rgba(34, 197, 94, 0.2); }
+.why-card:nth-child(5) { background: linear-gradient(135deg, rgba(06, 182, 212, 0.08), rgba(06, 182, 212, 0.03)); border-color: rgba(06, 182, 212, 0.2); }
+.why-card:nth-child(6) { background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(79, 70, 229, 0.03)); border-color: rgba(79, 70, 229, 0.2); }
+
 .why-card:hover {
   transform: translateY(-5px);
-  border-color: #3b82f6;
   box-shadow: 0 12px 24px rgba(59, 130, 246, 0.15);
 }
 .why-icon {
   font-size: 3rem;
-  color: #3b82f6;
   margin-bottom: 1rem;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
 }
+/* Colored icons for why-cards */
+.why-card:nth-child(1) .why-icon { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+.why-card:nth-child(2) .why-icon { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+.why-card:nth-child(3) .why-icon { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+.why-card:nth-child(4) .why-icon { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+.why-card:nth-child(5) .why-icon { background: rgba(06, 182, 212, 0.15); color: #06b6d4; }
+.why-card:nth-child(6) .why-icon { background: rgba(79, 70, 229, 0.15); color: #4f46e5; }
 .why-card h3 {
   font-size: 1.3rem;
   font-weight: 800;
@@ -158,6 +203,72 @@
     font-weight: 600;
     color: #3b82f6;
     width: 40%;
+  }
+  
+  /* Infographics grid mobile */
+  .infographics-grid {
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .infocard {
+    padding: 1.2rem 1rem;
+  }
+  .infocard h3 {
+    font-size: 1.3rem;
+  }
+  .infocard p {
+    font-size: 0.85rem;
+  }
+  .skill-tags {
+    gap: 0.3rem;
+  }
+  .skill-tag {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+  }
+  
+  /* Why grid mobile */
+  .why-grid {
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .why-card {
+    padding: 1.2rem 1rem;
+  }
+  .why-card h3 {
+    font-size: 1.2rem;
+  }
+  .why-card p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .infographics-grid,
+  .why-grid {
+    gap: 0.8rem;
+  }
+  
+  .infocard, .why-card {
+    padding: 1rem 0.8rem;
+  }
+  
+  .infocard h3, .why-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .infocard p, .why-card p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  
+  .skill-tags {
+    gap: 0.2rem;
+  }
+  .skill-tag {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.5rem;
   }
 }
 

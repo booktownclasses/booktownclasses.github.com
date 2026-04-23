@@ -602,10 +602,23 @@ html, body {
   width: 100%;
 }
 
-/* Make floating shapes less intrusive on mobile */
+/* Tablets (medium screens) */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  .section-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Mobile devices (small screens) */
 @media (max-width: 780px) {
   .floating-shapes {
-    display: none; /* or reduce opacity to 0.3 */
+    display: none;
   }
   
   /* Adjust container padding */
@@ -640,7 +653,13 @@ html, body {
   /* Make section titles smaller */
   .section-title,
   .section-title-accent {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+  }
+  
+  .section-title:after,
+  .section-title-accent:after {
+    width: 80px;
+    height: 3px;
   }
   
   /* Increase touch target for buttons */
@@ -651,13 +670,18 @@ html, body {
   .carousel-btn {
     padding: 0.8rem 1.2rem;
     font-size: 0.9rem;
+    min-height: 44px;
   }
   
   /* Navbar adjustments */
   .navbar {
     padding: 0.8rem 1rem;
+    gap: 0.5rem;
   }
   .logo {
+    font-size: 1.5rem;
+  }
+  .logo i {
     font-size: 1.5rem;
   }
   
@@ -665,35 +689,66 @@ html, body {
   .hero {
     flex-direction: column;
     text-align: center;
-    padding: 2rem 0;
+    padding: 1.5rem 0;
+    gap: 1.5rem;
+  }
+  .hero-content {
+    width: 100%;
   }
   .hero-content h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    line-height: 1.3;
   }
   .hero-content p {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    margin: 0.8rem 0 1.2rem;
+  }
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    text-align: center;
   }
   
-  /* Carousel images */
+  /* Carousel adjustments */
+  .hero-carousel {
+    width: 100%;
+    max-width: 100%;
+  }
+  .carousel {
+    max-width: 100%;
+  }
   .carousel-slide img {
     height: 250px;
     object-fit: cover;
+  }
+  .carousel-btn {
+    padding: 10px 12px;
+    font-size: 1.2rem;
   }
   
   /* Table wrapper for scrolling */
   .table-wrapper {
     overflow-x: auto;
-    margin: 1rem 0;
+    margin: 0.8rem 0;
+    border-radius: 12px;
+    -webkit-overflow-scrolling: touch;
   }
   .curriculum-table {
-    font-size: 0.8rem;
-    min-width: 500px; /* forces scroll on small screens */
+    font-size: 0.75rem;
+    min-width: 500px;
+  }
+  .curriculum-table th, .curriculum-table td {
+    padding: 8px 10px;
   }
   
   /* Footer links wrap nicely */
   .footer-links {
-    gap: 1rem;
-    font-size: 0.8rem;
+    gap: 0.8rem;
+    font-size: 0.75rem;
+    flex-wrap: wrap;
   }
   
   /* Contact form full width */
@@ -702,21 +757,141 @@ html, body {
   .contact-form textarea {
     font-size: 1rem;
     padding: 0.8rem;
+    border-radius: 8px;
   }
   
   /* Increase spacing between sections */
   section, .container > div:not(:first-child) {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
   }
   
   /* Fix month badge positioning */
   .month-badge {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.8rem;
+    margin: 0.8rem 0 0.4rem;
   }
   
-  /* Why cards stack nicely */
-  .why-card {
-    text-align: center;
+  /* Info tips */
+  .interview-tips {
+    padding: 1rem;
+    margin: 0.8rem 0;
+    font-size: 0.9rem;
+  }
+  
+  /* Advantage section */
+  .advantage-full-width {
+    margin: 0.8rem 0;
+    padding: 2rem 0;
+  }
+  
+  /* About wrap responsive */
+  .about-wrap {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  .about-text h3 {
+    font-size: 1.4rem;
+  }
+  .about-stats {
+    width: 100%;
+  }
+  
+  /* FAQ responsive */
+  .faq-item {
+    border-radius: 12px;
+  }
+  .faq-question {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+  
+  /* Contact CTA */
+  .contact-cta {
+    padding: 2rem 1rem;
+    border-radius: 16px;
+  }
+  .contact-cta h2 {
+    font-size: 1.5rem;
+  }
+  .contact-cta p {
+    font-size: 0.9rem;
+  }
+  
+  /* WhatsApp floating button */
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+  }
+  
+  /* Footer */
+  footer {
+    padding: 1.5rem 1rem;
+  }
+  footer p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Extra small screens (< 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 1.4rem;
+  }
+  
+  .section-title, .section-title-accent {
+    font-size: 1.4rem;
+  }
+  
+  .btn-primary, .btn-secondary, .btn-cta-small {
+    font-size: 0.85rem;
+    padding: 0.7rem 1rem;
+  }
+  
+  .navbar {
+    padding: 0.6rem 0.75rem;
+  }
+  
+  .logo {
+    font-size: 1.3rem;
+  }
+  
+  .advantage-card h3, 
+  .infocard h3,
+  .why-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .advantage-card p,
+  .infocard p,
+  .why-card p {
+    font-size: 0.85rem;
+  }
+  
+  .advantage-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+  
+  .infocard-icon {
+    font-size: 3rem;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .why-icon {
+    font-size: 2.2rem;
+    width: 60px;
+    height: 60px;
   }
 }
 
