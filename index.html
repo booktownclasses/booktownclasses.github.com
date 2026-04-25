@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>BookTown Classes | Premier Academic & Coding Coaching</title>
   <meta name="description" content="BookTown Classes offers academic coaching (grades 1-10), coding (grades 8-12), Class 10 test series, and English speaking courses.">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="BookTown Classes — Coaching That Shapes Futures">
+  <meta property="og:description" content="Expert coaching for grades 1-12. Personalised mentorship, proven results. Book a free demo today.">
+  <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg">
+  <meta property="og:url" content="https://booktownclasses.github.io">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon (emoji SVG – instantly visible in all modern browsers) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -19,7 +30,10 @@
 
   <nav class="navbar">
     <div class="logo"><i class="fas fa-graduation-cap"></i> BookTown <span>Classes</span></div>
-    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    <!-- Mobile menu button now with full accessibility attributes -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+      <i class="fas fa-bars"></i>
+    </button>
     <div class="nav-links" id="navLinks">
       <a href="index.html" class="active">Home</a>
       <a href="coding.html">Coding</a>
@@ -36,7 +50,8 @@
       <div class="hero">
         <div class="hero-content">
           <h1>Coaching that <span class="highlight">shapes futures</span> with academic excellence & integrity.</h1>
-          <p>BookTown Classes — where young minds grow through structure, strategy, and success. Personalized coaching for every learner.</p>
+          <!-- Added class for better style control -->
+          <p class="hero-subtitle">BookTown Classes — where young minds grow through structure, strategy, and success. Personalized coaching for every learner.</p>
           <div class="btn-group">
             <a href="#contact" class="btn-primary"><i class="fas fa-book-open"></i> Enroll today</a>
             <a href="coding.html" class="btn-secondary"><i class="fas fa-code"></i> Explore Coding</a>
@@ -45,10 +60,11 @@
         <div class="hero-carousel">
           <div class="carousel">
             <div class="carousel-container">
-              <div class="carousel-slide"><img src="images/inside1.jpeg" alt="Classroom" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Classroom'"></div>
-              <div class="carousel-slide"><img src="images/inside2.jpeg" alt="Group study" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Group+Study'"></div>
-              <div class="carousel-slide"><img src="images/outside1.jpeg" alt="Coaching" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Coaching'"></div>
-              <div class="carousel-slide"><img src="images/outside2.jpeg" alt="Mentoring" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Mentoring'"></div>
+              <!-- Improved alt texts: descriptive, helpful for screen readers & SEO -->
+              <div class="carousel-slide"><img src="images/inside1.jpeg" alt="Bright classroom session at BookTown with students actively learning" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Classroom'"></div>
+              <div class="carousel-slide"><img src="images/inside2.jpeg" alt="Friendly group study environment inside BookTown Classes" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Group+Study'"></div>
+              <div class="carousel-slide"><img src="images/outside1.jpeg" alt="Exterior of BookTown coaching centre – welcoming learning space" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Coaching'"></div>
+              <div class="carousel-slide"><img src="images/outside2.jpeg" alt="Mentoring corner at BookTown – one-on-one guidance" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Mentoring'"></div>
             </div>
             <button class="carousel-btn prev">❮</button>
             <button class="carousel-btn next">❯</button>
@@ -110,6 +126,15 @@
       <div class="testimonial-grid">
         <div class="testimonial"><p>“Teaching style is easy to follow and the teacher is very patient.”</p><h4>— Harim Athar</h4><div class="stars">★★★★★</div></div>
         <div class="testimonial"><p>“The coaching is good and teachers are very friendly.”</p><h4>— Musab Bin Umair</h4><div class="stars">★★★★★</div></div>
+      </div>
+    </div>
+
+    <!-- Free Demo Class CTA Banner – added before FAQ to capture leads early -->
+    <div class="container demo-cta-banner">
+      <div class="demo-cta-content">
+        <h2><i class="fas fa-gift"></i> Experience the BookTown Difference</h2>
+        <p>Try a <strong>free demo class</strong> in any program – no commitment required.</p>
+        <a href="#contact" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Your Free Demo</a>
       </div>
     </div>
 
