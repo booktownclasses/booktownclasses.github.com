@@ -81,16 +81,18 @@
     <div class="shape shape-3"></div>
   </div>
 
-  <nav class="navbar">
-    <div class="logo"><i class="fas fa-graduation-cap"></i> BookTown <span>Classes</span></div>
-    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-    <div class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="coding.html">Coding</a>
-      <a href="class10.html">Class 10</a>
-      <a href="class10-testseries.html">Test Series</a>
-      <a href="english.html" class="active">English</a>
-      <a href="index.html#contact" class="btn-cta-small">Join Now</a>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav-links" id="navLinks" role="menubar">
+      <a href="index.html" role="menuitem">Home</a>
+      <a href="coding.html" role="menuitem">Coding</a>
+      <a href="class10.html" role="menuitem">Class 10</a>
+      <a href="class10-testseries.html" role="menuitem">Test Series</a>
+      <a href="english.html" class="active" role="menuitem" aria-current="page">English</a>
+      <a href="index.html#contact" class="btn-cta-small" role="button">Join Now</a>
     </div>
   </nav>
 
@@ -99,94 +101,98 @@
       <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
 
       <!-- Hero Section -->
-      <div class="hero" style="padding: 2rem 0 1rem;">
+      <section class="hero" role="region" aria-label="Course introduction" style="padding: 2rem 0 1rem;">
         <div class="hero-content">
           <h1>🗣️ English Speaking <span class="highlight">& Communication</span></h1>
           <p>Build confidence, fluency, and professional communication skills through interactive sessions, real-world practice, and expert guidance.</p>
           <div class="btn-group">
-            <a href="index.html#contact" class="btn-primary"><i class="fas fa-microphone-alt"></i> Free Demo Class</a>
-            <a href="#curriculum" class="btn-secondary"><i class="fas fa-chevron-down"></i> Explore Levels</a>
+            <a href="index.html#contact" class="btn-primary"><i class="fas fa-microphone-alt" aria-hidden="true"></i> Free Demo Class</a>
+            <a href="#curriculum" class="btn-secondary"><i class="fas fa-chevron-down" aria-hidden="true"></i> Explore Levels</a>
           </div>
         </div>
         <div class="hero-carousel">
           <div class="carousel" style="max-width: 420px;">
-            <img src="images/english-banner.jpg" alt="English speaking class" style="width:100%; border-radius: 28px;" onerror="this.src='https://placehold.co/420x300/1e293b/c4a747?text=Speak+Confidently'">
+            <img src="images/english-banner.jpg" alt="English speaking and communication class" loading="lazy" style="width:100%; border-radius: 28px; height: auto;" onerror="this.src='https://placehold.co/420x300/1e293b/c4a747?text=Speak+Confidently'">
           </div>
         </div>
-      </div>
+      </section>
 
       <!-- Level Cards (Beginner, Intermediate, Advanced) -->
-      <h2 class="section-title" id="curriculum">🎯 Course Levels</h2>
-      <div class="level-card">
-        <div class="level-icon"><i class="fas fa-child"></i></div>
-        <div class="level-content">
-          <h3>Beginner (Grades 1-5)</h3>
-          <p>🎤 Basic vocabulary building | Simple sentence formation | Phonics & pronunciation games | Show & tell activities | Fun worksheets</p>
-        </div>
-      </div>
-      <div class="level-card">
-        <div class="level-icon"><i class="fas fa-users"></i></div>
-        <div class="level-content">
-          <h3>Intermediate (Grades 6-8)</h3>
-          <p>💬 Everyday conversations | Storytelling & narration | Grammar fundamentals (tenses, prepositions) | Role plays & group discussions</p>
-        </div>
-      </div>
-      <div class="level-card">
-        <div class="level-icon"><i class="fas fa-microphone-alt"></i></div>
-        <div class="level-content">
-          <h3>Advanced (Grades 9-12)</h3>
-          <p>🎙️ Debates & public speaking | Interview preparation | Presentation skills | Advanced vocabulary & idioms | Accent neutralization basics</p>
-        </div>
-      </div>
+      <section role="region" aria-label="Course levels and curriculum">
+        <h2 class="section-title" id="curriculum" style="border: none; text-align: center; padding-left: 0;">🎯 Course Levels</h2>
+        <article class="level-card">
+          <div class="level-icon" aria-hidden="true"><i class="fas fa-child"></i></div>
+          <div class="level-content">
+            <h3>Beginner (Grades 1-5)</h3>
+            <p>🎤 Basic vocabulary building | Simple sentence formation | Phonics & pronunciation games | Show & tell activities | Fun worksheets</p>
+          </div>
+        </article>
+        <article class="level-card">
+          <div class="level-icon" aria-hidden="true"><i class="fas fa-users"></i></div>
+          <div class="level-content">
+            <h3>Intermediate (Grades 6-8)</h3>
+            <p>💬 Everyday conversations | Storytelling & narration | Grammar fundamentals (tenses, prepositions) | Role plays & group discussions</p>
+          </div>
+        </article>
+        <article class="level-card">
+          <div class="level-icon" aria-hidden="true"><i class="fas fa-microphone-alt"></i></div>
+          <div class="level-content">
+            <h3>Advanced (Grades 9-12)</h3>
+            <p>🎙️ Debates & public speaking | Interview preparation | Presentation skills | Advanced vocabulary & idioms | Accent neutralization basics</p>
+          </div>
+        </article>
+      </section>
 
       <!-- Course Highlights -->
-      <h2 class="section-title">✨ Why This Course?</h2>
-      <div class="highlight-list">
-        <div class="highlight-item"><i class="fas fa-users"></i> <span><strong>Small batches</strong> (max 8 students)</span></div>
-        <div class="highlight-item"><i class="fas fa-video"></i> <span><strong>Recorded sessions</strong> for revision</span></div>
-        <div class="highlight-item"><i class="fas fa-chart-line"></i> <span><strong>Weekly speaking assessments</strong></span></div>
-        <div class="highlight-item"><i class="fas fa-certificate"></i> <span><strong>Certificate on completion</strong></span></div>
-        <div class="highlight-item"><i class="fas fa-clock"></i> <span><strong>Flexible timings</strong> (weekends available)</span></div>
-        <div class="highlight-item"><i class="fas fa-globe"></i> <span><strong>Real-world scenarios & role plays</strong></span></div>
-      </div>
+      <section role="region" aria-label="Course benefits and highlights">
+        <h2 class="section-title" style="border: none; text-align: center; padding-left: 0;">✨ Why This Course?</h2>
+        <div class="highlight-list">
+          <article class="highlight-item"><i class="fas fa-users" aria-hidden="true"></i> <span><strong>Small batches</strong> (max 8 students)</span></article>
+          <article class="highlight-item"><i class="fas fa-video" aria-hidden="true"></i> <span><strong>Recorded sessions</strong> for revision</span></article>
+          <article class="highlight-item"><i class="fas fa-chart-line" aria-hidden="true"></i> <span><strong>Weekly speaking assessments</strong></span></article>
+          <article class="highlight-item"><i class="fas fa-certificate" aria-hidden="true"></i> <span><strong>Certificate on completion</strong></span></article>
+          <article class="highlight-item"><i class="fas fa-clock" aria-hidden="true"></i> <span><strong>Flexible timings</strong> (weekends available)</span></article>
+          <article class="highlight-item"><i class="fas fa-globe" aria-hidden="true"></i> <span><strong>Real-world scenarios & role plays</strong></span></article>
+        </div>
+      </section>
 
       <!-- What You'll Gain -->
-      <div class="interview-tips" style="margin: 2rem 0;">
-        <h3><i class="fas fa-chalkboard-user"></i> What You'll Gain</h3>
+      <section class="interview-tips" role="region" aria-label="Learning outcomes" style="margin: 2rem 0;">
+        <h3><i class="fas fa-chalkboard-user" aria-hidden="true"></i> What You'll Gain</h3>
         <ul class="topic-list">
-          <li><i class="fas fa-check-circle"></i> Fluent, natural English speaking without hesitation</li>
-          <li><i class="fas fa-check-circle"></i> Strong vocabulary & grammar application</li>
-          <li><i class="fas fa-check-circle"></i> Confidence to speak in class, interviews, and daily life</li>
-          <li><i class="fas fa-check-circle"></i> Improved listening & comprehension skills</li>
-          <li><i class="fas fa-check-circle"></i> Personalized feedback and progress tracking</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Fluent, natural English speaking without hesitation</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Strong vocabulary & grammar application</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Confidence to speak in class, interviews, and daily life</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Improved listening & comprehension skills</li>
+          <li><i class="fas fa-check-circle" aria-hidden="true"></i> Personalized feedback and progress tracking</li>
         </ul>
-      </div>
+      </section>
 
       <!-- Call to Action -->
-      <div class="contact-cta" style="margin: 2rem 0 3rem;">
+      <section class="contact-cta" role="region" aria-label="Call to action" style="margin: 2rem 0 3rem;">
         <h2>🎤 Start Speaking Confidently Today!</h2>
         <p>Limited seats per batch. Get a free demo class and assessment.</p>
-        <a href="index.html#contact" class="btn-primary" style="display: inline-block; margin-top: 1rem;"><i class="fab fa-whatsapp"></i> Book Your Free Demo</a>
-      </div>
+        <a href="index.html#contact" class="btn-primary" style="display: inline-block; margin-top: 1rem;"><i class="fab fa-whatsapp" aria-hidden="true"></i> Book Your Free Demo</a>
+      </section>
     </div>
   </main>
 
   <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20English%20Speaking%20Classes%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-    <i class="fab fa-whatsapp"></i>
+  <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20English%20Speaking%20Classes%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
   </a>
 
-  <footer>
-    <div class="footer-links">
+  <footer role="contentinfo">
+    <nav class="footer-links" aria-label="Footer navigation">
       <a href="index.html">Home</a>
       <a href="coding.html">Coding</a>
       <a href="class10.html">Class 10</a>
       <a href="class10-testseries.html">Test Series</a>
       <a href="english.html">English</a>
       <a href="index.html#contact">Contact</a>
-    </div>
+    </nav>
     <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds. 📖✨</p>
-    <p style="margin-top: 0.5rem; font-size: 0.8rem;"><i class="fas fa-map-marker-alt"></i> Online & Offline | Small batches | Expert faculty</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Online & Offline | Small batches | Expert faculty</p>
   </footer>
 
   <script src="js/script.js"></script>
