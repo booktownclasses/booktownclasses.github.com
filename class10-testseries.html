@@ -141,35 +141,149 @@
       <section role="region" aria-label="Test schedule and timetable" id="schedule">
         <h3 class="section-title" style="font-size: 1.8rem;">📘 Quarter 1 (Chapters 1-4)</h3>
         <div class="timetable-card">
-        <table class="timetable-table">
-          <thead><tr><th>Month</th><th>Week</th><th>Test #</th><th>Chapters</th><th>Duration</th><th>Marks</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Month 1</td><td>Week 2</td><td>Test 1</td><td>Ch 1</td><td>80 min</td><td>50</td></tr>
-            <tr><td>Month 1</td><td>Week 4</td><td>Test 2</td><td>Ch 2</td><td>80 min</td><td>50</td></tr>
-            <tr><td>Month 2</td><td>Week 6</td><td>Test 3</td><td>Ch 1+2</td><td>100 min</td><td>70</td></tr>
-            <tr><td>Month 2</td><td>Week 8</td><td>Test 4</td><td>Ch 3</td><td>80 min</td><td>50</td></tr>
-            <tr><td>Month 3</td><td>Week 10</td><td>Test 5</td><td>Ch 4</td><td>80 min</td><td>50</td></tr>
-            <tr><td>Month 3</td><td>Week 12</td><td>Test 6</td><td>Ch 3+4</td><td>100 min</td><td>70</td></tr>
-            <tr style="background: rgba(196,167,71,0.1);"><td>Month 3</td><td>Week 13</td><td><strong>Quarterly Final</strong></td><td>Ch 1-4</td><td>3 Hr</td><td>100</td></tr>
-          </tbody>
-        </table>
-      </div>
+          <table class="timetable-table" role="grid">
+            <thead>
+              <tr>
+                <th scope="col">Month</th>
+                <th scope="col">Week</th>
+                <th scope="col">Test #</th>
+                <th scope="col">Chapters</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Month">Month 1</td>
+                <td data-label="Week">Week 2</td>
+                <td data-label="Test #">Test 1</td>
+                <td data-label="Chapters">Ch 1</td>
+                <td data-label="Duration">80 min</td>
+                <td data-label="Marks">50</td>
+              </tr>
+              <tr>
+                <td data-label="Month">Month 1</td>
+                <td data-label="Week">Week 4</td>
+                <td data-label="Test #">Test 2</td>
+                <td data-label="Chapters">Ch 2</td>
+                <td data-label="Duration">80 min</td>
+                <td data-label="Marks">50</td>
+              </tr>
+              <tr>
+                <td data-label="Month">Month 2</td>
+                <td data-label="Week">Week 6</td>
+                <td data-label="Test #">Test 3</td>
+                <td data-label="Chapters">Ch 1+2</td>
+                <td data-label="Duration">100 min</td>
+                <td data-label="Marks">70</td>
+              </tr>
+              <tr>
+                <td data-label="Month">Month 2</td>
+                <td data-label="Week">Week 8</td>
+                <td data-label="Test #">Test 4</td>
+                <td data-label="Chapters">Ch 3</td>
+                <td data-label="Duration">80 min</td>
+                <td data-label="Marks">50</td>
+              </tr>
+              <tr>
+                <td data-label="Month">Month 3</td>
+                <td data-label="Week">Week 10</td>
+                <td data-label="Test #">Test 5</td>
+                <td data-label="Chapters">Ch 4</td>
+                <td data-label="Duration">80 min</td>
+                <td data-label="Marks">50</td>
+              </tr>
+              <tr>
+                <td data-label="Month">Month 3</td>
+                <td data-label="Week">Week 12</td>
+                <td data-label="Test #">Test 6</td>
+                <td data-label="Chapters">Ch 3+4</td>
+                <td data-label="Duration">100 min</td>
+                <td data-label="Marks">70</td>
+              </tr>
+              <tr style="background: rgba(196,167,71,0.1);">
+                <td data-label="Month">Month 3</td>
+                <td data-label="Week">Week 13</td>
+                <td data-label="Test #"><strong>Quarterly Final</strong></td>
+                <td data-label="Chapters">Ch 1-4</td>
+                <td data-label="Duration">3 Hr</td>
+                <td data-label="Marks">100</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
       <!-- Quarter 2 Schedule -->
       <h3 class="section-title" style="font-size: 1.8rem;">📗 Quarter 2 (Chapters 5-8)</h3>
       <div class="timetable-card">
-        <table class="timetable-table">
-          <thead><tr><th>Month</th><th>Week</th><th>Test #</th><th>Chapters</th><th>Duration</th><th>Marks</th></tr>
+        <table class="timetable-table" role="grid">
+          <thead>
+            <tr>
+              <th scope="col">Month</th>
+              <th scope="col">Week</th>
+              <th scope="col">Test #</th>
+              <th scope="col">Chapters</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Marks</th>
+            </tr>
           </thead>
           <tbody>
-            <tr><td>Month 4</td><td>Week 2</td><td>Test 1</td><td>Ch 5</td><td>80 min</td><td>50</td></tr>
-            <tr><td>Month 4</td><td>Week 4</td><td>Test 2</td><td>Ch 6</td><td>80 min</td><td>50</td></tr>
-            <tr><td>Month 5</td><td>Week 6</td><td>Test 3</td><td>Ch 5+6</td><td>100 min</td><td>70</td></tr>
-            <tr><td>Month 5</td><td>Week 8</td><td>Test 4</td><td>Ch 7</td><td>80 min</td><td>50</td></tr>
-            <tr><td>Month 6</td><td>Week 10</td><td>Test 5</td><td>Ch 8</td><td>80 min</td><td>50</td></tr>
-            <tr><td>Month 6</td><td>Week 12</td><td>Test 6</td><td>Ch 7+8</td><td>100 min</td><td>70</td></tr>
-            <tr style="background: rgba(196,167,71,0.1);"><td>Month 6</td><td>Week 13</td><td><strong>Quarterly Final</strong></td><td>Ch 5-8</td><td>3 Hr</td><td>100</td></tr>
+            <tr>
+              <td data-label="Month">Month 4</td>
+              <td data-label="Week">Week 2</td>
+              <td data-label="Test #">Test 1</td>
+              <td data-label="Chapters">Ch 5</td>
+              <td data-label="Duration">80 min</td>
+              <td data-label="Marks">50</td>
+            </tr>
+            <tr>
+              <td data-label="Month">Month 4</td>
+              <td data-label="Week">Week 4</td>
+              <td data-label="Test #">Test 2</td>
+              <td data-label="Chapters">Ch 6</td>
+              <td data-label="Duration">80 min</td>
+              <td data-label="Marks">50</td>
+            </tr>
+            <tr>
+              <td data-label="Month">Month 5</td>
+              <td data-label="Week">Week 6</td>
+              <td data-label="Test #">Test 3</td>
+              <td data-label="Chapters">Ch 5+6</td>
+              <td data-label="Duration">100 min</td>
+              <td data-label="Marks">70</td>
+            </tr>
+            <tr>
+              <td data-label="Month">Month 5</td>
+              <td data-label="Week">Week 8</td>
+              <td data-label="Test #">Test 4</td>
+              <td data-label="Chapters">Ch 7</td>
+              <td data-label="Duration">80 min</td>
+              <td data-label="Marks">50</td>
+            </tr>
+            <tr>
+              <td data-label="Month">Month 6</td>
+              <td data-label="Week">Week 10</td>
+              <td data-label="Test #">Test 5</td>
+              <td data-label="Chapters">Ch 8</td>
+              <td data-label="Duration">80 min</td>
+              <td data-label="Marks">50</td>
+            </tr>
+            <tr>
+              <td data-label="Month">Month 6</td>
+              <td data-label="Week">Week 12</td>
+              <td data-label="Test #">Test 6</td>
+              <td data-label="Chapters">Ch 7+8</td>
+              <td data-label="Duration">100 min</td>
+              <td data-label="Marks">70</td>
+            </tr>
+            <tr style="background: rgba(196,167,71,0.1);">
+              <td data-label="Month">Month 6</td>
+              <td data-label="Week">Week 13</td>
+              <td data-label="Test #"><strong>Quarterly Final</strong></td>
+              <td data-label="Chapters">Ch 5-8</td>
+              <td data-label="Duration">3 Hr</td>
+              <td data-label="Marks">100</td>
+            </tr>
           </tbody>
         </table>
       </div>
