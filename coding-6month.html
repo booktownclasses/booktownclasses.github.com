@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
+  <title>BookTown | 6-Month Professional Coding Program – DSA, APIs, AI/ML</title>
+  <meta name="description" content="6-month professional coding program: Master Python DSA (100+ problems), build production APIs, deploy AI/ML systems. Interview-ready engineer.">
+  <meta name="keywords" content="DSA course, API development, AI/ML, FastAPI, Python, interview preparation, professional coding">
+  <meta name="author" content="BookTown Classes">
+  <meta property="og:title" content="6-Month Professional Coding Program | BookTown Classes">
+  <meta property="og:description" content="Transform into an industry-ready engineer. DSA mastery, API design, AI/ML deployment.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#8b5cf6">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Ap3gC+t3ZC9flVoYJv8k57i6bkWvs/37IIqzPUbJ5E59x2JSQae8R7bzH3+Krlbmd9OEa07kT2+UkzcZWeIlo3A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/coding.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo span { color: #8b5cf6; }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      transition: color 0.2s;
+      padding: 0.5rem 0;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #8b5cf6;
+    }
+    .btn-cta-small {
+      background: #8b5cf6;
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      transition: background 0.2s;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .btn-cta-small:hover {
+      background: #7c3aed;
+    }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #0f172a;
+    }
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 2rem 0;
+      flex-wrap: wrap;
+    }
+    .hero-content h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .highlight {
+      color: #8b5cf6;
+    }
+    .btn-group {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary, .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+      min-height: 44px;
+      font-size: 1rem;
+    }
+    .btn-primary {
+      background: #8b5cf6;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #7c3aed;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: #e9d5ff;
+      color: #5b21b6;
+    }
+    .btn-secondary:hover {
+      background: #ddd6fe;
+    }
+    .hero-carousel img {
+      border-radius: 28px;
+      max-width: 100%;
+      height: auto;
+    }
+    /* Cards & Tables */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 2rem 0 1rem;
+      border-left: 5px solid #8b5cf6;
+      padding-left: 1rem;
+      line-height: 1.3;
+    }
+    .interview-tips {
+      background: #ede9fe;
+      padding: 1rem;
+      border-radius: 16px;
+      margin: 1rem 0;
+      border-left: 4px solid #8b5cf6;
+    }
+    .month-badge {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 700;
+      margin: 1.5rem 0 0.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border-radius: 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    }
+    .curriculum-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 20px;
+      min-width: 500px;
+    }
+    .curriculum-table th {
+      background: linear-gradient(135deg, #5b21b6, #4c1d95);
+      color: white;
+      font-weight: 700;
+      padding: 1rem;
+      text-align: left;
+    }
+    .curriculum-table td {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0.9rem 1rem;
+      vertical-align: top;
+    }
+    .curriculum-table tbody tr:hover td {
+      background: #f3e8ff;
+    }
+    .advantage-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .advantage-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .advantage-card:hover {
+      transform: translateY(-4px);
+    }
+    .advantage-icon {
+      font-size: 2.2rem;
+      color: #8b5cf6;
+      margin-bottom: 1rem;
+    }
+    .advantage-card h3 {
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #0f172a;
+      color: #94a3b8;
+      margin-top: 2rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: #8b5cf6;
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      border-radius: 50px;
+      padding: 0.8rem 1.2rem;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 100;
+      transition: transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 44px;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.05);
+    }
+    .contact-cta {
+      text-align: center;
+      background: linear-gradient(135deg, #5b21b6, #4c1d95);
+      color: white;
+      padding: 2.5rem;
+      border-radius: 32px;
+      margin: 3rem 0;
+    }
+    .contact-cta .btn-primary {
+      background: #fbbf24;
+      color: #5b21b6;
+      margin-top: 1rem;
+    }
+    .tabs-nav {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+    .tabs-nav a {
+      padding: 0.75rem 1.5rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+      border: 2px solid #e9d5ff;
+      background: white;
+      color: #5b21b6;
+    }
+    .tabs-nav a:hover, .tabs-nav a.active {
+      background: #8b5cf6;
+      color: white;
+      border-color: #8b5cf6;
+    }
+    @media (max-width: 767px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-content h1 {
+        font-size: 1.6rem;
+      }
+      .section-title {
+        font-size: 1.3rem;
+      }
+      .curriculum-table {
+        font-size: 0.85rem;
+      }
+      .curriculum-table th, .curriculum-table td {
+        padding: 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
+  <div class="nav-links" role="menubar">
+    <a href="index.html" role="menuitem">Home</a>
+    <a href="coding.html" role="menuitem">3-Month Course</a>
+    <a href="coding-6month.html" class="active" role="menuitem">6-Month Pro</a>
+    <a href="class10.html" role="menuitem">Class 10</a>
+    <a href="english.html" role="menuitem">English</a>
+    <a href="index.html#contact" class="btn-cta-small" role="button">Join Now</a>
+  </div>
+</nav>
+
+<main class="container">
+  <!-- Course Selector -->
+  <div style="background: linear-gradient(135deg, #f3e8ff, #ede9fe); padding: 1.5rem; border-radius: 16px; margin: 1rem 0; text-align: center;">
+    <p style="margin: 0; color: #5b21b6;"><strong>📚 Choose Your Track:</strong></p>
+    <div class="tabs-nav" style="justify-content: center;">
+      <a href="coding.html"><i class="fas fa-rocket" aria-hidden="true"></i> 3-Month Beginner</a>
+      <a href="coding-6month.html" class="active"><i class="fas fa-crown" aria-hidden="true"></i> 6-Month Professional</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero" role="region" aria-label="Course introduction">
+    <div class="hero-content">
+      <h1>🚀 6-Month Professional Program <span class="highlight">(DSA • APIs • AI/ML)</span></h1>
+      <p>Transform from beginner to industry-ready engineer. Master 100+ DSA problems, build production APIs, deploy AI/ML systems.</p>
+      <div class="btn-group">
+        <a href="index.html#contact" class="btn-primary"><i class="fas fa-fire" aria-hidden="true"></i> Enroll Now</a>
+        <a href="#curriculum" class="btn-secondary"><i class="fas fa-book" aria-hidden="true"></i> View Curriculum</a>
+      </div>
+    </div>
+    <div class="hero-carousel">
+      <img src="images/coding-banner.jpg" alt="6-month professional program" loading="lazy" onerror="this.src='https://placehold.co/400x300/5b21b6/fbbf24?text=Professional+Program'" style="max-width: 320px;">
+    </div>
+  </section>
+
+  <!-- Program Overview -->
+  <section role="region" aria-label="Program overview and roadmap">
+    <div class="interview-tips" style="background: linear-gradient(135deg, #f3e8ff, #e0d5ff); border-left: 4px solid #7c3aed;">
+      <h2 style="margin-top: 0; color: #5b21b6; font-size: 1.5rem;"><i class="fas fa-star" aria-hidden="true"></i> Complete Roadmap</h2>
+      <p><strong>Months 1–2:</strong> Python mastery + 100+ DSA problems (sorting, hashing, recursion)</p>
+      <p><strong>Month 3:</strong> FastAPI fundamentals + REST API design</p>
+      <p><strong>Month 4:</strong> Advanced API + PostgreSQL + async/await + production patterns</p>
+      <p><strong>Months 5–6:</strong> AI/ML integration + RAG systems + capstone project</p>
+      <p style="margin-bottom: 0;"><strong>🎯 Final Outcome:</strong> Portfolio-ready projects + interview-ready competency</p>
+    </div>
+  </section>
+
+  <!-- Curriculum Section -->
+  <section id="curriculum" role="region" aria-label="Detailed 6-month curriculum">
+    <h2 class="section-title">📖 Full Curriculum Breakdown</h2>
+
+    <!-- Months 1-2 -->
+    <div class="month-badge"><i class="fas fa-code" aria-hidden="true"></i> Months 1 & 2 – Python + Sorting Algorithms + DSA</div>
+    <div class="table-wrapper">
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Week</th>
+            <th scope="col">Core Topics</th>
+            <th scope="col">LeetCode/HackerRank</th>
+            <th scope="col">Key Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="4"><strong>Month 1</strong></td>
+            <td>Week 1</td>
+            <td>Python refresher: data types, I/O, loops, functions, lists, dicts, sets</td>
+            <td>Easy: Two Sum, Contains Duplicate, Valid Anagram</td>
+            <td>map, filter, zip, enumerate, comprehensions</td>
+          </tr>
+          <tr>
+            <td>Week 2</td>
+            <td><strong>Iterative Sorting:</strong> Bubble, Selection, Insertion Sort</td>
+            <td>Easy: Merge Sorted Array, Sort By Parity</td>
+            <td>Complexity analysis, timeit, sorted() with key</td>
+          </tr>
+          <tr>
+            <td>Week 3</td>
+            <td>Strings, arrays, hashing | Two-pointer, sliding window</td>
+            <td>Medium: Longest Substring, Group Anagrams, Top K</td>
+            <td>Counter, defaultdict, lambda sorting</td>
+          </tr>
+          <tr>
+            <td>Week 4</td>
+            <td>Recursion basics & backtracking introduction</td>
+            <td>Factorial, Fibonacci, Generate Parentheses, Subsets</td>
+            <td>lru_cache, recursion depth, yield</td>
+          </tr>
+          <tr>
+            <td rowspan="4"><strong>Month 2</strong></td>
+            <td>Week 5</td>
+            <td><strong>Divide & Conquer:</strong> Merge Sort (recursive)</td>
+            <td>Medium: Sort an Array, Count Smaller Numbers</td>
+            <td>List slicing, index manipulation, itertools</td>
+          </tr>
+          <tr>
+            <td>Week 6</td>
+            <td><strong>Quick Sort</strong> – pivoting, partitioning</td>
+            <td>Quick Select, Kth Largest, Sort Colors</td>
+            <td>random.choice, in-place swaps, cmp_to_key</td>
+          </tr>
+          <tr>
+            <td>Week 7</td>
+            <td><strong>Heap & Heap Sort</strong> – heapq module, priority queues</td>
+            <td>Medium: Kth Largest in Stream, Top K Words</td>
+            <td>heapq methods, __lt__ for custom objects</td>
+          </tr>
+          <tr>
+            <td>Week 8</td>
+            <td>DSA review sprint – mixed problems, timed contests</td>
+            <td>30+ selected LeetCode Medium/Hard problems</td>
+            <td>All above + decorators, profiling, optimization</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="interview-tips"><p>✅ <strong>Month 2 Deliverable:</strong> Polished Python package with all sorting algorithms + 50+ DSA solutions</p></div>
+
+    <!-- Month 3 -->
+    <div class="month-badge" style="background: linear-gradient(135deg, #f97316, #ea580c);"><i class="fas fa-globe" aria-hidden="true"></i> Month 3 – API Development Fundamentals</div>
+    <div class="table-wrapper">
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th scope="col">Week</th>
+            <th scope="col">Core Topics</th>
+            <th scope="col">Hands-On Project</th>
+            <th scope="col">Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>9</td>
+            <td>HTTP, REST, FastAPI setup, path/query params, Pydantic validation</td>
+            <td>CRUD API for Books collection</td>
+            <td>Type hints, Pydantic models, uvicorn</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Request body, error handling, status codes, file uploads</td>
+            <td>Books API with image upload</td>
+            <td>shutil, aiofiles, HTTPException</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Dependency injection, middleware, CORS, background tasks</td>
+            <td>Weather API proxy with caching</td>
+            <td>BackgroundTasks, lru_cache, httpx async</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Testing (pytest, TestClient), OpenAPI docs, Docker</td>
+            <td>Containerise, write unit & integration tests</td>
+            <td>pytest, Dockerfile, docker-compose, Swagger</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="interview-tips"><p>✅ <strong>Month 3 Deliverable:</strong> Fully tested, containerised REST API + portfolio project</p></div>
+
+    <!-- Month 4 -->
+    <div class="month-badge" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-database" aria-hidden="true"></i> Month 4 – Advanced API + PostgreSQL</div>
+    <div class="table-wrapper">
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th scope="col">Week</th>
+            <th scope="col">Core Topics</th>
+            <th scope="col">DBMS & Async</th>
+            <th scope="col">Milestone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>13</td>
+            <td>SQLAlchemy ORM, Alembic migrations, PostgreSQL, CRUD</td>
+            <td>Define tables, relationships, seed data</td>
+            <td><strong>Task Manager API</strong> start</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>Advanced Pydantic, nested models, response separation</td>
+            <td>One-to-many, many-to-many relationships</td>
+            <td>User registration, JWT login</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>Async endpoints, asyncio, Celery/Redis, notifications</td>
+            <td>Async DB queries, aiosmtplib background jobs</td>
+            <td>Email notifications on task assignment</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>Exception handlers, logging (loguru), rate limiting</td>
+            <td>Custom exceptions, logging middleware, slowapi</td>
+            <td>Docker stack (API + DB + Redis), finalize</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="interview-tips"><p>✅ <strong>Month 4 Deliverable:</strong> Production Task Manager API with auth, async, logging, Docker</p></div>
+
+    <!-- Months 5-6 -->
+    <div class="month-badge" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);"><i class="fas fa-brain" aria-hidden="true"></i> Months 5 & 6 – Applied AI/ML (Capstone)</div>
+    <div class="table-wrapper">
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Week</th>
+            <th scope="col">AI/ML Topics</th>
+            <th scope="col">API Integration</th>
+            <th scope="col">Capstone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="4"><strong>Month 5</strong></td>
+            <td>17</td>
+            <td>CNN optimization, ONNX, quantization</td>
+            <td>Serve CNN from API, Redis caching</td>
+            <td><strong>Agri-Tech AI Platform Start</strong></td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>NLP, Transformers (Hugging Face), embeddings</td>
+            <td>FAQ chatbot endpoint, log conversations</td>
+            <td>FAQ module: semantic search</td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>RAG: Vector stores (FAISS), chunking, retrieval</td>
+            <td>PDF upload, extract, embeddings, Q&A endpoint</td>
+            <td>Document indexing + retrieval</td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>Advanced RAG: LLM (Gemini/Ollama), streaming</td>
+            <td>Async streaming, Server-Sent Events, caching</td>
+            <td>Natural language Q&A + citation</td>
+          </tr>
+          <tr>
+            <td rowspan="4"><strong>Month 6</strong></td>
+            <td>21</td>
+            <td>MLOps: Prometheus, CI/CD (GitHub Actions), deployment</td>
+            <td>Health checks, dashboards, auto-redeploy</td>
+            <td>Deploy publicly (Render/AWS)</td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>Testing AI, graceful fallbacks, retries</td>
+            <td>Pytest AI components, mock external calls</td>
+            <td>Harden API, error recovery</td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td>User management, tiered access, priority queues</td>
+            <td>Rate limiting, async image classification</td>
+            <td>Feature polish, optimization</td>
+          </tr>
+          <tr>
+            <td>24</td>
+            <td>Portfolio polish, GitHub docs, final demo</td>
+            <td>Code walkthrough, detailed README, diagrams</td>
+            <td><strong>Complete: Disease Detection + PDF Q&A</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="interview-tips" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-left: 4px solid #22c55e; margin: 2rem 0;">
+      <p style="margin: 0;"><strong>✅ Final Capstone: Agri-Tech AI Platform API</strong></p>
+      <p style="margin: 0.5rem 0;">🔍 Plant Disease Detection – upload image → CNN prediction (optimized & cached)</p>
+      <p style="margin: 0.5rem 0;">📚 Document Q&A – upload PDFs, ask questions, RAG + streaming responses</p>
+      <p style="margin: 0.5rem 0;">👤 User Dashboard – JWT auth, request history, tiered access</p>
+      <p style="margin: 0;"><strong>⚡ Production Ready</strong> – async processing, monitoring, auto-scaling</p>
+    </div>
+
+    <!-- Outcomes -->
+    <h3 style="font-size: 1.5rem; font-weight: 800; margin: 2rem 0 1rem; text-align: center; color: #5b21b6;">🎯 Program Outcomes</h3>
+    <div class="advantage-row">
+      <article class="advantage-card">
+        <div class="advantage-icon"><i class="fas fa-code-branch"></i></div>
+        <h3>100+ DSA</h3>
+        <p>Optimised solutions across all patterns</p>
+      </article>
+      <article class="advantage-card">
+        <div class="advantage-icon"><i class="fas fa-server"></i></div>
+        <h3>Two APIs</h3>
+        <p>Books + Task Manager (production-ready)</p>
+      </article>
+      <article class="advantage-card">
+        <div class="advantage-icon"><i class="fas fa-robot"></i></div>
+        <h3>AI/ML System</h3>
+        <p>Deployed, containerised capstone</p>
+      </article>
+      <article class="advantage-card">
+        <div class="advantage-icon"><i class="fas fa-briefcase"></i></div>
+        <h3>Interview Ready</h3>
+        <p>Deep skills + portfolio projects</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section style="text-align: center; background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin: 2.5rem 0;">
+    <h2 class="section-title" style="border: none; padding: 0; margin: 0 0 1.5rem; font-size: 1.8rem;">💰 Program Investment</h2>
+    <p style="font-size: 2.5rem; font-weight: 800; color: #5b21b6; margin: 1rem 0;">₹3,000/month</p>
+    <p style="color: #64748b; margin: 1rem 0; font-size: 1.1rem;"><strong>or</strong> ₹15,000 for full 6-month (save ₹3,000)</p>
+    <p style="color: #64748b; margin: 1.5rem 0;">✅ Live sessions + 1-on-1 mentorship | ✅ Project code reviews | ✅ Career guidance</p>
+    <a href="index.html#contact" class="btn-primary" style="display: inline-block; margin-top: 1.5rem;"><i class="fas fa-rocket" aria-hidden="true"></i> Enroll Today</a>
+  </section>
+
+  <!-- CTA -->
+  <section class="contact-cta" role="region" aria-label="Call to action">
+    <h2>🏆 Ready to Transform Your Career?</h2>
+    <p>Limited seats per cohort. Live mentoring + portfolio-ready projects.</p>
+    <a href="index.html#contact" class="btn-primary"><i class="fab fa-whatsapp" aria-hidden="true"></i> Start Your Journey</a>
+  </section>
+</main>
+
+<footer role="contentinfo">
+  <nav class="footer-links" aria-label="Footer navigation">
+    <a href="index.html">Home</a>
+    <a href="coding.html">3-Month</a>
+    <a href="coding-6month.html">6-Month</a>
+    <a href="class10.html">Class 10</a>
+    <a href="english.html">English</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds.</p>
+</footer>
+
+<a href="https://wa.me/919414700737?text=I'm%20interested%20in%20the%206-Month%20Professional%20Program%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i> Chat</a>
+
+</body>
+</html>

@@ -569,6 +569,47 @@
       display: inline-block;
     }
 
+    /* Tab Navigation Styles */
+    .program-tabs {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 0.75rem 2rem;
+      border: 2px solid #e2e8f0;
+      background: white;
+      color: #334155;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      min-height: 44px;
+    }
+    .tab-btn:hover {
+      border-color: #3b82f6;
+      color: #3b82f6;
+    }
+    .tab-btn.active {
+      background: #3b82f6;
+      color: white;
+      border-color: #3b82f6;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     /* Tablet Devices (768px - 1024px) */
     @media (max-width: 1024px) {
       .container {
@@ -922,137 +963,105 @@
 </nav>
 
 <main class="container">
-  <!-- Hero -->
-  <section class="hero" role="region" aria-label="Course introduction">
-    <div class="hero-content">
-      <h1>🐍 Python Coding Batch <span class="highlight">(Beginner to Intermediate)</span></h1>
-      <p>3 Months | 5 Days/Week | No prior coding needed – from basics to real projects.</p>
-      <div class="btn-group">
-        <a href="index.html#contact" class="btn-primary"><i class="fas fa-rocket" aria-hidden="true"></i> Enroll Now</a>
-        <a href="#curriculum" class="btn-secondary"><i class="fas fa-calendar-alt" aria-hidden="true"></i> View 3‑Month Plan</a>
+
+  <!-- Program Tabs Selector (Moved to Top) with GIF -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin: 2rem 0 3rem 0;">
+    <div>
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #0f172a;">📚 Choose Your Learning Path</h2>
+      <div class="program-tabs" style="flex-direction: column; gap: 1rem;">
+        <button class="tab-btn active" onclick="switchTab('3month')" id="btn-3month" style="justify-content: flex-start; padding: 1rem 1.5rem;">
+          <i class="fas fa-rocket"></i> 3-Month Beginner Program
+        </button>
+        <button class="tab-btn" onclick="switchTab('6month')" id="btn-6month" style="justify-content: flex-start; padding: 1rem 1.5rem;">
+          <i class="fas fa-crown"></i> 6-Month Professional Program
+        </button>
       </div>
     </div>
-    <div class="hero-carousel">
-      <img src="images/coding-banner.jpg" alt="Python coding course banner" loading="lazy" onerror="this.src='https://placehold.co/400x300/1e293b/c4a747?text=Python+Coding'" style="max-width: 320px;">
+    <div style="display: flex; justify-content: center;">
+      <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWdyb2k4aG40eTAweWtzNWU4dHAxMWN3aGI0OW9vMWs5b2thNmlhNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/coxQHKASG60HrHtvkt/giphy.gif" alt="Python coding animation" style="max-width: 100%; height: auto; border-radius: 15px; max-height: 350px;" loading="lazy">
     </div>
-  </section>
+  </div>
+  
+  <!-- Responsive CSS for tab layout on mobile -->
+  <style>
+    @media (max-width: 767px) {
+      .learning-path-container {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
 
   <!-- Batch Highlights -->
-  <section role="region" aria-label="Batch highlights and benefits">
-    <h2 class="section-title-accent">✨ Batch Highlights</h2>
-    <div class="advantage-row">
-      <article class="advantage-card">
-        <div class="advantage-icon" aria-hidden="true"><i class="fas fa-code"></i></div>
-        <h3>Learn Python from Scratch</h3>
-        <p>No experience needed – progressive learning</p>
-      </article>
-      <article class="advantage-card">
-        <div class="advantage-icon" aria-hidden="true"><i class="fas fa-project-diagram"></i></div>
-        <h3>Build Real Projects</h3>
-        <p>Calculator, quiz system, student database</p>
-      </article>
-      <article class="advantage-card">
-        <div class="advantage-icon" aria-hidden="true"><i class="fab fa-git-alt"></i></div>
-        <h3>Git + Linux + SQL</h3>
-        <p>Industry tools integrated naturally</p>
-      </article>
-      <article class="advantage-card">
-        <div class="advantage-icon" aria-hidden="true"><i class="fas fa-clock"></i></div>
-        <h3>1‑Hour Daily Sessions</h3>
-        <p>Focused, effective, no burnout</p>
-      </article>
-    </div>
-  </section>
+  <div id="content-3month" class="tab-content active">
+    <section role="region" aria-label="Batch highlights and benefits">
+      <h2 class="section-title-accent">✨ Batch Highlights</h2>
+      <div class="advantage-row">
+        <article class="advantage-card">
+          <div class="advantage-icon" aria-hidden="true"><i class="fas fa-code"></i></div>
+          <h3>Learn Python from Scratch</h3>
+          <p>No experience needed – progressive learning</p>
+        </article>
+        <article class="advantage-card">
+          <div class="advantage-icon" aria-hidden="true"><i class="fas fa-project-diagram"></i></div>
+          <h3>Build Real Projects</h3>
+          <p>Calculator, quiz system, student database</p>
+        </article>
+        <article class="advantage-card">
+          <div class="advantage-icon" aria-hidden="true"><i class="fab fa-git-alt"></i></div>
+          <h3>Git + Linux + SQL</h3>
+          <p>Industry tools integrated naturally</p>
+        </article>
+        <article class="advantage-card">
+          <div class="advantage-icon" aria-hidden="true"><i class="fas fa-clock"></i></div>
+          <h3>1‑Hour Daily Sessions</h3>
+          <p>Focused, effective, no burnout</p>
+        </article>
+      </div>
+    </section>
 
-  <!-- NEW: Skill Level Infographic (Meter) -->
-  <section class="skill-meter" role="region" aria-label="Learning progression">
-    <h3 style="margin-bottom: 1rem;"><i class="fas fa-chart-line" aria-hidden="true"></i> Your Learning Journey</h3>
-    <div class="meter-item">
-      <div class="meter-label"><span>Python Fundamentals</span><span aria-label="Progress: 30 percent">Month 1</span></div>
-      <div class="meter-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" aria-label="Python fundamentals progress"><div class="meter-fill" style="width: 30%;"></div></div>
-    </div>
-    <div class="meter-item">
-      <div class="meter-label"><span>Intermediate Python + Linux</span><span aria-label="Progress: 65 percent">Month 2</span></div>
-      <div class="meter-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" aria-label="Intermediate Python and Linux progress"><div class="meter-fill" style="width: 65%;"></div></div>
-    </div>
-    <div class="meter-item">
-      <div class="meter-label"><span>Databases + Advanced Python</span><span aria-label="Progress: 100 percent">Month 3</span></div>
-      <div class="meter-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="Databases and advanced Python progress"><div class="meter-fill" style="width: 100%;"></div></div>
-    </div>
-  </section>
+    <!-- NEW: Skill Level Infographic (Meter) -->
+    <section class="skill-meter" role="region" aria-label="Learning progression">
+      <h3 style="margin-bottom: 1rem;"><i class="fas fa-chart-line" aria-hidden="true"></i> Your Learning Journey</h3>
+      <div class="meter-item">
+        <div class="meter-label"><span>Python Fundamentals</span><span aria-label="Progress: 30 percent">Month 1</span></div>
+        <div class="meter-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" aria-label="Python fundamentals progress"><div class="meter-fill" style="width: 30%;"></div></div>
+      </div>
+      <div class="meter-item">
+        <div class="meter-label"><span>Intermediate Python + Linux</span><span aria-label="Progress: 65 percent">Month 2</span></div>
+        <div class="meter-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" aria-label="Intermediate Python and Linux progress"><div class="meter-fill" style="width: 65%;"></div></div>
+      </div>
+      <div class="meter-item">
+        <div class="meter-label"><span>Databases + Advanced Python</span><span aria-label="Progress: 100 percent">Month 3</span></div>
+        <div class="meter-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="Databases and advanced Python progress"><div class="meter-fill" style="width: 100%;"></div></div>
+      </div>
+    </section>
 
-  <!-- Timeline Infographic -->
-  <section role="region" aria-label="Three month learning timeline">
-    <h2 class="section-title">📅 3‑Month Learning Path</h2>
-    <div class="timeline-infographic">
-      <article class="timeline-step">
-        <div class="step-number" aria-label="Step 1">1</div>
-        <div class="step-title">Month 1</div>
-        <p>Python basics + Git</p>
-        <small>Conditionals, loops, lists, version control</small>
-      </article>
-      <article class="timeline-step">
-        <div class="step-number" aria-label="Step 2">2</div>
-        <div class="step-title">Month 2</div>
-        <p>Intermediate Python + Linux</p>
-        <small>Functions, OOP, file ops, terminal commands</small>
-      </article>
-      <article class="timeline-step">
-        <div class="step-number" aria-label="Step 3">3</div>
-        <div class="step-title">Month 3</div>
-        <p>Databases + Final Project</p>
-        <small>SQLite, APIs, library management system</small>
-      </article>
-    </div>
-  </section>
+    <!-- Timeline Infographic -->
+    <section role="region" aria-label="Three month learning timeline">
+      <h2 class="section-title">📅 3‑Month Learning Path</h2>
+      <div class="timeline-infographic">
+        <article class="timeline-step">
+          <div class="step-number" aria-label="Step 1">1</div>
+          <div class="step-title">Month 1</div>
+          <p>Python basics + Git</p>
+          <small>Conditionals, loops, lists, version control</small>
+        </article>
+        <article class="timeline-step">
+          <div class="step-number" aria-label="Step 2">2</div>
+          <div class="step-title">Month 2</div>
+          <p>Intermediate Python + Linux</p>
+          <small>Functions, OOP, file ops, terminal commands</small>
+        </article>
+        <article class="timeline-step">
+          <div class="step-number" aria-label="Step 3">3</div>
+          <div class="step-title">Month 3</div>
+          <p>Databases + Final Project</p>
+          <small>SQLite, APIs, library management system</small>
+        </article>
+      </div>
+    </section>
 
-  <!-- Tech Stack (colored infographics) -->
-  <section role="region" aria-label="Technologies you will master">
-    <h2 class="section-title">📊 Tech Stack You'll Master</h2>
-    <div class="infographics-grid">
-      <article class="infocard">
-        <div class="infocard-icon" aria-hidden="true"><i class="fab fa-python"></i></div>
-        <h3>Python</h3>
-        <p>Core to OOP, APIs, file handling</p>
-        <div class="skill-tags">
-          <span class="skill-tag">Variables</span>
-          <span class="skill-tag">Loops</span>
-          <span class="skill-tag">Functions</span>
-          <span class="skill-tag">OOP</span>
-        </div>
-      </article>
-      <article class="infocard">
-        <div class="infocard-icon" aria-hidden="true"><i class="fab fa-git-alt"></i></div>
-        <h3>Git & GitHub</h3>
-        <p>Version control, branching, collaboration</p>
-        <div class="skill-tags">
-          <span class="skill-tag">commit</span>
-          <span class="skill-tag">branch</span>
-          <span class="skill-tag">push/pull</span>
-        </div>
-      </article>
-      <article class="infocard">
-        <div class="infocard-icon" aria-hidden="true"><i class="fab fa-linux"></i></div>
-        <h3>Linux</h3>
-        <p>Essential commands, permissions, networking</p>
-        <div class="skill-tags">
-          <span class="skill-tag">ls/grep</span>
-          <span class="skill-tag">chmod</span>
-          <span class="skill-tag">ssh</span>
-        </div>
-      </article>
-      <article class="infocard">
-        <div class="infocard-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
-        <h3>SQLite</h3>
-        <p>CRUD, JOINs, Python integration</p>
-        <div class="skill-tags">
-          <span class="skill-tag">SELECT</span>
-          <span class="skill-tag">JOIN</span>
-          <span class="skill-tag">GROUP BY</span>
-        </div>
-      </article>
-    </div>
-  </section>
+
 
   <!-- Curriculum with enhanced tables -->
   <section id="curriculum" role="region" aria-label="Course curriculum">
@@ -1134,6 +1143,283 @@
       <p>💡 Both batches cover the same curriculum at the same pace – choose the timing that fits you.</p>
     </div>
   </section>
+  </div><!-- End of content-3month -->
+
+  <!-- 6-Month Program Content -->
+  <div id="content-6month" class="tab-content">
+    <section role="region" aria-label="6-month program overview">
+      <div class="interview-tips" style="background: linear-gradient(135deg, #f3e8ff, #e0d5ff); border-left: 4px solid #7c3aed;">
+        <h2 style="margin-top: 0; color: #5b21b6; font-size: 1.5rem;"><i class="fas fa-star" aria-hidden="true"></i> 6-Month Professional Roadmap</h2>
+        <p><strong>Months 1–2:</strong> Python mastery + 100+ DSA problems (sorting, hashing, recursion)</p>
+        <p><strong>Month 3:</strong> FastAPI fundamentals + REST API design</p>
+        <p><strong>Month 4:</strong> Advanced API + PostgreSQL + async/await + production patterns</p>
+        <p><strong>Months 5–6:</strong> AI/ML integration + RAG systems + capstone project</p>
+        <p style="margin-bottom: 0;"><strong>🎯 Final Outcome:</strong> Portfolio-ready projects + interview-ready competency</p>
+      </div>
+    </section>
+
+    <!-- Months 1-2 -->
+    <div class="month-badge" style="background: linear-gradient(135deg, #3b82f6, #1e40af);"><i class="fas fa-code" aria-hidden="true"></i> Months 1 & 2 – Python + Sorting Algorithms + DSA</div>
+    <div class="table-wrapper">
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Week</th>
+            <th scope="col">Core Topics</th>
+            <th scope="col">LeetCode/HackerRank</th>
+            <th scope="col">Key Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="4"><strong>Month 1</strong></td>
+            <td>Week 1</td>
+            <td>Python refresher: data types, I/O, loops, functions, lists, dicts, sets</td>
+            <td>Easy: Two Sum, Contains Duplicate, Valid Anagram</td>
+            <td>map, filter, zip, enumerate, comprehensions</td>
+          </tr>
+          <tr>
+            <td>Week 2</td>
+            <td><strong>Iterative Sorting:</strong> Bubble, Selection, Insertion Sort</td>
+            <td>Easy: Merge Sorted Array, Sort By Parity</td>
+            <td>Complexity analysis, timeit, sorted() with key</td>
+          </tr>
+          <tr>
+            <td>Week 3</td>
+            <td>Strings, arrays, hashing | Two-pointer, sliding window</td>
+            <td>Medium: Longest Substring, Group Anagrams, Top K</td>
+            <td>Counter, defaultdict, lambda sorting</td>
+          </tr>
+          <tr>
+            <td>Week 4</td>
+            <td>Recursion basics & backtracking introduction</td>
+            <td>Factorial, Fibonacci, Generate Parentheses, Subsets</td>
+            <td>lru_cache, recursion depth, yield</td>
+          </tr>
+          <tr>
+            <td rowspan="4"><strong>Month 2</strong></td>
+            <td>Week 5</td>
+            <td><strong>Divide & Conquer:</strong> Merge Sort (recursive)</td>
+            <td>Medium: Sort an Array, Count Smaller Numbers</td>
+            <td>List slicing, index manipulation, itertools</td>
+          </tr>
+          <tr>
+            <td>Week 6</td>
+            <td><strong>Quick Sort</strong> – pivoting, partitioning</td>
+            <td>Quick Select, Kth Largest, Sort Colors</td>
+            <td>random.choice, in-place swaps, cmp_to_key</td>
+          </tr>
+          <tr>
+            <td>Week 7</td>
+            <td><strong>Heap & Heap Sort</strong> – heapq module, priority queues</td>
+            <td>Medium: Kth Largest in Stream, Top K Words</td>
+            <td>heapq methods, __lt__ for custom objects</td>
+          </tr>
+          <tr>
+            <td>Week 8</td>
+            <td>DSA review sprint – mixed problems, timed contests</td>
+            <td>30+ selected LeetCode Medium/Hard problems</td>
+            <td>All above + decorators, profiling, optimization</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="interview-tips"><p>✅ <strong>Month 2 Deliverable:</strong> Polished Python package with all sorting algorithms + 50+ DSA solutions</p></div>
+
+    <!-- Month 3 -->
+    <div class="month-badge" style="background: linear-gradient(135deg, #f97316, #ea580c);"><i class="fas fa-globe" aria-hidden="true"></i> Month 3 – API Development Fundamentals</div>
+    <div class="table-wrapper">
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th scope="col">Week</th>
+            <th scope="col">Core Topics</th>
+            <th scope="col">Hands-On Project</th>
+            <th scope="col">Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>9</td>
+            <td>HTTP, REST, FastAPI setup, path/query params, Pydantic validation</td>
+            <td>CRUD API for Books collection</td>
+            <td>Type hints, Pydantic models, uvicorn</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Request body, error handling, status codes, file uploads</td>
+            <td>Books API with image upload</td>
+            <td>shutil, aiofiles, HTTPException</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Dependency injection, middleware, CORS, background tasks</td>
+            <td>Weather API proxy with caching</td>
+            <td>BackgroundTasks, lru_cache, httpx async</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Testing (pytest, TestClient), OpenAPI docs, Docker</td>
+            <td>Containerise, write unit & integration tests</td>
+            <td>pytest, Dockerfile, docker-compose, Swagger</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="interview-tips"><p>✅ <strong>Month 3 Deliverable:</strong> Fully tested, containerised REST API + portfolio project</p></div>
+
+    <!-- Month 4 -->
+    <div class="month-badge" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-database" aria-hidden="true"></i> Month 4 – Advanced API + PostgreSQL</div>
+    <div class="table-wrapper">
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th scope="col">Week</th>
+            <th scope="col">Core Topics</th>
+            <th scope="col">DBMS & Async</th>
+            <th scope="col">Milestone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>13</td>
+            <td>SQLAlchemy ORM, Alembic migrations, PostgreSQL, CRUD</td>
+            <td>Define tables, relationships, seed data</td>
+            <td><strong>Task Manager API</strong> start</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>Advanced Pydantic, nested models, response separation</td>
+            <td>One-to-many, many-to-many relationships</td>
+            <td>User registration, JWT login</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>Async endpoints, asyncio, Celery/Redis, notifications</td>
+            <td>Async DB queries, aiosmtplib background jobs</td>
+            <td>Email notifications on task assignment</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>Exception handlers, logging (loguru), rate limiting</td>
+            <td>Custom exceptions, logging middleware, slowapi</td>
+            <td>Docker stack (API + DB + Redis), finalize</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="interview-tips"><p>✅ <strong>Month 4 Deliverable:</strong> Production Task Manager API with auth, async, logging, Docker</p></div>
+
+    <!-- Months 5-6 -->
+    <div class="month-badge" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);"><i class="fas fa-brain" aria-hidden="true"></i> Months 5 & 6 – Applied AI/ML (Capstone)</div>
+    <div class="table-wrapper">
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Week</th>
+            <th scope="col">AI/ML Topics</th>
+            <th scope="col">API Integration</th>
+            <th scope="col">Capstone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="4"><strong>Month 5</strong></td>
+            <td>17</td>
+            <td>CNN optimization, ONNX, quantization</td>
+            <td>Serve CNN from API, Redis caching</td>
+            <td><strong>Agri-Tech AI Platform Start</strong></td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>NLP, Transformers (Hugging Face), embeddings</td>
+            <td>FAQ chatbot endpoint, log conversations</td>
+            <td>FAQ module: semantic search</td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>RAG: Vector stores (FAISS), chunking, retrieval</td>
+            <td>PDF upload, extract, embeddings, Q&A endpoint</td>
+            <td>Document indexing + retrieval</td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>Advanced RAG: LLM (Gemini/Ollama), streaming</td>
+            <td>Async streaming, Server-Sent Events, caching</td>
+            <td>Natural language Q&A + citation</td>
+          </tr>
+          <tr>
+            <td rowspan="4"><strong>Month 6</strong></td>
+            <td>21</td>
+            <td>MLOps: Prometheus, CI/CD (GitHub Actions), deployment</td>
+            <td>Health checks, dashboards, auto-redeploy</td>
+            <td>Deploy publicly (Render/AWS)</td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>Testing AI, graceful fallbacks, retries</td>
+            <td>Pytest AI components, mock external calls</td>
+            <td>Harden API, error recovery</td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td>User management, tiered access, priority queues</td>
+            <td>Rate limiting, async image classification</td>
+            <td>Feature polish, optimization</td>
+          </tr>
+          <tr>
+            <td>24</td>
+            <td>Portfolio polish, GitHub docs, final demo</td>
+            <td>Code walkthrough, detailed README, diagrams</td>
+            <td><strong>Complete: Disease Detection + PDF Q&A</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="interview-tips" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-left: 4px solid #22c55e; margin: 2rem 0;">
+      <p style="margin: 0;"><strong>✅ Final Capstone: Agri-Tech AI Platform API</strong></p>
+      <p style="margin: 0.5rem 0;">🔍 Plant Disease Detection – upload image → CNN prediction (optimized & cached)</p>
+      <p style="margin: 0.5rem 0;">📚 Document Q&A – upload PDFs, ask questions, RAG + streaming responses</p>
+      <p style="margin: 0.5rem 0;">👤 User Dashboard – JWT auth, request history, tiered access</p>
+      <p style="margin: 0;"><strong>⚡ Production Ready</strong> – async processing, monitoring, auto-scaling</p>
+    </div>
+
+    <!-- 6-Month Outcomes -->
+    <h3 style="font-size: 1.5rem; font-weight: 800; margin: 2rem 0 1rem; text-align: center;"><i class="fas fa-trophy" aria-hidden="true"></i> Program Outcomes</h3>
+    <div class="advantage-row">
+      <article class="advantage-card">
+        <div class="advantage-icon"><i class="fas fa-code-branch"></i></div>
+        <h3>100+ DSA</h3>
+        <p>Optimised solutions across all patterns</p>
+      </article>
+      <article class="advantage-card">
+        <div class="advantage-icon"><i class="fas fa-server"></i></div>
+        <h3>Two APIs</h3>
+        <p>Books + Task Manager (production-ready)</p>
+      </article>
+      <article class="advantage-card">
+        <div class="advantage-icon"><i class="fas fa-robot"></i></div>
+        <h3>AI/ML System</h3>
+        <p>Deployed, containerised capstone</p>
+      </article>
+      <article class="advantage-card">
+        <div class="advantage-icon"><i class="fas fa-briefcase"></i></div>
+        <h3>Interview Ready</h3>
+        <p>Deep skills + portfolio projects</p>
+      </article>
+    </div>
+
+    <!-- 6-Month Pricing -->
+    <section style="text-align: center; background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin: 2.5rem 0;">
+      <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem;">💰 6-Month Program Investment</h3>
+      <p style="font-size: 2.5rem; font-weight: 800; color: #8b5cf6; margin: 1rem 0;">₹3,000/month</p>
+      <p style="color: #64748b; margin: 1rem 0; font-size: 1.1rem;"><strong>or</strong> ₹15,000 for full 6-month (save ₹3,000)</p>
+      <p style="color: #64748b; margin: 1.5rem 0;">✅ Live sessions + 1-on-1 mentorship | ✅ Project code reviews | ✅ Career guidance</p>
+      <a href="index.html#contact" class="btn-primary" style="display: inline-block; margin-top: 1.5rem; background: #8b5cf6;"><i class="fas fa-rocket" aria-hidden="true"></i> Enroll 6-Month Program</a>
+    </section>
+  </div><!-- End of content-6month -->
 
   <!-- Faculty & Instructors Section -->
   <section role="region" aria-label="Course instructor">
@@ -1298,6 +1584,24 @@
   document.querySelectorAll('.skill-meter').forEach(meter => {
     observer.observe(meter);
   });
+
+  // Tab switching function
+  function switchTab(tabName) {
+    // Hide all tab contents
+    document.getElementById('content-3month').classList.remove('active');
+    document.getElementById('content-6month').classList.remove('active');
+    
+    // Remove active class from all buttons
+    document.getElementById('btn-3month').classList.remove('active');
+    document.getElementById('btn-6month').classList.remove('active');
+    
+    // Show selected tab
+    document.getElementById('content-' + tabName).classList.add('active');
+    document.getElementById('btn-' + tabName).classList.add('active');
+    
+    // Smooth scroll to tab content
+    document.getElementById('content-' + tabName).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 </script>
 </body>
 </html>
