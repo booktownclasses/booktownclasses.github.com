@@ -8,16 +8,19 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Shared unified theme (sticky nav, cards, footer, etc.) -->
+  <link rel="stylesheet" href="css/theme.css">
+
+  <!-- Page‑specific styles – refined with theme variables -->
   <style>
-    /* Test series specific styles */
+    /* Timetable card – now uses theme surface & shadow */
     .timetable-card {
-      background: rgba(30, 41, 59, 0.5);
-      backdrop-filter: blur(12px);
-      border-radius: 28px;
+      background: var(--surface);
+      border-radius: var(--radius);
       padding: 1.5rem;
       margin: 1.5rem 0;
-      border: 1px solid rgba(196,167,71,0.2);
+      box-shadow: var(--shadow);
       overflow-x: auto;
     }
     .timetable-table {
@@ -28,23 +31,22 @@
     .timetable-table th, .timetable-table td {
       padding: 12px 8px;
       text-align: center;
-      border-bottom: 1px solid rgba(196,167,71,0.2);
+      border-bottom: 1px solid #e2e8f0;
     }
     .timetable-table th {
-      background: rgba(196,167,71,0.15);
-      color: #c4a747;
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      color: #fff;
       font-weight: 800;
     }
-    .quarter-badge {
-      background: #c4a747;
-      color: #0b0f1c;
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 800;
-      display: inline-block;
-      margin: 1rem 0 0.5rem;
+    .timetable-table tr:last-child td {
+      border-bottom: none;
     }
+    /* Highlight the quarterly final row */
+    .timetable-table tr.quarterly-final {
+      background: rgba(37, 99, 235, 0.08);
+    }
+
+    /* Pricing cards */
     .price-grid {
       display: flex;
       flex-wrap: wrap;
@@ -53,36 +55,51 @@
       margin: 2rem 0;
     }
     .price-card {
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(12px);
-      border-radius: 28px;
+      background: var(--surface);
+      border-radius: var(--radius);
       padding: 1.5rem;
       text-align: center;
-      min-width: 200px;
-      border: 1px solid rgba(196,167,71,0.3);
-      transition: 0.3s;
+      min-width: 220px;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
     }
     .price-card:hover {
       transform: translateY(-5px);
-      border-color: #c4a747;
+      box-shadow: var(--shadow-lg);
     }
     .price-card .price {
       font-size: 2rem;
       font-weight: 800;
-      color: #c4a747;
+      color: var(--accent);
       margin: 0.5rem 0;
     }
+
+    /* Test difficulty badges */
     .test-difficulty {
       display: flex;
-      gap: 1rem;
+      gap: 0.8rem;
       flex-wrap: wrap;
       margin: 1rem 0;
     }
     .difficulty-item {
-      background: rgba(0,0,0,0.3);
+      background: #e0e7ff;
+      color: #4338ca;
       padding: 0.3rem 1rem;
       border-radius: 30px;
       font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* "Interview tips" block – subtle accent */
+    .interview-tips {
+      background: #f1f5f9;
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+
+    /* Back button – hidden on this page because nav already includes Home */
+    .btn-back {
+      display: none;
     }
   </style>
 </head>
@@ -110,10 +127,10 @@
 
   <main>
     <div class="container">
-      <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
+      <!-- (Back button removed – nav already gives access to Home) -->
 
       <!-- Hero -->
-      <section class="hero" role="region" aria-label="Test series introduction" style="padding: 2rem 0 1rem;">
+      <section class="hero" role="region" aria-label="Test series introduction">
         <div class="hero-content">
           <h1>🎯 Class 10 <span class="highlight">Test Series 2025-26</span></h1>
           <p>12 months of focused testing – Every Sunday. CBSE pattern papers, instant answer keys, and detailed performance analysis.</p>
@@ -123,14 +140,14 @@
           </div>
         </div>
         <div class="hero-carousel">
-          <div class="carousel" style="max-width: 400px;">
-            <img src="images/testseries-banner.jpg" alt="Class 10 test series 2025-26" loading="lazy" style="width:100%; border-radius: 28px; height: auto;" onerror="this.src='https://placehold.co/400x300/1e293b/c4a747?text=Test+Series'">
+          <div class="carousel" style="max-width: 400px; aspect-ratio: auto;">
+            <img src="images/testseries-banner.jpg" alt="Class 10 test series 2025-26" loading="lazy" style="width:100%; border-radius: var(--radius); height: auto;" onerror="this.src='https://placehold.co/400x300/1e293b/c4a747?text=Test+Series'">
           </div>
         </div>
       </section>
 
       <!-- 12 Months Overview -->
-      <section class="advantage-full-width" role="region" aria-label="Test series overview" style="margin: 1rem 0; padding: 2rem 0;">
+      <section class="advantage-full-width" role="region" aria-label="Test series overview">
         <div class="advantage-inner">
           <h2 class="section-title-accent">📅 12 Months of Focused Testing</h2>
           <div class="advantage-sub">Every Sunday | Science & Mathematics | CBSE Pattern</div>
@@ -201,7 +218,7 @@
                 <td data-label="Duration">100 min</td>
                 <td data-label="Marks">70</td>
               </tr>
-              <tr style="background: rgba(196,167,71,0.1);">
+              <tr class="quarterly-final">
                 <td data-label="Month">Month 3</td>
                 <td data-label="Week">Week 13</td>
                 <td data-label="Test #"><strong>Quarterly Final</strong></td>
@@ -213,105 +230,106 @@
           </table>
         </div>
 
-      <!-- Quarter 2 Schedule -->
-      <h3 class="section-title" style="font-size: 1.8rem;">📗 Quarter 2 (Chapters 5-8)</h3>
-      <div class="timetable-card">
-        <table class="timetable-table" role="grid">
-          <thead>
-            <tr>
-              <th scope="col">Month</th>
-              <th scope="col">Week</th>
-              <th scope="col">Test #</th>
-              <th scope="col">Chapters</th>
-              <th scope="col">Duration</th>
-              <th scope="col">Marks</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Month">Month 4</td>
-              <td data-label="Week">Week 2</td>
-              <td data-label="Test #">Test 1</td>
-              <td data-label="Chapters">Ch 5</td>
-              <td data-label="Duration">80 min</td>
-              <td data-label="Marks">50</td>
-            </tr>
-            <tr>
-              <td data-label="Month">Month 4</td>
-              <td data-label="Week">Week 4</td>
-              <td data-label="Test #">Test 2</td>
-              <td data-label="Chapters">Ch 6</td>
-              <td data-label="Duration">80 min</td>
-              <td data-label="Marks">50</td>
-            </tr>
-            <tr>
-              <td data-label="Month">Month 5</td>
-              <td data-label="Week">Week 6</td>
-              <td data-label="Test #">Test 3</td>
-              <td data-label="Chapters">Ch 5+6</td>
-              <td data-label="Duration">100 min</td>
-              <td data-label="Marks">70</td>
-            </tr>
-            <tr>
-              <td data-label="Month">Month 5</td>
-              <td data-label="Week">Week 8</td>
-              <td data-label="Test #">Test 4</td>
-              <td data-label="Chapters">Ch 7</td>
-              <td data-label="Duration">80 min</td>
-              <td data-label="Marks">50</td>
-            </tr>
-            <tr>
-              <td data-label="Month">Month 6</td>
-              <td data-label="Week">Week 10</td>
-              <td data-label="Test #">Test 5</td>
-              <td data-label="Chapters">Ch 8</td>
-              <td data-label="Duration">80 min</td>
-              <td data-label="Marks">50</td>
-            </tr>
-            <tr>
-              <td data-label="Month">Month 6</td>
-              <td data-label="Week">Week 12</td>
-              <td data-label="Test #">Test 6</td>
-              <td data-label="Chapters">Ch 7+8</td>
-              <td data-label="Duration">100 min</td>
-              <td data-label="Marks">70</td>
-            </tr>
-            <tr style="background: rgba(196,167,71,0.1);">
-              <td data-label="Month">Month 6</td>
-              <td data-label="Week">Week 13</td>
-              <td data-label="Test #"><strong>Quarterly Final</strong></td>
-              <td data-label="Chapters">Ch 5-8</td>
-              <td data-label="Duration">3 Hr</td>
-              <td data-label="Marks">100</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <!-- Quarter 2 Schedule -->
+        <h3 class="section-title" style="font-size: 1.8rem;">📗 Quarter 2 (Chapters 5-8)</h3>
+        <div class="timetable-card">
+          <table class="timetable-table" role="grid">
+            <thead>
+              <tr>
+                <th scope="col">Month</th>
+                <th scope="col">Week</th>
+                <th scope="col">Test #</th>
+                <th scope="col">Chapters</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Month">Month 4</td>
+                <td data-label="Week">Week 2</td>
+                <td data-label="Test #">Test 1</td>
+                <td data-label="Chapters">Ch 5</td>
+                <td data-label="Duration">80 min</td>
+                <td data-label="Marks">50</td>
+              </tr>
+              <tr>
+                <td data-label="Month">Month 4</td>
+                <td data-label="Week">Week 4</td>
+                <td data-label="Test #">Test 2</td>
+                <td data-label="Chapters">Ch 6</td>
+                <td data-label="Duration">80 min</td>
+                <td data-label="Marks">50</td>
+              </tr>
+              <tr>
+                <td data-label="Month">Month 5</td>
+                <td data-label="Week">Week 6</td>
+                <td data-label="Test #">Test 3</td>
+                <td data-label="Chapters">Ch 5+6</td>
+                <td data-label="Duration">100 min</td>
+                <td data-label="Marks">70</td>
+              </tr>
+              <tr>
+                <td data-label="Month">Month 5</td>
+                <td data-label="Week">Week 8</td>
+                <td data-label="Test #">Test 4</td>
+                <td data-label="Chapters">Ch 7</td>
+                <td data-label="Duration">80 min</td>
+                <td data-label="Marks">50</td>
+              </tr>
+              <tr>
+                <td data-label="Month">Month 6</td>
+                <td data-label="Week">Week 10</td>
+                <td data-label="Test #">Test 5</td>
+                <td data-label="Chapters">Ch 8</td>
+                <td data-label="Duration">80 min</td>
+                <td data-label="Marks">50</td>
+              </tr>
+              <tr>
+                <td data-label="Month">Month 6</td>
+                <td data-label="Week">Week 12</td>
+                <td data-label="Test #">Test 6</td>
+                <td data-label="Chapters">Ch 7+8</td>
+                <td data-label="Duration">100 min</td>
+                <td data-label="Marks">70</td>
+              </tr>
+              <tr class="quarterly-final">
+                <td data-label="Month">Month 6</td>
+                <td data-label="Week">Week 13</td>
+                <td data-label="Test #"><strong>Quarterly Final</strong></td>
+                <td data-label="Chapters">Ch 5-8</td>
+                <td data-label="Duration">3 Hr</td>
+                <td data-label="Marks">100</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       <!-- Test Pattern & Marking Scheme -->
       <section role="region" aria-label="Test pattern and difficulty levels">
         <article class="interview-tips" style="margin: 2rem 0;">
           <h3><i class="fas fa-chart-bar" aria-hidden="true"></i> Test Pattern & Difficulty Levels</h3>
           <div class="test-difficulty">
-          <span class="difficulty-item">📘 Tests 1-2: 50% Easy, 30% Medium, 20% Hard</span>
-          <span class="difficulty-item">📙 Tests 4-5: 30% Easy, 40% Medium, 30% Hard</span>
-          <span class="difficulty-item">📕 Quarterly Finals: 20% Easy, 40% Medium, 40% Hard (Board Level)</span>
-        </div>
-        <p><i class="fas fa-print" aria-hidden="true"></i> <strong>Printed test papers</strong> – Designed exactly like CBSE board papers.<br>
-        <i class="fas fa-key" aria-hidden="true"></i> <strong>Instant answer key discussion</strong> – 30 minutes after each test – students correct their own papers and learn immediately.<br>
-        <i class="fas fa-chart-line" aria-hidden="true"></i> <strong>Performance report</strong> – Chapter-wise scores, accuracy, speed, and improvement areas.<br>
-        <i class="fas fa-users" aria-hidden="true"></i> <strong>Parent-teacher meetings</strong> – After each Quarterly Final – discuss progress and next steps.<br>
-        <i class="fas fa-trophy" aria-hidden="true"></i> <strong>Rank & motivation</strong> – (Optional) Roll-number-based ranking to encourage healthy competition.</p>
-      </article>
+            <span class="difficulty-item">📘 Tests 1-2: 50% Easy, 30% Medium, 20% Hard</span>
+            <span class="difficulty-item">📙 Tests 4-5: 30% Easy, 40% Medium, 30% Hard</span>
+            <span class="difficulty-item">📕 Quarterly Finals: 20% Easy, 40% Medium, 40% Hard (Board Level)</span>
+          </div>
+          <p><i class="fas fa-print" aria-hidden="true"></i> <strong>Printed test papers</strong> – Designed exactly like CBSE board papers.<br>
+          <i class="fas fa-key" aria-hidden="true"></i> <strong>Instant answer key discussion</strong> – 30 minutes after each test – students correct their own papers and learn immediately.<br>
+          <i class="fas fa-chart-line" aria-hidden="true"></i> <strong>Performance report</strong> – Chapter-wise scores, accuracy, speed, and improvement areas.<br>
+          <i class="fas fa-users" aria-hidden="true"></i> <strong>Parent-teacher meetings</strong> – After each Quarterly Final – discuss progress and next steps.<br>
+          <i class="fas fa-trophy" aria-hidden="true"></i> <strong>Rank & motivation</strong> – (Optional) Roll-number-based ranking to encourage healthy competition.</p>
+        </article>
 
-      <!-- What Your Child Will Receive -->
-      <h2 class="section-title">📦 What Your Child Will Receive</h2>
-      <div class="advantage-row" style="margin-bottom: 2rem;">
-        <article class="advantage-card"><div class="advantage-icon" aria-hidden="true"><i class="fas fa-file-alt"></i></div><h3>Printed Test Papers</h3><p>Exactly like CBSE board papers</p></article>
-        <article class="advantage-card"><div class="advantage-icon" aria-hidden="true"><i class="fas fa-comment-dots"></i></div><h3>Instant Answer Key</h3><p>30 min after test – self correction & learning</p></article>
-        <article class="advantage-card"><div class="advantage-icon" aria-hidden="true"><i class="fas fa-chart-simple"></i></div><h3>Performance Report</h3><p>Chapter-wise scores, accuracy, speed</p></article>
-        <article class="advantage-card"><div class="advantage-icon" aria-hidden="true"><i class="fas fa-chalkboard-user"></i></div><h3>Parent-Teacher Meet</h3><p>After each quarterly final</p></article>
-      </div>
+        <!-- What Your Child Will Receive -->
+        <h2 class="section-title">📦 What Your Child Will Receive</h2>
+        <div class="advantage-row" style="margin-bottom: 2rem;">
+          <article class="advantage-card"><div class="advantage-icon" aria-hidden="true"><i class="fas fa-file-alt"></i></div><h3>Printed Test Papers</h3><p>Exactly like CBSE board papers</p></article>
+          <article class="advantage-card"><div class="advantage-icon" aria-hidden="true"><i class="fas fa-comment-dots"></i></div><h3>Instant Answer Key</h3><p>30 min after test – self correction & learning</p></article>
+          <article class="advantage-card"><div class="advantage-icon" aria-hidden="true"><i class="fas fa-chart-simple"></i></div><h3>Performance Report</h3><p>Chapter-wise scores, accuracy, speed</p></article>
+          <article class="advantage-card"><div class="advantage-icon" aria-hidden="true"><i class="fas fa-chalkboard-user"></i></div><h3>Parent-Teacher Meet</h3><p>After each quarterly final</p></article>
+        </div>
       </section>
 
       <!-- Investment & Payment Options -->
@@ -325,7 +343,7 @@
         <p style="text-align: center; margin: 1rem 0;"><i class="fas fa-money-bill-wave" aria-hidden="true"></i> Payment Methods: Cash / UPI / Bank Transfer</p>
       </section>
 
-      <!-- FAQ Section (based on PDF) -->
+      <!-- FAQ Section -->
       <section class="faq-section" role="region" aria-label="Frequently asked questions" style="margin: 2rem 0;">
         <h2 class="section-title" style="font-size: 1.8rem;">❓ Frequently Asked Questions</h2>
         <div class="faq-grid">
@@ -337,20 +355,20 @@
       </section>
 
       <!-- Call to Action -->
-      <section class="contact-cta" role="region" aria-label="Call to action - Enroll now" style="margin: 2rem 0 3rem;">
+      <section class="contact-cta" role="region" aria-label="Call to action - Enroll now">
         <h2>🚀 Enroll for the Test Series Today</h2>
         <p>Limited seats per batch. Get a free sample paper and detailed schedule.</p>
         <a href="index.html#contact" class="btn-primary" style="display: inline-block; margin-top: 1rem;"><i class="fab fa-whatsapp" aria-hidden="true"></i> Register Now</a>
       </section>
-      </section>
     </div>
   </main>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Class%2010%20Test%20Series%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
-    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+  <!-- WhatsApp Floating Button – now with "Chat" label -->
+  <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Class%2010%20Test%20Series%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
   </a>
 
+  <!-- Enhanced dark footer (matching coding.html) -->
   <footer role="contentinfo">
     <nav class="footer-links" aria-label="Footer navigation">
       <a href="index.html">Home</a>
@@ -360,10 +378,13 @@
       <a href="english.html">English</a>
       <a href="index.html#contact">Contact</a>
     </nav>
-    <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds. 📖✨</p>
-    <p style="margin-top: 0.5rem; font-size: 0.8rem;"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Every Sunday | CBSE Pattern | Instant Answer Keys</p>
+    <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds. ✨</p>
+    <p>Online & Offline | Small batches | Expert faculty</p>
   </footer>
 
+  <!-- Shared mobile menu logic -->
+  <script src="js/nav.js"></script>
+  <!-- Page‑specific interactivity (carousel, FAQ, form handling – note: no form on this page, but script may still be needed) -->
   <script src="js/script.js"></script>
 </body>
 </html>

@@ -13,312 +13,64 @@
   <meta name="theme-color" content="#3b82f6">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts (including Plus Jakarta Sans for headings) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Ap3gC+t3ZC9flVoYJv8k57i6bkWvs/37IIqzPUbJ5E59x2JSQae8R7bzH3+Krlbmd9OEa07kT2+UkzcZWeIlo3A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Unified theme -->
+  <link rel="stylesheet" href="css/theme.css">
+
+  <!-- Minimal page‑specific overrides – everything else lives in theme.css -->
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      flex-wrap: wrap;
-      gap: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 30;
-    }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #0f172a;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .logo span { color: #3b82f6; }
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: #334155;
-      font-weight: 500;
-      transition: color 0.2s;
-      padding: 0.5rem 0;
-    }
-    .nav-links a:focus {
-      outline: 2px solid #3b82f6;
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
-    .nav-links a.active, .nav-links a:hover {
-      color: #3b82f6;
-    }
-    .btn-cta-small {
-      background: #3b82f6;
-      color: white !important;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      transition: background 0.2s, transform 0.2s;
-      min-height: 44px;
-      display: inline-flex;
-      align-items: center;
-    }
-    .btn-cta-small:hover {
-      background: #2563eb;
-      transform: translateY(-2px);
-    }
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 0.5rem;
-      transition: color 0.2s;
-      color: #0f172a;
-    }
-    .mobile-menu-btn:hover {
-      color: #3b82f6;
-    }
-    .mobile-menu-btn:focus {
-      outline: 2px solid #3b82f6;
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
-    /* Hero */
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      padding: 2rem 0;
-      flex-wrap: wrap;
-    }
-    .hero-content h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      line-height: 1.3;
-    }
-    .highlight {
-      color: #3b82f6;
-    }
-    .btn-group {
-      margin-top: 1.5rem;
+    /* Tabs */
+    .program-tabs {
       display: flex;
       gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .btn-primary, .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.5rem;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s;
-      border: none;
-      cursor: pointer;
-      min-height: 44px;
-      font-size: 1rem;
-    }
-    .btn-primary {
-      background: #3b82f6;
-      color: white;
-    }
-    .btn-primary:hover {
-      background: #2563eb;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-    }
-    .btn-primary:focus {
-      outline: 2px solid #1e40af;
-      outline-offset: 2px;
-    }
-    .btn-secondary {
-      background: #e2e8f0;
-      color: #1e293b;
-    }
-    .btn-secondary:hover {
-      background: #cbd5e1;
-      transform: translateY(-2px);
-    }
-    .btn-secondary:focus {
-      outline: 2px solid #334155;
-      outline-offset: 2px;
-    }
-    .hero-carousel img {
-      border-radius: 28px;
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-    /* Cards & Grids */
-    .advantage-row, .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
       margin: 2rem 0;
-    }
-    .advantage-card, .why-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 24px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.2s, box-shadow 0.2s;
-      text-align: center;
-    }
-    .advantage-card:hover, .why-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-    }
-    .advantage-icon, .why-icon {
-      font-size: 2.2rem;
-      color: #3b82f6;
-      margin-bottom: 1rem;
-    }
-    .section-title, .section-title-accent {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin: 2rem 0 1rem;
-      border-left: 5px solid #3b82f6;
-      padding-left: 1rem;
-      line-height: 1.3;
-    }
-    .section-title-accent {
-      border-left: none;
-      text-align: center;
-    }
-    /* Infographics grid (tech stack) */
-    .infographics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0;
-    }
-    .infocard {
-      border-radius: 24px;
-      padding: 1.3rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      background: white;
-    }
-    .infocard:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-    }
-    /* Individual card color styles */
-    .infocard:nth-child(1) { background: linear-gradient(135deg, #eff6ff, #ffffff); border-bottom: 4px solid #3b82f6; }
-    .infocard:nth-child(2) { background: linear-gradient(135deg, #fff7ed, #ffffff); border-bottom: 4px solid #f97316; }
-    .infocard:nth-child(3) { background: linear-gradient(135deg, #f8fafc, #ffffff); border-bottom: 4px solid #1e293b; }
-    .infocard:nth-child(4) { background: linear-gradient(135deg, #ecfdf5, #ffffff); border-bottom: 4px solid #10b981; }
-    .infocard-icon {
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
-    }
-    .infocard:nth-child(1) .infocard-icon { color: #3b82f6; }
-    .infocard:nth-child(2) .infocard-icon { color: #f97316; }
-    .infocard:nth-child(3) .infocard-icon { color: #1e293b; }
-    .infocard:nth-child(4) .infocard-icon { color: #10b981; }
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.8rem;
       justify-content: center;
+      flex-wrap: wrap;
     }
-    .skill-tag {
-      background: rgba(0,0,0,0.05);
-      padding: 0.2rem 0.7rem;
-      border-radius: 30px;
-      font-size: 0.75rem;
-      font-weight: 500;
-    }
-    /* Enhanced tables */
-    .table-wrapper {
-      overflow-x: auto;
-      margin: 1.5rem 0;
-      border-radius: 20px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-      -webkit-overflow-scrolling: touch;
-    }
-    .curriculum-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      min-width: 500px;
-    }
-    .curriculum-table th {
-      background: linear-gradient(135deg, #1e293b, #0f172a);
-      color: white;
-      font-weight: 700;
-      padding: 1rem;
-      font-size: 1rem;
-      text-align: left;
-    }
-    .curriculum-table td {
-      border-bottom: 1px solid #e2e8f0;
-      padding: 0.9rem 1rem;
-      vertical-align: top;
-      transition: background 0.2s;
-    }
-    .curriculum-table tr:hover td {
-      background: #f8fafc;
-    }
-    .curriculum-table tr:last-child td {
-      border-bottom: none;
-    }
-    .month-badge {
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      color: white;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 1.2rem;
+    .tab-btn {
+      padding: 0.75rem 2rem;
+      border: 2px solid #e2e8f0;
+      background: var(--surface);
+      color: var(--text);
       border-radius: 40px;
-      font-weight: 700;
-      margin: 1.5rem 0 0.5rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      min-height: 44px;
     }
-    .interview-tips {
-      background: #eef2ff;
-      padding: 0.8rem 1rem;
-      border-radius: 16px;
-      margin: 1rem 0;
-      border-left: 4px solid #3b82f6;
+    .tab-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
-    /* New infographics: timeline and skill meters */
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Infocard colour accents – keep a distinct border for each technology */
+    .infocard.python-card { border-top: 4px solid var(--accent); }
+    .infocard.git-card { border-top: 4px solid #f97316; }
+    .infocard.linux-card { border-top: 4px solid #1e293b; }
+    .infocard.sql-card { border-top: 4px solid #10b981; }
+
+    /* Timeline steps */
     .timeline-infographic {
       display: flex;
       flex-wrap: wrap;
@@ -328,12 +80,13 @@
     }
     .timeline-step {
       flex: 1;
-      background: white;
-      border-radius: 28px;
-      padding: 1.2rem;
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.5rem;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.2s;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition);
+      min-width: 200px;
     }
     .timeline-step:hover {
       transform: translateY(-5px);
@@ -341,9 +94,9 @@
     .step-number {
       width: 40px;
       height: 40px;
-      background: #3b82f6;
-      color: white;
-      border-radius: 40px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -353,13 +106,16 @@
     .step-title {
       font-weight: 800;
       margin-bottom: 0.4rem;
+      font-family: var(--font-heading);
     }
+
+    /* Skill meters */
     .skill-meter {
       margin: 2rem 0;
-      background: white;
-      border-radius: 28px;
+      background: var(--surface);
+      border-radius: var(--radius);
       padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: var(--shadow);
     }
     .meter-item {
       margin: 1rem 0;
@@ -378,569 +134,54 @@
       overflow: hidden;
     }
     .meter-fill {
-      background: linear-gradient(90deg, #3b82f6, #60a5fa);
-      width: 0%;
+      background: linear-gradient(90deg, var(--accent), #60a5fa);
       height: 100%;
       border-radius: 20px;
       transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    .contact-cta {
-      text-align: center;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: white;
-      padding: 2.5rem;
-      border-radius: 32px;
-      margin: 3rem 0;
-    }
-    .contact-cta .btn-primary {
-      background: #facc15;
-      color: #0f172a;
-      margin-top: 1rem;
-    }
-    .contact-cta .btn-primary:hover {
-      background: #eab308;
-    }
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25d366;
-      color: white;
-      border-radius: 50px;
-      padding: 0.8rem 1.2rem;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      z-index: 100;
-      transition: transform 0.2s, background 0.2s;
+
+    /* Month badge – subtle gradient using theme accent */
+    .month-badge {
+      background: linear-gradient(135deg, var(--accent), #1d4ed8);
+      color: #fff;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      min-height: 44px;
-    }
-    .whatsapp-float:hover {
-      transform: scale(1.05);
-      background: #1ebd56;
-    }
-    .whatsapp-float:focus {
-      outline: 2px solid #0f172a;
-      outline-offset: 2px;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #0f172a;
-      color: #94a3b8;
-      margin-top: 2rem;
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-    .footer-links a {
-      color: #cbd5e1;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover {
-      color: #3b82f6;
-    }
-    .footer-links a:focus {
-      outline: 2px solid #3b82f6;
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
-
-    /* Faculty Section Styling */
-    .faculty-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
-    }
-    .faculty-card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .faculty-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
-    }
-    .faculty-image {
-      width: 100%;
-      height: 160px;
-    }
-    .faculty-info {
-      padding: 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .faculty-info h3 {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 0.3rem;
-    }
-    .faculty-role {
-      color: #3b82f6;
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 0.8rem !important;
-    }
-    .faculty-bio {
-      color: #64748b;
-      font-size: 0.9rem;
-      line-height: 1.5;
-      margin-bottom: 1rem;
-      flex: 1;
-    }
-    .faculty-skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .skill-badge {
-      background: #f0f9ff;
-      color: #0369a1;
-      padding: 0.35rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      border: 1px solid #bae6fd;
-    }
-    /* Mobile Navigation Overlay */
-    .nav-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.3);
-      z-index: 40;
-      animation: fadeIn 0.2s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes slideIn {
-      from { transform: translateX(-100%); }
-      to { transform: translateX(0); }
-    }
-    .nav-links.mobile-open {
-      display: flex !important;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      gap: 0;
-      background: white;
-      border-top: 1px solid #e2e8f0;
-      border-radius: 0;
-      padding: 1rem 0;
-      z-index: 50;
-      animation: slideIn 0.3s ease;
-    }
-    .nav-overlay.active {
-      display: block;
-    }
-    .nav-links.mobile-open a {
-      display: block;
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid #f1f5f9;
-      text-align: left;
-    }
-    .nav-links.mobile-open a:hover {
-      background: #f8fafc;
-    }
-    .nav-links.mobile-open .btn-cta-small {
-      margin: 0.5rem 1rem;
-      display: inline-block;
-    }
-
-    /* Tab Navigation Styles */
-    .program-tabs {
-      display: flex;
-      gap: 1rem;
-      margin: 2rem 0;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .tab-btn {
-      padding: 0.75rem 2rem;
-      border: 2px solid #e2e8f0;
-      background: white;
-      color: #334155;
+      padding: 0.4rem 1.2rem;
       border-radius: 40px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 1rem;
-      min-height: 44px;
-    }
-    .tab-btn:hover {
-      border-color: #3b82f6;
-      color: #3b82f6;
-    }
-    .tab-btn.active {
-      background: #3b82f6;
-      color: white;
-      border-color: #3b82f6;
-    }
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      font-weight: 700;
+      margin: 1.5rem 0 0.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    /* Tablet Devices (768px - 1024px) */
-    @media (max-width: 1024px) {
-      .container {
-        padding: 0 1rem;
-      }
-      .hero-content h1 {
-        font-size: 1.8rem;
-      }
-      .section-title, .section-title-accent {
-        font-size: 1.5rem;
-      }
-      .infographics-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      }
-      .faculty-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-      }
+    /* Batch schedule cards – clean white card */
+    .batch-schedule-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: all 0.2s;
+    }
+    .batch-schedule-card:hover {
+      box-shadow: var(--shadow-lg);
     }
 
-    /* Small Tablets & Large Phones (640px - 767px) */
+    /* Interview tips / highlight boxes */
+    .interview-tips {
+      background: #eef2ff;
+      border-left: 4px solid var(--accent);
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      margin: 1rem 0;
+    }
+    .interview-tips p {
+      margin: 0.4rem 0;
+    }
+
+    /* Responsive timing for tab layout */
     @media (max-width: 767px) {
-      .navbar {
-        padding: 1rem;
-        gap: 0.5rem;
-      }
-      .logo {
-        font-size: 1.2rem;
-      }
-      .nav-links {
-        display: none;
-      }
-      .mobile-menu-btn {
-        display: block;
-        font-size: 1.25rem;
-        padding: 0.5rem;
-      }
-      .hero {
-        flex-direction: column;
-        text-align: center;
-        padding: 1rem 0;
-      }
-      .hero-content h1 {
-        font-size: 1.6rem;
-        line-height: 1.3;
-      }
-      .hero-content p {
-        font-size: 0.95rem;
-      }
-      .btn-group {
-        justify-content: center;
-        gap: 0.75rem;
-      }
-      .btn-primary, .btn-secondary {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-        min-height: 44px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .advantage-row, .why-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      .advantage-card, .why-card {
-        padding: 1rem;
-      }
-      .section-title, .section-title-accent {
-        font-size: 1.3rem;
-      }
-      .section-title {
-        padding-left: 0.8rem;
-      }
-      .infographics-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      .infocard {
-        padding: 1rem;
-      }
-      .infocard-icon {
-        font-size: 1.5rem;
-      }
-      .skill-tags {
-        gap: 0.3rem;
-      }
-      .skill-tag {
-        font-size: 0.65rem;
-        padding: 0.2rem 0.5rem;
-      }
-      .timeline-infographic {
-        flex-direction: column;
-        gap: 0.8rem;
-      }
-      .timeline-step {
-        padding: 1rem;
-      }
-      .step-number {
-        width: 36px;
-        height: 36px;
-        font-size: 0.9rem;
-      }
-      .curriculum-table {
-        font-size: 0.85rem;
-        min-width: auto;
-      }
-      .curriculum-table th, .curriculum-table td {
-        padding: 0.6rem 0.5rem;
-      }
-      .month-badge {
-        font-size: 0.9rem;
-        padding: 0.3rem 0.8rem;
-        margin: 1rem 0 0.5rem;
-      }
-      .contact-cta {
-        padding: 1.5rem;
-        margin: 2rem 0;
-      }
-      .contact-cta h2 {
-        font-size: 1.4rem;
-      }
-      .whatsapp-float {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-        bottom: 15px;
-        right: 15px;
-      }
-      footer {
-        padding: 1.5rem 1rem;
-      }
-      .faculty-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-    }
-
-    /* Mobile Phones (480px - 639px) */
-    @media (max-width: 639px) {
-      body {
-        font-size: 14px;
-      }
-      .container {
-        max-width: 100%;
-        padding: 0 1rem;
-      }
-      .navbar {
-        padding: 0.75rem 1rem;
-        gap: 0;
-      }
-      .logo {
-        font-size: 1rem;
-      }
-      .hero {
-        padding: 0.5rem 0;
-      }
-      .hero-content h1 {
-        font-size: 1.35rem;
-        margin-bottom: 0.75rem;
-      }
-      .hero-content p {
-        font-size: 0.9rem;
-        line-height: 1.4;
-      }
-      .hero-carousel img {
-        max-width: 100%;
-        max-height: 200px;
-      }
-      .btn-group {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .btn-primary, .btn-secondary {
-        width: 100%;
-        padding: 0.65rem 1rem;
-        font-size: 0.85rem;
-        min-height: 44px;
-      }
-      h1 { font-size: 1.3rem; }
-      h2 { font-size: 1.2rem; }
-      h3 { font-size: 1rem; }
-      .advantage-card, .why-card {
-        padding: 0.9rem;
-        border-radius: 16px;
-      }
-      .advantage-icon, .why-icon {
-        font-size: 1.8rem;
-        margin-bottom: 0.75rem;
-      }
-      .advantage-card h3, .why-card h3 {
-        font-size: 0.95rem;
-        margin-bottom: 0.4rem;
-      }
-      .advantage-card p, .why-card p {
-        font-size: 0.8rem;
-        line-height: 1.3;
-      }
-      .section-title, .section-title-accent {
-        font-size: 1.2rem;
-        margin: 1.5rem 0 0.75rem;
-        padding-left: 0.75rem;
-      }
-      .skill-meter {
-        padding: 1rem;
-        margin: 1.5rem 0;
-      }
-      .meter-label {
-        font-size: 0.8rem;
-      }
-      .meter-bar {
-        height: 8px;
-      }
-      .infographics-grid {
-        gap: 0.8rem;
-      }
-      .infocard {
-        padding: 0.9rem;
-      }
-      .infocard-icon {
-        font-size: 1.3rem;
-      }
-      .infocard h3 {
-        font-size: 0.9rem;
-        margin-bottom: 0.3rem;
-      }
-      .infocard p {
-        font-size: 0.75rem;
-        line-height: 1.3;
-        margin-bottom: 0.4rem;
-      }
-      .timeline-step {
-        padding: 0.8rem;
-      }
-      .step-number {
-        width: 32px;
-        height: 32px;
-        font-size: 0.8rem;
-        margin-bottom: 0.5rem;
-      }
-      .step-title {
-        font-size: 0.85rem;
-      }
-      .step-title + p {
-        font-size: 0.75rem;
-      }
-      .table-wrapper {
-        margin: 1rem 0;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      }
-      .curriculum-table {
-        font-size: 0.75rem;
-      }
-      .curriculum-table th {
-        padding: 0.5rem 0.4rem;
-        font-size: 0.75rem;
-      }
-      .curriculum-table td {
-        padding: 0.5rem 0.4rem;
-        font-size: 0.7rem;
-      }
-      .month-badge {
-        font-size: 0.8rem;
-        padding: 0.25rem 0.7rem;
-        margin: 1rem 0 0.4rem;
-      }
-      .interview-tips {
-        padding: 0.6rem 0.8rem;
-        margin: 0.8rem 0;
-        font-size: 0.85rem;
-      }
-      .interview-tips p {
-        margin: 0;
-        font-size: 0.8rem;
-      }
-      .contact-cta {
-        padding: 1.2rem;
-        margin: 1.5rem 0;
-        border-radius: 20px;
-      }
-      .contact-cta h2 {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-      }
-      .contact-cta p {
-        font-size: 0.85rem;
-        margin-bottom: 0.8rem;
-      }
-      .whatsapp-float {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.8rem;
-        min-width: auto;
-      }
-      footer {
-        padding: 1.2rem 0.75rem;
-        font-size: 0.8rem;
-      }
-      .footer-links {
-        gap: 1rem;
-      }
-      .footer-links a {
-        font-size: 0.85rem;
-      }
-    }
-
-    /* Extra Small Devices (< 480px) */
-    @media (max-width: 479px) {
-      .navbar {
-        padding: 0.7rem 0.8rem;
-      }
-      .logo {
-        font-size: 0.95rem;
-      }
-      .hero-content h1 {
-        font-size: 1.2rem;
-      }
-      .hero {
-        gap: 1rem;
-      }
-      .btn-primary, .btn-secondary {
-        font-size: 0.8rem;
-        padding: 0.6rem 1rem;
-      }
-      .section-title {
-        font-size: 1.1rem;
-        border-left-width: 3px;
-      }
-      .infographics-grid {
-        gap: 0.7rem;
-      }
-      .infocard {
-        padding: 0.8rem;
+      .learning-path-container {
+        grid-template-columns: 1fr !important;
       }
     }
   </style>
@@ -964,10 +205,10 @@
 
 <main class="container">
 
-  <!-- Program Tabs Selector (Moved to Top) with GIF -->
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin: 2rem 0 3rem 0;">
+  <!-- Program Tabs Selector (with GIF) -->
+  <div class="learning-path-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin: 2rem 0 3rem 0;">
     <div>
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #0f172a;">📚 Choose Your Learning Path</h2>
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text);">📚 Choose Your Learning Path</h2>
       <div class="program-tabs" style="flex-direction: column; gap: 1rem;">
         <button class="tab-btn active" onclick="switchTab('3month')" id="btn-3month" style="justify-content: flex-start; padding: 1rem 1.5rem;">
           <i class="fas fa-rocket"></i> 3-Month Beginner Program
@@ -981,18 +222,10 @@
       <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWdyb2k4aG40eTAweWtzNWU4dHAxMWN3aGI0OW9vMWs5b2thNmlhNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/coxQHKASG60HrHtvkt/giphy.gif" alt="Python coding animation" style="max-width: 100%; height: auto; border-radius: 15px; max-height: 350px;" loading="lazy">
     </div>
   </div>
-  
-  <!-- Responsive CSS for tab layout on mobile -->
-  <style>
-    @media (max-width: 767px) {
-      .learning-path-container {
-        grid-template-columns: 1fr !important;
-      }
-    }
-  </style>
 
-  <!-- Batch Highlights -->
+  <!-- 3-Month Content -->
   <div id="content-3month" class="tab-content active">
+    <!-- Batch Highlights -->
     <section role="region" aria-label="Batch highlights and benefits">
       <h2 class="section-title-accent">✨ Batch Highlights</h2>
       <div class="advantage-row">
@@ -1019,7 +252,7 @@
       </div>
     </section>
 
-    <!-- NEW: Skill Level Infographic (Meter) -->
+    <!-- Skill Level Infographic (Meter) -->
     <section class="skill-meter" role="region" aria-label="Learning progression">
       <h3 style="margin-bottom: 1rem;"><i class="fas fa-chart-line" aria-hidden="true"></i> Your Learning Journey</h3>
       <div class="meter-item">
@@ -1061,94 +294,139 @@
       </div>
     </section>
 
+    <!-- Tech Stack Infographics -->
+    <section role="region" aria-label="Technologies covered">
+      <h2 class="section-title">🛠️ Technologies You'll Master</h2>
+      <div class="infocard-grid">
+        <article class="infocard python-card">
+          <div class="infocard-icon" style="color: var(--accent);">🐍</div>
+          <h3>Python</h3>
+          <p>Fundamentals, OOP, modules, file I/O, APIs</p>
+          <div class="skill-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; justify-content: center;">
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">Variables</span>
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">Loops</span>
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">OOP</span>
+          </div>
+        </article>
+        <article class="infocard git-card">
+          <div class="infocard-icon" style="color: #f97316;">🔀</div>
+          <h3>Git & GitHub</h3>
+          <p>Version control, branching, collaboration</p>
+          <div class="skill-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; justify-content: center;">
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">commit</span>
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">push</span>
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">merge</span>
+          </div>
+        </article>
+        <article class="infocard linux-card">
+          <div class="infocard-icon" style="color: #1e293b;">🐧</div>
+          <h3>Linux</h3>
+          <p>Terminal commands, file system, permissions</p>
+          <div class="skill-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; justify-content: center;">
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">bash</span>
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">grep</span>
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">ls</span>
+          </div>
+        </article>
+        <article class="infocard sql-card">
+          <div class="infocard-icon" style="color: #10b981;">🗄️</div>
+          <h3>SQL (SQLite)</h3>
+          <p>CRUD, JOIN, aggregate functions, data import/export</p>
+          <div class="skill-tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; justify-content: center;">
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">SELECT</span>
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">JOIN</span>
+            <span class="skill-tag" style="background: rgba(0,0,0,0.05); padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem;">CREATE</span>
+          </div>
+        </article>
+      </div>
+    </section>
 
+    <!-- Curriculum with enhanced tables -->
+    <section id="curriculum" role="region" aria-label="Course curriculum">
+      <h2 class="section-title">📖 Detailed Curriculum</h2>
+      <p><strong>Schedule:</strong> 5 days/week (Mon–Fri) | 1 hour/day | In‑person only</p>
 
-  <!-- Curriculum with enhanced tables -->
-  <section id="curriculum" role="region" aria-label="Course curriculum">
-    <h2 class="section-title">📖 Detailed Curriculum</h2>
-    <p><strong>Schedule:</strong> 5 days/week (Mon–Fri) | 1 hour/day | In‑person only</p>
+      <!-- Monthly overview table -->
+      <div class="table-wrapper" style="overflow-x: auto; margin: 1.5rem 0;">
+        <table class="curriculum-table">
+          <thead><tr><th>Month</th><th>Focus</th><th>Weekly Structure</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Month 1</strong></td><td>Python Basics + Git</td><td>4 days Python + 1 day Git</td></tr>
+            <tr><td><strong>Month 2</strong></td><td>Python Intermediate + Linux</td><td>4 days Python + 1 day Linux</td></tr>
+            <tr><td><strong>Month 3</strong></td><td>Python + Database (SQLite)</td><td>2 days Python + 2 days DBMS + 1 day Project</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-    <!-- Monthly overview table -->
-    <div class="table-wrapper">
-      <table class="curriculum-table">
-        <thead><tr><th>Month</th><th>Focus</th><th>Weekly Structure</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Month 1</strong></td><td>Python Basics + Git</td><td>4 days Python + 1 day Git</td></tr>
-          <tr><td><strong>Month 2</strong></td><td>Python Intermediate + Linux</td><td>4 days Python + 1 day Linux</td></tr>
-          <tr><td><strong>Month 3</strong></td><td>Python + Database (SQLite)</td><td>2 days Python + 2 days DBMS + 1 day Project</td></tr>
-        </tbody>
-      </table>
-    </div>
+      <!-- Month 1 Details -->
+      <div class="month-badge"><i class="fab fa-python"></i> Month 1 – Python Fundamentals & Git</div>
+      <div class="table-wrapper" style="overflow-x: auto;">
+        <table class="curriculum-table">
+          <thead><tr><th>Week</th><th>Python (4 days)</th><th>Git (1 day)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Print, variables, input, conditionals</td><td>Install, init, add, commit</td></tr>
+            <tr><td>2</td><td>Loops (for/while), nested loops</td><td>Branching, merging</td></tr>
+            <tr><td>3</td><td>Lists, tuples, list comprehension</td><td>GitHub: push, pull, clone</td></tr>
+            <tr><td>4</td><td>Dictionaries, sets, file I/O</td><td>Remote repo & collaboration</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-    <!-- Month 1 Details -->
-    <div class="month-badge"><i class="fab fa-python"></i> Month 1 – Python Fundamentals & Git</div>
-    <div class="table-wrapper">
-      <table class="curriculum-table">
-        <thead><tr><th>Week</th><th>Python (4 days)</th><th>Git (1 day)</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>Print, variables, input, conditionals</td><td>Install, init, add, commit</td></tr>
-          <tr><td>2</td><td>Loops (for/while), nested loops</td><td>Branching, merging</td></tr>
-          <tr><td>3</td><td>Lists, tuples, list comprehension</td><td>GitHub: push, pull, clone</td></tr>
-          <tr><td>4</td><td>Dictionaries, sets, file I/O</td><td>Remote repo & collaboration</td></tr>
-        </tbody>
-      </table>
-    </div>
+      <!-- Month 2 Details -->
+      <div class="month-badge"><i class="fab fa-linux"></i> Month 2 – Python Intermediate & Linux</div>
+      <div class="table-wrapper" style="overflow-x: auto;">
+        <table class="curriculum-table">
+          <thead><tr><th>Week</th><th>Python (4 days)</th><th>Linux (1 day)</th></tr></thead>
+          <tbody>
+            <tr><td>5</td><td>Functions, parameters, recursion</td><td>Navigation: ls, cd, mkdir, rm</td></tr>
+            <tr><td>6</td><td>Error handling, modules (random, math)</td><td>File ops: cp, mv, grep, wc</td></tr>
+            <tr><td>7</td><td>OOP basics: classes, objects, inheritance</td><td>Permissions (chmod), processes (ps, kill)</td></tr>
+            <tr><td>8</td><td>List comprehensions, lambda, map/filter</td><td>Networking: ping, curl, ssh basics</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-    <!-- Month 2 Details -->
-    <div class="month-badge"><i class="fab fa-linux"></i> Month 2 – Python Intermediate & Linux</div>
-    <div class="table-wrapper">
-      <table class="curriculum-table">
-        <thead><tr><th>Week</th><th>Python (4 days)</th><th>Linux (1 day)</th></tr></thead>
-        <tbody>
-          <tr><td>5</td><td>Functions, parameters, recursion</td><td>Navigation: ls, cd, mkdir, rm</td></tr>
-          <tr><td>6</td><td>Error handling, modules (random, math)</td><td>File ops: cp, mv, grep, wc</td></tr>
-          <tr><td>7</td><td>OOP basics: classes, objects, inheritance</td><td>Permissions (chmod), processes (ps, kill)</td></tr>
-          <tr><td>8</td><td>List comprehensions, lambda, map/filter</td><td>Networking: ping, curl, ssh basics</td></tr>
-        </tbody>
-      </table>
-    </div>
+      <!-- Month 3 Details -->
+      <div class="month-badge"><i class="fas fa-database"></i> Month 3 – Python Advanced + Database</div>
+      <div class="table-wrapper" style="overflow-x: auto;">
+        <table class="curriculum-table">
+          <thead><tr><th>Week</th><th>Python (2 days)</th><th>Database (2 days)</th><th>Project/Revision (1 day)</th></tr></thead>
+          <tbody>
+            <tr><td>9</td><td>Iterators, generators, decorators</td><td>SQLite: CREATE, INSERT, SELECT, UPDATE</td><td>Project planning</td></tr>
+            <tr><td>10</td><td>JSON, APIs (fetch weather/jokes)</td><td>JOIN, GROUP BY, aggregate functions</td><td>API + DB integration</td></tr>
+            <tr><td>11</td><td>Python + SQLite integration</td><td>CRUD, CSV import/export</td><td>Build core features</td></tr>
+            <tr><td>12</td><td>Final Project (Library Management System)</td><td>DB design & optimization</td><td>Testing & presentation</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="interview-tips"><p>✅ <strong>By course end:</strong> Build a complete database-driven application and present your portfolio.</p></div>
+    </section>
 
-    <!-- Month 3 Details -->
-    <div class="month-badge"><i class="fas fa-database"></i> Month 3 – Python Advanced + Database</div>
-    <div class="table-wrapper">
-      <table class="curriculum-table">
-        <thead><tr><th>Week</th><th>Python (2 days)</th><th>Database (2 days)</th><th>Project/Revision (1 day)</th></tr></thead>
-        <tbody>
-          <tr><td>9</td><td>Iterators, generators, decorators</td><td>SQLite: CREATE, INSERT, SELECT, UPDATE</td><td>Project planning</td></tr>
-          <tr><td>10</td><td>JSON, APIs (fetch weather/jokes)</td><td>JOIN, GROUP BY, aggregate functions</td><td>API + DB integration</td></tr>
-          <tr><td>11</td><td>Python + SQLite integration</td><td>CRUD, CSV import/export</td><td>Build core features</td></tr>
-          <tr><td>12</td><td>Final Project (Library Management System)</td><td>DB design & optimization</td><td>Testing & presentation</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="interview-tips"><p>✅ <strong>By course end:</strong> Build a complete database-driven application and present your portfolio.</p></div>
-  </section>
-
-  <!-- Batch Schedules -->
-  <section role="region" aria-label="Batch schedules and pricing">
-    <h2 class="section-title">📅 Batch Schedules</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-      <article style="background: white; border-radius: 20px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.2s;">
-        <h3 style="color:#3b82f6;">🔵 Batch 1</h3>
-        <p><strong>⏰ Schedule:</strong> Wednesday to Sunday (1 hour daily)</p>
-        <p><strong>💰 Fee:</strong> ₹2,500/month or ₹7,000 for full course</p>
-      </article>
-      <article style="background: white; border-radius: 20px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.2s;">
-        <h3 style="color:#2563eb;">🟢 Batch 2</h3>
-        <p><strong>⏰ Schedule:</strong> Friday (1h) + Saturday (2h) + Sunday (2h)</p>
-        <p><strong>💰 Fee:</strong> ₹2,500/month or ₹7,000 for full course</p>
-      </article>
-    </div>
-    <div style="background:#eef2ff; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 12px; margin: 1.5rem 0;">
-      <p>💡 Both batches cover the same curriculum at the same pace – choose the timing that fits you.</p>
-    </div>
-  </section>
+    <!-- Batch Schedules -->
+    <section role="region" aria-label="Batch schedules and pricing">
+      <h2 class="section-title">📅 Batch Schedules</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <article class="batch-schedule-card">
+          <h3 style="color: var(--accent);">🔵 Batch 1</h3>
+          <p><strong>⏰ Schedule:</strong> Wednesday to Sunday (1 hour daily)</p>
+          <p><strong>💰 Fee:</strong> ₹2,500/month or ₹7,000 for full course</p>
+        </article>
+        <article class="batch-schedule-card">
+          <h3 style="color: var(--accent);">🟢 Batch 2</h3>
+          <p><strong>⏰ Schedule:</strong> Friday (1h) + Saturday (2h) + Sunday (2h)</p>
+          <p><strong>💰 Fee:</strong> ₹2,500/month or ₹7,000 for full course</p>
+        </article>
+      </div>
+      <div class="interview-tips">
+        <p>💡 Both batches cover the same curriculum at the same pace – choose the timing that fits you.</p>
+      </div>
+    </section>
   </div><!-- End of content-3month -->
 
   <!-- 6-Month Program Content -->
   <div id="content-6month" class="tab-content">
     <section role="region" aria-label="6-month program overview">
-      <div class="interview-tips" style="background: linear-gradient(135deg, #f3e8ff, #e0d5ff); border-left: 4px solid #7c3aed;">
+      <div class="interview-tips" style="background: linear-gradient(135deg, #f3e8ff, #e0d5ff); border-left: 4px solid #7c3aed; padding: 1.5rem;">
         <h2 style="margin-top: 0; color: #5b21b6; font-size: 1.5rem;"><i class="fas fa-star" aria-hidden="true"></i> 6-Month Professional Roadmap</h2>
         <p><strong>Months 1–2:</strong> Python mastery + 100+ DSA problems (sorting, hashing, recursion)</p>
         <p><strong>Month 3:</strong> FastAPI fundamentals + REST API design</p>
@@ -1160,7 +438,7 @@
 
     <!-- Months 1-2 -->
     <div class="month-badge" style="background: linear-gradient(135deg, #3b82f6, #1e40af);"><i class="fas fa-code" aria-hidden="true"></i> Months 1 & 2 – Python + Sorting Algorithms + DSA</div>
-    <div class="table-wrapper">
+    <div class="table-wrapper" style="overflow-x: auto;">
       <table class="curriculum-table">
         <thead>
           <tr>
@@ -1229,7 +507,7 @@
 
     <!-- Month 3 -->
     <div class="month-badge" style="background: linear-gradient(135deg, #f97316, #ea580c);"><i class="fas fa-globe" aria-hidden="true"></i> Month 3 – API Development Fundamentals</div>
-    <div class="table-wrapper">
+    <div class="table-wrapper" style="overflow-x: auto;">
       <table class="curriculum-table">
         <thead>
           <tr>
@@ -1271,7 +549,7 @@
 
     <!-- Month 4 -->
     <div class="month-badge" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-database" aria-hidden="true"></i> Month 4 – Advanced API + PostgreSQL</div>
-    <div class="table-wrapper">
+    <div class="table-wrapper" style="overflow-x: auto;">
       <table class="curriculum-table">
         <thead>
           <tr>
@@ -1313,7 +591,7 @@
 
     <!-- Months 5-6 -->
     <div class="month-badge" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);"><i class="fas fa-brain" aria-hidden="true"></i> Months 5 & 6 – Applied AI/ML (Capstone)</div>
-    <div class="table-wrapper">
+    <div class="table-wrapper" style="overflow-x: auto;">
       <table class="curriculum-table">
         <thead>
           <tr>
@@ -1378,7 +656,7 @@
         </tbody>
       </table>
     </div>
-    <div class="interview-tips" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-left: 4px solid #22c55e; margin: 2rem 0;">
+    <div class="interview-tips" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-left: 4px solid #22c55e; padding: 1.5rem;">
       <p style="margin: 0;"><strong>✅ Final Capstone: Agri-Tech AI Platform API</strong></p>
       <p style="margin: 0.5rem 0;">🔍 Plant Disease Detection – upload image → CNN prediction (optimized & cached)</p>
       <p style="margin: 0.5rem 0;">📚 Document Q&A – upload PDFs, ask questions, RAG + streaming responses</p>
@@ -1412,68 +690,72 @@
     </div>
 
     <!-- 6-Month Pricing -->
-    <section style="text-align: center; background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin: 2.5rem 0;">
-      <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem;">💰 6-Month Program Investment</h3>
-      <p style="font-size: 2.5rem; font-weight: 800; color: #8b5cf6; margin: 1rem 0;">₹3,000/month</p>
-      <p style="color: #64748b; margin: 1rem 0; font-size: 1.1rem;"><strong>or</strong> ₹15,000 for full 6-month (save ₹3,000)</p>
-      <p style="color: #64748b; margin: 1.5rem 0;">✅ Live sessions + 1-on-1 mentorship | ✅ Project code reviews | ✅ Career guidance</p>
-      <a href="index.html#contact" class="btn-primary" style="display: inline-block; margin-top: 1.5rem; background: #8b5cf6;"><i class="fas fa-rocket" aria-hidden="true"></i> Enroll 6-Month Program</a>
+    <section class="cta-dark">
+      <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; color: #fff;">💰 6-Month Program Investment</h3>
+      <p style="font-size: 2.5rem; font-weight: 800; color: #facc15; margin: 1rem 0;">₹3,000/month</p>
+      <p style="color: #cbd5e1; margin: 1rem 0; font-size: 1.1rem;"><strong>or</strong> ₹15,000 for full 6-month (save ₹3,000)</p>
+      <p style="color: #cbd5e1; margin: 1.5rem 0;">✅ Live sessions + 1-on-1 mentorship | ✅ Project code reviews | ✅ Career guidance</p>
+      <a href="index.html#contact" class="btn-primary" style="background: #8b5cf6;"><i class="fas fa-rocket" aria-hidden="true"></i> Enroll 6-Month Program</a>
     </section>
   </div><!-- End of content-6month -->
 
   <!-- Faculty & Instructors Section -->
   <section role="region" aria-label="Course instructor">
     <h2 class="section-title">👨‍🏫 Your Instructor</h2>
-    <p style="text-align: center; margin-bottom: 2rem; color: #64748b; font-size: 1.05rem;">Industry expert with deep expertise in Python, APIs, AI/ML, and full-stack development</p>
+    <p style="text-align: center; margin-bottom: 2rem; color: var(--text-light); font-size: 1.05rem;">Industry expert with deep expertise in Python, APIs, AI/ML, and full-stack development</p>
     <div class="faculty-grid" style="grid-template-columns: 1fr; max-width: 400px; margin: 0 auto;">
       <article class="faculty-card">
-        <div class="faculty-image" style="background: linear-gradient(135deg, #3b82f6, #1e40af); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; height: 160px; border-radius: 16px 16px 0 0;"><i class="fas fa-brain"></i></div>
-        <div class="faculty-info">
+        <div style="background: linear-gradient(135deg, var(--accent), #1e40af); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; height: 160px; border-radius: 16px 16px 0 0;"><i class="fas fa-brain"></i></div>
+        <div class="faculty-info" style="padding: 1.5rem;">
           <h3>Mohd Tayyab</h3>
-          <p class="faculty-role">Full-Stack Developer & AI/ML Expert</p>
-          <p class="faculty-bio">10+ years software development | AI/ML specialist | Passionate about building intelligent systems with Python. Industry mentor and course architect.</p>
-          <div class="faculty-skills">
-            <span class="skill-badge">Python</span>
-            <span class="skill-badge">APIs</span>
-            <span class="skill-badge">AI/ML</span>
-            <span class="skill-badge">Backend</span>
-            <span class="skill-badge">Data Science</span>
+          <p class="role">Full-Stack Developer & AI/ML Expert</p>
+          <p class="faculty-bio" style="color: var(--text-light); font-size: 0.9rem; line-height: 1.5; margin-bottom: 1rem;">10+ years software development | AI/ML specialist | Passionate about building intelligent systems with Python. Industry mentor and course architect.</p>
+          <div class="faculty-skills" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+            <span class="skill-badge" style="background: #f0f9ff; color: #0369a1; padding: 0.35rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Python</span>
+            <span class="skill-badge" style="background: #f0f9ff; color: #0369a1; padding: 0.35rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">APIs</span>
+            <span class="skill-badge" style="background: #f0f9ff; color: #0369a1; padding: 0.35rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">AI/ML</span>
+            <span class="skill-badge" style="background: #f0f9ff; color: #0369a1; padding: 0.35rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Backend</span>
+            <span class="skill-badge" style="background: #f0f9ff; color: #0369a1; padding: 0.35rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Data Science</span>
           </div>
         </div>
       </article>
     </div>
-    <div style="background: #f0f9ff; border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 12px; margin: 2.5rem 0; text-align: center;">
-      <p style="margin: 0; color: #0f172a;"><strong>💬 1-on-1 doubt clearance & mentorship available</strong> — Get personalized guidance and doubt resolution from the course instructor.</p>
+    <div class="interview-tips" style="text-align: center; padding: 1.5rem; margin: 2.5rem 0;">
+      <p style="margin: 0;"><strong>💬 1-on-1 doubt clearance & mentorship available</strong> — Get personalized guidance and doubt resolution from the course instructor.</p>
     </div>
   </section>
+
+  <!-- Why Choose This Course? (uses theme's .why-card) -->
+  <section role="region" aria-label="Why choose this course">
+    <h2 class="section-title">🤔 Why Choose This Course?</h2>
     <div class="why-grid">
       <article class="why-card">
-        <div class="why-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+        <i class="fas fa-chart-line" aria-hidden="true"></i>
         <h3>Beginner → Intermediate</h3>
         <p>Structured path from zero to confident coder.</p>
       </article>
       <article class="why-card">
-        <div class="why-icon" aria-hidden="true"><i class="fas fa-briefcase"></i></div>
+        <i class="fas fa-briefcase" aria-hidden="true"></i>
         <h3>Industry Skills</h3>
         <p>Python, Git, Linux, SQL – daily developer toolkit.</p>
       </article>
       <article class="why-card">
-        <div class="why-icon" aria-hidden="true"><i class="fas fa-users"></i></div>
+        <i class="fas fa-users" aria-hidden="true"></i>
         <h3>Peer Learning</h3>
         <p>Collaborative environment, mentorship included.</p>
       </article>
       <article class="why-card">
-        <div class="why-icon" aria-hidden="true"><i class="fas fa-laptop-code"></i></div>
+        <i class="fas fa-laptop-code" aria-hidden="true"></i>
         <h3>Project Portfolio</h3>
         <p>6+ real projects to showcase.</p>
       </article>
       <article class="why-card">
-        <div class="why-icon" aria-hidden="true"><i class="fas fa-clock"></i></div>
+        <i class="fas fa-clock" aria-hidden="true"></i>
         <h3>Focused Sessions</h3>
         <p>1 hour daily – consistent progress without overload.</p>
       </article>
       <article class="why-card">
-        <div class="why-icon" aria-hidden="true"><i class="fas fa-handshake"></i></div>
+        <i class="fas fa-handshake" aria-hidden="true"></i>
         <h3>In-Person Mentorship</h3>
         <p>Direct support, instant doubt resolution.</p>
       </article>
@@ -1497,111 +779,55 @@
     <a href="english.html">English</a>
     <a href="index.html#contact">Contact</a>
   </nav>
-  <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds.</p>
+  <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds. ✨</p>
+  <p>Online & Offline | Small batches | Expert faculty</p>
 </footer>
 
-<a href="https://wa.me/919414700737?text=I'm%20interested%20in%20the%20Python%20Coding%20Course%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i> Chat</a>
+<!-- WhatsApp Float -->
+<a href="https://wa.me/919414700737?text=I'm%20interested%20in%20the%20Python%20Coding%20Course%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+</a>
 
+<!-- Shared mobile nav + page scripts -->
+<script src="js/nav.js"></script>
 <script>
-  const btn = document.getElementById('mobileMenuBtn');
-  const navLinks = document.getElementById('navLinks');
-  let isOpen = false;
-
-  // Create overlay
-  const overlay = document.createElement('div');
-  overlay.className = 'nav-overlay';
-  document.body.appendChild(overlay);
-
-  // Toggle menu
-  function toggleMenu() {
-    isOpen = !isOpen;
-    if (isOpen) {
-      navLinks.classList.add('mobile-open');
-      overlay.classList.add('active');
-      btn.setAttribute('aria-expanded', 'true');
-      btn.innerHTML = '<i class="fas fa-times"></i>';
-    } else {
-      navLinks.classList.remove('mobile-open');
-      overlay.classList.remove('active');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.innerHTML = '<i class="fas fa-bars"></i>';
-    }
+  // Tab switching
+  function switchTab(tabName) {
+    document.getElementById('content-3month').classList.remove('active');
+    document.getElementById('content-6month').classList.remove('active');
+    document.getElementById('btn-3month').classList.remove('active');
+    document.getElementById('btn-6month').classList.remove('active');
+    document.getElementById('content-' + tabName).classList.add('active');
+    document.getElementById('btn-' + tabName).classList.add('active');
+    document.getElementById('content-' + tabName).scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // Close menu on link click
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if (isOpen) toggleMenu();
-    });
-  });
-
-  // Close menu on overlay click
-  overlay.addEventListener('click', () => {
-    if (isOpen) toggleMenu();
-  });
-
-  // Toggle on button click
-  if(btn && navLinks) {
-    btn.addEventListener('click', toggleMenu);
-    btn.setAttribute('aria-label', 'Toggle navigation menu');
-  }
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      if (href !== '#' && document.querySelector(href)) {
-        e.preventDefault();
-        document.querySelector(href).scrollIntoView({
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-
-  // Skill meter animation on scroll
-  const observerOptions = {
-    threshold: 0.5,
-    rootMargin: '0px'
-  };
-
-  const observer = new IntersectionObserver(function(entries) {
+  // Skill meter animation
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const fills = entry.target.querySelectorAll('.meter-fill');
         fills.forEach(fill => {
-          const targetWidth = fill.style.width;
+          const w = fill.style.width;
           fill.style.width = '0%';
-          setTimeout(() => {
-            fill.style.width = targetWidth;
-          }, 100);
+          setTimeout(() => { fill.style.width = w; }, 100);
         });
         observer.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.skill-meter').forEach(m => observer.observe(m));
 
-  document.querySelectorAll('.skill-meter').forEach(meter => {
-    observer.observe(meter);
+  // Smooth scroll for anchor links (optional, keeps existing behaviour)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href !== '#' && document.querySelector(href)) {
+        e.preventDefault();
+        document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+      }
+    });
   });
-
-  // Tab switching function
-  function switchTab(tabName) {
-    // Hide all tab contents
-    document.getElementById('content-3month').classList.remove('active');
-    document.getElementById('content-6month').classList.remove('active');
-    
-    // Remove active class from all buttons
-    document.getElementById('btn-3month').classList.remove('active');
-    document.getElementById('btn-6month').classList.remove('active');
-    
-    // Show selected tab
-    document.getElementById('content-' + tabName).classList.add('active');
-    document.getElementById('btn-' + tabName).classList.add('active');
-    
-    // Smooth scroll to tab content
-    document.getElementById('content-' + tabName).scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
 </script>
 </body>
 </html>

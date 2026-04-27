@@ -11,17 +11,27 @@
   <meta property="og:description" content="Ace your board exams with expert coaching. Daily classes, weekly tests, personalized guidance.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#c4a747">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Ap3gC+t3ZC9flVoYJv8k57i6bkWvs/37IIqzPUbJ5E59x2JSQae8R7bzH3+Krlbmd9OEa07kT2+UkzcZWeIlo3A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Unified theme -->
+  <link rel="stylesheet" href="css/theme.css">
+
+  <!-- Minimal page‑specific touches -->
   <style>
-    :root { --accent: #c4a747; }
-    .info-highlight { background: #fef3c7; border-left: 4px solid #c4a747; padding: 1.2rem; border-radius: 12px; margin: 2rem 0; }
-    .subject-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-    .subject-card { background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-top: 4px solid #c4a747; text-align: center; transition: all 0.2s; }
-    .subject-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
-    .subject-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
-    .subject-card h3 { color: #0f172a; font-weight: 800; margin-bottom: 0.5rem; }
+    /* Keep the original gold‑accented info box */
+    .info-highlight {
+      background: #fef3c7;
+      border-left: 4px solid var(--gold, #c4a747);
+      padding: 1.2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+    }
+    /* Subject cards get a gold top border while using the theme’s infocard base */
+    .subject-card.infocard {
+      border-top: 4px solid var(--gold, #c4a747);
+    }
+    /* Override the default infocard icon size if needed – already good */
   </style>
 </head>
 <body>
@@ -42,7 +52,7 @@
 
   <main class="container" role="main">
     <!-- Hero -->
-    <section class="hero" role="region" aria-label="Course introduction" style="padding: 3rem 0;">
+    <section class="hero" role="region" aria-label="Course introduction">
       <div class="hero-content">
         <h1>📚 Class 10 <span class="highlight">Board Exam Coaching</span></h1>
         <p style="font-size: 1.1rem; margin-bottom: 2rem;">Complete syllabus coverage, daily practice, weekly tests, and strategic revision. CBSE & State boards.</p>
@@ -52,7 +62,7 @@
         </div>
       </div>
       <div class="hero-carousel">
-        <img src="images/class10-banner.jpg" alt="Class 10 board exam coaching" loading="lazy" style="border-radius: 28px; max-width: 400px; width: 100%; height: auto;" onerror="this.src='https://placehold.co/400x300/c4a747/0f172a?text=Class+10'">
+        <img src="images/class10-banner.jpg" alt="Class 10 board exam coaching" loading="lazy" style="border-radius: var(--radius); max-width: 400px; width: 100%; height: auto;" onerror="this.src='https://placehold.co/400x300/c4a747/0f172a?text=Class+10'">
       </div>
     </section>
 
@@ -61,44 +71,44 @@
       <p style="margin: 0;"><i class="fas fa-info-circle" aria-hidden="true"></i> <strong>Subjects:</strong> Mathematics, Science (Physics, Chemistry, Biology), Social Science, English</p>
     </section>
 
-    <!-- Subjects Overview -->
+    <!-- Subjects Overview (using infocard + subject-card) -->
     <section role="region" aria-label="Subject coverage">
-      <h2 class="section-title" style="text-align: center; border: none; padding-left: 0;">🎯 Complete Subject Coverage</h2>
-      <div class="subject-grid">
-        <article class="subject-card">
-          <div class="subject-icon">📐</div>
+      <h2 class="section-title">🎯 Complete Subject Coverage</h2>
+      <div class="infocard-grid"> <!-- theme grid, already responsive -->
+        <article class="infocard subject-card">
+          <div class="infocard-icon">📐</div>
           <h3>Mathematics</h3>
           <p>Number systems, algebra, geometry, trigonometry, statistics & probability</p>
         </article>
-        <article class="subject-card">
-          <div class="subject-icon">🔬</div>
+        <article class="infocard subject-card">
+          <div class="infocard-icon">🔬</div>
           <h3>Physics</h3>
           <p>Mechanics, heat, electricity, magnetism, optics & modern physics</p>
         </article>
-        <article class="subject-card">
-          <div class="subject-icon">⚗️</div>
+        <article class="infocard subject-card">
+          <div class="infocard-icon">⚗️</div>
           <h3>Chemistry</h3>
           <p>Atomic structure, bonding, reactions, stoichiometry & organic chemistry</p>
         </article>
-        <article class="subject-card">
-          <div class="subject-icon">🌍</div>
+        <article class="infocard subject-card">
+          <div class="infocard-icon">🌍</div>
           <h3>Social Science</h3>
           <p>History, geography, civics & economics – comprehensive board coverage</p>
         </article>
-        <article class="subject-card">
-          <div class="subject-icon">📖</div>
+        <article class="infocard subject-card">
+          <div class="infocard-icon">📖</div>
           <h3>English</h3>
           <p>Literature, grammar, comprehension & writing skills for board exams</p>
         </article>
-        <article class="subject-card">
-          <div class="subject-icon">⭐</div>
+        <article class="infocard subject-card">
+          <div class="infocard-icon">⭐</div>
           <h3>Optional Subjects</h3>
           <p>Sanskrit, Hindi, Computers – ask us for availability</p>
         </article>
       </div>
     </section>
 
-    <!-- Class Structure -->
+    <!-- Class Structure (uses theme’s advantage cards) -->
     <section role="region" aria-label="Class schedule and structure" style="margin: 3rem 0;">
       <h2 class="section-title">📅 Class Schedule & Structure</h2>
       <div class="advantage-row">
@@ -125,47 +135,62 @@
       </div>
     </section>
 
-    <!-- Why Choose Us -->
+    <!-- Why Choose Us (using theme’s .why-card) -->
     <section role="region" aria-label="Why choose this course" style="margin: 3rem 0;">
       <h2 class="section-title">🌟 Why Choose BookTown?</h2>
-      <div class="why-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
-        <article style="background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center;">
-          <div style="font-size: 2.5rem; color: #c4a747; margin-bottom: 1rem;"><i class="fas fa-star" aria-hidden="true"></i></div>
+      <div class="why-grid"> <!-- theme grid -->
+        <article class="why-card">
+          <div><i class="fas fa-star" aria-hidden="true"></i></div>
           <h3>Expert Mentors</h3>
           <p>15+ years teaching experience, 90%+ pass rate</p>
         </article>
-        <article style="background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center;">
-          <div style="font-size: 2.5rem; color: #c4a747; margin-bottom: 1rem;"><i class="fas fa-book" aria-hidden="true"></i></div>
+        <article class="why-card">
+          <div><i class="fas fa-book" aria-hidden="true"></i></div>
           <h3>Proven Methodology</h3>
           <p>Structured curriculum, strategic approach</p>
         </article>
-        <article style="background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center;">
-          <div style="font-size: 2.5rem; color: #c4a747; margin-bottom: 1rem;"><i class="fas fa-users" aria-hidden="true"></i></div>
+        <article class="why-card">
+          <div><i class="fas fa-users" aria-hidden="true"></i></div>
           <h3>Small Batches</h3>
           <p>Limited seats, personalized attention</p>
         </article>
-        <article style="background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center;">
-          <div style="font-size: 2.5rem; color: #c4a747; margin-bottom: 1rem;"><i class="fas fa-medal" aria-hidden="true"></i></div>
+        <article class="why-card">
+          <div><i class="fas fa-medal" aria-hidden="true"></i></div>
           <h3>Consistent Results</h3>
           <p>Avg. 85%+ marks, top performers every year</p>
         </article>
       </div>
     </section>
 
-    <!-- Pricing & CTA -->
-    <section class="contact-cta" role="region" aria-label="Call to action" style="background: linear-gradient(135deg, #0f172a, #1e293b); margin: 3rem 0;">
+    <!-- Pricing & CTA (using theme’s .cta-dark) -->
+    <section class="cta-dark" role="region" aria-label="Call to action">
       <h2>🚀 Join Our Batch Now</h2>
       <p>Limited seats available. First month free trial available for new students.</p>
-      <a href="index.html#contact" class="btn-primary" style="background: #c4a747; color: #0f172a; margin-top: 1rem;"><i class="fab fa-whatsapp" aria-hidden="true"></i> Enquire Now</a>
+      <a href="index.html#contact" class="btn-primary"><i class="fab fa-whatsapp" aria-hidden="true"></i> Enquire Now</a>
     </section>
   </main>
 
-  <footer role="contentinfo" style="text-align: center; padding: 2rem; background: #0f172a; color: #94a3b8;">
-    <p>© 2025 BookTown Classes — Shaping Future Achievers</p>
+  <footer role="contentinfo">
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html">Home</a>
+      <a href="coding.html">Coding</a>
+      <a href="class10.html">Class 10</a>
+      <a href="class10-testseries.html">Test Series</a>
+      <a href="english.html">English</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds. ✨</p>
+    <p>Online & Offline | Small batches | Expert faculty</p>
   </footer>
 
-  <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Class%2010%20coaching%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i> Chat</a>
+  <!-- WhatsApp Floating Button (already had “Chat” – unchanged) -->
+  <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Class%2010%20coaching%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+  </a>
 
+  <!-- Shared mobile menu logic -->
+  <script src="js/nav.js"></script>
+  <!-- Shared interactivity (carousel, FAQ, forms – no carousel here but safe to include) -->
   <script src="js/script.js"></script>
 </body>
 </html>

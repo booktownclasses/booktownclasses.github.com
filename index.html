@@ -19,7 +19,9 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Shared theme (sticky nav, cards, footer, WhatsApp float, etc.) -->
+  <link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
   <div class="floating-shapes">
@@ -30,7 +32,6 @@
 
   <nav class="navbar">
     <div class="logo"><i class="fas fa-graduation-cap"></i> BookTown <span>Classes</span></div>
-    <!-- Mobile menu button now with full accessibility attributes -->
     <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
       <i class="fas fa-bars"></i>
     </button>
@@ -50,7 +51,6 @@
       <div class="hero">
         <div class="hero-content">
           <h1>Coaching that <span class="highlight">shapes futures</span> with academic excellence & integrity.</h1>
-          <!-- Added class for better style control -->
           <p class="hero-subtitle">BookTown Classes — where young minds grow through structure, strategy, and success. Personalized coaching for every learner.</p>
           <div class="btn-group">
             <a href="#contact" class="btn-primary"><i class="fas fa-book-open"></i> Enroll today</a>
@@ -60,7 +60,6 @@
         <div class="hero-carousel">
           <div class="carousel">
             <div class="carousel-container">
-              <!-- Improved alt texts: descriptive, helpful for screen readers & SEO -->
               <div class="carousel-slide"><img src="images/inside1.jpeg" alt="Bright classroom session at BookTown with students actively learning" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Classroom'"></div>
               <div class="carousel-slide"><img src="images/inside2.jpeg" alt="Friendly group study environment inside BookTown Classes" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Group+Study'"></div>
               <div class="carousel-slide"><img src="images/outside1.jpeg" alt="Exterior of BookTown coaching centre – welcoming learning space" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Coaching'"></div>
@@ -129,7 +128,7 @@
       </div>
     </div>
 
-    <!-- Free Demo Class CTA Banner – added before FAQ to capture leads early -->
+    <!-- Free Demo Class CTA Banner -->
     <div class="container demo-cta-banner">
       <div class="demo-cta-content">
         <h2><i class="fas fa-gift"></i> Experience the BookTown Difference</h2>
@@ -169,16 +168,28 @@
     </div>
   </main>
 
-  <a href="https://wa.me/919414700737" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  <!-- WhatsApp float – now with text and accessibility label -->
+  <a href="https://wa.me/919414700737" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i> Chat
+  </a>
 
+  <!-- Enhanced dark footer matching coding.html -->
   <footer>
     <div class="footer-links">
-      <a href="index.html">Home</a><a href="coding.html">Coding</a><a href="class10.html">Class 10</a>
-      <a href="class10-testseries.html">Test Series</a><a href="english.html">English</a><a href="#contact">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="coding.html">Coding</a>
+      <a href="class10.html">Class 10</a>
+      <a href="class10-testseries.html">Test Series</a>
+      <a href="english.html">English</a>
+      <a href="#contact">Contact</a>
     </div>
-    <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds.</p>
+    <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds. ✨</p>
+    <p>Online & Offline | Small batches | Expert faculty</p>
   </footer>
 
+  <!-- Shared mobile menu logic -->
+  <script src="js/nav.js"></script>
+  <!-- Page-specific interactivity (carousel, stats, FAQ) -->
   <script src="js/script.js"></script>
 </body>
 </html>
