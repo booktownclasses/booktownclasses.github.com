@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="canonical" href="https://booktownclasses.github.io/learn-python.html" />
+  <link rel="canonical" href="https://booktownclasses.github.io/learn-python/learn-python-intro.html" />
   <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
-  <title>Learn Python+ - Python Programming Tutorial | BookTown Classes</title>
-  <meta name="description" content="Learn Python programming with comprehensive, beginner-friendly tutorials. Master variables, data types, loops, and collections with practical examples." />
+  <title>Python Introduction - Learn Python+ | BookTown Classes</title>
+  <meta name="description" content="Learn Python programming with comprehensive, beginner-friendly tutorials. Master variables, data types, and Python basics with practical examples." />
   <meta name="keywords" content="Python tutorial, learn Python, Python for beginners, Python programming, Python basics" />
   <meta name="author" content="BookTown Classes" />
-  <meta property="og:title" content="Learn Python+ - Python Tutorial | BookTown Classes" />
+  <meta property="og:title" content="Python Introduction - Learn Python+ | BookTown Classes" />
   <meta property="og:description" content="Master Python fundamentals with clear, practical tutorials and code examples." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#3b82f6" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Ap3gC+t3ZC9flVoYJv8k57i6bkWvs/37IIqzPUbJ5E59x2JSQae8R7bzH3+Krlbmd9OEa07kT2+UkzcZWeIlo3A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- Prism.js - Syntax highlighting for Python -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Prism CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+  <!-- Prism line numbers plugin -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <link rel="stylesheet" href="../css/theme.css" />
 
-  <!-- Unified theme -->
-  <link rel="stylesheet" href="../css/theme.css">
-
-  <!-- Page-specific styles -->
   <style>
     .main-container {
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 280px 1fr 200px;
       gap: 0;
       min-height: calc(100vh - 72px);
     }
-
     .sidebar {
       background: var(--surface);
       border-right: 1px solid #e2e8f0;
@@ -48,56 +44,23 @@
       top: 72px;
       height: calc(100vh - 72px);
     }
-
-    .sidebar-section {
-      padding: 0 1rem;
-      margin-bottom: 1.5rem;
-    }
-
+    .sidebar-section { padding: 0 1rem; margin-bottom: 1.5rem; }
     .sidebar-title {
-      font-weight: 700;
-      color: var(--accent);
-      padding: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      user-select: none;
-      transition: background var(--transition);
-      border-radius: var(--radius-sm);
+      font-weight: 700; color: var(--accent); padding: 1rem; cursor: pointer;
+      display: flex; align-items: center; gap: 0.5rem; user-select: none;
+      transition: background var(--transition); border-radius: var(--radius-sm);
       font-family: var(--font-heading);
     }
-
-    .sidebar-title:hover {
-      background: #e0e7ff;
-    }
-
-    .sidebar-title.active {
-      background: #e0e7ff;
-      color: var(--accent-dark);
-    }
-
+    .sidebar-title:hover { background: #e0e7ff; }
+    .sidebar-title.active { background: #e0e7ff; color: var(--accent-dark); }
     .sidebar-item {
-      padding: 0.75rem 1rem;
-      margin-left: 1rem;
-      cursor: pointer;
-      color: var(--text-light);
-      transition: all var(--transition);
-      border-left: 3px solid transparent;
-      display: none;
-      border-radius: var(--radius-sm);
-      font-weight: 500;
+      padding: 0.75rem 1rem; margin-left: 1rem; color: var(--text-light);
+      transition: all var(--transition); border-left: 3px solid transparent;
+      display: block; border-radius: var(--radius-sm); font-weight: 500;
+      text-decoration: none;
     }
-
-    .sidebar-item.show {
-      display: block;
-    }
-
-    .sidebar-item:hover,
-    .sidebar-item.active {
-      color: var(--accent);
-      background: #f0f4ff;
-      border-left-color: var(--accent);
+    .sidebar-item:hover, .sidebar-item.active {
+      color: var(--accent); background: #f0f4ff; border-left-color: var(--accent);
       padding-left: 1.25rem;
     }
 
@@ -105,89 +68,67 @@
       padding: 3rem 2rem;
       overflow-y: auto;
     }
-
     .content-section {
-      display: none;
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
     }
-
-    .content-section.active {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
     .section-title {
-      font-size: 2rem;
-      color: var(--text);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--font-heading);
+      font-size: 2rem; color: var(--text); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading);
     }
-
     .section-intro {
       background: linear-gradient(135deg, #e0e7ff, #dbeafe);
-      padding: 1.5rem;
-      border-radius: var(--radius);
-      margin-bottom: 2rem;
-      border-left: 4px solid var(--accent);
-      color: var(--text);
+      padding: 1.5rem; border-radius: var(--radius); margin-bottom: 2rem;
+      border-left: 4px solid var(--accent); color: var(--text);
     }
-
     .concept-card {
-      background: var(--surface);
-      padding: 2rem;
-      border-radius: var(--radius);
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow);
-      border-left: 4px solid var(--accent);
+      background: var(--surface); padding: 2rem; border-radius: var(--radius);
+      margin-bottom: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--accent);
       transition: all var(--transition);
     }
-
-    .concept-card:hover {
-      box-shadow: var(--shadow-lg);
-    }
-
+    .concept-card:hover { box-shadow: var(--shadow-lg); }
     .concept-card h3 {
-      color: var(--accent);
-      margin-bottom: 1rem;
-      font-family: var(--font-heading);
-      font-size: 1.3rem;
+      color: var(--accent); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.3rem;
     }
 
-    /* Improved code block container */
+    /* Professional code block styling */
     .code-block {
-      position: relative;
       background: #1e293b;
       border-radius: var(--radius-sm);
       margin: 1.5rem 0;
       border-left: 4px solid var(--accent);
       overflow: hidden;
+      position: relative;
     }
-
+    .code-block-header {
+      background: #0f172a;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      padding: 0.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Fira Code', monospace;
+      border-bottom: 1px solid #334155;
+    }
+    .code-block-header i {
+      color: #ef4444;
+      font-size: 0.8rem;
+    }
     .code-block pre {
       margin: 0;
-      padding: 1.5rem;
+      padding: 1.5rem 1.5rem 1.5rem 3.5rem; /* extra left padding for line numbers */
       overflow-x: auto;
       font-size: 0.9rem;
       line-height: 1.6;
+      background: #1e293b;
     }
-
-    .code-block pre code {
-      font-family: 'Fira Code', 'Courier New', monospace;
-      white-space: pre;
-      word-spacing: normal;
-      word-break: normal;
-      word-wrap: normal;
-      tab-size: 4;
-      hyphens: none;
+    /* Enable Prism line numbers */
+    .code-block pre.line-numbers {
+      padding-left: 3.5rem;
+    }
+    .code-block pre[class*="language-"] {
+      margin: 0;
     }
 
     /* Copy button */
@@ -208,21 +149,11 @@
       transition: all 0.2s;
       backdrop-filter: blur(4px);
       opacity: 0;
+      z-index: 5;
     }
-
-    .code-block:hover .copy-btn {
-      opacity: 1;
-    }
-
-    .copy-btn:hover {
-      background: rgba(255,255,255,0.2);
-      color: #fff;
-    }
-
-    .copy-btn.copied {
-      background: #22c55e;
-      color: #fff;
-    }
+    .code-block:hover .copy-btn { opacity: 1; }
+    .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .copy-btn.copied { background: #22c55e; color: #fff; }
 
     .example-output {
       background: #f0fdf4;
@@ -234,95 +165,86 @@
       font-family: 'Courier New', monospace;
       font-size: 0.9rem;
       line-height: 1.6;
-      white-space: pre-line;  /* preserves line breaks */
+      white-space: pre-line;
     }
 
     .infographic-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;
     }
-
     .infographic-card {
-      padding: 2rem;
-      border-radius: var(--radius);
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: all var(--transition);
-      border-top: 4px solid var(--accent);
-      background: var(--surface);
+      padding: 2rem; border-radius: var(--radius); text-align: center; box-shadow: var(--shadow);
+      transition: all var(--transition); border-top: 4px solid var(--accent); background: var(--surface);
     }
+    .infographic-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .infographic-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+    .infographic-card h3 { color: var(--accent); margin-bottom: 0.5rem; font-family: var(--font-heading); }
 
-    .infographic-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
+    /* Page tracker */
+    .page-tracker {
+      position: sticky; top: 90px; height: fit-content;
+      padding: 1.5rem 1rem; background: var(--surface); border-left: 1px solid #e2e8f0;
+      margin-top: 2rem;
     }
-
-    .infographic-icon {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
+    .page-tracker h4 {
+      font-family: var(--font-heading); color: var(--accent); margin-bottom: 0.8rem; font-size: 0.9rem;
     }
+    .page-tracker ul { list-style: none; padding: 0; margin: 0; }
+    .page-tracker li { margin-bottom: 0.4rem; }
+    .page-tracker a {
+      text-decoration: none; color: var(--text-light); font-size: 0.85rem;
+      transition: color 0.2s; display: block; padding-left: 8px;
+      border-left: 2px solid transparent;
+    }
+    .page-tracker a.active {
+      color: var(--accent); font-weight: 600; border-left-color: var(--accent);
+    }
+    .page-tracker a:hover { color: var(--accent); }
 
-    .infographic-card h3 {
+    /* Practice problems */
+    .practice-problem {
+      margin: 1.2rem 0;
+    }
+    .practice-problem summary {
+      font-weight: 600;
       color: var(--accent);
-      margin-bottom: 0.5rem;
-      font-family: var(--font-heading);
+      cursor: pointer;
+      padding: 0.6rem 1rem;
+      background: #f1f5f9;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .practice-problem summary:hover {
+      background: #e2e8f0;
+    }
+    .practice-problem .solution {
+      margin-top: 0.8rem;
+      padding: 1rem;
+      background: #f8fafc;
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
     }
 
     footer {
-      background: var(--footer-bg);
-      color: var(--footer-text);
-      text-align: center;
-      padding: 2rem;
-      margin-top: 3rem;
+      background: var(--footer-bg); color: var(--footer-text); text-align: center;
+      padding: 2rem; margin-top: 3rem;
     }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--footer-text); transition: color var(--transition); }
+    .footer-links a:hover { color: #fff; }
 
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
+    @media (max-width: 1024px) {
+      .main-container { grid-template-columns: 220px 1fr; }
+      .page-tracker { display: none; }
     }
-
-    .footer-links a {
-      color: var(--footer-text);
-      transition: color var(--transition);
-    }
-
-    .footer-links a:hover {
-      color: #fff;
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      .main-container {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        position: relative;
-        top: 0;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid #e2e8f0;
-        max-height: 400px;
-      }
-
-      .content {
-        padding: 2rem 1rem;
-      }
-
-      .section-title {
-        font-size: 1.5rem;
-      }
+      .main-container { grid-template-columns: 1fr; }
+      .sidebar { position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid #e2e8f0; max-height: 400px; }
+      .content { padding: 2rem 1rem; }
+      .section-title { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
-
-<!-- Floating background shapes (same as English page) -->
 <div class="floating-shapes">
   <div class="shape shape-1"></div>
   <div class="shape shape-2"></div>
@@ -331,9 +253,7 @@
 
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
-  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
-    <i class="fas fa-bars"></i>
-  </button>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
   <div class="nav-links" id="navLinks" role="menubar">
     <a href="/index.html" role="menuitem">Home</a>
     <a href="/coding/coding.html" role="menuitem">Coding</a>
@@ -346,107 +266,34 @@
   </div>
 </nav>
 
-<!-- Main Container -->
 <div class="main-container">
-  <!-- Left Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-title active" onclick="toggleSection(this)">
-        <i class="fas fa-book"></i> Python Tutorial
-        <i class="fas fa-chevron-down" style="margin-left: auto;"></i>
-      </div>
-      
-      <div class="sidebar-item show active" onclick="showContent('intro')">
-        <i class="fas fa-star"></i> Python Introduction
-      </div>
-      <div class="sidebar-item show" onclick="showContent('conditions')">
-        <i class="fas fa-code-branch"></i> Condition & Loops
-      </div>
-      <div class="sidebar-item show" onclick="showContent('collections')">
-        <i class="fas fa-layer-group"></i> List, Tuples, Set
-      </div>
+      <div class="sidebar-title active"><i class="fas fa-book"></i> Python Tutorial</div>
+      <a href="learn-python-intro.html" class="sidebar-item active"><i class="fas fa-star"></i> Python Introduction</a>
+      <a href="learn-python-condition-loops.html" class="sidebar-item"><i class="fas fa-code-branch"></i> Condition & Loops</a>
+      <a href="learn-python-list-tuple-set.html" class="sidebar-item"><i class="fas fa-layer-group"></i> List, Tuples, Set</a>
     </div>
   </aside>
 
-  <!-- Main Content -->
   <main class="content">
-    <!-- ========== PYTHON INTRODUCTION ========== -->
-    <div id="intro" class="content-section active">
+    <div class="content-section">
       <h1 class="section-title"><i class="fas fa-star"></i> Python Introduction</h1>
-      
-      <div class="section-intro">
-        <p><strong>Welcome to Python!</strong> Learn what Python is, why it's so popular, and master the fundamentals with clear, syntax‑highlighted examples.</p>
-      </div>
+      <div class="section-intro"><p><strong>Welcome to Python!</strong> Learn what Python is, why it's so popular, and master the fundamentals with clear, syntax‑highlighted examples.</p></div>
 
-      <!-- Infographics -->
       <div class="infographic-grid">
-        <article class="infographic-card">
-          <div class="infographic-icon">🐍</div>
-          <h3>What is Python?</h3>
-          <p style="font-size: 0.9rem; color: var(--text-light);">High-level, interpreted programming language created by Guido van Rossum in 1991</p>
-        </article>
-        <article class="infographic-card">
-          <div class="infographic-icon">📈</div>
-          <h3>Most Popular</h3>
-          <p style="font-size: 0.9rem; color: var(--text-light);">Used by beginners and experts in data science, AI, web dev, and more</p>
-        </article>
-        <article class="infographic-card">
-          <div class="infographic-icon">✨</div>
-          <h3>Simple & Clean</h3>
-          <p style="font-size: 0.9rem; color: var(--text-light);">Readable syntax that looks like English, perfect for beginners</p>
-        </article>
+        <article class="infographic-card"><div class="infographic-icon">🐍</div><h3>What is Python?</h3><p style="font-size:0.9rem;color:var(--text-light);">High-level, interpreted programming language created by Guido van Rossum in 1991</p></article>
+        <article class="infographic-card"><div class="infographic-icon">📈</div><h3>Most Popular</h3><p style="font-size:0.9rem;color:var(--text-light);">Used by beginners and experts in data science, AI, web dev, and more</p></article>
+        <article class="infographic-card"><div class="infographic-icon">✨</div><h3>Simple & Clean</h3><p style="font-size:0.9rem;color:var(--text-light);">Readable syntax that looks like English, perfect for beginners</p></article>
       </div>
 
+      <!-- Variables -->
       <div class="concept-card">
-        <h3>Key Features of Python</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
-          <div style="padding: 1rem; background: var(--bg); border-radius: var(--radius-sm); border-left: 3px solid var(--accent);">
-            <strong style="color: var(--accent);">✓ Easy to Learn</strong>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-light);">Clean syntax resembles natural language</p>
-          </div>
-          <div style="padding: 1rem; background: var(--bg); border-radius: var(--radius-sm); border-left: 3px solid var(--accent);">
-            <strong style="color: var(--accent);">✓ Dynamically Typed</strong>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-light);">No need to declare variable types</p>
-          </div>
-          <div style="padding: 1rem; background: var(--bg); border-radius: var(--radius-sm); border-left: 3px solid var(--accent);">
-            <strong style="color: var(--accent);">✓ Extensive Library</strong>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-light);">Thousands of built-in modules</p>
-          </div>
-          <div style="padding: 1rem; background: var(--bg); border-radius: var(--radius-sm); border-left: 3px solid var(--accent);">
-            <strong style="color: var(--accent);">✓ Multiple Paradigms</strong>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-light);">OOP, functional, procedural programming</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="concept-card">
-        <h3>Why Learn Python?</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
-          <div>
-            <strong style="color: var(--accent); display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-flask"></i> Data Science & AI</strong>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-light);">NumPy, Pandas, TensorFlow, scikit-learn</p>
-          </div>
-          <div>
-            <strong style="color: var(--accent); display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-globe"></i> Web Development</strong>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-light);">Django, Flask, FastAPI</p>
-          </div>
-          <div>
-            <strong style="color: var(--accent); display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-cogs"></i> Automation</strong>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-light);">Automate repetitive tasks</p>
-          </div>
-          <div>
-            <strong style="color: var(--accent); display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-gamepad"></i> Game Dev</strong>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-light);">Pygame framework</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 1. Variables -->
-      <div class="concept-card">
-        <h3>1. Python Variables</h3>
+        <h3 id="variables">1. Python Variables</h3>
         <p>A variable is a <strong>name that stores a value</strong>. Python figures out the type automatically.</p>
         <div class="code-block">
-          <pre><code class="language-python"># School-themed variables
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> variables.py</div>
+          <pre class="line-numbers"><code class="language-python"># School-themed variables
 student_name = "Aarav"      # string
 grade = 8                   # integer
 average_marks = 84.33       # float
@@ -455,26 +302,20 @@ is_passed = True            # boolean
 print(student_name, "is in grade", grade)</code></pre>
           <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
         </div>
-        <p style="margin-top: 1rem;"><strong>Rules:</strong></p>
-        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <p style="margin-top:1rem;"><strong>Rules:</strong></p>
+        <ul style="margin-left:1.5rem;margin-top:0.5rem;">
           <li>Names can contain letters, numbers, underscores (<code>_</code>), but cannot start with a number.</li>
           <li>Case‑sensitive (<code>name</code> ≠ <code>Name</code>).</li>
           <li>Use meaningful names for readability.</li>
         </ul>
       </div>
 
-      <!-- 2. Data Types -->
+      <!-- Data Types -->
       <div class="concept-card">
-        <h3>2. Python Data Types</h3>
+        <h3 id="data-types">2. Python Data Types</h3>
         <p>Python has several built‑in data types. The most common ones are:</p>
-        <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
-          <thead>
-            <tr style="background: #e0e7ff; border-bottom: 2px solid var(--accent);">
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #e2e8f0; color: var(--accent);">Data Type</th>
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #e2e8f0; color: var(--accent);">Example</th>
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #e2e8f0; color: var(--accent);">Description</th>
-            </tr>
-          </thead>
+        <table style="width:100%;border-collapse:collapse;margin-top:1rem;">
+          <thead><tr style="background:#e0e7ff;border-bottom:2px solid var(--accent);"><th style="padding:0.75rem;text-align:left;border:1px solid #e2e8f0;color:var(--accent);">Data Type</th><th style="padding:0.75rem;text-align:left;border:1px solid #e2e8f0;color:var(--accent);">Example</th><th style="padding:0.75rem;text-align:left;border:1px solid #e2e8f0;color:var(--accent);">Description</th></tr></thead>
           <tbody>
             <tr><td><code>int</code></td><td><code>8, -3, 0</code></td><td>Whole numbers</td></tr>
             <tr><td><code>float</code></td><td><code>3.14, 84.5</code></td><td>Decimal numbers</td></tr>
@@ -483,62 +324,62 @@ print(student_name, "is in grade", grade)</code></pre>
             <tr><td><code>NoneType</code></td><td><code>None</code></td><td>Represents "nothing" or empty</td></tr>
           </tbody>
         </table>
-        <p style="margin-top: 1rem;">Check a type with <code>type()</code> (see later).</p>
+        <p style="margin-top:1rem;">Check a type with <code>type()</code> (see later).</p>
       </div>
 
-      <!-- 3. print() -->
+      <!-- print() -->
       <div class="concept-card">
-        <h3>3. print() Function</h3>
+        <h3 id="print-function">3. print() Function</h3>
         <p>The <code>print()</code> function <strong>displays output</strong> on the screen. Customise separator and line ending.</p>
         <div class="code-block">
-          <pre><code class="language-python">print("Hello, World!")                     # simple message
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> print_examples.py</div>
+          <pre class="line-numbers"><code class="language-python">print("Hello, World!")                     # simple message
 print("Aarav", "Grade", 8)                    # multiple items (space by default)
 print("Maths", "Science", sep=" | ")          # custom separator
 print("Welcome", end=" --> ")                 # custom ending (default: newline)
 print("Have a nice day!")</code></pre>
           <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
         </div>
-        <p style="margin-top: 1rem;"><strong>Output:</strong></p>
+        <p style="margin-top:1rem;"><strong>Output:</strong></p>
         <div class="example-output">Hello, World!
 Aarav Grade 8
 Maths | Science
 Welcome --> Have a nice day!</div>
       </div>
 
-      <!-- 4. String Formatting -->
+      <!-- String Formatting -->
       <div class="concept-card">
-        <h3>4. String Formatting (f‑strings, .format(), %)</h3>
+        <h3 id="string-formatting">4. String Formatting (f‑strings, .format(), %)</h3>
         <p>Python’s modern way is <strong>f‑strings</strong> (Python 3.6+), but <code>.format()</code> and <code>%</code> still work.</p>
-        
-        <p style="margin-top: 1rem;"><strong>f‑string (recommended):</strong></p>
+        <p style="margin-top:1rem;"><strong>f‑string (recommended):</strong></p>
         <div class="code-block">
-          <pre><code class="language-python">name = "Aarav"
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> fstring_example.py</div>
+          <pre class="line-numbers"><code class="language-python">name = "Aarav"
 marks = 84.56
 print(f"{name} scored {marks} marks.")
 print(f"Rounded: {marks:.1f}")   # format to 1 decimal place</code></pre>
           <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
         </div>
-
-        <p style="margin-top: 1rem;"><strong>.format() alternative:</strong></p>
+        <p style="margin-top:1rem;"><strong>.format() alternative:</strong></p>
         <div class="code-block">
-          <pre><code class="language-python">print("{} scored {:.2f} marks.".format(name, marks))</code></pre>
+          <pre class="line-numbers"><code class="language-python">print("{} scored {:.2f} marks.".format(name, marks))</code></pre>
           <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
         </div>
-
-        <p style="margin-top: 1rem;"><strong>% operator (old printf style):</strong></p>
+        <p style="margin-top:1rem;"><strong>% operator (old printf style):</strong></p>
         <div class="code-block">
-          <pre><code class="language-python">print("%s scored %.2f marks." % (name, marks))</code></pre>
+          <pre class="line-numbers"><code class="language-python">print("%s scored %.2f marks." % (name, marks))</code></pre>
           <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
         </div>
-        <p style="margin-top: 1rem;"><em>All produce the same output; f‑strings are the most readable.</em></p>
+        <p style="margin-top:1rem;"><em>All produce the same output; f‑strings are the most readable.</em></p>
       </div>
 
-      <!-- 5. input() -->
+      <!-- input() -->
       <div class="concept-card">
-        <h3>5. input() Function</h3>
+        <h3 id="input-function">5. input() Function</h3>
         <p><code>input()</code> waits for user input and returns a <strong>string</strong>. Convert to numbers when needed.</p>
         <div class="code-block">
-          <pre><code class="language-python"># Getting a string input
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> user_input.py</div>
+          <pre class="line-numbers"><code class="language-python"># Getting a string input
 subject = input("What is your favorite subject? ")
 print("Great choice! You enjoy", subject)
 
@@ -550,15 +391,16 @@ total = maths + english
 print("Total marks:", total)</code></pre>
           <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
         </div>
-        <p style="margin-top: 1rem; color: #dc2626;"><strong>⚠️ Important:</strong> Always convert <code>input()</code> with <code>int()</code> or <code>float()</code> for calculations.</p>
+        <p style="margin-top:1rem;color:#dc2626;"><strong>⚠️ Important:</strong> Always convert <code>input()</code> with <code>int()</code> or <code>float()</code> for calculations.</p>
       </div>
 
-      <!-- 6. type() -->
+      <!-- type() -->
       <div class="concept-card">
-        <h3>6. type() Function</h3>
+        <h3 id="type-function">6. type() Function</h3>
         <p><code>type()</code> returns the <strong>data type</strong> of a variable or value – great for debugging.</p>
         <div class="code-block">
-          <pre><code class="language-python">name = "Aarav"
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> type_check.py</div>
+          <pre class="line-numbers"><code class="language-python">name = "Aarav"
 grade = 8
 average = 84.33
 passed = True
@@ -577,9 +419,10 @@ print(type("Hello"))# <class 'str'></code></pre>
 
       <!-- Quick Practice -->
       <div class="concept-card">
-        <h3>Quick Practice: Putting It All Together</h3>
+        <h3 id="quick-practice">Quick Practice: Putting It All Together</h3>
         <div class="code-block">
-          <pre><code class="language-python"># Mini program using all concepts
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> mini_project.py</div>
+          <pre class="line-numbers"><code class="language-python"># Mini program using all concepts
 student = input("Enter student name: ")
 grade = int(input("Enter grade level: "))
 marks = float(input("Enter average marks: "))
@@ -591,7 +434,7 @@ print(f"Marks      : {marks:.2f}")       # formatted to 2 decimals
 print(f"Data types : {type(student)}, {type(grade)}, {type(marks)}")</code></pre>
           <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
         </div>
-        <p style="margin-top: 1rem;"><strong>Sample interaction:</strong></p>
+        <p style="margin-top:1rem;"><strong>Sample interaction:</strong></p>
         <div class="example-output">Enter student name: Priya
 Enter grade level: 7
 Enter average marks: 91.5
@@ -601,437 +444,262 @@ Name       : Priya
 Grade      : 7
 Marks      : 91.50
 Data types : <class 'str'>, <class 'int'>, <class 'float'></div>
-        
-        <p style="margin-top: 1.5rem; background: #f0fdf4; padding: 1rem; border-radius: 8px; border-left: 3px solid #22c55e;">
+        <p style="margin-top:1.5rem;background:#f0fdf4;padding:1rem;border-radius:8px;border-left:3px solid #22c55e;">
           <i class="fas fa-lightbulb"></i> <strong>Tip:</strong> These concepts are the foundation of almost every Python program. Experiment by changing values!
         </p>
       </div>
-    </div>
 
-    <!-- ========== CONDITION & LOOPS ========== -->
-    <div id="conditions" class="content-section">
-      <h1 class="section-title"><i class="fas fa-code-branch"></i> Condition & Loops</h1>
-      
-      <div class="section-intro">
-        <p><strong>Control program flow:</strong> Make decisions with <code>if</code> and repeat code with loops.</p>
-      </div>
+      <!-- ========== DSA PRACTICE PROBLEMS ========== -->
+      <div class="concept-card" id="practice-problems">
+        <h3><i class="fas fa-code"></i> Practice Problems</h3>
+        <p>Apply what you’ve learned with these beginner and intermediate DSA‑style problems. Each question uses only variables, data types, input, output, and type conversion – no loops or collections.</p>
 
-      <!-- Loops Infographics -->
-      <div class="infographic-grid">
-        <article class="infographic-card">
-          <div class="infographic-icon">🔄</div>
-          <h3>For Loop</h3>
-          <p style="font-size: 0.9rem; color: var(--text-light);">Iterates over a sequence (list, string, range) – perfect when you know how many times to repeat</p>
-        </article>
-        <article class="infographic-card">
-          <div class="infographic-icon">🔁</div>
-          <h3>While Loop</h3>
-          <p style="font-size: 0.9rem; color: var(--text-light);">Repeats as long as a condition is true – ideal for unknown number of repetitions</p>
-        </article>
-        <article class="infographic-card">
-          <div class="infographic-icon">⚙️</div>
-          <h3>range()</h3>
-          <p style="font-size: 0.9rem; color: var(--text-light);">Generates a sequence of numbers – essential partner of for loops</p>
-        </article>
-        <article class="infographic-card">
-          <div class="infographic-icon">⛔</div>
-          <h3>break / continue</h3>
-          <p style="font-size: 0.9rem; color: var(--text-light);">break exits the loop, continue skips to the next iteration</p>
-        </article>
-      </div>
+        <!-- Beginner Problems -->
+        <h4 style="margin-top:1.5rem; color: var(--accent);">🔰 Beginner Level</h4>
+        <div class="practice-problem">
+          <details>
+            <summary>1. Greeting Generator</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Write a program that asks the user for their <strong>first name</strong> and <strong>age</strong>, then prints a greeting like: <em>"Hello Aarav, you are 15 years old!"</em></p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python"># Greeting Generator
+first_name = input("Enter your first name: ")
+age = int(input("Enter your age: "))
+print(f"Hello {first_name}, you are {age} years old!")</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
 
-      <div class="concept-card">
-        <h3>If‑Elif‑Else Statements</h3>
-        <div class="code-block">
-          <pre><code class="language-python">age = 18
+        <div class="practice-problem">
+          <details>
+            <summary>2. Simple Interest Calculator</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Accept principal amount (₹), rate of interest (%), and time (years) from the user. Calculate and print the simple interest using the formula <code>SI = (P * R * T) / 100</code>.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python"># Simple Interest Calculator
+principal = float(input("Enter principal amount (₹): "))
+rate = float(input("Enter rate of interest (%): "))
+time = float(input("Enter time (years): "))
 
-if age < 13:
-    print("You are a child")
-elif age < 18:
-    print("You are a teenager")
+simple_interest = (principal * rate * time) / 100
+print(f"Simple Interest: ₹{simple_interest:.2f}")</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="practice-problem">
+          <details>
+            <summary>3. Temperature Converter (Celsius ↔ Fahrenheit)</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Read a temperature in Celsius from the user and convert it to Fahrenheit using the formula <code>F = (C × 9/5) + 32</code>. Print the result rounded to one decimal.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">celsius = float(input("Enter temperature in Celsius: "))
+fahrenheit = (celsius * 9/5) + 32
+print(f"{celsius}°C is equal to {fahrenheit:.1f}°F")</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Intermediate Problems -->
+        <h4 style="margin-top:2rem; color: var(--accent);">⚡ Intermediate Level</h4>
+        <div class="practice-problem">
+          <details>
+            <summary>4. Swap Two Variables Without a Third Variable</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Read two numbers <code>a</code> and <code>b</code>. Swap their values <strong>without using a third variable</strong> and print them before and after swapping.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">a = int(input("Enter first number (a): "))
+b = int(input("Enter second number (b): "))
+
+print(f"Before swap: a = {a}, b = {b}")
+
+# Swap without extra variable
+a, b = b, a
+
+print(f"After swap: a = {a}, b = {b}")</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="practice-problem">
+          <details>
+            <summary>5. Compound Assignment & Area of a Circle</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Ask for the radius of a circle (float). Compute the area using <code>area = 3.14159 * radius * radius</code> (use <code>math.pi</code> if possible) and the circumference using <code>2 * pi * radius</code>. Print both results rounded to two decimals.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">import math
+
+radius = float(input("Enter radius of the circle: "))
+pi = math.pi
+
+area = pi * radius ** 2
+circumference = 2 * pi * radius
+
+print(f"Area: {area:.2f}")
+print(f"Circumference: {circumference:.2f}")</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="practice-problem">
+          <details>
+            <summary>6. Character Type Checker</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Read a single character from the user and print whether it is a <strong>vowel</strong>, <strong>consonant</strong>, <strong>digit</strong>, or <strong>special character</strong>. (Hint: use <code>in</code> and string methods – no loops needed.)</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">ch = input("Enter a single character: ")
+
+if ch.isalpha():
+    if ch.lower() in 'aeiou':
+        print(f"'{ch}' is a vowel.")
+    else:
+        print(f"'{ch}' is a consonant.")
+elif ch.isdigit():
+    print(f"'{ch}' is a digit.")
 else:
-    print("You are an adult")</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+    print(f"'{ch}' is a special character.")</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+          
         </div>
-        <div class="example-output">Output: You are an adult</div>
-      </div>
-
-      <!-- For Loops – multiple examples -->
-      <div class="concept-card">
-        <h3>For Loops</h3>
-        <p>Use a <strong>for loop</strong> to repeat a block of code for each item in a sequence.</p>
         
-        <h4 style="color: var(--accent); margin-top: 1.5rem;">Beginner Examples</h4>
-        <div class="code-block">
-          <pre><code class="language-python"># 1. Loop through a list
-fruits = ["apple", "banana", "orange"]
-for fruit in fruits:
-    print(fruit)
-
-# 2. Loop through a string
-word = "Python"
-for letter in word:
-    print(letter)
-
-# 3. Loop with range(stop) – 0 to 4
-for i in range(5):
-    print(i)</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-        </div>
-        <div class="example-output">apple
-banana
-orange
-P
-y
-t
-h
-o
-n
-0
-1
-2
-3
-4</div>
-
-        <h4 style="color: var(--accent); margin-top: 1.5rem;">Intermediate Examples</h4>
-        <div class="code-block">
-          <pre><code class="language-python"># 4. Using enumerate to get index
-fruits = ["apple", "banana", "cherry"]
-for index, fruit in enumerate(fruits):
-    print(f"{index}: {fruit}")
-
-# 5. Nested loops (multiplication table)
-for i in range(1, 4):
-    for j in range(1, 4):
-        print(f"{i} x {j} = {i*j}")
-
-# 6. Loop with else (executed when loop finishes normally)
-for x in range(3):
-    print(x)
-else:
-    print("Loop ended without break")</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-        </div>
-        <div class="example-output">0: apple
-1: banana
-2: cherry
-1 x 1 = 1
-1 x 2 = 2
-1 x 3 = 3
-2 x 1 = 2
-2 x 2 = 4
-2 x 3 = 6
-3 x 1 = 3
-3 x 2 = 6
-3 x 3 = 9
-0
-1
-2
-Loop ended without break</div>
       </div>
+            <!-- ========== UNSOLVED EXERCISES ========== -->
+      <div class="concept-card" id="unsolved-exercises">
+        <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
+        <p>Time to test yourself! These problems are for you to solve on your own. No solutions here – just the problem statement. (Hint: you can peek at the previous solved examples if you get stuck.)</p>
 
-      <!-- Range function card -->
-      <div class="concept-card">
-        <h3>range() – The Loop Counter</h3>
-        <p><code>range(start, stop, step)</code> generates a sequence of numbers. It is commonly used with for loops.</p>
-        
-        <div class="infographic-grid" style="margin-top: 1rem;">
-          <article class="infographic-card" style="border-top-color: #f59e0b;">
-            <div class="infographic-icon">1️⃣</div>
-            <h4>range(stop)</h4>
-            <p style="font-size: 0.85rem;">0 to stop-1<br><code>range(5) → 0,1,2,3,4</code></p>
-          </article>
-          <article class="infographic-card" style="border-top-color: #f59e0b;">
-            <div class="infographic-icon">2️⃣</div>
-            <h4>range(start, stop)</h4>
-            <p style="font-size: 0.85rem;">start to stop-1<br><code>range(2, 6) → 2,3,4,5</code></p>
-          </article>
-          <article class="infographic-card" style="border-top-color: #f59e0b;">
-            <div class="infographic-icon">3️⃣</div>
-            <h4>range(start, stop, step)</h4>
-            <p style="font-size: 0.85rem;">start to stop-1, increment by step<br><code>range(1, 10, 2) → 1,3,5,7,9</code></p>
-          </article>
+        <!-- Beginner Unsolved -->
+        <h4 style="margin-top:1.5rem; color: var(--accent);">🔰 Beginner Level</h4>
+        <div class="practice-problem">
+          <details>
+            <summary>1. Rectangle Area Calculator</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Ask the user for the length and width (both can be decimals). Compute the area (<code>area = length×width</code>) and print the result rounded to 2 decimal places.</p>
+              <p><strong>Hint:</strong> Use <code>float(input())</code> and <code>print(f"Area: {area:.2f}")</code>.</p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
         </div>
 
-        <h4 style="color: var(--accent); margin-top: 1.5rem;">Three flavours in action</h4>
-        <div class="code-block">
-          <pre><code class="language-python"># Case 1: range(stop)
-print("Case 1:")
-for i in range(4):
-    print(i)
-
-# Case 2: range(start, stop)
-print("Case 2:")
-for i in range(10, 13):
-    print(i)
-
-# Case 3: range(start, stop, step) – even numbers
-print("Case 3:")
-for i in range(2, 11, 2):
-    print(i)
-
-# Case 3: step can be negative (countdown)
-print("Countdown:")
-for i in range(5, 0, -1):
-    print(i)</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        <div class="practice-problem">
+          <details>
+            <summary>2. Personalized Welcome Message</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Ask for the user’s name and city, then print a welcome message like: <em>"Welcome Aarav from Jaipur! Have a great day."</em></p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
         </div>
-        <div class="example-output">Case 1:
-0
-1
-2
-3
-Case 2:
-10
-11
-12
-Case 3:
-2
-4
-6
-8
-10
-Countdown:
-5
-4
-3
-2
-1</div>
-      </div>
 
-      <!-- While Loops – multiple examples -->
-      <div class="concept-card">
-        <h3>While Loops</h3>
-        <p>A <strong>while loop</strong> repeats as long as a condition is <code>True</code>. Be careful to avoid infinite loops!</p>
-        
-        <h4 style="color: var(--accent); margin-top: 1.5rem;">Beginner Examples</h4>
-        <div class="code-block">
-          <pre><code class="language-python"># 1. Basic while loop
-count = 0
-while count < 5:
-    print(count)
-    count += 1
-
-# 2. User input loop (guess a number)
-secret = 7
-guess = 0
-while guess != secret:
-    guess = int(input("Guess the number (1-10): "))
-print("You got it!")</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        <div class="practice-problem">
+          <details>
+            <summary>3. Minutes to Hours & Minutes Converter</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Read an integer number of minutes (e.g. 135). Convert it to hours and remaining minutes and print: <em>"135 minutes = 2 hours 15 minutes"</em>.</p>
+              <p><strong>Hint:</strong> Use <code>//</code> (integer division) for hours and <code>%</code> (modulo) for minutes.</p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
         </div>
-        <div class="example-output">0
-1
-2
-3
-4
-Guess the number (1-10): 3
-Guess the number (1-10): 7
-You got it!</div>
 
-        <h4 style="color: var(--accent); margin-top: 1.5rem;">Intermediate Examples</h4>
-        <div class="code-block">
-          <pre><code class="language-python"># 3. break – stop early
-i = 1
-while True:
-    print(i)
-    i += 1
-    if i > 5:
-        break
-
-# 4. continue – skip even numbers
-num = 0
-while num < 10:
-    num += 1
-    if num % 2 == 0:
-        continue
-    print(num)
-
-# 5. while with else
-x = 1
-while x <= 3:
-    print(x)
-    x += 1
-else:
-    print("Loop finished")</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        <!-- Intermediate Unsolved -->
+        <h4 style="margin-top:2rem; color: var(--accent);">⚡ Intermediate Level</h4>
+        <div class="practice-problem">
+          <details>
+            <summary>4. Rotate Three Numbers</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Input three numbers <code>a, b, c</code>. Rotate their values so that <code>a</code> becomes <code>b</code>, <code>b</code> becomes <code>c</code>, and <code>c</code> becomes the original <code>a</code>. Print the values before and after rotation. (Try without extra variables – use Python’s tuple unpacking.)</p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
         </div>
-        <div class="example-output">1
-2
-3
-4
-5
-1
-3
-5
-7
-9
-1
-2
-3
-Loop finished</div>
-      </div>
-    </div>
 
-    <!-- ========== LIST, TUPLES, SET ========== -->
-    <div id="collections" class="content-section">
-      <h1 class="section-title"><i class="fas fa-layer-group"></i> List, Tuples, Set</h1>
-      
-      <div class="section-intro">
-        <p><strong>Collection data types:</strong> Store multiple items with different rules.</p>
-      </div>
-
-      <div class="concept-card">
-        <h3>Lists (Mutable)</h3>
-        <div class="code-block">
-          <pre><code class="language-python"># Create a list
-fruits = ["apple", "banana", "cherry"]
-
-# Access elements
-print(fruits[0])      # first element
-print(fruits[-1])     # last element
-
-# Modify list
-fruits.append("date")         # add element
-fruits.remove("banana")       # remove element
-fruits[0] = "apricot"         # change element
-fruits.insert(1, "blueberry") # insert at index
-
-# List operations
-print(len(fruits))     # length
-print("apple" in fruits)  # membership test</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        <div class="practice-problem">
+          <details>
+            <summary>5. Temperature Converter with Choice</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Ask the user for a temperature value, then ask which conversion they want: type <code>1</code> for Celsius→Fahrenheit, or <code>2</code> for Fahrenheit→Celsius. Perform the conversion and print the result rounded to one decimal. (Use the formulas: <code>F = (C×9/5)+32</code> and <code>C = (F−32)×5/9</code>.)</p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
         </div>
-        <div class="example-output">apple
-cherry
-True</div>
-      </div>
 
-      <div class="concept-card">
-        <h3>Tuples (Immutable)</h3>
-        <div class="code-block">
-          <pre><code class="language-python"># Create a tuple
-colors = ("red", "green", "blue")
-
-# Access elements
-print(colors[0])      # first element
-print(colors[-1])     # last element
-
-# Tuple operations
-print(len(colors))
-print("red" in colors)
-
-# Unpacking
-r, g, b = colors
-print(r, g, b)
-
-# Cannot modify!
-# colors[0] = "yellow"  # ❌ would cause an error</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        <div class="practice-problem">
+          <details>
+            <summary>6. Bill Splitter with Tip</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Input total bill amount (₹), number of people, and tip percentage (optional, default 0%). Calculate the total amount (including tip), then divide equally among the people. Print the total bill, tip amount, and amount per person, all rounded to two decimals.</p>
+              <p><strong>Formula:</strong> <code>tip = bill * (tip_percent/100)</code>; <code>total = bill + tip</code>; <code>per_person = total / people</code>.</p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
         </div>
-        <div class="example-output">red
-blue
-3
-True
-red green blue</div>
-      </div>
-
-      <div class="concept-card">
-        <h3>Sets (Unique Values)</h3>
-        <div class="code-block">
-          <pre><code class="language-python"># Create a set (duplicates are removed)
-numbers = {1, 2, 3, 3, 4, 5, 5}
-print(numbers)  # {1, 2, 3, 4, 5}
-
-# Add and remove
-numbers.add(6)
-numbers.remove(1)
-
-# Set operations
-set1 = {1, 2, 3}
-set2 = {3, 4, 5}
-print(set1.union(set2))        # all elements
-print(set1.intersection(set2)) # common elements
-print(set1.difference(set2))   # elements only in set1</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-        </div>
-        <div class="example-output">{1, 2, 3, 4, 5}
-{1, 2, 3, 4, 5, 6}
-{3}
-{1, 2}</div>
-      </div>
-
-      <div class="concept-card">
-        <h3>Comparison Table</h3>
-        <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
-          <thead>
-            <tr style="background: #e0e7ff; border-bottom: 2px solid var(--accent);">
-              <th>Feature</th><th>List</th><th>Tuple</th><th>Set</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Ordered</td><td>✓</td><td>✓</td><td>✗</td></tr>
-            <tr><td>Mutable</td><td>✓</td><td>✗</td><td>✓</td></tr>
-            <tr><td>Duplicates</td><td>✓</td><td>✓</td><td>✗</td></tr>
-            <tr><td>Indexed</td><td>✓</td><td>✓</td><td>✗</td></tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </main>
+
+  <aside class="page-tracker" id="pageTracker">
+    <h4>On This Page</h4>
+    <ul>
+      <li><a href="#variables">1. Python Variables</a></li>
+      <li><a href="#data-types">2. Python Data Types</a></li>
+      <li><a href="#print-function">3. print() Function</a></li>
+      <li><a href="#string-formatting">4. String Formatting</a></li>
+      <li><a href="#input-function">5. input() Function</a></li>
+      <li><a href="#type-function">6. type() Function</a></li>
+      <li><a href="#quick-practice">Quick Practice</a></li>
+      <li><a href="#practice-problems">Practice Problems</a></li>
+      <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
+    </ul>
+  </aside>
 </div>
 
-<!-- WhatsApp Floating Button (matching English page) -->
 <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
   <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
 </a>
 
 <footer>
   <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="coding.html">Coding</a>
-    <a href="class10.html">Class 10</a>
-    <a href="learn-python.html">Learn Python+</a>
-    <a href="english.html">English</a>
-    <a href="books-notes.html">Books & Notes</a>
+    <a href="/index.html">Home</a>
+    <a href="/coding/coding.html">Coding</a>
+    <a href="/class-10/class10.html">Class 10</a>
+    <a href="/class-10/class10-testseries.html">Test Series</a>
+    <a href="/english.html">English</a>
+    <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+    <a href="/info-center/books-notes.html">Books & Notes</a>
   </div>
-  <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds.</p>
+  <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
   <p>Online & Offline | Small batches | Expert faculty</p>
 </footer>
 
 <script>
-  // Sidebar toggle
-  function toggleSection(element) {
-    const section = element.parentElement;
-    const items = section.querySelectorAll('.sidebar-item');
-    const isExpanded = items[0].classList.contains('show');
-    
-    items.forEach(item => {
-      if (isExpanded) {
-        item.classList.remove('show');
-      } else {
-        item.classList.add('show');
-      }
-    });
-    
-    element.classList.toggle('active');
-  }
-
-  // Content switching
-  function showContent(contentId) {
-    document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
-    document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
-    
-    document.getElementById(contentId).classList.add('active');
-    
-    // Highlight the clicked sidebar item
-    const clicked = event.target.closest('.sidebar-item');
-    if (clicked) clicked.classList.add('active');
-  }
-
-  // Copy code to clipboard
   function copyCode(button) {
-    const pre = button.parentElement.querySelector('pre');
+    const pre = button.closest('.code-block').querySelector('pre');
     const code = pre.textContent;
     navigator.clipboard.writeText(code).then(() => {
       button.classList.add('copied');
@@ -1046,19 +714,38 @@ print(set1.difference(set2))   # elements only in set1</code></pre>
     });
   }
 
-  // Mobile menu
   document.getElementById('mobileMenuBtn').addEventListener('click', function() {
     const navLinks = document.getElementById('navLinks');
     navLinks.classList.toggle('active');
     this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
   });
-
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       document.getElementById('navLinks').classList.remove('active');
       document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
     });
   });
+
+  // Scroll spy (page tracker)
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      const link = document.querySelector(`.page-tracker a[href="#${id}"]`);
+      if (link) {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.page-tracker a').forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+  document.querySelectorAll('.concept-card h3, .concept-card h4').forEach(heading => {
+    if (heading.id) observer.observe(heading);
+  });
+  // also observe the practice-problems card's h3
+  const practiceCard = document.getElementById('practice-problems');
+  if (practiceCard) observer.observe(practiceCard);
 </script>
 </body>
 </html>

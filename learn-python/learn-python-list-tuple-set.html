@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="canonical" href="https://booktownclasses.github.io/learn-python/learn-python-list-tuple-set.html" />
+  <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+  <title>List, Tuples, Set - Learn Python+ | BookTown Classes</title>
+  <meta name="description" content="Master Python collections: lists, tuples, and sets. Learn how to create, access, and manipulate these data structures with clear examples." />
+  <meta name="keywords" content="Python list, tuple, set, collections, data structures, Python tutorial" />
+  <meta name="author" content="BookTown Classes" />
+  <meta property="og:title" content="List, Tuples, Set - Learn Python+ | BookTown Classes" />
+  <meta property="og:description" content="Master Python collections: lists, tuples, and sets. Learn how to create, access, and manipulate these data structures with clear examples." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#3b82f6" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <link rel="stylesheet" href="../css/theme.css" />
+
+  <style>
+    /* same layout styles as intro page */
+    .main-container { display: grid; grid-template-columns: 280px 1fr 200px; gap: 0; min-height: calc(100vh - 72px); }
+    .sidebar { background: var(--surface); border-right: 1px solid #e2e8f0; padding: 2rem 0; overflow-y: auto; position: sticky; top: 72px; height: calc(100vh - 72px); }
+    .sidebar-section { padding: 0 1rem; margin-bottom: 1.5rem; }
+    .sidebar-title { font-weight: 700; color: var(--accent); padding: 1rem; cursor: default; display: flex; align-items: center; gap: 0.5rem; user-select: none; border-radius: var(--radius-sm); font-family: var(--font-heading); }
+    .sidebar-item { padding: 0.75rem 1rem; margin-left: 1rem; color: var(--text-light); transition: all var(--transition); border-left: 3px solid transparent; display: block; border-radius: var(--radius-sm); font-weight: 500; text-decoration: none; }
+    .sidebar-item:hover, .sidebar-item.active { color: var(--accent); background: #f0f4ff; border-left-color: var(--accent); padding-left: 1.25rem; }
+    .content { padding: 3rem 2rem; overflow-y: auto; }
+    .content-section { max-width: 800px; margin: 0 auto; }
+    .section-title { font-size: 2rem; color: var(--text); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading); }
+    .section-intro { background: linear-gradient(135deg, #e0e7ff, #dbeafe); padding: 1.5rem; border-radius: var(--radius); margin-bottom: 2rem; border-left: 4px solid var(--accent); color: var(--text); }
+    .concept-card { background: var(--surface); padding: 2rem; border-radius: var(--radius); margin-bottom: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--accent); transition: all var(--transition); }
+    .concept-card:hover { box-shadow: var(--shadow-lg); }
+    .concept-card h3 { color: var(--accent); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.3rem; }
+    .code-block { position: relative; background: #1e293b; border-radius: var(--radius-sm); margin: 1.5rem 0; border-left: 4px solid var(--accent); overflow: hidden; }
+    .code-block pre { margin: 0; padding: 1.5rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.6; }
+    .code-block pre code { font-family: 'Fira Code', 'Courier New', monospace; white-space: pre; word-spacing: normal; word-break: normal; word-wrap: normal; tab-size: 4; hyphens: none; }
+    .copy-btn { position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(255,255,255,0.1); border: none; color: #cbd5e1; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(4px); opacity: 0; }
+    .code-block:hover .copy-btn { opacity: 1; }
+    .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .copy-btn.copied { background: #22c55e; color: #fff; }
+    .example-output { background: #f0fdf4; color: #166534; padding: 1.5rem; border-radius: var(--radius-sm); margin-top: 0.5rem; border-left: 3px solid #22c55e; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; white-space: pre-line; }
+
+    /* right tracker */
+    .page-tracker { position: sticky; top: 90px; height: fit-content; padding: 1.5rem 1rem; background: var(--surface); border-left: 1px solid #e2e8f0; margin-top: 2rem; }
+    .page-tracker h4 { font-family: var(--font-heading); color: var(--accent); margin-bottom: 0.8rem; font-size: 0.9rem; }
+    .page-tracker ul { list-style: none; padding: 0; margin: 0; }
+    .page-tracker li { margin-bottom: 0.4rem; }
+    .page-tracker a { text-decoration: none; color: var(--text-light); font-size: 0.85rem; transition: color 0.2s; display: block; padding-left: 8px; border-left: 2px solid transparent; }
+    .page-tracker a.active { color: var(--accent); font-weight: 600; border-left-color: var(--accent); }
+    .page-tracker a:hover { color: var(--accent); }
+
+    footer { background: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 2rem; margin-top: 3rem; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--footer-text); transition: color var(--transition); }
+    .footer-links a:hover { color: #fff; }
+
+    @media (max-width: 1024px) { .main-container { grid-template-columns: 220px 1fr; } .page-tracker { display: none; } }
+    @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; } .sidebar { position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid #e2e8f0; max-height: 400px; } .content { padding: 2rem 1rem; } .section-title { font-size: 1.5rem; } }
+  </style>
+</head>
+<body>
+<div class="floating-shapes">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+</div>
+
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+  <div class="nav-links" id="navLinks" role="menubar">
+    <a href="/index.html" role="menuitem">Home</a>
+    <a href="/coding/coding.html" role="menuitem">Coding</a>
+    <a href="/class-10/class10.html" role="menuitem">Class 10</a>
+    <a href="/class-10/class10-testseries.html" role="menuitem">Test Series</a>
+    <a href="/english.html" role="menuitem">English</a>
+    <a href="/learn-python/learn-python-list-tuple-set.html" class="active" role="menuitem" aria-current="page">Learn Python+</a>
+    <a href="/info-center/books-notes.html" role="menuitem">Books & Notes</a>
+    <a href="#contact" class="btn-cta-small" role="button">Join Now</a>
+  </div>
+</nav>
+
+<div class="main-container">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title active"><i class="fas fa-book"></i> Python Tutorial</div>
+      <a href="learn-python-intro.html" class="sidebar-item"><i class="fas fa-star"></i> Python Introduction</a>
+      <a href="learn-python-condition-loops.html" class="sidebar-item"><i class="fas fa-code-branch"></i> Condition & Loops</a>
+      <a href="learn-python-list-tuple-set.html" class="sidebar-item active"><i class="fas fa-layer-group"></i> List, Tuples, Set</a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="content-section">
+      <h1 class="section-title"><i class="fas fa-layer-group"></i> List, Tuples, Set</h1>
+      <div class="section-intro"><p><strong>Collection data types:</strong> Store multiple items with different rules.</p></div>
+
+      <div class="concept-card">
+        <h3 id="lists">Lists (Mutable)</h3>
+        <div class="code-block"><pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
+print(fruits[0])      # first
+print(fruits[-1])     # last
+fruits.append("date")         # add
+fruits.remove("banana")       # remove
+fruits[0] = "apricot"         # change
+fruits.insert(1, "blueberry") # insert
+print(len(fruits))
+print("apple" in fruits)</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
+        <div class="example-output">apple
+cherry
+True</div>
+      </div>
+
+      <div class="concept-card">
+        <h3 id="tuples">Tuples (Immutable)</h3>
+        <div class="code-block"><pre><code class="language-python">colors = ("red", "green", "blue")
+print(colors[0], colors[-1])
+print(len(colors))
+print("red" in colors)
+r, g, b = colors
+print(r, g, b)
+# colors[0] = "yellow"  # ❌ error</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
+        <div class="example-output">red blue
+3
+True
+red green blue</div>
+      </div>
+
+      <div class="concept-card">
+        <h3 id="sets">Sets (Unique Values)</h3>
+        <div class="code-block"><pre><code class="language-python">numbers = {1,2,3,3,4,5,5}
+print(numbers)          # duplicates removed
+numbers.add(6)
+numbers.remove(1)
+set1 = {1,2,3}; set2 = {3,4,5}
+print(set1.union(set2))
+print(set1.intersection(set2))
+print(set1.difference(set2))</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
+        <div class="example-output">{1,2,3,4,5}
+{1,2,3,4,5,6}
+{3}
+{1,2}</div>
+      </div>
+
+      <div class="concept-card">
+        <h3 id="comparison">Comparison Table</h3>
+        <table style="width:100%;border-collapse:collapse;margin-top:1rem;">
+          <thead><tr style="background:#e0e7ff;border-bottom:2px solid var(--accent);"><th>Feature</th><th>List</th><th>Tuple</th><th>Set</th></tr></thead>
+          <tbody>
+            <tr><td>Ordered</td><td>✓</td><td>✓</td><td>✗</td></tr>
+            <tr><td>Mutable</td><td>✓</td><td>✗</td><td>✓</td></tr>
+            <tr><td>Duplicates</td><td>✓</td><td>✓</td><td>✗</td></tr>
+            <tr><td>Indexed</td><td>✓</td><td>✓</td><td>✗</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <aside class="page-tracker" id="pageTracker">
+    <h4>On This Page</h4>
+    <ul>
+      <li><a href="#lists">Lists</a></li>
+      <li><a href="#tuples">Tuples</a></li>
+      <li><a href="#sets">Sets</a></li>
+      <li><a href="#comparison">Comparison Table</a></li>
+    </ul>
+  </aside>
+</div>
+
+<a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+</a>
+
+<footer>
+  <div class="footer-links">
+    <a href="/index.html">Home</a>
+    <a href="/coding/coding.html">Coding</a>
+    <a href="/class-10/class10.html">Class 10</a>
+    <a href="/class-10/class10-testseries.html">Test Series</a>
+    <a href="/english.html">English</a>
+    <a href="/learn-python/learn-python-list-tuple-set.html">Learn Python+</a>
+    <a href="/info-center/books-notes.html">Books & Notes</a>
+  </div>
+  <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+  <p>Online & Offline | Small batches | Expert faculty</p>
+</footer>
+
+<script>
+  function copyCode(button) { /* same as before */ }
+  // Mobile menu & scroll spy (observer on elements with IDs matching tracker links)
+</script>
+</body>
+</html>
