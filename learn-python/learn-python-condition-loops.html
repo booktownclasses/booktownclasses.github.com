@@ -20,15 +20,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
   <link rel="stylesheet" href="../css/theme.css" />
 
   <style>
     .main-container { display: grid; grid-template-columns: 280px 1fr 200px; gap: 0; min-height: calc(100vh - 72px); }
     .sidebar { background: var(--surface); border-right: 1px solid #e2e8f0; padding: 2rem 0; overflow-y: auto; position: sticky; top: 72px; height: calc(100vh - 72px); }
     .sidebar-section { padding: 0 1rem; margin-bottom: 1.5rem; }
-    .sidebar-title { font-weight: 700; color: var(--accent); padding: 1rem; cursor: default; display: flex; align-items: center; gap: 0.5rem; user-select: none; border-radius: var(--radius-sm); font-family: var(--font-heading); }
+    .sidebar-title { font-weight: 700; color: var(--accent); padding: 1rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; user-select: none; transition: background var(--transition); border-radius: var(--radius-sm); font-family: var(--font-heading); }
+    .sidebar-title:hover { background: #e0e7ff; }
+    .sidebar-title.active { background: #e0e7ff; color: var(--accent-dark); }
     .sidebar-item { padding: 0.75rem 1rem; margin-left: 1rem; color: var(--text-light); transition: all var(--transition); border-left: 3px solid transparent; display: block; border-radius: var(--radius-sm); font-weight: 500; text-decoration: none; }
     .sidebar-item:hover, .sidebar-item.active { color: var(--accent); background: #f0f4ff; border-left-color: var(--accent); padding-left: 1.25rem; }
     .content { padding: 3rem 2rem; overflow-y: auto; }
@@ -38,10 +42,13 @@
     .concept-card { background: var(--surface); padding: 2rem; border-radius: var(--radius); margin-bottom: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--accent); transition: all var(--transition); }
     .concept-card:hover { box-shadow: var(--shadow-lg); }
     .concept-card h3 { color: var(--accent); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.3rem; }
-    .code-block { position: relative; background: #1e293b; border-radius: var(--radius-sm); margin: 1.5rem 0; border-left: 4px solid var(--accent); overflow: hidden; }
-    .code-block pre { margin: 0; padding: 1.5rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.6; }
-    .code-block pre code { font-family: 'Fira Code', 'Courier New', monospace; white-space: pre; word-spacing: normal; word-break: normal; word-wrap: normal; tab-size: 4; hyphens: none; }
-    .copy-btn { position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(255,255,255,0.1); border: none; color: #cbd5e1; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(4px); opacity: 0; }
+    /* Professional code block styling */
+    .code-block { background: #1e293b; border-radius: var(--radius-sm); margin: 1.5rem 0; border-left: 4px solid var(--accent); overflow: hidden; position: relative; }
+    .code-block-header { background: #0f172a; color: #94a3b8; font-size: 0.8rem; padding: 0.5rem 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-family: 'Fira Code', monospace; border-bottom: 1px solid #334155; }
+    .code-block-header i { color: #ef4444; font-size: 0.8rem; }
+    .code-block pre { margin: 0; padding: 1.5rem 1.5rem 1.5rem 3.5rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.6; background: #1e293b; }
+    .code-block pre.line-numbers { padding-left: 3.5rem; }
+    .copy-btn { position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(255,255,255,0.1); border: none; color: #cbd5e1; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(4px); opacity: 0; z-index: 5; }
     .code-block:hover .copy-btn { opacity: 1; }
     .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
     .copy-btn.copied { background: #22c55e; color: #fff; }
@@ -60,6 +67,12 @@
     .page-tracker a { text-decoration: none; color: var(--text-light); font-size: 0.85rem; transition: color 0.2s; display: block; padding-left: 8px; border-left: 2px solid transparent; }
     .page-tracker a.active { color: var(--accent); font-weight: 600; border-left-color: var(--accent); }
     .page-tracker a:hover { color: var(--accent); }
+
+    /* Practice problems */
+    .practice-problem { margin: 1.2rem 0; }
+    .practice-problem summary { font-weight: 600; color: var(--accent); cursor: pointer; padding: 0.6rem 1rem; background: #f1f5f9; border-radius: 6px; transition: background 0.2s; }
+    .practice-problem summary:hover { background: #e2e8f0; }
+    .practice-problem .solution { margin-top: 0.8rem; padding: 1rem; background: #f8fafc; border-left: 3px solid var(--accent); border-radius: 4px; }
 
     footer { background: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 2rem; margin-top: 3rem; }
     .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
@@ -114,120 +127,416 @@
         <article class="infographic-card"><div class="infographic-icon">⛔</div><h3>break / continue</h3><p style="font-size:0.9rem;color:var(--text-light);">break exits, continue skips</p></article>
       </div>
 
+      <!-- ========== IF-ELIF-ELSE ========== -->
       <div class="concept-card">
         <h3 id="if-elif-else">If‑Elif‑Else Statements</h3>
-        <div class="code-block"><pre><code class="language-python">age = 18
+        <p>The <strong>if</strong> statement lets you execute code only when a condition is <code>True</code>. Use <code>elif</code> for additional checks and <code>else</code> for a default block.</p>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> conditional.py</div>
+          <pre class="line-numbers"><code class="language-python">age = 18
 if age < 13:
     print("You are a child")
 elif age < 18:
     print("You are a teenager")
 else:
-    print("You are an adult")</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
-        <div class="example-output">Output: You are an adult</div>
+    print("You are an adult")</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">You are an adult</div>
+        <p style="margin-top:1rem;"><strong>Note:</strong>
+          • <code>if</code> must always come first.
+          • <code>elif</code> and <code>else</code> are optional.
+          • Indentation defines the code block.
+        </p>
       </div>
 
+      <!-- ========== FOR LOOP ========== -->
       <div class="concept-card">
-        <h3 id="for-loops">For Loops</h3>
-        <p>Use a <strong>for loop</strong> to repeat for each item in a sequence.</p>
-        <h4 style="color:var(--accent);margin-top:1.5rem;" id="for-beginner">Beginner Examples</h4>
-        <div class="code-block"><pre><code class="language-python"># Loop through a list
+        <h3 id="for-loops">For Loop</h3>
+        <p>A <strong>for loop</strong> repeats a block of code for each item in a sequence. It works with strings, lists, tuples, dictionaries, and the <code>range()</code> function.</p>
+        <p style="margin-top:0.5rem;"><strong>Syntax:</strong> <code>for variable in iterable: ...</code></p>
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;" id="for-beginner">Beginner Example</h4>
+        <p>Loop through a list, a string, and a simple <code>range(stop)</code>.</p>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> for_loop_basic.py</div>
+          <pre class="line-numbers"><code class="language-python"># Loop through a list
 fruits = ["apple", "banana", "orange"]
-for fruit in fruits: print(fruit)
+for fruit in fruits:
+    print(fruit)
 
 # Loop through a string
-for letter in "Python": print(letter)
+for letter in "Python":
+    print(letter)
 
 # range(stop)
-for i in range(5): print(i)</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
+for i in range(5):
+    print(i)</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
         <div class="example-output">apple
 banana
 orange
-P y t h o n
-0 1 2 3 4</div>
+P
+y
+t
+h
+o
+n
+0
+1
+2
+3
+4</div>
 
-        <h4 style="color:var(--accent);margin-top:1.5rem;" id="for-intermediate">Intermediate Examples</h4>
-        <div class="code-block"><pre><code class="language-python"># enumerate
-for i, fruit in enumerate(fruits): print(f"{i}: {fruit}")
+        <h4 style="color:var(--accent);margin-top:1.5rem;" id="for-intermediate">Intermediate Example</h4>
+        <p>Using <code>enumerate()</code> to get index, nested loops, and <code>else</code> with a loop.</p>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> for_loop_intermediate.py</div>
+          <pre class="line-numbers"><code class="language-python"># enumerate
+fruits = ["apple", "banana", "cherry"]
+for index, fruit in enumerate(fruits):
+    print(f"{index}: {fruit}")
 
-# nested loop
-for i in range(1,4):
-    for j in range(1,4): print(f"{i}x{j}={i*j}")
+# Nested loop (multiplication table)
+for i in range(1, 4):
+    for j in range(1, 4):
+        print(f"{i} x {j} = {i*j}")
 
-# else with loop
-for x in range(3): print(x)
-else: print("Loop ended without break")</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
+# Loop with else (runs if no break)
+for x in range(3):
+    print(x)
+else:
+    print("Loop ended without break")</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
         <div class="example-output">0: apple
 1: banana
 2: cherry
-1x1=1 ... 3x3=9
-0 1 2
+1 x 1 = 1
+1 x 2 = 2
+1 x 3 = 3
+2 x 1 = 2
+2 x 2 = 4
+2 x 3 = 6
+3 x 1 = 3
+3 x 2 = 6
+3 x 3 = 9
+0
+1
+2
 Loop ended without break</div>
       </div>
 
+      <!-- ========== RANGE ========== -->
       <div class="concept-card">
         <h3 id="range-function">range() – The Loop Counter</h3>
-        <p><code>range(start, stop, step)</code> generates a sequence of numbers.</p>
+        <p>The <strong>range()</strong> function generates a sequence of numbers without storing them all in memory. It's the most common partner of the <code>for</code> loop.</p>
+        <p style="margin-top:0.5rem;"><strong>Syntax:</strong> <code>range(start, stop, step)</code>
+          • <code>start</code> (default 0) – first number.
+          • <code>stop</code> (required) – up to but not including this number.
+          • <code>step</code> (default 1) – difference between each number.
+        </p>
+
         <div class="infographic-grid" style="margin-top:1rem;">
-          <article class="infographic-card" style="border-top-color:#f59e0b;"><div class="infographic-icon">1️⃣</div><h4>range(stop)</h4><p style="font-size:0.85rem;"><code>range(5) → 0,1,2,3,4</code></p></article>
-          <article class="infographic-card" style="border-top-color:#f59e0b;"><div class="infographic-icon">2️⃣</div><h4>range(start,stop)</h4><p style="font-size:0.85rem;"><code>range(2,6) → 2,3,4,5</code></p></article>
-          <article class="infographic-card" style="border-top-color:#f59e0b;"><div class="infographic-icon">3️⃣</div><h4>range(start,stop,step)</h4><p style="font-size:0.85rem;"><code>range(1,10,2) → 1,3,5,7,9</code></p></article>
+          <article class="infographic-card" style="border-top-color:#f59e0b;">
+            <div class="infographic-icon">1️⃣</div>
+            <h4>range(stop)</h4>
+            <p style="font-size:0.85rem;"><code>range(5)</code> → 0,1,2,3,4</p>
+          </article>
+          <article class="infographic-card" style="border-top-color:#f59e0b;">
+            <div class="infographic-icon">2️⃣</div>
+            <h4>range(start, stop)</h4>
+            <p style="font-size:0.85rem;"><code>range(2,6)</code> → 2,3,4,5</p>
+          </article>
+          <article class="infographic-card" style="border-top-color:#f59e0b;">
+            <div class="infographic-icon">3️⃣</div>
+            <h4>range(start, stop, step)</h4>
+            <p style="font-size:0.85rem;"><code>range(1,10,2)</code> → 1,3,5,7,9</p>
+          </article>
         </div>
-        <h4 style="color:var(--accent);margin-top:1.5rem;" id="range-examples">Three flavours in action</h4>
-        <div class="code-block"><pre><code class="language-python"># Case 1: range(stop)
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;">Beginner Example (stop only)</h4>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> range_stop.py</div>
+          <pre class="line-numbers"><code class="language-python"># Print numbers 0 to 3
+for i in range(4):
+    print(i)</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">0<br>1<br>2<br>3</div>
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;">Intermediate Example (start, stop, step)</h4>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> range_all.py</div>
+          <pre class="line-numbers"><code class="language-python"># Case 1: range(stop)
+print("Case 1:")
 for i in range(4): print(i)
-# Case 2: range(start,stop)
-for i in range(10,13): print(i)
-# Case 3: range(start,stop,step)
-for i in range(2,11,2): print(i)
-# negative step (countdown)
-for i in range(5,0,-1): print(i)</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
-        <div class="example-output">Case 1: 0 1 2 3
-Case 2: 10 11 12
-Case 3: 2 4 6 8 10
-Countdown: 5 4 3 2 1</div>
+
+# Case 2: range(start, stop)
+print("Case 2:")
+for i in range(10, 13): print(i)
+
+# Case 3: range(start, stop, step) – even numbers
+print("Case 3:")
+for i in range(2, 11, 2): print(i)
+
+# Negative step (countdown)
+print("Countdown:")
+for i in range(5, 0, -1): print(i)</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">Case 1:<br>0 1 2 3<br>Case 2:<br>10 11 12<br>Case 3:<br>2 4 6 8 10<br>Countdown:<br>5 4 3 2 1</div>
       </div>
 
+      <!-- ========== WHILE LOOP ========== -->
       <div class="concept-card">
-        <h3 id="while-loops">While Loops</h3>
-        <p>A <strong>while loop</strong> repeats as long as a condition is <code>True</code>.</p>
-        <h4 style="color:var(--accent);margin-top:1.5rem;" id="while-beginner">Beginner Examples</h4>
-        <div class="code-block"><pre><code class="language-python">count = 0
+        <h3 id="while-loops">While Loop</h3>
+        <p>A <strong>while loop</strong> keeps repeating as long as a condition remains <code>True</code>. Be cautious – if the condition never becomes <code>False</code>, you get an infinite loop.</p>
+        <p style="margin-top:0.5rem;"><strong>Syntax:</strong> <code>while condition: ...</code></p>
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;">Beginner Example</h4>
+        <p>Simple counter and a guessing game.</p>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> while_basic.py</div>
+          <pre class="line-numbers"><code class="language-python"># Count from 0 to 4
+count = 0
 while count < 5:
     print(count)
     count += 1
 
-# guess the number
+# Guess the number
 secret = 7
 guess = 0
 while guess != secret:
-    guess = int(input("Guess 1-10: "))
-print("You got it!")</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
-        <div class="example-output">0 1 2 3 4
-Guess 1-10: 3 ... 7
-You got it!</div>
+    guess = int(input("Guess the number (1-10): "))
+print("You got it!")</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">0<br>1<br>2<br>3<br>4<br>Guess the number (1-10): 3<br>Guess the number (1-10): 7<br>You got it!</div>
 
-        <h4 style="color:var(--accent);margin-top:1.5rem;" id="while-intermediate">Intermediate Examples</h4>
-        <div class="code-block"><pre><code class="language-python"># break
+        <h4 style="color:var(--accent);margin-top:1.5rem;">Intermediate Example</h4>
+        <p>Using <code>break</code>, <code>continue</code>, and <code>while-else</code>.</p>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> while_intermediate.py</div>
+          <pre class="line-numbers"><code class="language-python"># break – stop early
 i = 1
 while True:
     if i > 5: break
-    print(i); i+=1
+    print(i)
+    i += 1
 
-# continue (skip even)
+# continue – skip even numbers
 num = 0
 while num < 10:
-    num+=1
-    if num%2==0: continue
+    num += 1
+    if num % 2 == 0: continue
     print(num)
 
 # while with else
-x=1
-while x<=3: print(x); x+=1
-else: print("Loop finished")</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
-        <div class="example-output">1 2 3 4 5
-1 3 5 7 9
-1 2 3
-Loop finished</div>
+x = 1
+while x <= 3:
+    print(x)
+    x += 1
+else:
+    print("Loop finished")</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">1<br>2<br>3<br>4<br>5<br>1<br>3<br>5<br>7<br>9<br>1<br>2<br>3<br>Loop finished</div>
+      </div>
+
+      <!-- ========== PRACTICE PROBLEMS (SOLVED) ========== -->
+      <div class="concept-card" id="practice-problems">
+        <h3><i class="fas fa-code"></i> Practice Problems</h3>
+        <p>Strengthen your understanding with these solved DSA‑style problems. Each uses conditions, loops, or both.</p>
+
+        <h4 style="margin-top:1.5rem; color: var(--accent);">🔰 Beginner Level</h4>
+        <!-- Beginner Solved 1 -->
+        <div class="practice-problem">
+          <details>
+            <summary>1. Check If a Number is Prime</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Write a program that takes an integer and prints whether it is prime or not.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">num = int(input("Enter a number: "))
+is_prime = True
+if num > 1:
+    for i in range(2, int(num**0.5)+1):
+        if num % i == 0:
+            is_prime = False
+            break
+    print("Prime" if is_prime else "Not Prime")
+else:
+    print("Not Prime")</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+        <!-- Beginner Solved 2 -->
+        <div class="practice-problem">
+          <details>
+            <summary>2. Sum of First n Natural Numbers</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Ask for a positive integer n and print the sum 1+2+...+n using a loop.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">n = int(input("Enter n: "))
+total = 0
+for i in range(1, n+1):
+    total += i
+print("Sum =", total)</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+        <!-- Beginner Solved 3 -->
+        <div class="practice-problem">
+          <details>
+            <summary>3. Reverse a String (without slicing)</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Input a string and print its reverse character by character using a loop.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">text = input("Enter a string: ")
+rev = ""
+for ch in text:
+    rev = ch + rev
+print("Reversed:", rev)</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <h4 style="margin-top:2rem; color: var(--accent);">⚡ Intermediate Level</h4>
+        <!-- Intermediate Solved 4 -->
+        <div class="practice-problem">
+          <details>
+            <summary>4. Fibonacci Series up to n Terms</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Print the first n terms of the Fibonacci series using a loop.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">n = int(input("How many terms? "))
+a, b = 0, 1
+for _ in range(n):
+    print(a, end=' ')
+    a, b = b, a + b</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+        <!-- Intermediate Solved 5 -->
+        <div class="practice-problem">
+          <details>
+            <summary>5. Count Digits, Letters, and Spaces</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Read a sentence and count digits, alphabets, and spaces using a loop.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">sentence = input("Enter a sentence: ")
+digits = letters = spaces = 0
+for ch in sentence:
+    if ch.isdigit(): digits += 1
+    elif ch.isalpha(): letters += 1
+    elif ch == ' ': spaces += 1
+print(f"Digits: {digits}, Letters: {letters}, Spaces: {spaces}")</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+        <!-- Intermediate Solved 6 -->
+        <div class="practice-problem">
+          <details>
+            <summary>6. Print the Multiplication Table from 1 to 10 (Cleanly)</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Use nested loops to print a beautifully aligned multiplication table from 1 to 10.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">for i in range(1, 11):
+    for j in range(1, 11):
+        print(f"{i*j:4}", end="")
+    print()</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- ========== UNSOLVED EXERCISES ========== -->
+      <div class="concept-card" id="unsolved-exercises">
+        <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
+        <p>Now it's your turn. Solve these on your own – no solution here, but you can refer to the solved examples above if you get stuck.</p>
+
+        <h4 style="margin-top:1.5rem; color: var(--accent);">🔰 Beginner Level</h4>
+        <div class="practice-problem">
+          <details>
+            <summary>1. Print Even Numbers from 1 to 20</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Use a for loop and range to print all even numbers between 1 and 20 inclusive.</p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="practice-problem">
+          <details>
+            <summary>2. Countdown Timer</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Write a while loop that prints a countdown from 10 to 1, then prints "Blast off!".</p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="practice-problem">
+          <details>
+            <summary>3. Grade Calculator</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Input a student's score (0–100) and print the grade: A (≥90), B (≥80), C (≥70), D (≥60), F (below 60) using if‑elif‑else.</p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <h4 style="margin-top:2rem; color: var(--accent);">⚡ Intermediate Level</h4>
+        <div class="practice-problem">
+          <details>
+            <summary>4. Sum of Digits of a Number</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Input an integer and compute the sum of its digits using a while loop (e.g., 123 → 6).</p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="practice-problem">
+          <details>
+            <summary>5. Print a Right‑Angled Triangle Pattern</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Use nested loops to print a right‑angled triangle of stars with n rows (e.g., n=4 gives *,**...</p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="practice-problem">
+          <details>
+            <summary>6. ATM PIN Validation</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Set a hardcoded PIN (e.g., 1234). Allow a user 3 attempts to enter the correct PIN. After each wrong attempt print "Wrong PIN. Try again." If 3 attempts fail, print "Card blocked."</p>
+              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
+                <i>Write your code here – solution not shown.</i>
+              </div>
+            </div>
+          </details>
+        </div>
       </div>
     </div>
   </main>
@@ -236,14 +545,13 @@ Loop finished</div>
     <h4>On This Page</h4>
     <ul>
       <li><a href="#if-elif-else">If‑Elif‑Else</a></li>
-      <li><a href="#for-loops">For Loops</a></li>
+      <li><a href="#for-loops">For Loop</a></li>
       <li><a href="#for-beginner">  └ Beginner</a></li>
       <li><a href="#for-intermediate">  └ Intermediate</a></li>
       <li><a href="#range-function">range()</a></li>
-      <li><a href="#range-examples">  └ Examples</a></li>
-      <li><a href="#while-loops">While Loops</a></li>
-      <li><a href="#while-beginner">  └ Beginner</a></li>
-      <li><a href="#while-intermediate">  └ Intermediate</a></li>
+      <li><a href="#while-loops">While Loop</a></li>
+      <li><a href="#practice-problems">Practice Problems</a></li>
+      <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
     </ul>
   </aside>
 </div>
@@ -267,9 +575,55 @@ Loop finished</div>
 </footer>
 
 <script>
-  function copyCode(button) { /* same as intro page */ }
-  // Mobile menu
-  // Scroll spy similar to intro page, with IDs from the tracker
+  function copyCode(button) {
+    const pre = button.closest('.code-block').querySelector('pre');
+    const code = pre.textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      button.classList.add('copied');
+      const icon = button.querySelector('i');
+      icon.classList.remove('fa-copy');
+      icon.classList.add('fa-check');
+      setTimeout(() => {
+        button.classList.remove('copied');
+        icon.classList.remove('fa-check');
+        icon.classList.add('fa-copy');
+      }, 2000);
+    });
+  }
+
+  document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('active');
+    this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+  });
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('active');
+      document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll spy (page tracker)
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      const link = document.querySelector(`.page-tracker a[href="#${id}"]`);
+      if (link) {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.page-tracker a').forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+  document.querySelectorAll('.concept-card h3, .concept-card h4').forEach(heading => {
+    if (heading.id) observer.observe(heading);
+  });
+  const practiceCard = document.getElementById('practice-problems');
+  if (practiceCard) observer.observe(practiceCard);
+  const unsolvedCard = document.getElementById('unsolved-exercises');
+  if (unsolvedCard) observer.observe(unsolvedCard);
 </script>
 </body>
 </html>
