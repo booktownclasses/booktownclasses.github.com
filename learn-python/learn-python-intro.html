@@ -13,7 +13,7 @@
   <meta property="og:title" content="Learn Python+ - Python Tutorial | BookTown Classes" />
   <meta property="og:description" content="Master Python fundamentals with clear, practical tutorials and code examples." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#2563eb" />
+  <meta name="theme-color" content="#3b82f6" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
@@ -28,7 +28,7 @@
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
 
   <!-- Unified theme -->
-  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="../css/theme.css">
 
   <!-- Page-specific styles -->
   <style>
@@ -322,20 +322,27 @@
 </head>
 <body>
 
+<!-- Floating background shapes (same as English page) -->
+<div class="floating-shapes">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+</div>
+
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
     <i class="fas fa-bars"></i>
   </button>
   <div class="nav-links" id="navLinks" role="menubar">
-    <a href="index.html" role="menuitem">Home</a>
-    <a href="coding.html" role="menuitem">Coding</a>
-    <a href="class10.html" role="menuitem">Class 10</a>
-    <a href="class10-testseries.html" role="menuitem">Test Series</a>
-    <a href="english.html" role="menuitem">English</a>
-    <a href="learn-python.html" class="active" role="menuitem" aria-current="page">Learn Python+</a>
-    <a href="books-notes.html" role="menuitem">Books & Notes</a>
-    <a href="index.html#contact" class="btn-cta-small" role="button">Join Now</a>
+    <a href="/index.html" role="menuitem">Home</a>
+    <a href="/coding/coding.html" role="menuitem">Coding</a>
+    <a href="/class-10/class10.html" role="menuitem">Class 10</a>
+    <a href="/class-10/class10-testseries.html" role="menuitem">Test Series</a>
+    <a href="/english.html" role="menuitem">English</a>
+    <a href="/learn-python/learn-python-intro.html" class="active" role="menuitem" aria-current="page">Learn Python+</a>
+    <a href="/info-center/books-notes.html" role="menuitem">Books & Notes</a>
+    <a href="#contact" class="btn-cta-small" role="button">Join Now</a>
   </div>
 </nav>
 
@@ -974,6 +981,11 @@ print(set1.difference(set2))   # elements only in set1</code></pre>
   </main>
 </div>
 
+<!-- WhatsApp Floating Button (matching English page) -->
+<a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+</a>
+
 <footer>
   <div class="footer-links">
     <a href="index.html">Home</a>
@@ -984,6 +996,7 @@ print(set1.difference(set2))   # elements only in set1</code></pre>
     <a href="books-notes.html">Books & Notes</a>
   </div>
   <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds.</p>
+  <p>Online & Offline | Small batches | Expert faculty</p>
 </footer>
 
 <script>
