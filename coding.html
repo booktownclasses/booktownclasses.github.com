@@ -202,6 +202,8 @@
     <a href="class10.html" role="menuitem">Class 10</a>
     <a href="class10-testseries.html" role="menuitem">Test Series</a>
     <a href="english.html" role="menuitem">English</a>
+    <a href="learn-python.html" role="menuitem">Learn Python+</a>
+    <a href="books-notes.html" role="menuitem">Books & Notes</a>
     <a href="index.html#contact" class="btn-cta-small" role="button">Join Now</a>
   </div>
 </nav>
@@ -218,6 +220,9 @@
         </button>
         <button class="tab-btn" onclick="switchTab('6month')" id="btn-6month" style="justify-content: flex-start; padding: 1rem 1.5rem;">
           <i class="fas fa-crown"></i> 6-Month Professional Program
+        </button>
+        <button class="tab-btn" onclick="switchTab('dsa')" id="btn-dsa" style="justify-content: flex-start; padding: 1rem 1.5rem;">
+          <i class="fas fa-code"></i> Easy DSA Questions
         </button>
       </div>
     </div>
@@ -702,6 +707,114 @@
     </section>
   </div><!-- End of content-6month -->
 
+  <!-- DSA Questions Content -->
+  <div id="content-dsa" class="tab-content">
+    <section role="region" aria-label="Easy DSA practice questions">
+      <h2 class="section-title">💻 Easy DSA Questions – Build Your Foundation</h2>
+      <p style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 2rem;">Practice essential data structure problems to strengthen your problem-solving skills before advanced DSA.</p>
+
+      <!-- Search and Filter -->
+      <div style="background: var(--surface); padding: 1.5rem; border-radius: var(--radius); margin-bottom: 2rem; box-shadow: var(--shadow);">
+        <input type="text" id="dsa-search" placeholder="🔍 Search questions..." style="width: 100%; padding: 0.75rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; background: white; color: var(--text);" onkeyup="filterDSAQuestions()">
+      </div>
+
+      <!-- DSA Questions Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+        
+        <!-- Question 1 -->
+        <div class="dsa-card" style="background: var(--surface); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); border-left: 5px solid #3b82f6; transition: transform 0.3s;">
+          <h3 style="color: #3b82f6; margin: 0 0 0.5rem; font-size: 1.1rem;">1. Two Sum</h3>
+          <p style="color: #64748b; margin: 0.5rem 0; font-size: 0.9rem;"><strong>Difficulty:</strong> <span style="background: #dbeafe; color: #1e40af; padding: 0.2rem 0.5rem; border-radius: 4px;">Easy</span></p>
+          <p style="margin: 1rem 0; color: var(--text-light);">Given an array of integers and a target, find two numbers that add up to the target.</p>
+          <div style="background: #f0f9ff; padding: 1rem; border-radius: 8px; margin: 1rem 0; font-family: monospace; font-size: 0.85rem; color: #1e40af;">
+            Input: [2,7,11,15], target = 9<br>
+            Output: [0,1]
+          </div>
+          <a href="#" onclick="toggleDSASolution(this)" style="color: #3b82f6; text-decoration: none; font-weight: 600;">➡️ See Solution</a>
+          <div class="dsa-solution" style="display: none; margin-top: 1rem; background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem;"><code>def twoSum(arr, target):\n    seen = {}\n    for i, num in enumerate(arr):\n        complement = target - num\n        if complement in seen:\n            return [seen[complement], i]\n        seen[num] = i\n    return []</code></div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="dsa-card" style="background: var(--surface); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); border-left: 5px solid #3b82f6; transition: transform 0.3s;">
+          <h3 style="color: #3b82f6; margin: 0 0 0.5rem; font-size: 1.1rem;">2. Contains Duplicate</h3>
+          <p style="color: #64748b; margin: 0.5rem 0; font-size: 0.9rem;"><strong>Difficulty:</strong> <span style="background: #dbeafe; color: #1e40af; padding: 0.2rem 0.5rem; border-radius: 4px;">Easy</span></p>
+          <p style="margin: 1rem 0; color: var(--text-light);">Check if an array contains any duplicate elements.</p>
+          <div style="background: #f0f9ff; padding: 1rem; border-radius: 8px; margin: 1rem 0; font-family: monospace; font-size: 0.85rem; color: #1e40af;">
+            Input: [1,2,3,1]<br>
+            Output: True
+          </div>
+          <a href="#" onclick="toggleDSASolution(this)" style="color: #3b82f6; text-decoration: none; font-weight: 600;">➡️ See Solution</a>
+          <div class="dsa-solution" style="display: none; margin-top: 1rem; background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem;"><code>def containsDuplicate(arr):\n    return len(arr) != len(set(arr))</code></div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="dsa-card" style="background: var(--surface); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); border-left: 5px solid #3b82f6; transition: transform 0.3s;">
+          <h3 style="color: #3b82f6; margin: 0 0 0.5rem; font-size: 1.1rem;">3. Valid Anagram</h3>
+          <p style="color: #64748b; margin: 0.5rem 0; font-size: 0.9rem;"><strong>Difficulty:</strong> <span style="background: #dbeafe; color: #1e40af; padding: 0.2rem 0.5rem; border-radius: 4px;">Easy</span></p>
+          <p style="margin: 1rem 0; color: var(--text-light);">Check if two strings are anagrams of each other.</p>
+          <div style="background: #f0f9ff; padding: 1rem; border-radius: 8px; margin: 1rem 0; font-family: monospace; font-size: 0.85rem; color: #1e40af;">
+            Input: "listen", "silent"<br>
+            Output: True
+          </div>
+          <a href="#" onclick="toggleDSASolution(this)" style="color: #3b82f6; text-decoration: none; font-weight: 600;">➡️ See Solution</a>
+          <div class="dsa-solution" style="display: none; margin-top: 1rem; background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem;"><code>def isAnagram(s, t):\n    return sorted(s) == sorted(t)</code></div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="dsa-card" style="background: var(--surface); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); border-left: 5px solid #8b5cf6; transition: transform 0.3s;">
+          <h3 style="color: #8b5cf6; margin: 0 0 0.5rem; font-size: 1.1rem;">4. Majority Element</h3>
+          <p style="color: #64748b; margin: 0.5rem 0; font-size: 0.9rem;"><strong>Difficulty:</strong> <span style="background: #f3e8ff; color: #5b21b6; padding: 0.2rem 0.5rem; border-radius: 4px;">Medium</span></p>
+          <p style="margin: 1rem 0; color: var(--text-light);">Find the element that appears more than n/2 times.</p>
+          <div style="background: #f3e8ff; padding: 1rem; border-radius: 8px; margin: 1rem 0; font-family: monospace; font-size: 0.85rem; color: #5b21b6;">
+            Input: [3,2,3]<br>
+            Output: 3
+          </div>
+          <a href="#" onclick="toggleDSASolution(this)" style="color: #8b5cf6; text-decoration: none; font-weight: 600;">➡️ See Solution</a>
+          <div class="dsa-solution" style="display: none; margin-top: 1rem; background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem;"><code>def majorityElement(arr):\n    count = {}\n    for num in arr:\n        count[num] = count.get(num, 0) + 1\n    return max(count, key=count.get)</code></div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="dsa-card" style="background: var(--surface); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); border-left: 5px solid #8b5cf6; transition: transform 0.3s;">
+          <h3 style="color: #8b5cf6; margin: 0 0 0.5rem; font-size: 1.1rem;">5. Merge Sorted Arrays</h3>
+          <p style="color: #64748b; margin: 0.5rem 0; font-size: 0.9rem;"><strong>Difficulty:</strong> <span style="background: #f3e8ff; color: #5b21b6; padding: 0.2rem 0.5rem; border-radius: 4px;">Medium</span></p>
+          <p style="margin: 1rem 0; color: var(--text-light);">Merge two sorted arrays into a single sorted array.</p>
+          <div style="background: #f3e8ff; padding: 1rem; border-radius: 8px; margin: 1rem 0; font-family: monospace; font-size: 0.85rem; color: #5b21b6;">
+            Input: [1,3,5], [2,4,6]<br>
+            Output: [1,2,3,4,5,6]
+          </div>
+          <a href="#" onclick="toggleDSASolution(this)" style="color: #8b5cf6; text-decoration: none; font-weight: 600;">➡️ See Solution</a>
+          <div class="dsa-solution" style="display: none; margin-top: 1rem; background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem;"><code>def mergeSorted(arr1, arr2):\n    return sorted(arr1 + arr2)</code></div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="dsa-card" style="background: var(--surface); padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); border-left: 5px solid #8b5cf6; transition: transform 0.3s;">
+          <h3 style="color: #8b5cf6; margin: 0 0 0.5rem; font-size: 1.1rem;">6. Reverse String</h3>
+          <p style="color: #64748b; margin: 0.5rem 0; font-size: 0.9rem;"><strong>Difficulty:</strong> <span style="background: #f3e8ff; color: #5b21b6; padding: 0.2rem 0.5rem; border-radius: 4px;">Medium</span></p>
+          <p style="margin: 1rem 0; color: var(--text-light);">Reverse a string in place (modify the list).</p>
+          <div style="background: #f3e8ff; padding: 1rem; border-radius: 8px; margin: 1rem 0; font-family: monospace; font-size: 0.85rem; color: #5b21b6;">
+            Input: "hello"<br>
+            Output: "olleh"
+          </div>
+          <a href="#" onclick="toggleDSASolution(this)" style="color: #8b5cf6; text-decoration: none; font-weight: 600;">➡️ See Solution</a>
+          <div class="dsa-solution" style="display: none; margin-top: 1rem; background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem;"><code>def reverseString(s):\n    return s[::-1]</code></div>
+        </div>
+
+      </div>
+
+      <!-- Practice Tips -->
+      <div style="background: linear-gradient(135deg, #dbeafe, #e0f2fe); padding: 2rem; border-radius: var(--radius); margin-top: 2rem; border-left: 5px solid #3b82f6;">
+        <h3 style="color: #1e40af; margin-top: 0;"><i class="fas fa-lightbulb" aria-hidden="true"></i> 💡 Practice Tips</h3>
+        <ul style="color: #1e40af; line-height: 1.8;">
+          <li><strong>Start Simple:</strong> Begin with Easy questions to build confidence</li>
+          <li><strong>Solve Without Looking:</strong> Try to solve before checking the solution</li>
+          <li><strong>Understand Complexity:</strong> Analyze time & space complexity of your solutions</li>
+          <li><strong>Use Multiple Approaches:</strong> Find both brute force and optimized solutions</li>
+          <li><strong>Practice Regularly:</strong> Solve at least 2-3 questions daily for consistency</li>
+        </ul>
+      </div>
+    </section>
+  </div><!-- End of content-dsa -->
+
   <!-- Faculty & Instructors Section -->
   <section role="region" aria-label="Course instructor">
     <h2 class="section-title">👨‍🏫 Your Instructor</h2>
@@ -780,6 +893,7 @@
     <a href="class10.html">Class 10</a>
     <a href="class10-testseries.html">Test Series</a>
     <a href="english.html">English</a>
+    <a href="books-notes.html">Books & Notes</a>
     <a href="index.html#contact">Contact</a>
   </nav>
   <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds. ✨</p>
@@ -795,11 +909,40 @@
 <script src="js/nav.js"></script>
 <script>
   // Tab switching
+  // DSA Solutions toggle
+  function toggleDSASolution(element) {
+    event.preventDefault();
+    const solution = element.nextElementSibling;
+    if (solution) {
+      solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
+      element.textContent = solution.style.display === 'none' ? '➡️ See Solution' : '⬅️ Hide Solution';
+    }
+  }
+
+  // DSA Search filter
+  function filterDSAQuestions() {
+    const searchInput = document.getElementById('dsa-search');
+    if (!searchInput) return;
+    const filter = searchInput.value.toLowerCase();
+    const cards = document.querySelectorAll('.dsa-card');
+    cards.forEach(card => {
+      const title = card.querySelector('h3').textContent.toLowerCase();
+      const description = card.querySelector('p').textContent.toLowerCase();
+      if (title.includes(filter) || description.includes(filter)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
   function switchTab(tabName) {
     document.getElementById('content-3month').classList.remove('active');
     document.getElementById('content-6month').classList.remove('active');
+    document.getElementById('content-dsa').classList.remove('active');
     document.getElementById('btn-3month').classList.remove('active');
     document.getElementById('btn-6month').classList.remove('active');
+    document.getElementById('btn-dsa').classList.remove('active');
     document.getElementById('content-' + tabName).classList.add('active');
     document.getElementById('btn-' + tabName).classList.add('active');
     document.getElementById('content-' + tabName).scrollIntoView({ behavior: 'smooth', block: 'start' });
