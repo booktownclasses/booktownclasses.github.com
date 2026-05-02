@@ -17,21 +17,26 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+  <!-- Fonts & Prism -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
   <link rel="stylesheet" href="../css/theme.css" />
 
   <style>
-    /* same layout styles as intro page */
     .main-container { display: grid; grid-template-columns: 280px 1fr 200px; gap: 0; min-height: calc(100vh - 72px); }
     .sidebar { background: var(--surface); border-right: 1px solid #e2e8f0; padding: 2rem 0; overflow-y: auto; position: sticky; top: 72px; height: calc(100vh - 72px); }
     .sidebar-section { padding: 0 1rem; margin-bottom: 1.5rem; }
-    .sidebar-title { font-weight: 700; color: var(--accent); padding: 1rem; cursor: default; display: flex; align-items: center; gap: 0.5rem; user-select: none; border-radius: var(--radius-sm); font-family: var(--font-heading); }
+    .sidebar-title { font-weight: 700; color: var(--accent); padding: 1rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; user-select: none; transition: background var(--transition); border-radius: var(--radius-sm); font-family: var(--font-heading); }
+    .sidebar-title:hover { background: #e0e7ff; }
+    .sidebar-title.active { background: #e0e7ff; color: var(--accent-dark); }
     .sidebar-item { padding: 0.75rem 1rem; margin-left: 1rem; color: var(--text-light); transition: all var(--transition); border-left: 3px solid transparent; display: block; border-radius: var(--radius-sm); font-weight: 500; text-decoration: none; }
     .sidebar-item:hover, .sidebar-item.active { color: var(--accent); background: #f0f4ff; border-left-color: var(--accent); padding-left: 1.25rem; }
+
     .content { padding: 3rem 2rem; overflow-y: auto; }
     .content-section { max-width: 800px; margin: 0 auto; }
     .section-title { font-size: 2rem; color: var(--text); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading); }
@@ -39,16 +44,27 @@
     .concept-card { background: var(--surface); padding: 2rem; border-radius: var(--radius); margin-bottom: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--accent); transition: all var(--transition); }
     .concept-card:hover { box-shadow: var(--shadow-lg); }
     .concept-card h3 { color: var(--accent); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.3rem; }
-    .code-block { position: relative; background: #1e293b; border-radius: var(--radius-sm); margin: 1.5rem 0; border-left: 4px solid var(--accent); overflow: hidden; }
-    .code-block pre { margin: 0; padding: 1.5rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.6; }
-    .code-block pre code { font-family: 'Fira Code', 'Courier New', monospace; white-space: pre; word-spacing: normal; word-break: normal; word-wrap: normal; tab-size: 4; hyphens: none; }
-    .copy-btn { position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(255,255,255,0.1); border: none; color: #cbd5e1; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(4px); opacity: 0; }
+
+    /* Professional code block */
+    .code-block { background: #1e293b; border-radius: var(--radius-sm); margin: 1.5rem 0; border-left: 4px solid var(--accent); overflow: hidden; position: relative; }
+    .code-block-header { background: #0f172a; color: #94a3b8; font-size: 0.8rem; padding: 0.5rem 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-family: 'Fira Code', monospace; border-bottom: 1px solid #334155; }
+    .code-block-header i { color: #ef4444; font-size: 0.8rem; }
+    .code-block pre { margin: 0; padding: 1.5rem 1.5rem 1.5rem 3.5rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.6; background: #1e293b; }
+    .code-block pre.line-numbers { padding-left: 3.5rem; }
+    .copy-btn { position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(255,255,255,0.1); border: none; color: #cbd5e1; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(4px); opacity: 0; z-index: 5; }
     .code-block:hover .copy-btn { opacity: 1; }
     .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
     .copy-btn.copied { background: #22c55e; color: #fff; }
+
     .example-output { background: #f0fdf4; color: #166534; padding: 1.5rem; border-radius: var(--radius-sm); margin-top: 0.5rem; border-left: 3px solid #22c55e; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; white-space: pre-line; }
 
-    /* right tracker */
+    .infographic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .infographic-card { padding: 2rem; border-radius: var(--radius); text-align: center; box-shadow: var(--shadow); transition: all var(--transition); border-top: 4px solid var(--accent); background: var(--surface); }
+    .infographic-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .infographic-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+    .infographic-card h3 { color: var(--accent); margin-bottom: 0.5rem; font-family: var(--font-heading); }
+
+    /* Right page tracker */
     .page-tracker { position: sticky; top: 90px; height: fit-content; padding: 1.5rem 1rem; background: var(--surface); border-left: 1px solid #e2e8f0; margin-top: 2rem; }
     .page-tracker h4 { font-family: var(--font-heading); color: var(--accent); margin-bottom: 0.8rem; font-size: 0.9rem; }
     .page-tracker ul { list-style: none; padding: 0; margin: 0; }
@@ -56,6 +72,12 @@
     .page-tracker a { text-decoration: none; color: var(--text-light); font-size: 0.85rem; transition: color 0.2s; display: block; padding-left: 8px; border-left: 2px solid transparent; }
     .page-tracker a.active { color: var(--accent); font-weight: 600; border-left-color: var(--accent); }
     .page-tracker a:hover { color: var(--accent); }
+
+    /* Practice problems */
+    .practice-problem { margin: 1.2rem 0; }
+    .practice-problem summary { font-weight: 600; color: var(--accent); cursor: pointer; padding: 0.6rem 1rem; background: #f1f5f9; border-radius: 6px; transition: background 0.2s; }
+    .practice-problem summary:hover { background: #e2e8f0; }
+    .practice-problem .solution { margin-top: 0.8rem; padding: 1rem; background: #f8fafc; border-left: 3px solid var(--accent); border-radius: 4px; }
 
     footer { background: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 2rem; margin-top: 3rem; }
     .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
@@ -101,70 +123,317 @@
   <main class="content">
     <div class="content-section">
       <h1 class="section-title"><i class="fas fa-layer-group"></i> List, Tuples, Set</h1>
-      <div class="section-intro"><p><strong>Collection data types:</strong> Store multiple items with different rules.</p></div>
+      <div class="section-intro"><p><strong>Collection data types:</strong> Store multiple items with different rules. Each type is optimized for a specific use case.</p></div>
 
+      <!-- Quick summary infographics -->
+      <div class="infographic-grid">
+        <article class="infographic-card"><div class="infographic-icon">📋</div><h3>List</h3><p>Mutable, ordered, allows duplicates</p></article>
+        <article class="infographic-card"><div class="infographic-icon">📦</div><h3>Tuple</h3><p>Immutable, ordered, allows duplicates</p></article>
+        <article class="infographic-card"><div class="infographic-icon">🔢</div><h3>Set</h3><p>Mutable, unordered, no duplicates</p></article>
+      </div>
+
+      <!-- ========== LISTS ========== -->
       <div class="concept-card">
-        <h3 id="lists">Lists (Mutable)</h3>
-        <div class="code-block"><pre><code class="language-python">fruits = ["apple", "banana", "cherry"]
-print(fruits[0])      # first
-print(fruits[-1])     # last
-fruits.append("date")         # add
-fruits.remove("banana")       # remove
-fruits[0] = "apricot"         # change
-fruits.insert(1, "blueberry") # insert
-print(len(fruits))
-print("apple" in fruits)</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
+        <h3 id="lists">Lists – Mutable Ordered Collection</h3>
+        <p>A <strong>list</strong> is the most versatile Python data structure. It can hold items of different types and you can change it after creation.</p>
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;">Creating & Accessing</h4>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> list_basics.py</div>
+          <pre class="line-numbers"><code class="language-python">fruits = ["apple", "banana", "cherry"]
+print(fruits[0])      # first element
+print(fruits[-1])     # last element
+print(fruits[1:3])    # slicing ['banana', 'cherry']</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
         <div class="example-output">apple
 cherry
-True</div>
+['banana', 'cherry']</div>
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;">Common Operations</h4>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> list_operations.py</div>
+          <pre class="line-numbers"><code class="language-python">nums = [2,5,1,8,3]
+
+# Add / Remove
+nums.append(9)        # add to end → [2,5,1,8,3,9]
+nums.insert(1, 4)     # insert at index 1 → [2,4,5,1,8,3,9]
+nums.remove(1)        # remove first occurrence of 1
+popped = nums.pop(2)  # remove & return item at index 2
+
+# Sorting & Searching
+nums.sort()           # in-place sort
+nums.reverse()        # reverse order
+idx = nums.index(5)   # find index of 5 (first)
+cnt = nums.count(4)   # count occurrences of 4
+
+# Copy
+copy_list = nums.copy()  # shallow copy
+print(nums)
+print("Pop:", popped, "| Index of 5:", idx)</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">[2,3,4,5,8,9]
+Pop: 1 | Index of 5: 3</div>
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;">List Comprehension (Quick creation)</h4>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> list_comprehension.py</div>
+          <pre class="line-numbers"><code class="language-python">squares = [x**2 for x in range(1,6)]  # [1,4,9,16,25]
+evens = [x for x in range(10) if x%2==0]
+print(squares)
+print(evens)</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">[1, 4, 9, 16, 25]
+[0, 2, 4, 6, 8]</div>
       </div>
 
+      <!-- ========== TUPLES ========== -->
       <div class="concept-card">
-        <h3 id="tuples">Tuples (Immutable)</h3>
-        <div class="code-block"><pre><code class="language-python">colors = ("red", "green", "blue")
-print(colors[0], colors[-1])
-print(len(colors))
-print("red" in colors)
-r, g, b = colors
-print(r, g, b)
-# colors[0] = "yellow"  # ❌ error</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
-        <div class="example-output">red blue
+        <h3 id="tuples">Tuples – Immutable Ordered Collection</h3>
+        <p>A <strong>tuple</strong> is like a list, but <em>cannot be modified</em> after creation. Use it for fixed data (coordinates, days of week).</p>
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;">Creating & Accessing</h4>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> tuple_basics.py</div>
+          <pre class="line-numbers"><code class="language-python">colors = ("red", "green", "blue")
+print(colors[0])      # red
+print(colors[-1])     # blue
+# Tuples support slicing just like lists
+print(colors[:2])     # ('red', 'green')</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">red
+blue
+('red', 'green')</div>
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;">Operations & Immutability</h4>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> tuple_ops.py</div>
+          <pre class="line-numbers"><code class="language-python">nums = (5,2,5,8,5)
+print(len(nums))       # length → 5
+print(nums.count(5))   # count → 3
+print(nums.index(8))   # index of 8 → 3
+
+# Unpacking
+a, b, c = (1,2,3)
+print(a,b,c)
+
+# Cannot modify → error
+# nums[0] = 10   ❌ TypeError</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">5
 3
-True
-red green blue</div>
+3
+1 2 3</div>
       </div>
 
+      <!-- ========== SETS ========== -->
       <div class="concept-card">
-        <h3 id="sets">Sets (Unique Values)</h3>
-        <div class="code-block"><pre><code class="language-python">numbers = {1,2,3,3,4,5,5}
-print(numbers)          # duplicates removed
-numbers.add(6)
-numbers.remove(1)
-set1 = {1,2,3}; set2 = {3,4,5}
-print(set1.union(set2))
-print(set1.intersection(set2))
-print(set1.difference(set2))</code></pre><button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button></div>
-        <div class="example-output">{1,2,3,4,5}
-{1,2,3,4,5,6}
-{3}
-{1,2}</div>
+        <h3 id="sets">Sets – Mutable Unordered Unique Collection</h3>
+        <p>A <strong>set</strong> stores distinct values with no duplicates. Ideal for membership tests, removing duplicates, and mathematical operations.</p>
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;">Creating & Basic Operations</h4>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> set_basics.py</div>
+          <pre class="line-numbers"><code class="language-python">nums = {1,2,3,3,4,5,5}   # duplicates removed automatically
+print(nums)               # {1,2,3,4,5}
+
+nums.add(6)               # add element
+nums.remove(1)            # remove (error if not present)
+nums.discard(10)          # removes if exists, no error
+popped = nums.pop()       # removes a random element
+
+print(len(nums), nums)</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">{1, 2, 3, 4, 5}
+4 {2, 3, 4, 5, 6}</div>
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;">Set Operations (Math-like)</h4>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> set_operations.py</div>
+          <pre class="line-numbers"><code class="language-python">a = {1,2,3,4}
+b = {3,4,5,6}
+
+print(a.union(b))               # {1,2,3,4,5,6}
+print(a.intersection(b))        # {3,4}
+print(a.difference(b))          # {1,2}
+print(b.difference(a))          # {5,6}
+print(a.symmetric_difference(b))# {1,2,5,6}</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">{1,2,3,4,5,6}
+{3,4}
+{1,2}
+{5,6}
+{1,2,5,6}</div>
       </div>
 
-      <div class="concept-card">
-        <h3 id="comparison">Comparison Table</h3>
+      <!-- ========== COMPARISON TABLE ========== -->
+      <div class="concept-card" id="comparison">
+        <h3>Comparison Table</h3>
         <table style="width:100%;border-collapse:collapse;margin-top:1rem;">
           <thead><tr style="background:#e0e7ff;border-bottom:2px solid var(--accent);"><th>Feature</th><th>List</th><th>Tuple</th><th>Set</th></tr></thead>
           <tbody>
             <tr><td>Ordered</td><td>✓</td><td>✓</td><td>✗</td></tr>
             <tr><td>Mutable</td><td>✓</td><td>✗</td><td>✓</td></tr>
-            <tr><td>Duplicates</td><td>✓</td><td>✓</td><td>✗</td></tr>
-            <tr><td>Indexed</td><td>✓</td><td>✓</td><td>✗</td></tr>
+            <tr><td>Allows Duplicates</td><td>✓</td><td>✓</td><td>✗</td></tr>
+            <tr><td>Indexed / Sliceable</td><td>✓</td><td>✓</td><td>✗</td></tr>
+            <tr><td>Membership (<code>in</code>)</td><td>✓ (slow for large)</td><td>✓ (slow)</td><td>✓ (fast)</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <!-- ========== SOLVED PRACTICE PROBLEMS ========== -->
+      <div class="concept-card" id="practice-problems">
+        <h3><i class="fas fa-code"></i> Practice Problems (Solved)</h3>
+
+        <!-- Beginner -->
+        <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner Level</h4>
+        <div class="practice-problem">
+          <details>
+            <summary>1. Find the Maximum Element in a List</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Given a list of numbers, find and print the largest number without using <code>max()</code>.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">nums = [4, 12, 7, 19, 3, 5]
+max_val = nums[0]
+for n in nums:
+    if n > max_val:
+        max_val = n
+print("Maximum:", max_val)</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="practice-problem">
+          <details>
+            <summary>2. Remove Duplicates from a List (Preserve Order)</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Remove duplicate values while keeping the original order intact.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">items = [1,2,3,2,4,5,1]
+seen = []
+for x in items:
+    if x not in seen:
+        seen.append(x)
+print(seen)</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="practice-problem">
+          <details>
+            <summary>3. Count Specific Element in a Tuple</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Count how many times a given value appears in a tuple (without <code>.count()</code>).</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">data = (5,3,8,5,9,5,2)
+target = 5
+count = 0
+for x in data:
+    if x == target:
+        count += 1
+print(f"{target} appears {count} times")</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Intermediate -->
+        <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate Level</h4>
+        <div class="practice-problem">
+          <details>
+            <summary>4. Merge Two Sorted Lists into One Sorted List</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Given two sorted lists, create a new sorted list containing all elements (without <code>sort()</code>).</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">a = [1,4,6]
+b = [2,3,5]
+merged = []
+i = j = 0
+while i < len(a) and j < len(b):
+    if a[i] < b[j]:
+        merged.append(a[i]); i+=1
+    else:
+        merged.append(b[j]); j+=1
+merged.extend(a[i:])
+merged.extend(b[j:])
+print(merged)</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="practice-problem">
+          <details>
+            <summary>5. Find Common Elements in Two Sets</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Using sets, find and display the intersection of two sets.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">set1 = {"apple", "banana", "cherry"}
+set2 = {"banana", "date", "cherry"}
+common = set1.intersection(set2)
+print("Common:", common)</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="practice-problem">
+          <details>
+            <summary>6. Convert List of Tuples to Dictionary</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Given a list of (key, value) tuples, create a dictionary for fast lookups.</p>
+              <div class="code-block">
+                <pre class="line-numbers"><code class="language-python">pairs = [("name","Aarav"), ("grade",8), ("marks",84.5)]
+student = dict(pairs)
+print(student)
+print(student["name"])</code></pre>
+                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- ========== UNSOLVED EXERCISES ========== -->
+      <div class="concept-card" id="unsolved-exercises">
+        <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
+        <p>Challenge yourself with these problems. No solutions are provided – but you can use the solved examples above for hints.</p>
+
+        <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner Level</h4>
+        <div class="practice-problem">
+          <details><summary>1. Sum of All Numbers in a List</summary><div class="solution"><p>Write code to calculate the total sum of numbers in a list without using <code>sum()</code>.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details>
+        </div>
+        <div class="practice-problem">
+          <details><summary>2. Reverse a List Without Using <code>reverse()</code></summary><div class="solution"><p>Create a new list that is the reverse of the given list.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details>
+        </div>
+        <div class="practice-problem">
+          <details><summary>3. Check if a Tuple is Empty</summary><div class="solution"><p>Write a program that checks whether a tuple is empty and prints an appropriate message.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details>
+        </div>
+
+        <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate Level</h4>
+        <div class="practice-problem">
+          <details><summary>4. Flatten a Nested List</summary><div class="solution"><p>Given a nested list like <code>[[1,2], [3,4,5], [6]]</code>, produce a flat list <code>[1,2,3,4,5,6]</code> without using external libraries.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details>
+        </div>
+        <div class="practice-problem">
+          <details><summary>5. Symmetric Difference of Two Sets</summary><div class="solution"><p>Without using the <code>^</code> operator, compute the symmetric difference of two sets (elements in either set but not both).</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details>
+        </div>
+        <div class="practice-problem">
+          <details><summary>6. Sort a List of Tuples by Second Element</summary><div class="solution"><p>Given <code>[(2, 'b'), (1, 'a'), (3, 'c')]</code>, sort the list by the first element of each tuple.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details>
+        </div>
       </div>
     </div>
   </main>
 
+  <!-- Right Page Tracker -->
   <aside class="page-tracker" id="pageTracker">
     <h4>On This Page</h4>
     <ul>
@@ -172,6 +441,8 @@ print(set1.difference(set2))</code></pre><button class="copy-btn" onclick="copyC
       <li><a href="#tuples">Tuples</a></li>
       <li><a href="#sets">Sets</a></li>
       <li><a href="#comparison">Comparison Table</a></li>
+      <li><a href="#practice-problems">Practice Problems</a></li>
+      <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
     </ul>
   </aside>
 </div>
@@ -195,8 +466,55 @@ print(set1.difference(set2))</code></pre><button class="copy-btn" onclick="copyC
 </footer>
 
 <script>
-  function copyCode(button) { /* same as before */ }
-  // Mobile menu & scroll spy (observer on elements with IDs matching tracker links)
+  function copyCode(button) {
+    const pre = button.closest('.code-block').querySelector('pre');
+    const code = pre.textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      button.classList.add('copied');
+      const icon = button.querySelector('i');
+      icon.classList.remove('fa-copy');
+      icon.classList.add('fa-check');
+      setTimeout(() => {
+        button.classList.remove('copied');
+        icon.classList.remove('fa-check');
+        icon.classList.add('fa-copy');
+      }, 2000);
+    });
+  }
+
+  document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('active');
+    this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+  });
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('active');
+      document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll spy (page tracker)
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      const link = document.querySelector(`.page-tracker a[href="#${id}"]`);
+      if (link) {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.page-tracker a').forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+  document.querySelectorAll('.concept-card h3, .concept-card h4').forEach(heading => {
+    if (heading.id) observer.observe(heading);
+  });
+  const practiceCard = document.getElementById('practice-problems');
+  if (practiceCard) observer.observe(practiceCard);
+  const unsolvedCard = document.getElementById('unsolved-exercises');
+  if (unsolvedCard) observer.observe(unsolvedCard);
 </script>
 </body>
 </html>
