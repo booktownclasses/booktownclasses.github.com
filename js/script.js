@@ -1,67 +1,76 @@
-// Mobile Menu Toggle
+// ========================
+// 1. MOBILE MENU (global)
+// ========================
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navLinks = document.getElementById('navLinks');
-if (mobileMenuBtn) {
+if (mobileMenuBtn && navLinks) {
   mobileMenuBtn.addEventListener('click', () => {
     navLinks.classList.toggle('show');
+    mobileMenuBtn.setAttribute('aria-expanded', navLinks.classList.contains('show'));
   });
 }
 
-// Carousel functionality
+// ========================
+// 2. CAROUSEL (only if .carousel-slide exists)
+// ========================
 let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-slide');
 const totalSlides = slides.length;
-function updateCarousel() {
-  const container = document.querySelector('.carousel-container');
-  if (container) container.style.transform = `translateX(-${currentSlide * 100}%)`;
-}
-const nextBtn = document.querySelector('.next');
-const prevBtn = document.querySelector('.prev');
-if (nextBtn && prevBtn) {
-  nextBtn.addEventListener('click', () => { 
-    currentSlide = (currentSlide + 1) % totalSlides; 
-    updateCarousel(); 
-  });
-  prevBtn.addEventListener('click', () => { 
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; 
-    updateCarousel(); 
-  });
-}
-setInterval(() => { 
-  if (slides.length) { 
-    currentSlide = (currentSlide + 1) % totalSlides; 
-    updateCarousel(); 
-  } 
-}, 5000);
-
-// FAQ Dropdown
-const faqItems = document.querySelectorAll('.faq-item');
-faqItems.forEach(item => {
-  const questionDiv = item.querySelector('.faq-question');
-  questionDiv.addEventListener('click', (e) => {
-    e.stopPropagation();
-    faqItems.forEach(otherItem => {
-      if (otherItem !== item && otherItem.classList.contains('active')) {
-        otherItem.classList.remove('active');
-      }
+if (totalSlides > 0) {
+  function updateCarousel() {
+    const container = document.querySelector('.carousel-container');
+    if (container) container.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }
+  const nextBtn = document.querySelector('.next');
+  const prevBtn = document.querySelector('.prev');
+  if (nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', () => { 
+      currentSlide = (currentSlide + 1) % totalSlides; 
+      updateCarousel(); 
     });
-    item.classList.toggle('active');
-  });
-});
+    prevBtn.addEventListener('click', () => { 
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; 
+      updateCarousel(); 
+    });
+  }
+  setInterval(() => { 
+    currentSlide = (currentSlide + 1) % totalSlides; 
+    updateCarousel(); 
+  }, 5000);
+}
 
-// Animated Stats Counter
+// ========================
+// 3. FAQ DROPDOWN
+// ========================
+const faqItems = document.querySelectorAll('.faq-item');
+if (faqItems.length) {
+  faqItems.forEach(item => {
+    const questionDiv = item.querySelector('.faq-question');
+    if (questionDiv) {
+      questionDiv.addEventListener('click', (e) => {
+        e.stopPropagation();
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+          }
+        });
+        item.classList.toggle('active');
+      });
+    }
+  });
+}
+
+// ========================
+// 4. ANIMATED STATS COUNTER
+// ========================
 function animateStats() {
   const satisfactionEl = document.getElementById('statSatisfaction');
   const studentsEl = document.getElementById('statStudents');
   const ratingEl = document.getElementById('statRating');
   if (!satisfactionEl) return;
   
-  let satisfaction = 0;
-  let students = 0;
-  let rating = 0;
-  const targetSatisfaction = 85;
-  const targetStudents = 100;
-  const targetRating = 4.9;
+  let satisfaction = 0, students = 0, rating = 0;
+  const targetSatisfaction = 85, targetStudents = 100, targetRating = 4.9;
   
   const interval = setInterval(() => {
     let changed = false;
@@ -84,50 +93,60 @@ function animateStats() {
   }, 50);
 }
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateStats();
-      observer.unobserve(entry.target);
-    }
-  });
-});
 const aboutStats = document.querySelector('.about-stats');
-if (aboutStats) observer.observe(aboutStats);
-
-// Scroll-triggered fade-up animation for cards
-const fadeElements = document.querySelectorAll('.program-card, .advantage-card, .faculty-card, .testimonial');
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-      fadeObserver.unobserve(entry.target);
-    }
+if (aboutStats) {
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateStats();
+        statsObserver.unobserve(entry.target);
+      }
+    });
   });
-}, { threshold: 0.1 });
-fadeElements.forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  fadeObserver.observe(el);
-});
+  statsObserver.observe(aboutStats);
+}
 
-// Contact Form Handler
+// ========================
+// 5. FADE-UP ANIMATION FOR CARDS
+// ========================
+const fadeElements = document.querySelectorAll('.program-card, .advantage-card, .faculty-card, .testimonial');
+if (fadeElements.length) {
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    fadeObserver.observe(el);
+  });
+}
+
+// ========================
+// 6. CONTACT FORM HANDLER
+// ========================
 const formBtn = document.getElementById('submitFormBtn');
-let feedbackDiv = document.createElement('div');
-feedbackDiv.className = 'form-message';
+let feedbackDiv = null;
 const contactFormDiv = document.getElementById('contactForm');
-if (contactFormDiv) contactFormDiv.appendChild(feedbackDiv);
-
-if (formBtn) {
+if (contactFormDiv) {
+  feedbackDiv = document.createElement('div');
+  feedbackDiv.className = 'form-message';
+  contactFormDiv.appendChild(feedbackDiv);
+}
+if (formBtn && feedbackDiv) {
   formBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const studentClass = document.getElementById('studentClass').value;
-    const message = document.getElementById('message').value.trim();
-    const batch = document.getElementById('preferredBatch').value;
+    const name = document.getElementById('name')?.value.trim() || '';
+    const phone = document.getElementById('phone')?.value.trim() || '';
+    const studentClass = document.getElementById('studentClass')?.value || '';
+    const message = document.getElementById('message')?.value.trim() || '';
+    const batch = document.getElementById('preferredBatch')?.value || '';
 
     if (!name || !phone || !studentClass) {
       feedbackDiv.style.color = "#f87171";
@@ -147,7 +166,7 @@ if (formBtn) {
 
     feedbackDiv.style.color = "#4ade80";
     feedbackDiv.innerHTML = `✅ Thanks ${name}! Opening WhatsApp to connect with our team. We'll reach out shortly.`;
-    document.getElementById('message').value = '';
+    if (document.getElementById('message')) document.getElementById('message').value = '';
     
     setTimeout(() => {
       if (feedbackDiv.innerHTML.includes("Thanks")) feedbackDiv.style.opacity = "0.8";
@@ -155,8 +174,9 @@ if (formBtn) {
   });
 }
 
-
-// Ripple effect for buttons
+// ========================
+// 7. RIPPLE EFFECT FOR BUTTONS
+// ========================
 document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
   btn.addEventListener('click', function(e) {
     let x = e.clientX - e.target.offsetLeft;
@@ -180,4 +200,108 @@ document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
     }, 10);
     setTimeout(() => ripple.remove(), 400);
   });
+});
+
+// ========================
+// 8. COPY CODE (for tutorial pages)
+// ========================
+window.copyCode = function(button) {
+  const pre = button.closest('.code-block').querySelector('pre');
+  if (!pre) return;
+  const code = pre.textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    button.classList.add('copied');
+    const icon = button.querySelector('i');
+    icon.classList.remove('fa-copy');
+    icon.classList.add('fa-check');
+    setTimeout(() => {
+      button.classList.remove('copied');
+      icon.classList.remove('fa-check');
+      icon.classList.add('fa-copy');
+    }, 2000);
+  }).catch(err => console.warn('Copy failed', err));
+};
+
+// ========================
+// 9. SIDEBAR FUNCTIONALITY (tutorial pages)
+// ========================
+document.addEventListener('DOMContentLoaded', () => {
+  // Mobile menu inside nav (for the sidebar toggle if present)
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinksElem = document.getElementById('navLinks');
+  if (mobileBtn && navLinksElem) {
+    // avoid duplicate event if already attached above? keep both; they work.
+    mobileBtn.addEventListener('click', () => {
+      navLinksElem.classList.toggle('active');
+      mobileBtn.setAttribute('aria-expanded', navLinksElem.classList.contains('active'));
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinksElem.classList.remove('active');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Sidebar collapse button
+  const sidebarToggle = document.getElementById('sidebarToggleBtn');
+  if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', () => {
+      const mainContainer = document.querySelector('.main-container');
+      if (mainContainer) mainContainer.classList.toggle('sidebar-collapsed');
+    });
+  }
+
+  // Collapsible sidebar sections (Python Tutorial heading)
+  function initSidebarCollapse() {
+    const sections = document.querySelectorAll('.sidebar-section');
+    sections.forEach(section => {
+      const titleDiv = section.querySelector('.sidebar-title');
+      if (!titleDiv || titleDiv.getAttribute('data-collapsible') === 'true') return;
+
+      if (!titleDiv.querySelector('.toggle-icon')) {
+        const chevron = document.createElement('i');
+        chevron.className = 'fas fa-chevron-down toggle-icon';
+        chevron.setAttribute('aria-hidden', 'true');
+        titleDiv.appendChild(chevron);
+      }
+
+      const isCollapsed = section.classList.contains('collapsed');
+      titleDiv.setAttribute('aria-expanded', !isCollapsed);
+
+      titleDiv.addEventListener('click', (e) => {
+        e.stopPropagation();
+        section.classList.toggle('collapsed');
+        const nowCollapsed = section.classList.contains('collapsed');
+        titleDiv.setAttribute('aria-expanded', !nowCollapsed);
+      });
+
+      titleDiv.setAttribute('data-collapsible', 'true');
+      titleDiv.style.cursor = 'pointer';
+    });
+  }
+  initSidebarCollapse();
+
+  // Scroll spy for page tracker
+  const trackerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      if (!id) return;
+      const link = document.querySelector(`.page-tracker a[href="#${id}"]`);
+      if (link) {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.page-tracker a').forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+  document.querySelectorAll('.concept-card h3, .concept-card h4').forEach(heading => {
+    if (heading.id) trackerObserver.observe(heading);
+  });
+  const practiceCard = document.getElementById('practice-problems');
+  if (practiceCard) trackerObserver.observe(practiceCard);
+  const unsolvedCard = document.getElementById('unsolved-exercises');
+  if (unsolvedCard) trackerObserver.observe(unsolvedCard);
 });

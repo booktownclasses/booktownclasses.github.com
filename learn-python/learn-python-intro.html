@@ -44,23 +44,62 @@
       top: 72px;
       height: calc(100vh - 72px);
     }
-    .sidebar-section { padding: 0 1rem; margin-bottom: 1.5rem; }
+    .sidebar-section { 
+      padding: 0 1rem; 
+      margin-bottom: 1.5rem; 
+    }
     .sidebar-title {
-      font-weight: 700; color: var(--accent); padding: 1rem; cursor: pointer;
-      display: flex; align-items: center; gap: 0.5rem; user-select: none;
-      transition: background var(--transition); border-radius: var(--radius-sm);
+      font-weight: 700; 
+      color: var(--accent); 
+      padding: 1rem; 
+      cursor: pointer;
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem; 
+      user-select: none;
+      transition: background var(--transition); 
+      border-radius: var(--radius-sm);
       font-family: var(--font-heading);
+      justify-content: space-between;
+    }
+    .sidebar-title .title-content {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     .sidebar-title:hover { background: #e0e7ff; }
     .sidebar-title.active { background: #e0e7ff; color: var(--accent-dark); }
+    
+    /* collapsible toggle icon */
+    .toggle-icon {
+      transition: transform 0.25s ease;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+    .sidebar-section.collapsed .toggle-icon {
+      transform: rotate(-90deg);
+    }
+    
+    /* hide sidebar items when section is collapsed */
+    .sidebar-section.collapsed .sidebar-item {
+      display: none;
+    }
+    
     .sidebar-item {
-      padding: 0.75rem 1rem; margin-left: 1rem; color: var(--text-light);
-      transition: all var(--transition); border-left: 3px solid transparent;
-      display: block; border-radius: var(--radius-sm); font-weight: 500;
+      padding: 0.75rem 1rem; 
+      margin-left: 1rem; 
+      color: var(--text-light);
+      transition: all var(--transition); 
+      border-left: 3px solid transparent;
+      display: block; 
+      border-radius: var(--radius-sm); 
+      font-weight: 500;
       text-decoration: none;
     }
     .sidebar-item:hover, .sidebar-item.active {
-      color: var(--accent); background: #f0f4ff; border-left-color: var(--accent);
+      color: var(--accent); 
+      background: #f0f4ff; 
+      border-left-color: var(--accent);
       padding-left: 1.25rem;
     }
 
@@ -242,6 +281,20 @@
       .content { padding: 2rem 1rem; }
       .section-title { font-size: 1.5rem; }
     }
+
+    .sidebar-toggle-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 1rem;
+      display: none; /* hide on mobile */
+    }
+    @media (min-width: 769px) { .sidebar-toggle-btn { display: block; } }
+
+    .main-container.sidebar-collapsed { grid-template-columns: 1fr 200px; }
+    .main-container.sidebar-collapsed .sidebar { display: none; }
   </style>
 </head>
 <body>
@@ -253,6 +306,7 @@
 
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
+  <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
   <div class="nav-links" id="navLinks" role="menubar">
     <a href="/index.html" role="menuitem">Home</a>
@@ -268,8 +322,10 @@
 
 <div class="main-container">
   <aside class="sidebar">
-    <div class="sidebar-section">
-      <div class="sidebar-title active"><i class="fas fa-book"></i> Python Tutorial</div>
+    <div class="sidebar-section" id="pythonTutorialSection">
+      <div class="sidebar-title active">
+        <span class="title-content"><i class="fas fa-book"></i> Python Tutorial</span>
+      </div>
       <a href="learn-python-intro.html" class="sidebar-item active"><i class="fas fa-star"></i> Python Introduction</a>
       <a href="learn-python-condition-loops.html" class="sidebar-item"><i class="fas fa-code-branch"></i> Condition & Loops</a>
       <a href="learn-python-list-tuple-set.html" class="sidebar-item"><i class="fas fa-layer-group"></i> List, Tuples, Set</a>
@@ -417,7 +473,6 @@ print(type("Hello"))# <class 'str'></code></pre>
         </div>
       </div>
 
-      <!-- Quick Practice -->
       <div class="concept-card">
         <h3 id="quick-practice">Quick Practice: Putting It All Together</h3>
         <div class="code-block">
@@ -444,34 +499,23 @@ Name       : Priya
 Grade      : 7
 Marks      : 91.50
 Data types : <class 'str'>, <class 'int'>, <class 'float'></div>
-        <p style="margin-top:1.5rem;background:#f0fdf4;padding:1rem;border-radius:8px;border-left:3px solid #22c55e;">
-          <i class="fas fa-lightbulb"></i> <strong>Tip:</strong> These concepts are the foundation of almost every Python program. Experiment by changing values!
-        </p>
       </div>
 
-      <!-- ========== DSA PRACTICE PROBLEMS ========== -->
       <div class="concept-card" id="practice-problems">
         <h3><i class="fas fa-code"></i> Practice Problems</h3>
-        <p>Apply what you’ve learned with these beginner and intermediate DSA‑style problems. Each question uses only variables, data types, input, output, and type conversion – no loops or collections.</p>
-
-        <!-- Beginner Problems -->
+        <p>Apply what you’ve learned with these beginner and intermediate DSA‑style problems.</p>
         <h4 style="margin-top:1.5rem; color: var(--accent);">🔰 Beginner Level</h4>
         <div class="practice-problem">
           <details>
             <summary>1. Greeting Generator</summary>
             <div class="solution">
-              <p><strong>Problem:</strong> Write a program that asks the user for their <strong>first name</strong> and <strong>age</strong>, then prints a greeting like: <em>"Hello Aarav, you are 15 years old!"</em></p>
-              <div class="code-block">
-                <pre class="line-numbers"><code class="language-python"># Greeting Generator
-first_name = input("Enter your first name: ")
+              <p><strong>Problem:</strong> Write a program that asks for <strong>first name</strong> and <strong>age</strong>, then prints a personalized greeting.</p>
+              <div class="code-block"><pre class="line-numbers"><code class="language-python">first_name = input("Enter your first name: ")
 age = int(input("Enter your age: "))
-print(f"Hello {first_name}, you are {age} years old!")</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-              </div>
+print(f"Hello {first_name}, you are {age} years old!")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
             </div>
           </details>
         </div>
-
         <div class="practice-problem">
           <details>
             <summary>2. Simple Interest Calculator</summary>
@@ -576,7 +620,7 @@ else:
         </div>
         
       </div>
-            <!-- ========== UNSOLVED EXERCISES ========== -->
+      
       <div class="concept-card" id="unsolved-exercises">
         <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
         <p>Time to test yourself! These problems are for you to solve on your own. No solutions here – just the problem statement. (Hint: you can peek at the previous solved examples if you get stuck.)</p>
@@ -726,7 +770,48 @@ else:
     });
   });
 
-  // Scroll spy (page tracker)
+  document.getElementById('sidebarToggleBtn')?.addEventListener('click', function() {
+    document.querySelector('.main-container').classList.toggle('sidebar-collapsed');
+  });
+
+  // ----- SIDEBAR COLLAPSE/EXPAND (Python Tutorial section) -----
+  function initSidebarCollapse() {
+    const sections = document.querySelectorAll('.sidebar-section');
+    sections.forEach(section => {
+      const titleDiv = section.querySelector('.sidebar-title');
+      if (!titleDiv) return;
+      if (titleDiv.getAttribute('data-collapsible') === 'true') return;
+      
+      // Add toggle icon if missing
+      if (!titleDiv.querySelector('.toggle-icon')) {
+        const chevron = document.createElement('i');
+        chevron.className = 'fas fa-chevron-down toggle-icon';
+        chevron.setAttribute('aria-hidden', 'true');
+        titleDiv.appendChild(chevron);
+      }
+      
+      // Set initial expanded state (no collapsed class -> expanded)
+      const isInitiallyCollapsed = section.classList.contains('collapsed');
+      if (!isInitiallyCollapsed) {
+        titleDiv.setAttribute('aria-expanded', 'true');
+      } else {
+        titleDiv.setAttribute('aria-expanded', 'false');
+      }
+      
+      // click handler
+      titleDiv.addEventListener('click', (e) => {
+        e.stopPropagation();
+        section.classList.toggle('collapsed');
+        const isCollapsed = section.classList.contains('collapsed');
+        titleDiv.setAttribute('aria-expanded', !isCollapsed);
+      });
+      
+      titleDiv.setAttribute('data-collapsible', 'true');
+      titleDiv.style.cursor = 'pointer';
+    });
+  }
+  
+  // Scroll spy for page tracker
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const id = entry.target.getAttribute('id');
@@ -743,9 +828,13 @@ else:
   document.querySelectorAll('.concept-card h3, .concept-card h4').forEach(heading => {
     if (heading.id) observer.observe(heading);
   });
-  // also observe the practice-problems card's h3
   const practiceCard = document.getElementById('practice-problems');
   if (practiceCard) observer.observe(practiceCard);
+  const unsolvedCard = document.getElementById('unsolved-exercises');
+  if (unsolvedCard) observer.observe(unsolvedCard);
+  
+  // Initialize collapsible sidebar feature
+  initSidebarCollapse();
 </script>
 </body>
 </html>

@@ -1,3 +1,20 @@
+/* ========== CSS VARIABLES (required for tutorial sidebar & cards) ========== */
+:root {
+  --surface: #ffffff;
+  --accent: #3b82f6;
+  --accent-dark: #2563eb;
+  --text: #1e293b;
+  --text-light: #475569;
+  --radius: 1rem;
+  --radius-sm: 0.5rem;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition: all 0.2s ease;
+  --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --footer-bg: #f8fafc;
+  --footer-text: #64748b;
+}
+
 /* ========== MODERN ACADEMIC THEME ========== */
 * {
   margin: 0;
@@ -593,233 +610,82 @@ footer p { color: #64748b; }
   .coding-table { font-size: 0.85rem; }
 }
 
-
 /* ========== ENHANCED MOBILE RESPONSIVENESS ========== */
-
-/* Prevent horizontal scroll on all devices */
 html, body {
   overflow-x: hidden;
   width: 100%;
 }
-
-/* Tablets (medium screens) */
 @media (max-width: 1024px) {
-  .container {
-    padding: 0 1.5rem;
-  }
-  .hero-content h1 {
-    font-size: 2.8rem;
-  }
-  .section-title {
-    font-size: 2.2rem;
-  }
+  .container { padding: 0 1.5rem; }
+  .hero-content h1 { font-size: 2.8rem; }
+  .section-title { font-size: 2.2rem; }
 }
-
-/* Mobile devices (small screens) */
 @media (max-width: 780px) {
-  .floating-shapes {
-    display: none;
-  }
-  
-  /* Adjust container padding */
-  .container {
-    padding: 0 1rem;
-  }
-  
-  /* Stack all grids into single column */
-  .advantage-row,
-  .programs-grid,
-  .faculty-grid,
-  .testimonial-grid,
-  .faq-grid,
-  .infographics-grid,
-  .why-grid,
-  .module-grid {
+  .floating-shapes { display: none; }
+  .container { padding: 0 1rem; }
+  .advantage-row, .programs-grid, .faculty-grid, .testimonial-grid, .faq-grid,
+  .infographics-grid, .why-grid, .module-grid {
     grid-template-columns: 1fr !important;
     gap: 1.2rem;
   }
-  
-  /* Reduce card padding */
-  .advantage-card,
-  .program-card,
-  .faculty-card,
-  .testimonial,
-  .infocard,
-  .why-card,
-  .module-card {
+  .advantage-card, .program-card, .faculty-card, .testimonial, .infocard, .why-card, .module-card {
     padding: 1.2rem;
   }
-  
-  /* Make section titles smaller */
-  .section-title,
-  .section-title-accent {
-    font-size: 1.6rem;
-  }
-  
-  .section-title:after,
-  .section-title-accent:after {
-    width: 80px;
-    height: 3px;
-  }
-  
-  /* Increase touch target for buttons */
-  .btn-primary,
-  .btn-secondary,
-  .btn-cta-small,
-  .contact-form button,
-  .carousel-btn {
+  .section-title, .section-title-accent { font-size: 1.6rem; }
+  .section-title:after, .section-title-accent:after { width: 80px; height: 3px; }
+  .btn-primary, .btn-secondary, .btn-cta-small, .contact-form button, .carousel-btn {
     padding: 0.8rem 1.2rem;
     font-size: 0.9rem;
     min-height: 44px;
   }
-  
-  /* Navbar adjustments */
-  .navbar {
-    padding: 0.8rem 1rem;
-    gap: 0.5rem;
-  }
-  .logo {
-    font-size: 1.5rem;
-  }
-  .logo i {
-    font-size: 1.5rem;
-  }
-  
-  /* Hero section */
+  .navbar { padding: 0.8rem 1rem; gap: 0.5rem; }
+  .logo { font-size: 1.5rem; }
+  .logo i { font-size: 1.5rem; }
   .hero {
     flex-direction: column;
     text-align: center;
     padding: 1.5rem 0;
     gap: 1.5rem;
   }
-  .hero-content {
-    width: 100%;
-  }
-  .hero-content h1 {
-    font-size: 1.8rem;
-    line-height: 1.3;
-  }
-  .hero-content p {
-    font-size: 0.95rem;
-    margin: 0.8rem 0 1.2rem;
-  }
-  .btn-group {
-    flex-direction: column;
-    width: 100%;
-  }
-  .btn-primary, .btn-secondary {
-    width: 100%;
-    text-align: center;
-  }
-  
-  /* Carousel adjustments */
-  .hero-carousel {
-    width: 100%;
-    max-width: 100%;
-  }
-  .carousel {
-    max-width: 100%;
-  }
-  .carousel-slide img {
-    height: 250px;
-    object-fit: cover;
-  }
-  .carousel-btn {
-    padding: 10px 12px;
-    font-size: 1.2rem;
-  }
-  
-  /* Table wrapper for scrolling */
+  .hero-content { width: 100%; }
+  .hero-content h1 { font-size: 1.8rem; line-height: 1.3; }
+  .hero-content p { font-size: 0.95rem; margin: 0.8rem 0 1.2rem; }
+  .btn-group { flex-direction: column; width: 100%; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+  .hero-carousel { width: 100%; max-width: 100%; }
+  .carousel { max-width: 100%; }
+  .carousel-slide img { height: 250px; object-fit: cover; }
+  .carousel-btn { padding: 10px 12px; font-size: 1.2rem; }
   .table-wrapper {
     overflow-x: auto;
     margin: 0.8rem 0;
     border-radius: 12px;
     -webkit-overflow-scrolling: touch;
   }
-  .curriculum-table {
-    font-size: 0.75rem;
-    min-width: 500px;
-  }
-  .curriculum-table th, .curriculum-table td {
-    padding: 8px 10px;
-  }
-  
-  /* Footer links wrap nicely */
-  .footer-links {
-    gap: 0.8rem;
-    font-size: 0.75rem;
-    flex-wrap: wrap;
-  }
-  
-  /* Contact form full width */
-  .contact-form input,
-  .contact-form select,
-  .contact-form textarea {
+  .curriculum-table { font-size: 0.75rem; min-width: 500px; }
+  .curriculum-table th, .curriculum-table td { padding: 8px 10px; }
+  .footer-links { gap: 0.8rem; font-size: 0.75rem; flex-wrap: wrap; }
+  .contact-form input, .contact-form select, .contact-form textarea {
     font-size: 1rem;
     padding: 0.8rem;
     border-radius: 8px;
   }
-  
-  /* Increase spacing between sections */
-  section, .container > div:not(:first-child) {
-    margin-top: 1.5rem;
-  }
-  
-  /* Fix month badge positioning */
-  .month-badge {
-    font-size: 0.7rem;
-    padding: 0.15rem 0.8rem;
-    margin: 0.8rem 0 0.4rem;
-  }
-  
-  /* Info tips */
-  .interview-tips {
-    padding: 1rem;
-    margin: 0.8rem 0;
-    font-size: 0.9rem;
-  }
-  
-  /* Advantage section */
-  .advantage-full-width {
-    margin: 0.8rem 0;
-    padding: 2rem 0;
-  }
-  
-  /* About wrap responsive */
+  section, .container > div:not(:first-child) { margin-top: 1.5rem; }
+  .month-badge { font-size: 0.7rem; padding: 0.15rem 0.8rem; margin: 0.8rem 0 0.4rem; }
+  .interview-tips { padding: 1rem; margin: 0.8rem 0; font-size: 0.9rem; }
+  .advantage-full-width { margin: 0.8rem 0; padding: 2rem 0; }
   .about-wrap {
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem;
   }
-  .about-text h3 {
-    font-size: 1.4rem;
-  }
-  .about-stats {
-    width: 100%;
-  }
-  
-  /* FAQ responsive */
-  .faq-item {
-    border-radius: 12px;
-  }
-  .faq-question {
-    padding: 1rem;
-    font-size: 0.95rem;
-  }
-  
-  /* Contact CTA */
-  .contact-cta {
-    padding: 2rem 1rem;
-    border-radius: 16px;
-  }
-  .contact-cta h2 {
-    font-size: 1.5rem;
-  }
-  .contact-cta p {
-    font-size: 0.9rem;
-  }
-  
-  /* WhatsApp floating button */
+  .about-text h3 { font-size: 1.4rem; }
+  .about-stats { width: 100%; }
+  .faq-item { border-radius: 12px; }
+  .faq-question { padding: 1rem; font-size: 0.95rem; }
+  .contact-cta { padding: 2rem 1rem; border-radius: 16px; }
+  .contact-cta h2 { font-size: 1.5rem; }
+  .contact-cta p { font-size: 0.9rem; }
   .whatsapp-float {
     width: 50px;
     height: 50px;
@@ -827,86 +693,26 @@ html, body {
     right: 20px;
     font-size: 1.5rem;
   }
-  
-  /* Footer */
-  footer {
-    padding: 1.5rem 1rem;
-  }
-  footer p {
-    font-size: 0.85rem;
-  }
+  footer { padding: 1.5rem 1rem; }
+  footer p { font-size: 0.85rem; }
 }
-
-/* Extra small screens (< 480px) */
 @media (max-width: 480px) {
-  .container {
-    padding: 0 0.75rem;
-  }
-  
-  .hero-content h1 {
-    font-size: 1.4rem;
-  }
-  
-  .section-title, .section-title-accent {
-    font-size: 1.4rem;
-  }
-  
-  .btn-primary, .btn-secondary, .btn-cta-small {
-    font-size: 0.85rem;
-    padding: 0.7rem 1rem;
-  }
-  
-  .navbar {
-    padding: 0.6rem 0.75rem;
-  }
-  
-  .logo {
-    font-size: 1.3rem;
-  }
-  
-  .advantage-card h3, 
-  .infocard h3,
-  .why-card h3 {
-    font-size: 1.2rem;
-  }
-  
-  .advantage-card p,
-  .infocard p,
-  .why-card p {
-    font-size: 0.85rem;
-  }
-  
-  .advantage-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 1.8rem;
-  }
-  
-  .infocard-icon {
-    font-size: 3rem;
-    width: 60px;
-    height: 60px;
-  }
-  
-  .why-icon {
-    font-size: 2.2rem;
-    width: 60px;
-    height: 60px;
-  }
+  .container { padding: 0 0.75rem; }
+  .hero-content h1 { font-size: 1.4rem; }
+  .section-title, .section-title-accent { font-size: 1.4rem; }
+  .btn-primary, .btn-secondary, .btn-cta-small { font-size: 0.85rem; padding: 0.7rem 1rem; }
+  .navbar { padding: 0.6rem 0.75rem; }
+  .logo { font-size: 1.3rem; }
+  .advantage-card h3, .infocard h3, .why-card h3 { font-size: 1.2rem; }
+  .advantage-card p, .infocard p, .why-card p { font-size: 0.85rem; }
+  .advantage-icon { width: 60px; height: 60px; font-size: 1.8rem; }
+  .infocard-icon { font-size: 3rem; width: 60px; height: 60px; }
+  .why-icon { font-size: 2.2rem; width: 60px; height: 60px; }
 }
-
-.price-grid {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-@media (max-width: 780px) {
-  .price-grid {
-    grid-template-columns: 1fr;
-  }
-}
+.price-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+@media (max-width: 780px) { .price-grid { grid-template-columns: 1fr; } }
 
 /* ========== MODERN ANIMATIONS & EFFECTS ========== */
-
-/* 1. Animated gradient text for hero headings */
 .hero-content h1 {
   background: linear-gradient(135deg, #1e293b, #3b82f6, #2563eb, #1e293b);
   background-size: 300% 300%;
@@ -919,8 +725,6 @@ html, body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-/* 2. Card hover effect */
 .infocard, .why-card, .advantage-card {
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
@@ -928,18 +732,12 @@ html, body {
   transform: perspective(1000px) rotateX(2deg) rotateY(2deg) translateY(-5px);
   box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
 }
-
-/* 3. Pulse animation for WhatsApp floating button */
-.whatsapp-float {
-  animation: pulse 1.5s infinite;
-}
+.whatsapp-float { animation: pulse 1.5s infinite; }
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
   70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
-
-/* 4. Subtle background gradient mesh */
 body::before {
   content: '';
   position: fixed;
@@ -953,14 +751,255 @@ body::before {
   pointer-events: none;
   z-index: 1;
 }
-
-/* 5. Ensure content stays above the background */
 .container, .navbar, footer, .whatsapp-float, main {
   position: relative;
   z-index: 2;
 }
+html { scroll-behavior: smooth; }
 
-/* 6. Smooth scroll (already in body, but double-confirm) */
-html {
-  scroll-behavior: smooth;
+/* ========== TUTORIAL SIDEBAR STYLES (with CSS variables now defined) ========== */
+.main-container {
+  display: grid;
+  grid-template-columns: 280px 1fr 200px;
+  gap: 0;
+  min-height: calc(100vh - 72px);
 }
+.sidebar {
+  background: var(--surface);
+  border-right: 1px solid #e2e8f0;
+  padding: 2rem 0;
+  overflow-y: auto;
+  position: sticky;
+  top: 72px;
+  height: calc(100vh - 72px);
+}
+.sidebar-section { 
+  padding: 0 1rem; 
+  margin-bottom: 1.5rem; 
+}
+.sidebar-title {
+  font-weight: 700; 
+  color: var(--accent); 
+  padding: 1rem; 
+  cursor: pointer;
+  display: flex; 
+  align-items: center; 
+  gap: 0.5rem; 
+  user-select: none;
+  transition: background var(--transition); 
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  justify-content: space-between;
+}
+.sidebar-title .title-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.sidebar-title:hover { background: #e0e7ff; }
+.sidebar-title.active { background: #e0e7ff; color: var(--accent-dark); }
+.toggle-icon {
+  transition: transform 0.25s ease;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+.sidebar-section.collapsed .toggle-icon {
+  transform: rotate(-90deg);
+}
+.sidebar-section.collapsed .sidebar-item {
+  display: none;
+}
+.sidebar-item {
+  padding: 0.75rem 1rem; 
+  margin-left: 1rem; 
+  color: var(--text-light);
+  transition: all var(--transition); 
+  border-left: 3px solid transparent;
+  display: block; 
+  border-radius: var(--radius-sm); 
+  font-weight: 500;
+  text-decoration: none;
+}
+.sidebar-item:hover, .sidebar-item.active {
+  color: var(--accent); 
+  background: #f0f4ff; 
+  border-left-color: var(--accent);
+  padding-left: 1.25rem;
+}
+.content {
+  padding: 3rem 2rem;
+  overflow-y: auto;
+}
+.content-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.section-title {
+  font-size: 2rem; color: var(--text); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading);
+}
+.section-intro {
+  background: linear-gradient(135deg, #e0e7ff, #dbeafe);
+  padding: 1.5rem; border-radius: var(--radius); margin-bottom: 2rem;
+  border-left: 4px solid var(--accent); color: var(--text);
+}
+.concept-card {
+  background: var(--surface); padding: 2rem; border-radius: var(--radius);
+  margin-bottom: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--accent);
+  transition: all var(--transition);
+}
+.concept-card:hover { box-shadow: var(--shadow-lg); }
+.concept-card h3 {
+  color: var(--accent); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.3rem;
+}
+.code-block {
+  background: #1e293b;
+  border-radius: var(--radius-sm);
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--accent);
+  overflow: hidden;
+  position: relative;
+}
+.code-block-header {
+  background: #0f172a;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Fira Code', monospace;
+  border-bottom: 1px solid #334155;
+}
+.code-block-header i {
+  color: #ef4444;
+  font-size: 0.8rem;
+}
+.code-block pre {
+  margin: 0;
+  padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  background: #1e293b;
+}
+.code-block pre.line-numbers {
+  padding-left: 3.5rem;
+}
+.code-block pre[class*="language-"] {
+  margin: 0;
+}
+.copy-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #cbd5e1;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  z-index: 5;
+}
+.code-block:hover .copy-btn { opacity: 1; }
+.copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+.copy-btn.copied { background: #22c55e; color: #fff; }
+.example-output {
+  background: #f0fdf4;
+  color: #166534;
+  padding: 1.5rem;
+  border-radius: var(--radius-sm);
+  margin-top: 0.5rem;
+  border-left: 3px solid #22c55e;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+.infographic-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;
+}
+.infographic-card {
+  padding: 2rem; border-radius: var(--radius); text-align: center; box-shadow: var(--shadow);
+  transition: all var(--transition); border-top: 4px solid var(--accent); background: var(--surface);
+}
+.infographic-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.infographic-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+.infographic-card h3 { color: var(--accent); margin-bottom: 0.5rem; font-family: var(--font-heading); }
+.page-tracker {
+  position: sticky; top: 90px; height: fit-content;
+  padding: 1.5rem 1rem; background: var(--surface); border-left: 1px solid #e2e8f0;
+  margin-top: 2rem;
+}
+.page-tracker h4 {
+  font-family: var(--font-heading); color: var(--accent); margin-bottom: 0.8rem; font-size: 0.9rem;
+}
+.page-tracker ul { list-style: none; padding: 0; margin: 0; }
+.page-tracker li { margin-bottom: 0.4rem; }
+.page-tracker a {
+  text-decoration: none; color: var(--text-light); font-size: 0.85rem;
+  transition: color 0.2s; display: block; padding-left: 8px;
+  border-left: 2px solid transparent;
+}
+.page-tracker a.active {
+  color: var(--accent); font-weight: 600; border-left-color: var(--accent);
+}
+.page-tracker a:hover { color: var(--accent); }
+.practice-problem {
+  margin: 1.2rem 0;
+}
+.practice-problem summary {
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  background: #f1f5f9;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.practice-problem summary:hover {
+  background: #e2e8f0;
+}
+.practice-problem .solution {
+  margin-top: 0.8rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+}
+footer {
+  background: var(--footer-bg); color: var(--footer-text); text-align: center;
+  padding: 2rem; margin-top: 3rem;
+}
+.footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.footer-links a { color: var(--footer-text); transition: color var(--transition); }
+.footer-links a:hover { color: #fff; }
+@media (max-width: 1024px) {
+  .main-container { grid-template-columns: 220px 1fr; }
+  .page-tracker { display: none; }
+}
+@media (max-width: 768px) {
+  .main-container { grid-template-columns: 1fr; }
+  .sidebar { position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid #e2e8f0; max-height: 400px; }
+  .content { padding: 2rem 1rem; }
+  .section-title { font-size: 1.5rem; }
+}
+.sidebar-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 1rem;
+  display: none;
+}
+@media (min-width: 769px) { .sidebar-toggle-btn { display: block; } }
+.main-container.sidebar-collapsed { grid-template-columns: 1fr 200px; }
+.main-container.sidebar-collapsed .sidebar { display: none; }

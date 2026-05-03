@@ -6,12 +6,12 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
-  <title>Condition & Loops - Learn Python+ | BookTown Classes</title>
-  <meta name="description" content="Master Python conditions and loops with clear examples. Learn if-elif-else, for loops, while loops, range(), break and continue." />
-  <meta name="keywords" content="Python loops, Python conditions, for loop, while loop, if else, range, break, continue" />
+  <title>Condition, Loops & Casting - Learn Python+ | BookTown Classes</title>
+  <meta name="description" content="Master Python conditions, loops, and type casting with clear examples. Learn if-elif-else, for/while loops, range(), break, continue, and type conversion." />
+  <meta name="keywords" content="Python loops, Python conditions, for loop, while loop, if else, range, break, continue, type casting, int, float, str, bool" />
   <meta name="author" content="BookTown Classes" />
-  <meta property="og:title" content="Condition & Loops - Learn Python+ | BookTown Classes" />
-  <meta property="og:description" content="Master Python conditions and loops with clear examples. Learn if-elif-else, for loops, while loops, range(), break and continue." />
+  <meta property="og:title" content="Condition, Loops & Casting - Learn Python+ | BookTown Classes" />
+  <meta property="og:description" content="Master Python conditions, loops, and type casting with clear examples." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#3b82f6" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -27,60 +27,220 @@
   <link rel="stylesheet" href="../css/theme.css" />
 
   <style>
-    .main-container { display: grid; grid-template-columns: 280px 1fr 200px; gap: 0; min-height: calc(100vh - 72px); }
-    .sidebar { background: var(--surface); border-right: 1px solid #e2e8f0; padding: 2rem 0; overflow-y: auto; position: sticky; top: 72px; height: calc(100vh - 72px); }
-    .sidebar-section { padding: 0 1rem; margin-bottom: 1.5rem; }
-    .sidebar-title { font-weight: 700; color: var(--accent); padding: 1rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; user-select: none; transition: background var(--transition); border-radius: var(--radius-sm); font-family: var(--font-heading); }
+    /* all existing styles remain unchanged */
+    .main-container {
+      display: grid;
+      grid-template-columns: 280px 1fr 200px;
+      gap: 0;
+      min-height: calc(100vh - 72px);
+    }
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid #e2e8f0;
+      padding: 2rem 0;
+      overflow-y: auto;
+      position: sticky;
+      top: 72px;
+      height: calc(100vh - 72px);
+    }
+    .sidebar-section { 
+      padding: 0 1rem; 
+      margin-bottom: 1.5rem; 
+    }
+    .sidebar-title {
+      font-weight: 700; 
+      color: var(--accent); 
+      padding: 1rem; 
+      cursor: pointer;
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem; 
+      user-select: none;
+      transition: background var(--transition); 
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      justify-content: space-between;
+    }
+    .sidebar-title .title-content {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
     .sidebar-title:hover { background: #e0e7ff; }
     .sidebar-title.active { background: #e0e7ff; color: var(--accent-dark); }
-    .sidebar-item { padding: 0.75rem 1rem; margin-left: 1rem; color: var(--text-light); transition: all var(--transition); border-left: 3px solid transparent; display: block; border-radius: var(--radius-sm); font-weight: 500; text-decoration: none; }
-    .sidebar-item:hover, .sidebar-item.active { color: var(--accent); background: #f0f4ff; border-left-color: var(--accent); padding-left: 1.25rem; }
-    .content { padding: 3rem 2rem; overflow-y: auto; }
-    .content-section { max-width: 800px; margin: 0 auto; }
-    .section-title { font-size: 2rem; color: var(--text); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading); }
-    .section-intro { background: linear-gradient(135deg, #e0e7ff, #dbeafe); padding: 1.5rem; border-radius: var(--radius); margin-bottom: 2rem; border-left: 4px solid var(--accent); color: var(--text); }
-    .concept-card { background: var(--surface); padding: 2rem; border-radius: var(--radius); margin-bottom: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--accent); transition: all var(--transition); }
+    .toggle-icon {
+      transition: transform 0.25s ease;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+    .sidebar-section.collapsed .toggle-icon {
+      transform: rotate(-90deg);
+    }
+    .sidebar-section.collapsed .sidebar-item {
+      display: none;
+    }
+    .sidebar-item {
+      padding: 0.75rem 1rem; 
+      margin-left: 1rem; 
+      color: var(--text-light);
+      transition: all var(--transition); 
+      border-left: 3px solid transparent;
+      display: block; 
+      border-radius: var(--radius-sm); 
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .sidebar-item:hover, .sidebar-item.active {
+      color: var(--accent); 
+      background: #f0f4ff; 
+      border-left-color: var(--accent);
+      padding-left: 1.25rem;
+    }
+    .content {
+      padding: 3rem 2rem;
+      overflow-y: auto;
+    }
+    .content-section {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2rem; color: var(--text); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading);
+    }
+    .section-intro {
+      background: linear-gradient(135deg, #e0e7ff, #dbeafe);
+      padding: 1.5rem; border-radius: var(--radius); margin-bottom: 2rem;
+      border-left: 4px solid var(--accent); color: var(--text);
+    }
+    .concept-card {
+      background: var(--surface); padding: 2rem; border-radius: var(--radius);
+      margin-bottom: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--accent);
+      transition: all var(--transition);
+    }
     .concept-card:hover { box-shadow: var(--shadow-lg); }
-    .concept-card h3 { color: var(--accent); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.3rem; }
-    /* Professional code block styling */
-    .code-block { background: #1e293b; border-radius: var(--radius-sm); margin: 1.5rem 0; border-left: 4px solid var(--accent); overflow: hidden; position: relative; }
-    .code-block-header { background: #0f172a; color: #94a3b8; font-size: 0.8rem; padding: 0.5rem 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-family: 'Fira Code', monospace; border-bottom: 1px solid #334155; }
-    .code-block-header i { color: #ef4444; font-size: 0.8rem; }
-    .code-block pre { margin: 0; padding: 1.5rem 1.5rem 1.5rem 3.5rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.6; background: #1e293b; }
-    .code-block pre.line-numbers { padding-left: 3.5rem; }
-    .copy-btn { position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(255,255,255,0.1); border: none; color: #cbd5e1; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(4px); opacity: 0; z-index: 5; }
+    .concept-card h3 {
+      color: var(--accent); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.3rem;
+    }
+    .code-block {
+      background: #1e293b;
+      border-radius: var(--radius-sm);
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--accent);
+      overflow: hidden;
+      position: relative;
+    }
+    .code-block-header {
+      background: #0f172a;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      padding: 0.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Fira Code', monospace;
+      border-bottom: 1px solid #334155;
+    }
+    .code-block-header i {
+      color: #ef4444;
+      font-size: 0.8rem;
+    }
+    .code-block pre {
+      margin: 0;
+      padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      background: #1e293b;
+    }
+    .code-block pre.line-numbers {
+      padding-left: 3.5rem;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #cbd5e1;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      z-index: 5;
+    }
     .code-block:hover .copy-btn { opacity: 1; }
     .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
     .copy-btn.copied { background: #22c55e; color: #fff; }
-    .example-output { background: #f0fdf4; color: #166534; padding: 1.5rem; border-radius: var(--radius-sm); margin-top: 0.5rem; border-left: 3px solid #22c55e; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; white-space: pre-line; }
-    .infographic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-    .infographic-card { padding: 2rem; border-radius: var(--radius); text-align: center; box-shadow: var(--shadow); transition: all var(--transition); border-top: 4px solid var(--accent); background: var(--surface); }
+    .example-output {
+      background: #f0fdf4;
+      color: #166534;
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      margin-top: 0.5rem;
+      border-left: 3px solid #22c55e;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+    .infographic-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;
+    }
+    .infographic-card {
+      padding: 2rem; border-radius: var(--radius); text-align: center; box-shadow: var(--shadow);
+      transition: all var(--transition); border-top: 4px solid var(--accent); background: var(--surface);
+    }
     .infographic-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
     .infographic-icon { font-size: 3rem; margin-bottom: 0.5rem; }
     .infographic-card h3 { color: var(--accent); margin-bottom: 0.5rem; font-family: var(--font-heading); }
-
-    /* Right page tracker */
-    .page-tracker { position: sticky; top: 90px; height: fit-content; padding: 1.5rem 1rem; background: var(--surface); border-left: 1px solid #e2e8f0; margin-top: 2rem; }
-    .page-tracker h4 { font-family: var(--font-heading); color: var(--accent); margin-bottom: 0.8rem; font-size: 0.9rem; }
+    .page-tracker {
+      position: sticky; top: 90px; height: fit-content;
+      padding: 1.5rem 1rem; background: var(--surface); border-left: 1px solid #e2e8f0;
+      margin-top: 2rem;
+    }
+    .page-tracker h4 {
+      font-family: var(--font-heading); color: var(--accent); margin-bottom: 0.8rem; font-size: 0.9rem;
+    }
     .page-tracker ul { list-style: none; padding: 0; margin: 0; }
     .page-tracker li { margin-bottom: 0.4rem; }
-    .page-tracker a { text-decoration: none; color: var(--text-light); font-size: 0.85rem; transition: color 0.2s; display: block; padding-left: 8px; border-left: 2px solid transparent; }
-    .page-tracker a.active { color: var(--accent); font-weight: 600; border-left-color: var(--accent); }
+    .page-tracker a {
+      text-decoration: none; color: var(--text-light); font-size: 0.85rem;
+      transition: color 0.2s; display: block; padding-left: 8px;
+      border-left: 2px solid transparent;
+    }
+    .page-tracker a.active {
+      color: var(--accent); font-weight: 600; border-left-color: var(--accent);
+    }
     .page-tracker a:hover { color: var(--accent); }
-
-    /* Practice problems */
     .practice-problem { margin: 1.2rem 0; }
     .practice-problem summary { font-weight: 600; color: var(--accent); cursor: pointer; padding: 0.6rem 1rem; background: #f1f5f9; border-radius: 6px; transition: background 0.2s; }
     .practice-problem summary:hover { background: #e2e8f0; }
     .practice-problem .solution { margin-top: 0.8rem; padding: 1rem; background: #f8fafc; border-left: 3px solid var(--accent); border-radius: 4px; }
-
     footer { background: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 2rem; margin-top: 3rem; }
     .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
     .footer-links a { color: var(--footer-text); transition: color var(--transition); }
     .footer-links a:hover { color: #fff; }
-
     @media (max-width: 1024px) { .main-container { grid-template-columns: 220px 1fr; } .page-tracker { display: none; } }
     @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; } .sidebar { position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid #e2e8f0; max-height: 400px; } .content { padding: 2rem 1rem; } .section-title { font-size: 1.5rem; } }
+    .sidebar-toggle-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 1rem;
+      display: none;
+    }
+    @media (min-width: 769px) { .sidebar-toggle-btn { display: block; } }
+    .main-container.sidebar-collapsed { grid-template-columns: 1fr 200px; }
+    .main-container.sidebar-collapsed .sidebar { display: none; }
   </style>
 </head>
 <body>
@@ -92,6 +252,7 @@
 
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
+  <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
   <div class="nav-links" id="navLinks" role="menubar">
     <a href="/index.html" role="menuitem">Home</a>
@@ -107,8 +268,10 @@
 
 <div class="main-container">
   <aside class="sidebar">
-    <div class="sidebar-section">
-      <div class="sidebar-title active"><i class="fas fa-book"></i> Python Tutorial</div>
+    <div class="sidebar-section" id="pythonTutorialSection">
+      <div class="sidebar-title active">
+        <span class="title-content"><i class="fas fa-book"></i> Python Tutorial</span>
+      </div>
       <a href="learn-python-intro.html" class="sidebar-item"><i class="fas fa-star"></i> Python Introduction</a>
       <a href="learn-python-condition-loops.html" class="sidebar-item active"><i class="fas fa-code-branch"></i> Condition & Loops</a>
       <a href="learn-python-list-tuple-set.html" class="sidebar-item"><i class="fas fa-layer-group"></i> List, Tuples, Set</a>
@@ -117,14 +280,14 @@
 
   <main class="content">
     <div class="content-section">
-      <h1 class="section-title"><i class="fas fa-code-branch"></i> Condition & Loops</h1>
-      <div class="section-intro"><p><strong>Control program flow:</strong> Make decisions with <code>if</code> and repeat code with loops.</p></div>
+      <h1 class="section-title"><i class="fas fa-code-branch"></i> Condition, Loops &amp; Type Casting</h1>
+      <div class="section-intro"><p><strong>Control program flow + Type conversion:</strong> Make decisions with <code>if</code>, repeat code with loops, and change data types safely using casting functions.</p></div>
 
       <div class="infographic-grid">
-        <article class="infographic-card"><div class="infographic-icon">🔄</div><h3>For Loop</h3><p style="font-size:0.9rem;color:var(--text-light);">Iterates over a sequence (list, string, range)</p></article>
-        <article class="infographic-card"><div class="infographic-icon">🔁</div><h3>While Loop</h3><p style="font-size:0.9rem;color:var(--text-light);">Repeats as long as a condition is true</p></article>
-        <article class="infographic-card"><div class="infographic-icon">⚙️</div><h3>range()</h3><p style="font-size:0.9rem;color:var(--text-light);">Generates a sequence of numbers</p></article>
-        <article class="infographic-card"><div class="infographic-icon">⛔</div><h3>break / continue</h3><p style="font-size:0.9rem;color:var(--text-light);">break exits, continue skips</p></article>
+        <article class="infographic-card"><div class="infographic-icon">🔄</div><h3>For Loop</h3><p>Iterates over sequences</p></article>
+        <article class="infographic-card"><div class="infographic-icon">🔁</div><h3>While Loop</h3><p>Repeats while true</p></article>
+        <article class="infographic-card"><div class="infographic-icon">⚙️</div><h3>range()</h3><p>Number generator</p></article>
+        <article class="infographic-card"><div class="infographic-icon">🔄</div><h3>Type Casting</h3><p>int(), float(), str(), bool()</p></article>
       </div>
 
       <!-- ========== IF-ELIF-ELSE ========== -->
@@ -143,400 +306,194 @@ else:
           <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
         </div>
         <div class="example-output">You are an adult</div>
-        <p style="margin-top:1rem;"><strong>Note:</strong>
-          • <code>if</code> must always come first.
-          • <code>elif</code> and <code>else</code> are optional.
-          • Indentation defines the code block.
-        </p>
+        <p><strong>Note:</strong> Indentation defines blocks. <code>elif</code> and <code>else</code> are optional.</p>
       </div>
 
       <!-- ========== FOR LOOP ========== -->
       <div class="concept-card">
         <h3 id="for-loops">For Loop</h3>
-        <p>A <strong>for loop</strong> repeats a block of code for each item in a sequence. It works with strings, lists, tuples, dictionaries, and the <code>range()</code> function.</p>
-        <p style="margin-top:0.5rem;"><strong>Syntax:</strong> <code>for variable in iterable: ...</code></p>
-
+        <p>A <strong>for loop</strong> repeats a block of code for each item in a sequence.</p>
         <h4 style="color:var(--accent);margin-top:1.5rem;" id="for-beginner">Beginner Example</h4>
-        <p>Loop through a list, a string, and a simple <code>range(stop)</code>.</p>
         <div class="code-block">
           <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> for_loop_basic.py</div>
-          <pre class="line-numbers"><code class="language-python"># Loop through a list
-fruits = ["apple", "banana", "orange"]
+          <pre class="line-numbers"><code class="language-python">fruits = ["apple", "banana", "orange"]
 for fruit in fruits:
     print(fruit)
-
-# Loop through a string
 for letter in "Python":
     print(letter)
-
-# range(stop)
 for i in range(5):
     print(i)</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+          <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
         </div>
-        <div class="example-output">apple
-banana
-orange
-P
-y
-t
-h
-o
-n
-0
-1
-2
-3
-4</div>
-
+        <div class="example-output">apple<br>banana<br>orange<br>P y t h o n<br>0 1 2 3 4</div>
         <h4 style="color:var(--accent);margin-top:1.5rem;" id="for-intermediate">Intermediate Example</h4>
-        <p>Using <code>enumerate()</code> to get index, nested loops, and <code>else</code> with a loop.</p>
         <div class="code-block">
           <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> for_loop_intermediate.py</div>
-          <pre class="line-numbers"><code class="language-python"># enumerate
-fruits = ["apple", "banana", "cherry"]
+          <pre class="line-numbers"><code class="language-python">fruits = ["apple", "banana", "cherry"]
 for index, fruit in enumerate(fruits):
     print(f"{index}: {fruit}")
-
-# Nested loop (multiplication table)
-for i in range(1, 4):
-    for j in range(1, 4):
+for i in range(1,4):
+    for j in range(1,4):
         print(f"{i} x {j} = {i*j}")
-
-# Loop with else (runs if no break)
 for x in range(3):
     print(x)
 else:
     print("Loop ended without break")</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+          <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
         </div>
-        <div class="example-output">0: apple
-1: banana
-2: cherry
-1 x 1 = 1
-1 x 2 = 2
-1 x 3 = 3
-2 x 1 = 2
-2 x 2 = 4
-2 x 3 = 6
-3 x 1 = 3
-3 x 2 = 6
-3 x 3 = 9
-0
-1
-2
-Loop ended without break</div>
+        <div class="example-output">0: apple<br>1: banana<br>2: cherry<br>multiplication table<br>0 1 2<br>Loop ended without break</div>
       </div>
 
       <!-- ========== RANGE ========== -->
       <div class="concept-card">
         <h3 id="range-function">range() – The Loop Counter</h3>
-        <p>The <strong>range()</strong> function generates a sequence of numbers without storing them all in memory. It's the most common partner of the <code>for</code> loop.</p>
-        <p style="margin-top:0.5rem;"><strong>Syntax:</strong> <code>range(start, stop, step)</code>
-          • <code>start</code> (default 0) – first number.
-          • <code>stop</code> (required) – up to but not including this number.
-          • <code>step</code> (default 1) – difference between each number.
-        </p>
-
+        <p><strong>range(start, stop, step)</strong> generates sequences.</p>
         <div class="infographic-grid" style="margin-top:1rem;">
-          <article class="infographic-card" style="border-top-color:#f59e0b;">
-            <div class="infographic-icon">1️⃣</div>
-            <h4>range(stop)</h4>
-            <p style="font-size:0.85rem;"><code>range(5)</code> → 0,1,2,3,4</p>
-          </article>
-          <article class="infographic-card" style="border-top-color:#f59e0b;">
-            <div class="infographic-icon">2️⃣</div>
-            <h4>range(start, stop)</h4>
-            <p style="font-size:0.85rem;"><code>range(2,6)</code> → 2,3,4,5</p>
-          </article>
-          <article class="infographic-card" style="border-top-color:#f59e0b;">
-            <div class="infographic-icon">3️⃣</div>
-            <h4>range(start, stop, step)</h4>
-            <p style="font-size:0.85rem;"><code>range(1,10,2)</code> → 1,3,5,7,9</p>
-          </article>
+          <div class="infographic-card" style="border-top-color:#f59e0b;"><div class="infographic-icon">1️⃣</div><h4>range(stop)</h4><code>range(5)</code> → 0,1,2,3,4</div>
+          <div class="infographic-card" style="border-top-color:#f59e0b;"><div class="infographic-icon">2️⃣</div><h4>range(start, stop)</h4><code>range(2,6)</code> → 2,3,4,5</div>
+          <div class="infographic-card" style="border-top-color:#f59e0b;"><div class="infographic-icon">3️⃣</div><h4>range(start, stop, step)</h4><code>range(1,10,2)</code> → 1,3,5,7,9</div>
         </div>
-
-        <h4 style="color:var(--accent);margin-top:1.5rem;">Beginner Example (stop only)</h4>
-        <div class="code-block">
-          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> range_stop.py</div>
-          <pre class="line-numbers"><code class="language-python"># Print numbers 0 to 3
-for i in range(4):
-    print(i)</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-        </div>
-        <div class="example-output">0<br>1<br>2<br>3</div>
-
-        <h4 style="color:var(--accent);margin-top:1.5rem;">Intermediate Example (start, stop, step)</h4>
-        <div class="code-block">
-          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> range_all.py</div>
-          <pre class="line-numbers"><code class="language-python"># Case 1: range(stop)
-print("Case 1:")
-for i in range(4): print(i)
-
-# Case 2: range(start, stop)
-print("Case 2:")
-for i in range(10, 13): print(i)
-
-# Case 3: range(start, stop, step) – even numbers
-print("Case 3:")
-for i in range(2, 11, 2): print(i)
-
-# Negative step (countdown)
-print("Countdown:")
-for i in range(5, 0, -1): print(i)</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-        </div>
-        <div class="example-output">Case 1:<br>0 1 2 3<br>Case 2:<br>10 11 12<br>Case 3:<br>2 4 6 8 10<br>Countdown:<br>5 4 3 2 1</div>
+        <div class="code-block"><div class="code-block-header"><i class="fas fa-circle"></i> range_all.py</div><pre class="line-numbers"><code class="language-python">for i in range(4): print(i)          # 0 1 2 3
+for i in range(10,13): print(i)      # 10 11 12
+for i in range(2,11,2): print(i)     # 2 4 6 8 10
+for i in range(5,0,-1): print(i)     # 5 4 3 2 1</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
       </div>
 
       <!-- ========== WHILE LOOP ========== -->
       <div class="concept-card">
         <h3 id="while-loops">While Loop</h3>
-        <p>A <strong>while loop</strong> keeps repeating as long as a condition remains <code>True</code>. Be cautious – if the condition never becomes <code>False</code>, you get an infinite loop.</p>
-        <p style="margin-top:0.5rem;"><strong>Syntax:</strong> <code>while condition: ...</code></p>
-
-        <h4 style="color:var(--accent);margin-top:1.5rem;">Beginner Example</h4>
-        <p>Simple counter and a guessing game.</p>
-        <div class="code-block">
-          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> while_basic.py</div>
-          <pre class="line-numbers"><code class="language-python"># Count from 0 to 4
-count = 0
+        <p>Repeats while condition is <code>True</code>. Use <code>break</code> to exit and <code>continue</code> to skip.</p>
+        <div class="code-block"><div class="code-block-header">while_basic.py</div><pre class="line-numbers"><code class="language-python">count = 0
 while count < 5:
     print(count)
-    count += 1
-
-# Guess the number
-secret = 7
-guess = 0
-while guess != secret:
-    guess = int(input("Guess the number (1-10): "))
-print("You got it!")</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-        </div>
-        <div class="example-output">0<br>1<br>2<br>3<br>4<br>Guess the number (1-10): 3<br>Guess the number (1-10): 7<br>You got it!</div>
-
-        <h4 style="color:var(--accent);margin-top:1.5rem;">Intermediate Example</h4>
-        <p>Using <code>break</code>, <code>continue</code>, and <code>while-else</code>.</p>
-        <div class="code-block">
-          <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> while_intermediate.py</div>
-          <pre class="line-numbers"><code class="language-python"># break – stop early
-i = 1
-while True:
-    if i > 5: break
-    print(i)
-    i += 1
-
-# continue – skip even numbers
-num = 0
-while num < 10:
-    num += 1
-    if num % 2 == 0: continue
-    print(num)
-
-# while with else
-x = 1
-while x <= 3:
-    print(x)
-    x += 1
-else:
-    print("Loop finished")</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-        </div>
-        <div class="example-output">1<br>2<br>3<br>4<br>5<br>1<br>3<br>5<br>7<br>9<br>1<br>2<br>3<br>Loop finished</div>
+    count += 1</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="example-output">0 1 2 3 4</div>
       </div>
 
-      <!-- ========== PRACTICE PROBLEMS (SOLVED) ========== -->
+      <!-- ========== NEW: TYPE CASTING ========== -->
+      <div class="concept-card" id="type-casting">
+        <h3>Type Casting – Converting Between Data Types</h3>
+        <p>Python provides built‑in functions to convert one data type to another. This is essential when handling user input or preparing data for calculations.</p>
+        <table style="width:100%;border-collapse:collapse;margin:1rem 0;">
+          <tr><th style="text-align:left;background:var(--bg-secondary);padding:0.5rem;">Function</th><th style="text-align:left;background:var(--bg-secondary);padding:0.5rem;">Converts to</th><th style="text-align:left;background:var(--bg-secondary);padding:0.5rem;">Example</th></tr>
+          <tr><td><code>int(x)</code></td><td>Integer</td><td><code>int("42")</code> → 42, <code>int(3.14)</code> → 3</td></tr>
+          <tr><td><code>float(x)</code></td><td>Float</td><td><code>float("3.14")</code> → 3.14, <code>float(5)</code> → 5.0</td></tr>
+          <tr><td><code>str(x)</code></td><td>String</td><td><code>str(123)</code> → "123", <code>str(4.5)</code> → "4.5"</td></tr>
+          <tr><td><code>bool(x)</code></td><td>Boolean</td><td><code>bool(0)</code> → False, <code>bool(5)</code> → True</td></tr>
+        </table>
+
+        <h4 style="color:var(--accent);margin-top:1rem;">Beginner Example: Converting Input</h4>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i> input_casting.py</div>
+          <pre class="line-numbers"><code class="language-python"># input() always returns a string
+age_str = input("Enter your age: ")
+age = int(age_str)          # convert to int
+next_age = age + 1
+print(f"Next year you'll be {next_age}")
+
+price = float(input("Enter price: "))
+tax = price * 0.18
+print(f"Tax = {tax:.2f}")</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">Enter your age: 15<br>Next year you'll be 16<br>Enter price: 100<br>Tax = 18.00</div>
+
+        <h4 style="color:var(--accent);margin-top:1rem;">Intermediate Example: Casting with Conditions</h4>
+        <div class="code-block">
+          <div class="code-block-header"><i class="fas fa-circle"></i> casting_conditions.py</div>
+          <pre class="line-numbers"><code class="language-python"># Convert string to bool – caution: bool("False") is True!
+value = input("Enter True or False: ").lower()
+bool_val = value == "true"      # manual conversion
+print(bool_val)
+
+# Mixing numbers and strings
+num = 42
+message = "The answer is " + str(num)
+print(message)
+
+# Float to int (truncates)
+pi = 3.14159
+approx = int(pi)
+print(approx)   # 3</code></pre>
+          <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="example-output">Enter True or False: true<br>True<br>The answer is 42<br>3</div>
+      </div>
+
+      <!-- ========== PRACTICE PROBLEMS (SOLVED) includes casting problems ========== -->
       <div class="concept-card" id="practice-problems">
-        <h3><i class="fas fa-code"></i> Practice Problems</h3>
-        <p>Strengthen your understanding with these solved DSA‑style problems. Each uses conditions, loops, or both.</p>
+        <h3><i class="fas fa-code"></i> Practice Problems (Solved)</h3>
+        <p>Strengthen conditions, loops, and casting.</p>
 
         <h4 style="margin-top:1.5rem; color: var(--accent);">🔰 Beginner Level</h4>
-        <!-- Beginner Solved 1 -->
-        <div class="practice-problem">
-          <details>
-            <summary>1. Check If a Number is Prime</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Write a program that takes an integer and prints whether it is prime or not.</p>
-              <div class="code-block">
-                <pre class="line-numbers"><code class="language-python">num = int(input("Enter a number: "))
-is_prime = True
-if num > 1:
-    for i in range(2, int(num**0.5)+1):
-        if num % i == 0:
-            is_prime = False
-            break
-    print("Prime" if is_prime else "Not Prime")
-else:
-    print("Not Prime")</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-              </div>
-            </div>
-          </details>
-        </div>
-        <!-- Beginner Solved 2 -->
-        <div class="practice-problem">
-          <details>
-            <summary>2. Sum of First n Natural Numbers</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Ask for a positive integer n and print the sum 1+2+...+n using a loop.</p>
-              <div class="code-block">
-                <pre class="line-numbers"><code class="language-python">n = int(input("Enter n: "))
-total = 0
-for i in range(1, n+1):
-    total += i
-print("Sum =", total)</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-              </div>
-            </div>
-          </details>
-        </div>
-        <!-- Beginner Solved 3 -->
-        <div class="practice-problem">
-          <details>
-            <summary>3. Reverse a String (without slicing)</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Input a string and print its reverse character by character using a loop.</p>
-              <div class="code-block">
-                <pre class="line-numbers"><code class="language-python">text = input("Enter a string: ")
+        <!-- existing beginner problems 1-3 -->
+        <div class="practice-problem"><details><summary>1. Check If a Number is Prime</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">num = int(input("Enter number: "))
+is_prime = num > 1
+for i in range(2, int(num**0.5)+1):
+    if num % i == 0:
+        is_prime = False
+        break
+print("Prime" if is_prime else "Not Prime")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+        <div class="practice-problem"><details><summary>2. Sum of First n Natural Numbers</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">n = int(input("Enter n: "))
+total = sum(range(1, n+1))
+print(total)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+        <div class="practice-problem"><details><summary>3. Reverse a String (without slicing)</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">text = input("Enter string: ")
 rev = ""
 for ch in text:
     rev = ch + rev
-print("Reversed:", rev)</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-              </div>
-            </div>
-          </details>
-        </div>
+print(rev)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+
+        <!-- NEW: Solved casting problems -->
+        <div class="practice-problem"><details><summary>4. Safe Division with Casting</summary><div class="solution"><p><strong>Problem:</strong> Accept two numbers (as strings), convert to float, and print division result. Handle division by zero.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">a = float(input("First number: "))
+b = float(input("Second number: "))
+if b == 0:
+    print("Cannot divide by zero")
+else:
+    print(f"Result = {a/b:.2f}")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+        <div class="practice-problem"><details><summary>5. Convert String List to Integers</summary><div class="solution"><p><strong>Problem:</strong> Given a string of numbers "10 20 30", convert each to integer and find the sum using a loop.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">numbers_str = "10 20 30"
+parts = numbers_str.split()
+total = 0
+for p in parts:
+    total += int(p)
+print("Sum =", total)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
 
         <h4 style="margin-top:2rem; color: var(--accent);">⚡ Intermediate Level</h4>
-        <!-- Intermediate Solved 4 -->
-        <div class="practice-problem">
-          <details>
-            <summary>4. Fibonacci Series up to n Terms</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Print the first n terms of the Fibonacci series using a loop.</p>
-              <div class="code-block">
-                <pre class="line-numbers"><code class="language-python">n = int(input("How many terms? "))
-a, b = 0, 1
+        <!-- existing intermediate 4-6 -->
+        <div class="practice-problem"><details><summary>6. Fibonacci Series up to n Terms</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">n = int(input("Terms: "))
+a,b = 0,1
 for _ in range(n):
     print(a, end=' ')
-    a, b = b, a + b</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-              </div>
-            </div>
-          </details>
-        </div>
-        <!-- Intermediate Solved 5 -->
-        <div class="practice-problem">
-          <details>
-            <summary>5. Count Digits, Letters, and Spaces</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Read a sentence and count digits, alphabets, and spaces using a loop.</p>
-              <div class="code-block">
-                <pre class="line-numbers"><code class="language-python">sentence = input("Enter a sentence: ")
-digits = letters = spaces = 0
-for ch in sentence:
-    if ch.isdigit(): digits += 1
-    elif ch.isalpha(): letters += 1
-    elif ch == ' ': spaces += 1
-print(f"Digits: {digits}, Letters: {letters}, Spaces: {spaces}")</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-              </div>
-            </div>
-          </details>
-        </div>
-        <!-- Intermediate Solved 6 -->
-        <div class="practice-problem">
-          <details>
-            <summary>6. Print the Multiplication Table from 1 to 10 (Cleanly)</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Use nested loops to print a beautifully aligned multiplication table from 1 to 10.</p>
-              <div class="code-block">
-                <pre class="line-numbers"><code class="language-python">for i in range(1, 11):
-    for j in range(1, 11):
+    a,b = b, a+b</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+        <div class="practice-problem"><details><summary>7. Count Digits, Letters, Spaces</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">s = input("Sentence: ")
+d = l = sp = 0
+for ch in s:
+    if ch.isdigit(): d+=1
+    elif ch.isalpha(): l+=1
+    elif ch==' ': sp+=1
+print(f"Digits:{d} Letters:{l} Spaces:{sp}")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+        <div class="practice-problem"><details><summary>8. Multiplication Table (nested loops)</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">for i in range(1,11):
+    for j in range(1,11):
         print(f"{i*j:4}", end="")
-    print()</code></pre>
-                <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-              </div>
-            </div>
-          </details>
-        </div>
+    print()</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
       </div>
 
-      <!-- ========== UNSOLVED EXERCISES ========== -->
+      <!-- ========== UNSOLVED EXERCISES (including casting) ========== -->
       <div class="concept-card" id="unsolved-exercises">
         <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
-        <p>Now it's your turn. Solve these on your own – no solution here, but you can refer to the solved examples above if you get stuck.</p>
+        <p>Solve these on your own – no solutions provided.</p>
+        <h4 style="margin-top:1rem; color: var(--accent);">🔰 Beginner Level</h4>
+        <div class="practice-problem"><details><summary>1. Print Even Numbers from 1 to 20</summary><div class="solution"><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here</i></div></div></details></div>
+        <div class="practice-problem"><details><summary>2. Countdown Timer</summary><div class="solution"><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here</i></div></div></details></div>
+        <div class="practice-problem"><details><summary>3. Grade Calculator (if‑elif‑else)</summary><div class="solution"><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here</i></div></div></details></div>
 
-        <h4 style="margin-top:1.5rem; color: var(--accent);">🔰 Beginner Level</h4>
-        <div class="practice-problem">
-          <details>
-            <summary>1. Print Even Numbers from 1 to 20</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Use a for loop and range to print all even numbers between 1 and 20 inclusive.</p>
-              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
-                <i>Write your code here – solution not shown.</i>
-              </div>
-            </div>
-          </details>
-        </div>
-        <div class="practice-problem">
-          <details>
-            <summary>2. Countdown Timer</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Write a while loop that prints a countdown from 10 to 1, then prints "Blast off!".</p>
-              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
-                <i>Write your code here – solution not shown.</i>
-              </div>
-            </div>
-          </details>
-        </div>
-        <div class="practice-problem">
-          <details>
-            <summary>3. Grade Calculator</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Input a student's score (0–100) and print the grade: A (≥90), B (≥80), C (≥70), D (≥60), F (below 60) using if‑elif‑else.</p>
-              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
-                <i>Write your code here – solution not shown.</i>
-              </div>
-            </div>
-          </details>
-        </div>
+        <!-- NEW unsolved casting problems -->
+        <div class="practice-problem"><details><summary>4. String to Float & Average</summary><div class="solution"><p>Accept three string numbers (e.g., "85.5 90 78.2"), split, convert to float, and print average.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here</i></div></div></details></div>
+        <div class="practice-problem"><details><summary>5. Boolean Casting Practice</summary><div class="solution"><p>Write a program that reads a string "True" or "False" and prints the corresponding boolean value. Also show what happens with empty string.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here</i></div></div></details></div>
 
         <h4 style="margin-top:2rem; color: var(--accent);">⚡ Intermediate Level</h4>
-        <div class="practice-problem">
-          <details>
-            <summary>4. Sum of Digits of a Number</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Input an integer and compute the sum of its digits using a while loop (e.g., 123 → 6).</p>
-              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
-                <i>Write your code here – solution not shown.</i>
-              </div>
-            </div>
-          </details>
-        </div>
-        <div class="practice-problem">
-          <details>
-            <summary>5. Print a Right‑Angled Triangle Pattern</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Use nested loops to print a right‑angled triangle of stars with n rows (e.g., n=4 gives *,**...</p>
-              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
-                <i>Write your code here – solution not shown.</i>
-              </div>
-            </div>
-          </details>
-        </div>
-        <div class="practice-problem">
-          <details>
-            <summary>6. ATM PIN Validation</summary>
-            <div class="solution">
-              <p><strong>Problem:</strong> Set a hardcoded PIN (e.g., 1234). Allow a user 3 attempts to enter the correct PIN. After each wrong attempt print "Wrong PIN. Try again." If 3 attempts fail, print "Card blocked."</p>
-              <div class="code-block" style="background: #f1f5f9; border: 1px dashed #94a3b8; padding: 1rem; text-align: center; color: #64748b;">
-                <i>Write your code here – solution not shown.</i>
-              </div>
-            </div>
-          </details>
-        </div>
+        <div class="practice-problem"><details><summary>6. Sum of Digits of a Number</summary><div class="solution"><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here</i></div></div></details></div>
+        <div class="practice-problem"><details><summary>7. Right‑Angled Triangle Pattern</summary><div class="solution"><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here</i></div></div></details></div>
+        <div class="practice-problem"><details><summary>8. ATM PIN Validation (3 attempts)</summary><div class="solution"><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here</i></div></div></details></div>
       </div>
     </div>
   </main>
@@ -546,10 +503,9 @@ print(f"Digits: {digits}, Letters: {letters}, Spaces: {spaces}")</code></pre>
     <ul>
       <li><a href="#if-elif-else">If‑Elif‑Else</a></li>
       <li><a href="#for-loops">For Loop</a></li>
-      <li><a href="#for-beginner">  └ Beginner</a></li>
-      <li><a href="#for-intermediate">  └ Intermediate</a></li>
       <li><a href="#range-function">range()</a></li>
       <li><a href="#while-loops">While Loop</a></li>
+      <li><a href="#type-casting">Type Casting</a></li>
       <li><a href="#practice-problems">Practice Problems</a></li>
       <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
     </ul>
@@ -603,16 +559,44 @@ print(f"Digits: {digits}, Letters: {letters}, Spaces: {spaces}")</code></pre>
     });
   });
 
-  // Scroll spy (page tracker)
+  document.getElementById('sidebarToggleBtn')?.addEventListener('click', function() {
+    document.querySelector('.main-container').classList.toggle('sidebar-collapsed');
+  });
+
+  function initSidebarCollapse() {
+    const sections = document.querySelectorAll('.sidebar-section');
+    sections.forEach(section => {
+      const titleDiv = section.querySelector('.sidebar-title');
+      if (!titleDiv) return;
+      if (titleDiv.getAttribute('data-collapsible') === 'true') return;
+      if (!titleDiv.querySelector('.toggle-icon')) {
+        const chevron = document.createElement('i');
+        chevron.className = 'fas fa-chevron-down toggle-icon';
+        chevron.setAttribute('aria-hidden', 'true');
+        titleDiv.appendChild(chevron);
+      }
+      if (!section.classList.contains('collapsed')) {
+        titleDiv.setAttribute('aria-expanded', 'true');
+      } else {
+        titleDiv.setAttribute('aria-expanded', 'false');
+      }
+      titleDiv.addEventListener('click', (e) => {
+        e.stopPropagation();
+        section.classList.toggle('collapsed');
+        titleDiv.setAttribute('aria-expanded', !section.classList.contains('collapsed'));
+      });
+      titleDiv.setAttribute('data-collapsible', 'true');
+      titleDiv.style.cursor = 'pointer';
+    });
+  }
+  
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const id = entry.target.getAttribute('id');
       const link = document.querySelector(`.page-tracker a[href="#${id}"]`);
-      if (link) {
-        if (entry.isIntersecting) {
-          document.querySelectorAll('.page-tracker a').forEach(a => a.classList.remove('active'));
-          link.classList.add('active');
-        }
+      if (link && entry.isIntersecting) {
+        document.querySelectorAll('.page-tracker a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
       }
     });
   }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
@@ -624,6 +608,8 @@ print(f"Digits: {digits}, Letters: {letters}, Spaces: {spaces}")</code></pre>
   if (practiceCard) observer.observe(practiceCard);
   const unsolvedCard = document.getElementById('unsolved-exercises');
   if (unsolvedCard) observer.observe(unsolvedCard);
+  
+  initSidebarCollapse();
 </script>
 </body>
 </html>

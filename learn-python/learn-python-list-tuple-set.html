@@ -17,7 +17,6 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-  <!-- Fonts & Prism -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
@@ -28,64 +27,285 @@
   <link rel="stylesheet" href="../css/theme.css" />
 
   <style>
-    .main-container { display: grid; grid-template-columns: 280px 1fr 200px; gap: 0; min-height: calc(100vh - 72px); }
-    .sidebar { background: var(--surface); border-right: 1px solid #e2e8f0; padding: 2rem 0; overflow-y: auto; position: sticky; top: 72px; height: calc(100vh - 72px); }
-    .sidebar-section { padding: 0 1rem; margin-bottom: 1.5rem; }
-    .sidebar-title { font-weight: 700; color: var(--accent); padding: 1rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; user-select: none; transition: background var(--transition); border-radius: var(--radius-sm); font-family: var(--font-heading); }
+    .main-container {
+      display: grid;
+      grid-template-columns: 280px 1fr 200px;
+      gap: 0;
+      min-height: calc(100vh - 72px);
+    }
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid #e2e8f0;
+      padding: 2rem 0;
+      overflow-y: auto;
+      position: sticky;
+      top: 72px;
+      height: calc(100vh - 72px);
+    }
+    .sidebar-section { 
+      padding: 0 1rem; 
+      margin-bottom: 1.5rem; 
+    }
+    .sidebar-title {
+      font-weight: 700; 
+      color: var(--accent); 
+      padding: 1rem; 
+      cursor: pointer;
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem; 
+      user-select: none;
+      transition: background var(--transition); 
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      justify-content: space-between;
+    }
+    .sidebar-title .title-content {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
     .sidebar-title:hover { background: #e0e7ff; }
     .sidebar-title.active { background: #e0e7ff; color: var(--accent-dark); }
-    .sidebar-item { padding: 0.75rem 1rem; margin-left: 1rem; color: var(--text-light); transition: all var(--transition); border-left: 3px solid transparent; display: block; border-radius: var(--radius-sm); font-weight: 500; text-decoration: none; }
-    .sidebar-item:hover, .sidebar-item.active { color: var(--accent); background: #f0f4ff; border-left-color: var(--accent); padding-left: 1.25rem; }
+    
+    /* collapsible toggle icon */
+    .toggle-icon {
+      transition: transform 0.25s ease;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+    .sidebar-section.collapsed .toggle-icon {
+      transform: rotate(-90deg);
+    }
+    
+    /* hide sidebar items when section is collapsed */
+    .sidebar-section.collapsed .sidebar-item {
+      display: none;
+    }
+    
+    .sidebar-item {
+      padding: 0.75rem 1rem; 
+      margin-left: 1rem; 
+      color: var(--text-light);
+      transition: all var(--transition); 
+      border-left: 3px solid transparent;
+      display: block; 
+      border-radius: var(--radius-sm); 
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .sidebar-item:hover, .sidebar-item.active {
+      color: var(--accent); 
+      background: #f0f4ff; 
+      border-left-color: var(--accent);
+      padding-left: 1.25rem;
+    }
 
-    .content { padding: 3rem 2rem; overflow-y: auto; }
-    .content-section { max-width: 800px; margin: 0 auto; }
-    .section-title { font-size: 2rem; color: var(--text); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading); }
-    .section-intro { background: linear-gradient(135deg, #e0e7ff, #dbeafe); padding: 1.5rem; border-radius: var(--radius); margin-bottom: 2rem; border-left: 4px solid var(--accent); color: var(--text); }
-    .concept-card { background: var(--surface); padding: 2rem; border-radius: var(--radius); margin-bottom: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--accent); transition: all var(--transition); }
+    .content {
+      padding: 3rem 2rem;
+      overflow-y: auto;
+    }
+    .content-section {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2rem; color: var(--text); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading);
+    }
+    .section-intro {
+      background: linear-gradient(135deg, #e0e7ff, #dbeafe);
+      padding: 1.5rem; border-radius: var(--radius); margin-bottom: 2rem;
+      border-left: 4px solid var(--accent); color: var(--text);
+    }
+    .concept-card {
+      background: var(--surface); padding: 2rem; border-radius: var(--radius);
+      margin-bottom: 2rem; box-shadow: var(--shadow); border-left: 4px solid var(--accent);
+      transition: all var(--transition);
+    }
     .concept-card:hover { box-shadow: var(--shadow-lg); }
-    .concept-card h3 { color: var(--accent); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.3rem; }
+    .concept-card h3 {
+      color: var(--accent); margin-bottom: 1rem; font-family: var(--font-heading); font-size: 1.3rem;
+    }
 
-    /* Professional code block */
-    .code-block { background: #1e293b; border-radius: var(--radius-sm); margin: 1.5rem 0; border-left: 4px solid var(--accent); overflow: hidden; position: relative; }
-    .code-block-header { background: #0f172a; color: #94a3b8; font-size: 0.8rem; padding: 0.5rem 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-family: 'Fira Code', monospace; border-bottom: 1px solid #334155; }
-    .code-block-header i { color: #ef4444; font-size: 0.8rem; }
-    .code-block pre { margin: 0; padding: 1.5rem 1.5rem 1.5rem 3.5rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.6; background: #1e293b; }
-    .code-block pre.line-numbers { padding-left: 3.5rem; }
-    .copy-btn { position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(255,255,255,0.1); border: none; color: #cbd5e1; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(4px); opacity: 0; z-index: 5; }
+    .code-block {
+      background: #1e293b;
+      border-radius: var(--radius-sm);
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--accent);
+      overflow: hidden;
+      position: relative;
+    }
+    .code-block-header {
+      background: #0f172a;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      padding: 0.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Fira Code', monospace;
+      border-bottom: 1px solid #334155;
+    }
+    .code-block-header i {
+      color: #ef4444;
+      font-size: 0.8rem;
+    }
+    .code-block pre {
+      margin: 0;
+      padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      background: #1e293b;
+    }
+    .code-block pre.line-numbers {
+      padding-left: 3.5rem;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #cbd5e1;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      z-index: 5;
+    }
     .code-block:hover .copy-btn { opacity: 1; }
     .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
     .copy-btn.copied { background: #22c55e; color: #fff; }
 
-    .example-output { background: #f0fdf4; color: #166534; padding: 1.5rem; border-radius: var(--radius-sm); margin-top: 0.5rem; border-left: 3px solid #22c55e; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; white-space: pre-line; }
+    .example-output {
+      background: #f0fdf4;
+      color: #166534;
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      margin-top: 0.5rem;
+      border-left: 3px solid #22c55e;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
 
-    .infographic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-    .infographic-card { padding: 2rem; border-radius: var(--radius); text-align: center; box-shadow: var(--shadow); transition: all var(--transition); border-top: 4px solid var(--accent); background: var(--surface); }
+    .infographic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .infographic-card {
+      padding: 2rem;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+      border-top: 4px solid var(--accent);
+      background: var(--surface);
+    }
     .infographic-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
     .infographic-icon { font-size: 3rem; margin-bottom: 0.5rem; }
     .infographic-card h3 { color: var(--accent); margin-bottom: 0.5rem; font-family: var(--font-heading); }
 
-    /* Right page tracker */
-    .page-tracker { position: sticky; top: 90px; height: fit-content; padding: 1.5rem 1rem; background: var(--surface); border-left: 1px solid #e2e8f0; margin-top: 2rem; }
-    .page-tracker h4 { font-family: var(--font-heading); color: var(--accent); margin-bottom: 0.8rem; font-size: 0.9rem; }
+    .page-tracker {
+      position: sticky; top: 90px; height: fit-content;
+      padding: 1.5rem 1rem; background: var(--surface); border-left: 1px solid #e2e8f0;
+      margin-top: 2rem;
+    }
+    .page-tracker h4 {
+      font-family: var(--font-heading); color: var(--accent); margin-bottom: 0.8rem; font-size: 0.9rem;
+    }
     .page-tracker ul { list-style: none; padding: 0; margin: 0; }
     .page-tracker li { margin-bottom: 0.4rem; }
-    .page-tracker a { text-decoration: none; color: var(--text-light); font-size: 0.85rem; transition: color 0.2s; display: block; padding-left: 8px; border-left: 2px solid transparent; }
-    .page-tracker a.active { color: var(--accent); font-weight: 600; border-left-color: var(--accent); }
+    .page-tracker a {
+      text-decoration: none; color: var(--text-light); font-size: 0.85rem;
+      transition: color 0.2s; display: block; padding-left: 8px;
+      border-left: 2px solid transparent;
+    }
+    .page-tracker a.active {
+      color: var(--accent); font-weight: 600; border-left-color: var(--accent);
+    }
     .page-tracker a:hover { color: var(--accent); }
 
-    /* Practice problems */
-    .practice-problem { margin: 1.2rem 0; }
-    .practice-problem summary { font-weight: 600; color: var(--accent); cursor: pointer; padding: 0.6rem 1rem; background: #f1f5f9; border-radius: 6px; transition: background 0.2s; }
-    .practice-problem summary:hover { background: #e2e8f0; }
-    .practice-problem .solution { margin-top: 0.8rem; padding: 1rem; background: #f8fafc; border-left: 3px solid var(--accent); border-radius: 4px; }
+    .practice-problem {
+      margin: 1.2rem 0;
+    }
+    .practice-problem summary {
+      font-weight: 600;
+      color: var(--accent);
+      cursor: pointer;
+      padding: 0.6rem 1rem;
+      background: #f1f5f9;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .practice-problem summary:hover {
+      background: #e2e8f0;
+    }
+    .practice-problem .solution {
+      margin-top: 0.8rem;
+      padding: 1rem;
+      background: #f8fafc;
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+    }
 
-    footer { background: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 2rem; margin-top: 3rem; }
-    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
-    .footer-links a { color: var(--footer-text); transition: color var(--transition); }
+    footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--footer-text);
+      transition: color var(--transition);
+    }
     .footer-links a:hover { color: #fff; }
 
-    @media (max-width: 1024px) { .main-container { grid-template-columns: 220px 1fr; } .page-tracker { display: none; } }
-    @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; } .sidebar { position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid #e2e8f0; max-height: 400px; } .content { padding: 2rem 1rem; } .section-title { font-size: 1.5rem; } }
+    @media (max-width: 1024px) {
+      .main-container { grid-template-columns: 220px 1fr; }
+      .page-tracker { display: none; }
+    }
+    @media (max-width: 768px) {
+      .main-container { grid-template-columns: 1fr; }
+      .sidebar { position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid #e2e8f0; max-height: 400px; }
+      .content { padding: 2rem 1rem; }
+      .section-title { font-size: 1.5rem; }
+    }
+
+    .sidebar-toggle-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 1rem;
+      display: none;
+    }
+    @media (min-width: 769px) {
+      .sidebar-toggle-btn { display: block; }
+    }
+
+    .main-container.sidebar-collapsed { grid-template-columns: 1fr 200px; }
+    .main-container.sidebar-collapsed .sidebar { display: none; }
   </style>
 </head>
 <body>
@@ -97,6 +317,7 @@
 
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
+  <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
   <div class="nav-links" id="navLinks" role="menubar">
     <a href="/index.html" role="menuitem">Home</a>
@@ -112,8 +333,10 @@
 
 <div class="main-container">
   <aside class="sidebar">
-    <div class="sidebar-section">
-      <div class="sidebar-title active"><i class="fas fa-book"></i> Python Tutorial</div>
+    <div class="sidebar-section" id="pythonTutorialSection">
+      <div class="sidebar-title active">
+        <span class="title-content"><i class="fas fa-book"></i> Python Tutorial</span>
+      </div>
       <a href="learn-python-intro.html" class="sidebar-item"><i class="fas fa-star"></i> Python Introduction</a>
       <a href="learn-python-condition-loops.html" class="sidebar-item"><i class="fas fa-code-branch"></i> Condition & Loops</a>
       <a href="learn-python-list-tuple-set.html" class="sidebar-item active"><i class="fas fa-layer-group"></i> List, Tuples, Set</a>
@@ -125,7 +348,6 @@
       <h1 class="section-title"><i class="fas fa-layer-group"></i> List, Tuples, Set</h1>
       <div class="section-intro"><p><strong>Collection data types:</strong> Store multiple items with different rules. Each type is optimized for a specific use case.</p></div>
 
-      <!-- Quick summary infographics -->
       <div class="infographic-grid">
         <article class="infographic-card"><div class="infographic-icon">📋</div><h3>List</h3><p>Mutable, ordered, allows duplicates</p></article>
         <article class="infographic-card"><div class="infographic-icon">📦</div><h3>Tuple</h3><p>Immutable, ordered, allows duplicates</p></article>
@@ -291,7 +513,6 @@ print(a.symmetric_difference(b))# {1,2,5,6}</code></pre>
       <div class="concept-card" id="practice-problems">
         <h3><i class="fas fa-code"></i> Practice Problems (Solved)</h3>
 
-        <!-- Beginner -->
         <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner Level</h4>
         <div class="practice-problem">
           <details>
@@ -346,7 +567,6 @@ print(f"{target} appears {count} times")</code></pre>
           </details>
         </div>
 
-        <!-- Intermediate -->
         <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate Level</h4>
         <div class="practice-problem">
           <details>
@@ -433,7 +653,6 @@ print(student["name"])</code></pre>
     </div>
   </main>
 
-  <!-- Right Page Tracker -->
   <aside class="page-tracker" id="pageTracker">
     <h4>On This Page</h4>
     <ul>
@@ -494,7 +713,45 @@ print(student["name"])</code></pre>
     });
   });
 
-  // Scroll spy (page tracker)
+  document.getElementById('sidebarToggleBtn')?.addEventListener('click', function() {
+    document.querySelector('.main-container').classList.toggle('sidebar-collapsed');
+  });
+
+  // Sidebar collapse/expand (Python Tutorial heading)
+  function initSidebarCollapse() {
+    const sections = document.querySelectorAll('.sidebar-section');
+    sections.forEach(section => {
+      const titleDiv = section.querySelector('.sidebar-title');
+      if (!titleDiv) return;
+      if (titleDiv.getAttribute('data-collapsible') === 'true') return;
+      
+      // Add toggle icon if missing
+      if (!titleDiv.querySelector('.toggle-icon')) {
+        const chevron = document.createElement('i');
+        chevron.className = 'fas fa-chevron-down toggle-icon';
+        chevron.setAttribute('aria-hidden', 'true');
+        titleDiv.appendChild(chevron);
+      }
+      
+      // Expanded by default (no collapsed class)
+      if (!section.classList.contains('collapsed')) {
+        titleDiv.setAttribute('aria-expanded', 'true');
+      } else {
+        titleDiv.setAttribute('aria-expanded', 'false');
+      }
+      
+      titleDiv.addEventListener('click', (e) => {
+        e.stopPropagation();
+        section.classList.toggle('collapsed');
+        titleDiv.setAttribute('aria-expanded', !section.classList.contains('collapsed'));
+      });
+      
+      titleDiv.setAttribute('data-collapsible', 'true');
+      titleDiv.style.cursor = 'pointer';
+    });
+  }
+  
+  // Scroll spy for page tracker
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const id = entry.target.getAttribute('id');
@@ -515,6 +772,8 @@ print(student["name"])</code></pre>
   if (practiceCard) observer.observe(practiceCard);
   const unsolvedCard = document.getElementById('unsolved-exercises');
   if (unsolvedCard) observer.observe(unsolvedCard);
+  
+  initSidebarCollapse();
 </script>
 </body>
 </html>
