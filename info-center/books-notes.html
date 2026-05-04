@@ -278,7 +278,7 @@
     }
     .preview-pane iframe {
       width: 100%;
-      height: 100vh;   /* increased to show a full PDF page */
+      height: 100vh;   /* desktop: full viewport height */
       border: none;
       border-radius: 12px;
       background: #eef2ff;
@@ -346,10 +346,17 @@
       .topic-btn { padding: 0.6rem 1rem; }
       .sub-topic-list { padding-left: 1.5rem; }
       .preview-pane { flex: auto; width: 100%; }
-      .preview-pane iframe { height: 60vh; } /* slightly smaller on mobile */
+      /* MOBILE FIX: Increase iframe height to 90% of viewport for proper PDF scrolling */
+      .preview-pane iframe {
+        height: 90vh;
+        min-height: 500px; /* fallback for very small screens */
+      }
     }
     @media (max-width: 480px) {
       .subject-grid { grid-template-columns: 1fr; }
+      .preview-pane iframe {
+        height: 85vh; /* still tall enough */
+      }
     }
 
     .page-hero {
@@ -422,7 +429,7 @@
         </h3>
         <!-- Dynamic PDF list row (only for Class10 subjects) -->
         <div id="pdfListRow" class="pdf-list-row" style="display: none;"></div>
-        <iframe id="pdfPreviewFrame" title="PDF Preview" oncontextmenu="return false;"></iframe>
+        <iframe id="pdfPreviewFrame" title="PDF Preview" oncontextmenu="return false;" allowfullscreen></iframe>
         <div id="previewPlaceholder" class="preview-placeholder">
           <i class="fas fa-eye"></i> Select a PDF to preview<br>Click "Preview" on any study material.
         </div>
