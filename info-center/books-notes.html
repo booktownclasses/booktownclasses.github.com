@@ -1,40 +1,785 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="canonical" href="https://booktownclasses.github.io/info-center/books-notes.html">
+  <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
-  <title>Books & Notes - BookTown Classes</title>
-  <meta name="description" content="Access study materials, books, and notes for BookTown Classes courses.">
   <meta name="theme-color" content="#3b82f6">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Books & Notes – Study Materials | BookTown Classes</title>
+  <meta name="description" content="View free PDF study materials for Class 9, Class 10, Coding, English Speaking, and Test Series at BookTown Classes. Read online – no download required.">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="Books & Notes – View Online | BookTown Classes">
+  <meta property="og:description" content="Access high-quality notes, question banks, and coding handbooks. Read instantly in your browser.">
+  <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg">
+  <meta property="og:url" content="https://booktownclasses.github.io/info-center/books-notes.html">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPKPM82P5B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FPKPM82P5B');
+  </script>
+
+  <!-- Shared theme -->
   <link rel="stylesheet" href="../../css/theme.css">
+
+  <style>
+    /* Books & Notes specific styles – three column layout */
+    .books-wrapper {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* Left sidebar (collapsible) */
+    .class-sidebar {
+      flex: 0 0 260px;
+      background: var(--surface, #ffffff);
+      border-radius: var(--radius, 20px);
+      padding: 1.5rem 0;
+      box-shadow: var(--shadow, 0 4px 20px rgba(0,0,0,0.08));
+      align-self: start;
+      position: sticky;
+      top: 100px;
+      transition: all 0.3s ease;
+    }
+
+    /* collapsed state */
+    .class-sidebar.collapsed {
+      display: none;
+    }
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1.5rem 0.75rem;
+      border-bottom: 2px solid var(--accent, #3b82f6);
+      margin-bottom: 1rem;
+    }
+    .sidebar-header h3 {
+      font-size: 1.2rem;
+      margin: 0;
+      padding: 0;
+      border: none;
+      display: inline-block;
+    }
+    .collapse-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--accent);
+      transition: 0.2s;
+    }
+    .collapse-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Sidebar topic list & accordion */
+    .class-tab-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .topic-item {
+      margin: 0;
+    }
+    .topic-btn {
+      width: 100%;
+      text-align: left;
+      padding: 0.85rem 1.5rem;
+      background: transparent;
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text, #1e293b);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .topic-btn i {
+      width: 1.5rem;
+      color: var(--accent, #3b82f6);
+    }
+    .topic-btn:hover {
+      background: rgba(59,130,246,0.1);
+      color: var(--accent);
+    }
+    .topic-btn.active {
+      background: rgba(59,130,246,0.15);
+      color: var(--accent);
+      border-right: 3px solid var(--accent);
+      font-weight: 700;
+    }
+    /* Expand/collapse icon */
+    .toggle-icon {
+      margin-left: auto;
+      font-size: 0.8rem;
+      transition: transform 0.2s;
+    }
+    .sub-topic-list {
+      list-style: none;
+      padding-left: 2.5rem;
+      margin: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .sub-topic-list.open {
+      max-height: 300px;
+    }
+    .sub-topic-list li {
+      margin: 0;
+    }
+    .sub-topic-btn {
+      width: 100%;
+      text-align: left;
+      padding: 0.6rem 1rem 0.6rem 2rem;
+      background: transparent;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-light, #475569);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sub-topic-btn i {
+      width: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--accent);
+    }
+    .sub-topic-btn:hover {
+      background: rgba(59,130,246,0.08);
+      color: var(--accent);
+    }
+
+    /* Middle column – subject cards (only for non‑Class10 topics) */
+    .subject-area {
+      flex: 1;
+      background: var(--surface, #ffffff);
+      border-radius: var(--radius, 20px);
+      padding: 1.5rem;
+      box-shadow: var(--shadow, 0 4px 20px rgba(0,0,0,0.08));
+      transition: all 0.2s;
+    }
+    /* Hide middle column when empty – used for Class10 sublist */
+    .subject-area.hide-middle {
+      display: none;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .pdf-card {
+      background: var(--background, #f8fafc);
+      border-radius: 16px;
+      padding: 1.2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid var(--border, #e2e8f0);
+    }
+
+    .pdf-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    }
+
+    .pdf-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text, #0f172a);
+    }
+
+    .pdf-title i {
+      color: #ef4444;
+      font-size: 1.2rem;
+    }
+
+    .pdf-desc {
+      font-size: 0.8rem;
+      color: var(--text-light, #475569);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .btn-preview {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: #10b981;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .btn-preview:hover {
+      background: #059669;
+      transform: scale(1.02);
+    }
+
+    /* Right preview pane – wider, smaller heading, taller iframe */
+    .preview-pane {
+      flex: 0 0 800px;
+      background: var(--surface, #ffffff);
+      border-radius: var(--radius, 20px);
+      padding: 1rem;
+      box-shadow: var(--shadow, 0 4px 20px rgba(0,0,0,0.08));
+      align-self: start;
+      position: sticky;
+      top: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .preview-pane h3 {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-light);
+    }
+    .preview-pane iframe {
+      width: 100%;
+      height: 100vh;   /* increased to show a full PDF page */
+      border: none;
+      border-radius: 12px;
+      background: #eef2ff;
+    }
+    .clear-preview {
+      background: none;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .preview-placeholder {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-light);
+      background: var(--background, #f8fafc);
+      border-radius: 12px;
+    }
+
+    /* PDF list row (appears above the iframe for Class10 subjects) */
+    .pdf-list-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background: var(--surface-alt, #f1f5f9);
+      border-radius: 12px;
+    }
+    .pdf-list-item {
+      background: var(--surface, white);
+      border-radius: 40px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      cursor: pointer;
+      transition: 0.2s;
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .pdf-list-item:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .preview-pane { flex: 0 0 600px; }
+    }
+    @media (max-width: 992px) {
+      .preview-pane { flex: 0 0 450px; }
+    }
+    @media (max-width: 768px) {
+      .books-wrapper { flex-direction: column; }
+      .class-sidebar { flex: auto; position: static; padding: 1rem; }
+      .topic-btn { padding: 0.6rem 1rem; }
+      .sub-topic-list { padding-left: 1.5rem; }
+      .preview-pane { flex: auto; width: 100%; }
+      .preview-pane iframe { height: 60vh; } /* slightly smaller on mobile */
+    }
+    @media (max-width: 480px) {
+      .subject-grid { grid-template-columns: 1fr; }
+    }
+
+    .page-hero {
+      text-align: center;
+      margin: 2rem 0 1rem;
+    }
+    .page-hero h1 {
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, var(--text), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
 </head>
 <body>
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
-    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="nav-links" id="navLinks" role="menubar">
-      <a href="/index.html" role="menuitem">Home</a>
-      <a href="/coding/coding.html" role="menuitem">Coding</a>
-      <a href="/class-10/class10.html" role="menuitem">Class 10</a>
-      <a href="/class-10/class10-testseries.html" role="menuitem">Test Series</a>
-      <a href="/english.html" role="menuitem">English</a>
-      <a href="/learn-python/learn-python-intro.html" role="menuitem">Learn Python+</a>
-      <a href="/info-center/books-notes.html" class="active" role="menuitem" aria-current="page">Books & Notes</a>
-      <a href="#contact" class="btn-cta-small" role="button">Join Now</a>
+
+<div class="floating-shapes">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+</div>
+
+<nav class="navbar">
+  <div class="logo"><i class="fas fa-graduation-cap"></i> BookTown <span>Classes</span></div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/index.html">Home</a>
+    <a href="/coding/coding.html">Coding</a>
+    <a href="/class-10/class10.html">Class 10</a>
+    <a href="/class-10/class10-testseries.html">Test Series</a>
+    <a href="/english.html">English</a>
+    <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+    <a href="/info-center/books-notes.html" class="active">Books & Notes</a>
+    <a href="#contact" class="btn-cta-small">Join Now</a>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+    <div class="page-hero">
+      <h1><i class="fas fa-book-open"></i> Books & Notes</h1>
+      <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Read all study materials online – no download required. For Class 10 subjects, a quick list of PDFs appears above the preview.</p>
     </div>
-  </nav>
 
-  <main class="container">
-    <h1>Books & Notes</h1>
-    <p>Coming soon...</p>
-  </main>
+    <div class="books-wrapper">
+      <!-- Left sidebar (collapsible) -->
+      <aside class="class-sidebar" id="classSidebar">
+        <div class="sidebar-header">
+          <h3><i class="fas fa-graduation-cap"></i> Topics</h3>
+          <button class="collapse-btn" id="collapseSidebarBtn" title="Collapse sidebar"><i class="fas fa-chevron-left"></i></button>
+        </div>
+        <ul class="class-tab-list" id="classTabList"></ul>
+      </aside>
 
-  <script src="../../js/script.js"></script>
+      <!-- Middle column – Subject cards (only shown for non‑Class10 topics) -->
+      <div class="subject-area" id="subjectArea">
+        <div id="notesContent">
+          <div class="empty-state"><i class="fas fa-spinner fa-pulse"></i> Loading materials...</div>
+        </div>
+      </div>
+
+      <!-- Right preview pane (inline, wider, taller iframe) -->
+      <div class="preview-pane" id="previewPane">
+        <h3>
+          📄 PDF Preview
+          <button class="clear-preview" id="clearPreviewBtn" title="Clear preview"><i class="fas fa-times-circle"></i> Clear</button>
+        </h3>
+        <!-- Dynamic PDF list row (only for Class10 subjects) -->
+        <div id="pdfListRow" class="pdf-list-row" style="display: none;"></div>
+        <iframe id="pdfPreviewFrame" title="PDF Preview" oncontextmenu="return false;"></iframe>
+        <div id="previewPlaceholder" class="preview-placeholder">
+          <i class="fas fa-eye"></i> Select a PDF to preview<br>Click "Preview" on any study material.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact section -->
+  <div class="container" id="contact">
+    <div class="contact-cta" style="margin-top: 3rem;">
+      <h2><i class="fab fa-whatsapp"></i> Need help or printed notes?</h2>
+      <p>Reach out to us – we’re happy to share additional resources or clarify doubts.</p>
+      <div class="contact-form" id="contactForm">
+        <input type="text" id="name" placeholder="Your name" required>
+        <input type="tel" id="phone" placeholder="Phone number" required>
+        <select id="studentClass" required>
+          <option value="">Select class/program</option>
+          <option>Class 9</option><option>Class 10</option>
+          <option>Coding (Python)</option><option>English Speaking</option><option>Test Series</option>
+        </select>
+        <textarea rows="2" id="message" placeholder="Your message..."></textarea>
+        <button id="submitFormBtn"><i class="fab fa-whatsapp"></i> Request Callback</button>
+      </div>
+      <p>📞 <a href="tel:9414700737">9414700737</a> | 📧 hello@booktownclasses.com</p>
+    </div>
+  </div>
+</main>
+
+<a href="https://wa.me/919414700737" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i> Chat
+</a>
+
+<footer>
+  <div class="footer-links">
+    <a href="/index.html">Home</a>
+    <a href="/coding/coding.html">Coding</a>
+    <a href="/class-10/class10.html">Class 10</a>
+    <a href="/class-10/class10-testseries.html">Test Series</a>
+    <a href="/english.html">English</a>
+    <a href="/info-center/books-notes.html">Books & Notes</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds. ✨</p>
+  <p>Online & Offline | Small batches | Expert faculty</p>
+</footer>
+
+<script src="../../js/nav.js"></script>
+<script src="../../js/script.js"></script>
+
+<script>
+  // PDF Database
+  const pdfDatabase = {
+    class9: {
+      name: "Class 9",
+      subjects: [
+        { title: "Mathematics - NCERT Solutions", desc: "Complete solved exercises for Class 9 Maths.", url: "/pdfs/class9-maths.pdf", icon: "fas fa-calculator" },
+        { title: "Science - Physics Notes", desc: "Motion, Force & Laws of Motion – chapter summaries.", url: "/pdfs/class9-science-physics.pdf", icon: "fas fa-flask" },
+        { title: "English - Beehive Workbook", desc: "Prose and poetry question bank.", url: "/pdfs/class9-english.pdf", icon: "fas fa-language" },
+        { title: "Social Science - History", desc: "French Revolution & Nazism notes.", url: "/pdfs/class9-history.pdf", icon: "fas fa-landmark" }
+      ]
+    },
+    class10: {
+      name: "Class 10",
+      subjectPDFs: {
+        "📐 Math Notes": [
+          { name: "NCERT Textbook (PDF)", url: "/pdfs/class10-math-ncert.pdf" },
+          { name: "Sample Papers", url: "/pdfs/class10-math-sample.pdf" },
+          { name: "Formula Sheet", url: "/pdfs/class10-math-formulas.pdf" }
+        ],
+        "🔬 Science Notes": [
+          { name: "NCERT Science", url: "/pdfs/class10-science-ncert.pdf" },
+          { name: "Practice MCQs", url: "/pdfs/class10-science-mcq.pdf" },
+          { name: "Diagrams Summary", url: "/pdfs/class10-science-diagrams.pdf" }
+        ],
+        "📖 English Notes": [
+          { name: "First Flight Prose", url: "/pdfs/class10-english-prose.pdf" },
+          { name: "Poems Summary", url: "/pdfs/class10-english-poems.pdf" },
+          { name: "Grammar Workbook", url: "/pdfs/class10-english-grammar.pdf" }
+        ],
+        "🌍 Social Science Notes": [
+          { name: "History Notes", url: "/pdfs/class10-history.pdf" },
+          { name: "Geography Maps", url: "/pdfs/class10-geography.pdf" },
+          { name: "Civics & Economics", url: "/pdfs/class10-civics-economics.pdf" }
+        ]
+      },
+      subjects: [
+        { title: "📐 Math Notes", desc: "Complete theory, formulas, and solved examples for Class 10 Mathematics.", url: "/pdfs/class10-math-notes.pdf", icon: "fas fa-calculator" },
+        { title: "🔬 Science Notes", desc: "Physics, Chemistry, Biology – key concepts and diagrams.", url: "/pdfs/class10-science-notes.pdf", icon: "fas fa-atom" },
+        { title: "📖 English Notes", desc: "First Flight & Footprints – summaries, Q&A, grammar.", url: "/pdfs/class10-english-notes.pdf", icon: "fas fa-book" },
+        { title: "🌍 Social Science Notes", desc: "History, Geography, Civics, Economics – crisp notes.", url: "/pdfs/class10-social-notes.pdf", icon: "fas fa-map" },
+        { title: "📊 Maths - Previous Year Papers", desc: "Board exam papers with solutions.", url: "/pdfs/class10-maths-pyp.pdf", icon: "fas fa-chart-line" },
+        { title: "⚗️ Science - Practice MCQs", desc: "Assertion-reasoning and case-based questions.", url: "/pdfs/class10-science-mcq.pdf", icon: "fas fa-vial" }
+      ]
+    },
+    coding: {
+      name: "Coding (Python)",
+      subjects: [
+        { title: "Python Basics Handbook", desc: "Variables, loops, functions – beginner friendly.", url: "/pdfs/python-basics.pdf", icon: "fab fa-python" },
+        { title: "OOP in Python", desc: "Classes, inheritance, polymorphism explained.", url: "/pdfs/python-oop.pdf", icon: "fas fa-project-diagram" },
+        { title: "Git & GitHub Guide", desc: "Version control commands and workflows.", url: "/pdfs/git-guide.pdf", icon: "fab fa-git-alt" },
+        { title: "SQL for Beginners", desc: "CRUD, JOINS, subqueries with examples.", url: "/pdfs/sql-basics.pdf", icon: "fas fa-database" }
+      ]
+    },
+    english: {
+      name: "English Speaking",
+      subjects: [
+        { title: "Daily Conversation Phrases", desc: "100+ real-life expressions and idioms.", url: "/pdfs/english-phrases.pdf", icon: "fas fa-comments" },
+        { title: "Grammar Essentials", desc: "Tenses, modals, passive voice made easy.", url: "/pdfs/english-grammar.pdf", icon: "fas fa-spell-check" },
+        { title: "Public Speaking Tips", desc: "Structuring speeches and reducing fear.", url: "/pdfs/public-speaking.pdf", icon: "fas fa-microphone-alt" },
+        { title: "Vocabulary Builder", desc: "Root words, synonyms, antonyms.", url: "/pdfs/vocabulary.pdf", icon: "fas fa-font" }
+      ]
+    },
+    testseries: {
+      name: "Test Series",
+      subjects: [
+        { title: "Class 10 Maths - Full Syllabus Mock", desc: "Based on latest CBSE pattern.", url: "/pdfs/maths-mock.pdf", icon: "fas fa-file-alt" },
+        { title: "Class 10 Science - Practice Set", desc: "MCQs and assertion-reasoning.", url: "/pdfs/science-practice.pdf", icon: "fas fa-vial" },
+        { title: "Coding Aptitude Test", desc: "Python, logic, and problem solving.", url: "/pdfs/coding-aptitude.pdf", icon: "fas fa-laptop-code" },
+        { title: "English Proficiency Test", desc: "Reading comprehension & grammar.", url: "/pdfs/english-test.pdf", icon: "fas fa-check-double" }
+      ]
+    }
+  };
+
+  // Helper functions
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
+  }
+
+  function setPreview(url, title) {
+    const iframe = document.getElementById('pdfPreviewFrame');
+    const placeholder = document.getElementById('previewPlaceholder');
+    if (!url || url === '#') {
+      iframe.style.display = 'none';
+      placeholder.style.display = 'block';
+      placeholder.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Preview not available.';
+      return;
+    }
+    iframe.src = url;
+    iframe.style.display = 'block';
+    placeholder.style.display = 'none';
+  }
+
+  function clearPreview() {
+    const iframe = document.getElementById('pdfPreviewFrame');
+    const placeholder = document.getElementById('previewPlaceholder');
+    iframe.src = '';
+    iframe.style.display = 'none';
+    placeholder.style.display = 'block';
+    placeholder.innerHTML = '<i class="fas fa-eye"></i> Select a PDF to preview<br>Click "Preview" on any study material.';
+  }
+
+  // Show/hide middle column
+  function setMiddleColumnVisible(visible) {
+    const middleCol = document.getElementById('subjectArea');
+    if (visible) {
+      middleCol.classList.remove('hide-middle');
+    } else {
+      middleCol.classList.add('hide-middle');
+    }
+  }
+
+  // Render all subjects for a class (original behaviour – used for non‑Class10 topics)
+  function renderClassContent(classKey) {
+    const data = pdfDatabase[classKey];
+    const contentDiv = document.getElementById('notesContent');
+    // Hide the PDF list row (Class10 specific)
+    document.getElementById('pdfListRow').style.display = 'none';
+    // Show middle column (it will contain cards)
+    setMiddleColumnVisible(true);
+    if (!data || !data.subjects.length) {
+      contentDiv.innerHTML = '<div class="empty-state"><i class="fas fa-folder-open"></i> No PDFs uploaded yet.</div>';
+      return;
+    }
+    let cardsHTML = `<h2><i class="fas fa-eye"></i> ${escapeHtml(data.name)} – Study Materials</h2><div class="subject-grid">`;
+    data.subjects.forEach(sub => {
+      const pdfUrl = (sub.url && sub.url !== "#") ? sub.url : "#";
+      const isPlaceholder = (pdfUrl === "#");
+      cardsHTML += `
+        <div class="pdf-card">
+          <div class="pdf-title"><i class="${sub.icon}"></i> ${escapeHtml(sub.title)}</div>
+          <div class="pdf-desc">${escapeHtml(sub.desc)}</div>
+          <button class="btn-preview" data-url="${pdfUrl}" data-title="${escapeHtml(sub.title)}"><i class="fas fa-eye"></i> Preview</button>
+          ${isPlaceholder ? '<small style="color:#ef4444; display:block; margin-top:8px;">⚠️ Coming soon</small>' : ''}
+        </div>`;
+    });
+    cardsHTML += `</div>`;
+    contentDiv.innerHTML = cardsHTML;
+    document.querySelectorAll('#notesContent .btn-preview').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        setPreview(btn.getAttribute('data-url'), btn.getAttribute('data-title'));
+      });
+    });
+  }
+
+  // For Class10 subtopics: show PDF row, hide middle column
+  function renderSubjectPDFList(subjectKey, subjectDisplayName) {
+    const contentDiv = document.getElementById('notesContent');
+    const pdfListDiv = document.getElementById('pdfListRow');
+    const pdfList = pdfDatabase.class10.subjectPDFs[subjectKey];
+    if (!pdfList || pdfList.length === 0) {
+      contentDiv.innerHTML = '';
+      pdfListDiv.style.display = 'none';
+      setMiddleColumnVisible(false);
+      return;
+    }
+    // Clear middle column and hide it
+    contentDiv.innerHTML = '';
+    setMiddleColumnVisible(false);
+    // Build the row list
+    pdfListDiv.innerHTML = '';
+    pdfList.forEach(pdf => {
+      const item = document.createElement('div');
+      item.className = 'pdf-list-item';
+      item.innerHTML = `<i class="fas fa-file-pdf"></i> ${escapeHtml(pdf.name)}`;
+      item.addEventListener('click', () => {
+        setPreview(pdf.url, pdf.name);
+      });
+      pdfListDiv.appendChild(item);
+    });
+    pdfListDiv.style.display = 'flex';
+    clearPreview();
+  }
+
+  // Build sidebar with accordion for Class 10
+  function buildSidebar() {
+    const container = document.getElementById('classTabList');
+    container.innerHTML = '';
+
+    const topics = [
+      { key: 'class9', label: 'Class 9', icon: 'fas fa-book', hasSub: false },
+      { key: 'class10', label: 'Class 10', icon: 'fas fa-chalkboard', hasSub: true,
+        subItems: [
+          { name: 'Math Notes', icon: 'fas fa-calculator', subjectKey: '📐 Math Notes', display: 'Math Notes' },
+          { name: 'Science Notes', icon: 'fas fa-atom', subjectKey: '🔬 Science Notes', display: 'Science Notes' },
+          { name: 'English Notes', icon: 'fas fa-book', subjectKey: '📖 English Notes', display: 'English Notes' },
+          { name: 'Social Science Notes', icon: 'fas fa-map', subjectKey: '🌍 Social Science Notes', display: 'Social Science Notes' }
+        ]
+      },
+      { key: 'coding', label: 'Coding (Python)', icon: 'fas fa-code', hasSub: false },
+      { key: 'english', label: 'English Speaking', icon: 'fas fa-language', hasSub: false },
+      { key: 'testseries', label: 'Test Series', icon: 'fas fa-tasks', hasSub: false }
+    ];
+
+    for (let topic of topics) {
+      const li = document.createElement('li');
+      li.className = 'topic-item';
+      const btn = document.createElement('button');
+      btn.className = 'topic-btn';
+      btn.setAttribute('data-class', topic.key);
+      btn.innerHTML = `<i class="${topic.icon}"></i> ${topic.label}`;
+      if (topic.hasSub) {
+        const toggleSpan = document.createElement('span');
+        toggleSpan.className = 'toggle-icon';
+        toggleSpan.innerHTML = '<i class="fas fa-chevron-down"></i>';
+        btn.appendChild(toggleSpan);
+      }
+
+      if (!topic.hasSub) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderClassContent(topic.key);
+          const openSub = document.querySelector('.sub-topic-list.open');
+          if (openSub) openSub.classList.remove('open');
+        });
+      } else {
+        // Class 10: toggle sublist
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const subList = li.querySelector('.sub-topic-list');
+          if (subList) {
+            subList.classList.toggle('open');
+            const icon = btn.querySelector('.toggle-icon i');
+            if (subList.classList.contains('open')) {
+              icon.classList.remove('fa-chevron-down');
+              icon.classList.add('fa-chevron-up');
+            } else {
+              icon.classList.remove('fa-chevron-up');
+              icon.classList.add('fa-chevron-down');
+            }
+          }
+        });
+      }
+      li.appendChild(btn);
+
+      if (topic.hasSub) {
+        const subUl = document.createElement('ul');
+        subUl.className = 'sub-topic-list';
+        for (let sub of topic.subItems) {
+          const subLi = document.createElement('li');
+          const subBtn = document.createElement('button');
+          subBtn.className = 'sub-topic-btn';
+          subBtn.innerHTML = `<i class="${sub.icon}"></i> ${sub.name}`;
+          subBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            renderSubjectPDFList(sub.subjectKey, sub.display);
+            document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if (!subUl.classList.contains('open')) {
+              subUl.classList.add('open');
+              const icon = btn.querySelector('.toggle-icon i');
+              icon.classList.remove('fa-chevron-down');
+              icon.classList.add('fa-chevron-up');
+            }
+            if (window.innerWidth <= 768) {
+              document.getElementById('previewPane').scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+          subLi.appendChild(subBtn);
+          subUl.appendChild(subLi);
+        }
+        li.appendChild(subUl);
+      }
+      container.appendChild(li);
+    }
+
+    // Default active: Class 9
+    const defaultBtn = document.querySelector('.topic-btn[data-class="class9"]');
+    if (defaultBtn) defaultBtn.classList.add('active');
+    renderClassContent('class9');
+    document.getElementById('pdfListRow').style.display = 'none';
+  }
+
+  function initCollapsibleSidebar() {
+    const sidebar = document.getElementById('classSidebar');
+    const collapseBtn = document.getElementById('collapseSidebarBtn');
+    collapseBtn?.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      const icon = collapseBtn.querySelector('i');
+      if (sidebar.classList.contains('collapsed')) {
+        icon.classList.remove('fa-chevron-left');
+        icon.classList.add('fa-chevron-right');
+        collapseBtn.title = "Expand sidebar";
+      } else {
+        icon.classList.remove('fa-chevron-right');
+        icon.classList.add('fa-chevron-left');
+        collapseBtn.title = "Collapse sidebar";
+      }
+    });
+  }
+
+  function initClearPreview() {
+    const clearBtn = document.getElementById('clearPreviewBtn');
+    clearBtn?.addEventListener('click', clearPreview);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    buildSidebar();
+    initCollapsibleSidebar();
+    initClearPreview();
+    document.getElementById('pdfPreviewFrame').style.display = 'none';
+    // Initially middle column visible
+    setMiddleColumnVisible(true);
+  });
+</script>
 </body>
 </html>
