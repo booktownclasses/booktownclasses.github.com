@@ -187,6 +187,93 @@
         grid-template-columns: 1fr !important;
       }
     }
+
+    /* Mobile sidebar navigation */
+    @media (max-width: 768px) {
+      .navbar .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 280px;
+        background: linear-gradient(135deg, rgba(15,23,42,0.99), rgba(30,41,59,0.99));
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        gap: 4px;
+        padding: 100px 24px 32px;
+        transform: translateX(-100%);
+        opacity: 0;
+        transition: transform 0.35s ease, opacity 0.25s ease;
+        z-index: 998;
+        overflow-y: auto;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+      }
+
+      .navbar .nav-links.show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .navbar .nav-links a {
+        color: #cbd5e1;
+        padding: 14px 16px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .navbar .nav-links a:hover {
+        background: rgba(139,92,246,0.15);
+        color: #fff;
+      }
+
+      .navbar .nav-links a.active {
+        background: rgba(139,92,246,0.25);
+        color: #fff;
+        border-left: 3px solid var(--accent);
+        padding-left: 13px;
+      }
+
+      .navbar .nav-links .btn-cta-small {
+        margin-top: 16px;
+      }
+      /* Make the hamburger button visible & positioned top-right */
+.mobile-menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text, #fff);
+  padding: 0.5rem;
+  z-index: 1000;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure the navbar uses flex to push button to the right */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* On desktop, hide the button */
+@media (min-width: 769px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+/* On mobile, show and position button */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+}
+    }
   </style>
 </head>
 <body>
@@ -906,6 +993,7 @@
 </a>
 
 <!-- Shared mobile nav + page scripts -->
+<script src="../js/nav.js"></script>
 <script src="../js/script.js"></script>
 <script>
   // Tab switching
