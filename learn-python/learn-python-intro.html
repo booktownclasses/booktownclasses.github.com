@@ -760,12 +760,12 @@ else:
 
   document.getElementById('mobileMenuBtn').addEventListener('click', function() {
     const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
-    this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+    navLinks.classList.toggle('show');
+    this.setAttribute('aria-expanded', navLinks.classList.contains('show'));
   });
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-      document.getElementById('navLinks').classList.remove('active');
+      document.getElementById('navLinks').classList.remove('show');
       document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
     });
   });
