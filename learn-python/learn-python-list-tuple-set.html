@@ -649,6 +649,97 @@ print(student["name"])</code></pre>
         <div class="practice-problem">
           <details><summary>6. Sort a List of Tuples by Second Element</summary><div class="solution"><p>Given <code>[(2, 'b'), (1, 'a'), (3, 'c')]</code>, sort the list by the first element of each tuple.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details>
         </div>
+
+        <h4 style="color:var(--accent);margin-top:2rem;">🔥 Advanced Level (Company Interview)</h4>
+        <div class="practice-problem">
+          <details>
+            <summary>1. Longest Increasing Subsequence (LIS)</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Given a list of integers <code>nums</code>, find the length of the longest strictly increasing subsequence (not necessarily contiguous).</p>
+              <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div>
+              <p><strong>Test Cases (Input → Expected Output):</strong></p>
+              <ul>
+                <li><code>[10,9,2,5,3,7,101,18]</code> → <code>4</code> (Explanation: [2,3,7,101])</li>
+                <li><code>[0,1,0,3,2,3]</code> → <code>4</code></li>
+                <li><code>[7,7,7,7,7,7,7]</code> → <code>1</code></li>
+                <li><code>[1,3,6,7,9,4,10,5,6]</code> → <code>6</code> (e.g., [1,3,6,7,9,10])</li>
+                <li><code>[2,1,5,3,6,4,8,9,7]</code> → <code>5</code> (e.g., [1,3,6,8,9])</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <div class="practice-problem">
+          <details>
+            <summary>2. Merge Overlapping Intervals</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Given a list of intervals represented as tuples <code>(start, end)</code>, merge all overlapping intervals and return a new list of non‑overlapping intervals in ascending order.</p>
+              <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div>
+              <p><strong>Test Cases:</strong></p>
+              <ul>
+                <li><code>[(1,3), (2,6), (8,10), (15,18)]</code> → <code>[(1,6), (8,10), (15,18)]</code></li>
+                <li><code>[(1,4), (4,5)]</code> → <code>[(1,5)]</code></li>
+                <li><code>[(1,4), (0,4)]</code> → <code>[(0,4)]</code></li>
+                <li><code>[(1,4), (2,3)]</code> → <code>[(1,4)]</code></li>
+                <li><code>[(1,4), (5,6)]</code> → <code>[(1,4), (5,6)]</code></li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <div class="practice-problem">
+          <details>
+            <summary>3. Group Anagrams from a List of Strings</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Given a list of strings, group together those that are anagrams of each other. Return a list of lists (any order).</p>
+              <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div>
+              <p><strong>Test Cases (order of groups and inner lists may vary):</strong></p>
+              <ul>
+                <li><code>["eat","tea","tan","ate","nat","bat"]</code> → <code>[["bat"],["nat","tan"],["ate","eat","tea"]]</code></li>
+                <li><code>[""]</code> → <code>[[""]]</code></li>
+                <li><code>["a"]</code> → <code>[["a"]]</code></li>
+                <li><code>["abc","bca","cab","xyz","zyx","yxz"]</code> → two groups of three anagrams each</li>
+                <li><code>["listen","silent","enlist","hello","world"]</code> → <code>[["hello"],["world"],["listen","silent","enlist"]]</code> (any order)</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <div class="practice-problem">
+          <details>
+            <summary>4. Rotate a List In‑Place (O(1) extra space)</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Rotate a list to the right by <code>k</code> steps. Modify the original list in‑place without allocating extra memory (constant extra space).</p>
+              <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div>
+              <p><strong>Test Cases:</strong></p>
+              <ul>
+                <li><code>[1,2,3,4,5,6,7], k=3</code> → <code>[5,6,7,1,2,3,4]</code></li>
+                <li><code>[-1,-100,3,99], k=2</code> → <code>[3,99,-1,-100]</code></li>
+                <li><code>[1,2], k=3</code> → <code>[2,1]</code> (k mod len = 1)</li>
+                <li><code>[1,2,3,4], k=0</code> → <code>[1,2,3,4]</code></li>
+                <li><code>[1], k=100</code> → <code>[1]</code></li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <div class="practice-problem">
+          <details>
+            <summary>5. Find the k‑th Largest Element (without full sort)</summary>
+            <div class="solution">
+              <p><strong>Problem:</strong> Given a list of numbers and an integer <code>k</code>, return the <code>k</code>-th largest element (1‑based). Do not sort the entire list; aim for better than O(n log n) average time.</p>
+              <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;color:#64748b;text-align:center;"><i>Write your code here – solution not shown.</i></div>
+              <p><strong>Test Cases:</strong></p>
+              <ul>
+                <li><code>[3,2,1,5,6,4], k=2</code> → <code>5</code></li>
+                <li><code>[3,2,3,1,2,4,5,5,6], k=4</code> → <code>4</code></li>
+                <li><code>[1], k=1</code> → <code>1</code></li>
+                <li><code>[2,1], k=1</code> → <code>2</code></li>
+                <li><code>[5,5,5,5,5], k=3</code> → <code>5</code></li>
+              </ul>
+            </div>
+          </details>
+        </div>
       </div>
     </div>
   </main>
