@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/learn-python-week1.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>Week 1: Python Fundamentals + Git | 3-Month Python Course | BookTown Classes</title>
+    <meta name="description" content="Week 1 of our 3-month Python course. Master Python fundamentals: variables, data types, conditionals, arithmetic operators, and Git version control with hands-on exercises." />
+    <meta name="keywords" content="Python course, learn Python, Python fundamentals, Git tutorial, Python week 1, Python variables, Python conditionals, Python for beginners, 3-month Python course" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Week 1: Python Fundamentals + Git | 3-Month Python Course | BookTown Classes" />
+    <meta property="og:description" content="Start your 3-month Python journey. Week 1 covers print(), variables, data types, input/output, f-strings, arithmetic, conditionals, logical operators, and Git basics." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Prism CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <!-- Prism line numbers plugin -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js">
+    </script>
+    <link rel="stylesheet" href="../css/theme.css" />
+
+    <style>
+        :root {
+            --accent: #3b82f6;
+            --accent-dark: #1d4ed8;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.10), 0 4px 10px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.2s ease;
+            --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            --footer-bg: #1e293b;
+            --footer-text: #cbd5e1;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: #f8fafc;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.05;
+            animation: floatShape 20s infinite ease-in-out;
+        }
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: #3b82f6;
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: #8b5cf6;
+            bottom: -80px;
+            left: -80px;
+            animation-delay: -7s;
+        }
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            background: #10b981;
+            top: 40%;
+            left: 50%;
+            animation-delay: -14s;
+        }
+        @keyframes floatShape {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -40px) scale(1.08);
+            }
+            50% {
+                transform: translate(-20px, 20px) scale(0.94);
+            }
+            75% {
+                transform: translate(15px, 35px) scale(1.04);
+            }
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 2rem;
+            background: var(--surface);
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo span {
+            color: var(--text);
+            font-weight: 600;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color var(--transition);
+            padding: 0.4rem 0;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+        .nav-links a.active {
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent);
+        }
+        .btn-cta-small {
+            background: var(--accent);
+            color: #fff !important;
+            padding: 0.5rem 1.25rem !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            font-size: 0.85rem !important;
+            transition: all var(--transition);
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        .btn-cta-small:hover {
+            background: var(--accent-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+        }
+        .mobile-menu-btn,
+        .sidebar-toggle-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--text);
+            padding: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--surface);
+                border-bottom: 2px solid #e2e8f0;
+                padding: 1rem 2rem;
+                gap: 0.75rem;
+                z-index: 99;
+                box-shadow: var(--shadow-lg);
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .sidebar-toggle-btn {
+                display: block;
+            }
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 290px 1fr 210px;
+            gap: 0;
+            min-height: calc(100vh - 72px);
+            position: relative;
+            z-index: 1;
+        }
+        .sidebar {
+            background: var(--surface);
+            border-right: 1px solid #e2e8f0;
+            padding: 1.5rem 0;
+            overflow-y: auto;
+            position: sticky;
+            top: 72px;
+            height: calc(100vh - 72px);
+        }
+        .sidebar-section {
+            padding: 0 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .sidebar-title {
+            font-weight: 700;
+            color: var(--accent);
+            padding: 0.85rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            user-select: none;
+            transition: background var(--transition);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-heading);
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin: 0 0.5rem;
+        }
+        .sidebar-title .title-content {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .sidebar-title:hover {
+            background: #e0e7ff;
+        }
+        .sidebar-title.active {
+            background: #e0e7ff;
+            color: var(--accent-dark);
+        }
+        .toggle-icon {
+            transition: transform 0.25s ease;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        .sidebar-section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        .sidebar-section.collapsed .sidebar-item {
+            display: none;
+        }
+        .sidebar-item {
+            padding: 0.65rem 1rem;
+            margin-left: 1.2rem;
+            color: var(--text-light);
+            transition: all var(--transition);
+            border-left: 3px solid transparent;
+            display: block;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .sidebar-item:hover,
+        .sidebar-item.active {
+            color: var(--accent);
+            background: #f0f4ff;
+            border-left-color: var(--accent);
+            padding-left: 1.25rem;
+        }
+        .sidebar-badge {
+            font-size: 0.68rem;
+            background: #dbeafe;
+            color: var(--accent);
+            padding: 0.18rem 0.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+        .sidebar-item.active .sidebar-badge {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .content {
+            padding: 2.5rem 2rem;
+            overflow-y: auto;
+        }
+        .content-section {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2rem;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-heading);
+        }
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        .section-intro {
+            background: linear-gradient(135deg, #e0e7ff, #dbeafe);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent);
+            color: var(--text);
+        }
+        .course-overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .overview-card {
+            background: var(--surface);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 3px solid var(--accent);
+        }
+        .overview-card.day-1 {
+            border-top-color: #3b82f6;
+        }
+        .overview-card.day-2 {
+            border-top-color: #8b5cf6;
+        }
+        .overview-card.day-3 {
+            border-top-color: #f59e0b;
+        }
+        .overview-card.day-4 {
+            border-top-color: #10b981;
+        }
+        .overview-card.day-5 {
+            border-top-color: #f43f5e;
+        }
+        .overview-card.day-6 {
+            border-top-color: #6366f1;
+        }
+        .overview-card .day-num {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        .overview-card h4 {
+            margin: 0.4rem 0;
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+        }
+        .overview-card p {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+        .concept-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent);
+            transition: all var(--transition);
+            scroll-margin-top: 90px;
+        }
+        .concept-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        .concept-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .concept-card h3 .day-badge {
+            font-size: 0.7rem;
+            background: #dbeafe;
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        .code-block {
+            background: #1e293b;
+            border-radius: var(--radius-sm);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent);
+            overflow: hidden;
+            position: relative;
+        }
+        .code-block-header {
+            background: #0f172a;
+            color: #94a3b8;
+            font-size: 0.78rem;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Fira Code', monospace;
+            border-bottom: 1px solid #334155;
+        }
+        .code-block-header i {
+            font-size: 0.65rem;
+        }
+        .code-block-header i.fa-circle:nth-child(1) {
+            color: #ef4444;
+        }
+        .code-block-header i.fa-circle:nth-child(2) {
+            color: #f59e0b;
+        }
+        .code-block-header i.fa-circle:nth-child(3) {
+            color: #22c55e;
+        }
+        .code-block pre {
+            margin: 0;
+            padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+            overflow-x: auto;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            background: #1e293b;
+            font-family: 'Fira Code', 'Courier New', monospace;
+        }
+        .code-block pre.line-numbers {
+            padding-left: 3.5rem;
+        }
+        .code-block pre[class*="language-"] {
+            margin: 0;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #cbd5e1;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            z-index: 5;
+        }
+        .code-block:hover .copy-btn {
+            opacity: 1;
+        }
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .copy-btn.copied {
+            background: #22c55e;
+            color: #fff;
+        }
+        .example-output {
+            background: #f0fdf4;
+            color: #166534;
+            padding: 1.25rem;
+            border-radius: var(--radius-sm);
+            margin-top: 0.5rem;
+            border-left: 3px solid #22c55e;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+        .example-interaction {
+            background: #fffbeb;
+            color: #92400e;
+            padding: 1.25rem;
+            border-radius: var(--radius-sm);
+            margin-top: 0.5rem;
+            border-left: 3px solid #f59e0b;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .info-table thead tr {
+            background: #e0e7ff;
+            border-bottom: 2px solid var(--accent);
+        }
+        .info-table th {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+            color: var(--accent);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+        }
+        .info-table td {
+            padding: 0.7rem 0.75rem;
+            border: 1px solid #e2e8f0;
+            font-size: 0.88rem;
+        }
+        .info-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        .tip-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-sm);
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+        .tip-box strong {
+            color: #b45309;
+        }
+        .warning-box {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-sm);
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+            color: #991b1b;
+        }
+        .practice-problem {
+            margin: 1rem 0;
+        }
+        .practice-problem summary {
+            font-weight: 600;
+            color: var(--accent);
+            cursor: pointer;
+            padding: 0.6rem 1rem;
+            background: #f1f5f9;
+            border-radius: 6px;
+            transition: background 0.2s;
+            font-size: 0.9rem;
+        }
+        .practice-problem summary:hover {
+            background: #e2e8f0;
+        }
+        .practice-problem .solution {
+            margin-top: 0.8rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-left: 3px solid var(--accent);
+            border-radius: 4px;
+        }
+
+        .page-tracker {
+            position: sticky;
+            top: 90px;
+            height: fit-content;
+            padding: 1.5rem 1rem;
+            background: var(--surface);
+            border-left: 1px solid #e2e8f0;
+            margin-top: 1.5rem;
+        }
+        .page-tracker h4 {
+            font-family: var(--font-heading);
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+        }
+        .page-tracker ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .page-tracker li {
+            margin-bottom: 0.3rem;
+        }
+        .page-tracker a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            transition: color 0.2s;
+            display: block;
+            padding-left: 8px;
+            border-left: 2px solid transparent;
+        }
+        .page-tracker a.active {
+            color: var(--accent);
+            font-weight: 600;
+            border-left-color: var(--accent);
+        }
+        .page-tracker a:hover {
+            color: var(--accent);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25d366;
+            color: #fff;
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            z-index: 200;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+        }
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--footer-text);
+            transition: color var(--transition);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 250px 1fr 180px;
+            }
+        }
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 220px 1fr;
+            }
+            .page-tracker {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: relative;
+                top: 0;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+                max-height: 380px;
+            }
+            .content {
+                padding: 1.5rem 1rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .course-overview-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .course-overview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+            .logo {
+                font-size: 1.1rem;
+            }
+            .concept-card {
+                padding: 1.25rem;
+            }
+        }
+        .main-container.sidebar-collapsed {
+            grid-template-columns: 1fr 210px;
+        }
+        .main-container.sidebar-collapsed .sidebar {
+            display: none;
+        }
+        @media (min-width: 769px) {
+            .sidebar-toggle-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+        <div class="nav-links" id="navLinks" role="menubar">
+            <a href="/index.html" role="menuitem">Home</a>
+            <a href="/coding/coding.html" role="menuitem">Coding</a>
+            <a href="/class-10/class10.html" role="menuitem">Class 10</a>
+            <a href="/class-10/class10-testseries.html" role="menuitem">Test Series</a>
+            <a href="/english.html" role="menuitem">English</a>
+            <a href="/learn-python/learn-python-intro.html" class="active" role="menuitem" aria-current="page">Learn Python+</a>
+            <a href="/info-center/books-notes.html" role="menuitem">Books & Notes</a>
+            <a href="#contact" class="btn-cta-small" role="button">Join Now</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <aside class="sidebar" id="mainSidebar">
+            <!-- Month 1: Python Basics -->
+            <div class="sidebar-section" id="month1Section">
+                <div class="sidebar-title active">
+                    <span class="title-content"><i class="fas fa-calendar-alt"></i> Month 1: Python Basics</span>
+                    <i class="fas fa-chevron-down toggle-icon" aria-hidden="true"></i>
+                </div>
+                <a href="learn-python-week1.html" class="sidebar-item active">
+                    <i class="fas fa-play-circle"></i> Week 1: Fundamentals + Git
+                    <span class="sidebar-badge">Current</span>
+                </a>
+                <a href="learn-python-week2.html" class="sidebar-item"><i class="fas fa-sync-alt"></i> Week 2: Loops &amp; Lists</a>
+                <a href="learn-python-week3.html" class="sidebar-item"><i class="fas fa-cube"></i> Week 3: Functions &amp; Modules</a>
+                <a href="learn-python-week4.html" class="sidebar-item"><i class="fas fa-project-diagram"></i> Week 4: Mini Project</a>
+            </div>
+            <!-- Month 2: Intermediate Python -->
+            <div class="sidebar-section collapsed" id="month2Section">
+                <div class="sidebar-title">
+                    <span class="title-content"><i class="fas fa-calendar-check"></i> Month 2: Intermediate</span>
+                    <i class="fas fa-chevron-down toggle-icon" aria-hidden="true"></i>
+                </div>
+                <a href="learn-python-week5.html" class="sidebar-item"><i class="fas fa-box"></i> Week 5: OOP Basics</a>
+                <a href="learn-python-week6.html" class="sidebar-item"><i class="fas fa-file-alt"></i> Week 6: File Handling</a>
+                <a href="learn-python-week7.html" class="sidebar-item"><i class="fas fa-exclamation-triangle"></i> Week 7: Error Handling</a>
+                <a href="learn-python-week8.html" class="sidebar-item"><i class="fas fa-tasks"></i> Week 8: Mini Project</a>
+            </div>
+            <!-- Month 3: Advanced Topics -->
+            <div class="sidebar-section collapsed" id="month3Section">
+                <div class="sidebar-title">
+                    <span class="title-content"><i class="fas fa-calendar-star"></i> Month 3: Advanced</span>
+                    <i class="fas fa-chevron-down toggle-icon" aria-hidden="true"></i>
+                </div>
+                <a href="learn-python-week9.html" class="sidebar-item"><i class="fas fa-cloud"></i> Week 9: APIs &amp; JSON</a>
+                <a href="learn-python-week10.html" class="sidebar-item"><i class="fas fa-database"></i> Week 10: Databases</a>
+                <a href="learn-python-week11.html" class="sidebar-item"><i class="fas fa-globe"></i> Week 11: Web Scraping</a>
+                <a href="learn-python-week12.html" class="sidebar-item"><i class="fas fa-trophy"></i> Week 12: Final Project</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="content-section">
+                <h1 class="section-title"><i class="fas fa-star"></i> Week 1: Python Fundamentals + Git</h1>
+                <p class="section-subtitle">A 6-day course covering Python basics—variables, data types, input/output, conditionals, arithmetic—plus Git version control.</p>
+
+                <!-- Course Overview -->
+                <div class="section-intro">
+                    <p><strong>📅 Overview:</strong> Days 1–5 cover Python fundamentals with hands-on exercises. Day 6 introduces Git for version control. Each day includes concept explanations, live coding demos, student exercises, and solution discussions.</p>
+                    <p style="margin-bottom:0;"><strong>🎯 Goal:</strong> By the end of this week, you'll write Python scripts, handle user input, make decisions with conditionals, and track your code with Git.</p>
+                </div>
+
+                <!-- Day Cards -->
+                <div class="course-overview-grid">
+                    <div class="overview-card day-1">
+                        <div class="day-num">Day 1</div>
+                        <h4>Print, Comments, Variables</h4>
+                        <p>print(), comments, data types</p>
+                    </div>
+                    <div class="overview-card day-2">
+                        <div class="day-num">Day 2</div>
+                        <h4>Input, f-strings, Arithmetic</h4>
+                        <p>input(), f-strings, operators</p>
+                    </div>
+                    <div class="overview-card day-3">
+                        <div class="day-num">Day 3</div>
+                        <h4>Conditional Statements</h4>
+                        <p>if, elif, else</p>
+                    </div>
+                    <div class="overview-card day-4">
+                        <div class="day-num">Day 4</div>
+                        <h4>Logical Operators</h4>
+                        <p>and, or, not, leap year</p>
+                    </div>
+                    <div class="overview-card day-5">
+                        <div class="day-num">Day 5</div>
+                        <h4>Mini-Project</h4>
+                        <p>Simple Calculator</p>
+                    </div>
+                    <div class="overview-card day-6">
+                        <div class="day-num">Day 6</div>
+                        <h4>Git Basics</h4>
+                        <p>init, add, commit, log</p>
+                    </div>
+                </div>
+
+                <!-- DAY 1 -->
+                <div class="concept-card" id="day1">
+                    <h3><span class="day-badge">Day 1</span> Print, Comments, Variables &amp; Data Types</h3>
+                    <p><strong>Learning Objectives:</strong> Understand what a program is. Use <code>print()</code> to display output. Write single-line and multi-line comments. Create variables to store different types of data. Identify basic data types: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">The print() Function</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_print.py</div>
+                        <pre class="line-numbers"><code class="language-python">print("Hello, World!")   # displays text
+print(42)                # displays an integer
+print(3.14)              # displays a float</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Comments</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_comments.py</div>
+                        <pre class="line-numbers"><code class="language-python"># This is a single-line comment
+print("Python is fun")  # comment after code
+
+"""
+This is a multi-line comment (or docstring).
+It can span multiple lines.
+Use triple quotes to create it.
+"""</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Variables &amp; Data Types</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_variables.py</div>
+                        <pre class="line-numbers"><code class="language-python">name = "Alice"          # str (string)
+age = 15                # int (integer)
+height = 5.6            # float (decimal)
+is_student = True       # bool (boolean)
+
+# Check types with type()
+print(type(name))       # <class 'str'>
+print(type(age))        # <class 'int'>
+print(type(height))     # <class 'float'>
+print(type(is_student)) # <class 'bool'></code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">🧑‍💻 Exercise: Student Info</h4>
+                    <p>Create variables for your name, age, height, and whether you are a student. Print each variable along with its data type.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_exercise_solution.py</div>
+                        <pre class="line-numbers"><code class="language-python"># Student info
+name = "Rahul"
+age = 14
+height = 5.2
+is_student = True
+
+# Print with type
+print("Name:", name, "Type:", type(name))
+print("Age:", age, "Type:", type(age))
+print("Height:", height, "Type:", type(height))
+print("Student:", is_student, "Type:", type(is_student))</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-output">Name: Rahul Type: &lt;class 'str'&gt;
+                        Age: 14 Type: &lt;class 'int'&gt;
+                        Height: 5.2 Type: &lt;class 'float'&gt;
+                    Student: True Type: &lt;class 'bool'&gt;</div>
+
+                    <div class="tip-box"><strong>💡 Instructor Tip:</strong> Variable names are <em>case-sensitive</em> (<code>name</code> ≠ <code>Name</code>) and cannot start with a number. Use meaningful, descriptive names.</div>
+                </div>
+
+                <!-- DAY 2 -->
+                <div class="concept-card" id="day2">
+                    <h3><span class="day-badge">Day 2</span> Input/Output, f-strings &amp; Arithmetic Operators</h3>
+                    <p><strong>Learning Objectives:</strong> Take user input with <code>input()</code>. Convert strings to numbers (<code>int()</code>, <code>float()</code>). Use f-strings for formatted output. Perform arithmetic: <code>+ - * / // % **</code>.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Input and Type Conversion</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_input.py</div>
+                        <pre class="line-numbers"><code class="language-python"># input() always returns a string
+name = input("Enter your name: ")
+
+# Convert to numbers for calculations
+age = int(input("Enter your age: "))
+height = float(input("Enter your height: "))
+
+print(f"Hello {name}, age {age}, height {height}")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">f-strings (Formatted Strings)</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_fstrings.py</div>
+                        <pre class="line-numbers"><code class="language-python">name = "Priya"
+marks = 91.567
+print(f"{name} scored {marks:.2f} marks.")  # formats to 2 decimal places
+# Output: Priya scored 91.57 marks.</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Arithmetic Operators</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_arithmetic.py</div>
+                        <pre class="line-numbers"><code class="language-python">a = 10
+b = 3
+print(a + b)    # 13   (addition)
+print(a - b)    # 7    (subtraction)
+print(a * b)    # 30   (multiplication)
+print(a / b)    # 3.333... (float division)
+print(a // b)   # 3    (floor division)
+print(a % b)    # 1    (remainder / modulus)
+print(a ** b)   # 1000 (exponent: 10^3)</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">🧑‍💻 Exercise: Two-Number Calculator</h4>
+                    <p>Ask the user for two numbers. Print their sum, difference, product, and quotient using f-strings.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_exercise_solution.py</div>
+                        <pre class="line-numbers"><code class="language-python">num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+sum_result = num1 + num2
+diff_result = num1 - num2
+prod_result = num1 * num2
+quot_result = num1 / num2
+
+print(f"Sum: {num1} + {num2} = {sum_result}")
+print(f"Difference: {num1} - {num2} = {diff_result}")
+print(f"Product: {num1} * {num2} = {prod_result}")
+print(f"Quotient: {num1} / {num2} = {quot_result:.2f}")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-interaction">Enter first number: 15
+                        Enter second number: 4
+                        Sum: 15.0 + 4.0 = 19.0
+                        Difference: 15.0 - 4.0 = 11.0
+                        Product: 15.0 * 4.0 = 60.0
+                    Quotient: 15.0 / 4.0 = 3.75</div>
+
+                    <div class="warning-box"><strong>⚠️ Common Mistake:</strong> Forgetting to convert <code>input()</code> with <code>int()</code> or <code>float()</code>. Without conversion, <code>+</code> will <em>concatenate strings</em> instead of adding numbers!</div>
+                </div>
+
+                <!-- DAY 3 -->
+                <div class="concept-card" id="day3">
+                    <h3><span class="day-badge">Day 3</span> Conditional Statements (if, elif, else)</h3>
+                    <p><strong>Learning Objectives:</strong> Use <code>if</code>, <code>elif</code>, <code>else</code> to make decisions. Write comparison operators: <code>== != &gt; &lt; &gt;= &lt;=</code>. Combine conditions with <code>and</code>, <code>or</code>, <code>not</code>.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Basic if-else</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day3_if_else.py</div>
+                        <pre class="line-numbers"><code class="language-python">age = 18
+if age >= 18:
+    print("You can vote.")
+else:
+    print("Too young to vote.")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">elif (else if) for Multiple Conditions</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day3_elif.py</div>
+                        <pre class="line-numbers"><code class="language-python">marks = 85
+if marks >= 90:
+    grade = "A"
+elif marks >= 75:
+    grade = "B"
+elif marks >= 60:
+    grade = "C"
+else:
+    grade = "D"
+print(f"Grade: {grade}")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">🧑‍💻 Exercise: Positive, Negative, or Zero</h4>
+                    <p>Write a program that asks for a number and tells whether it is positive, negative, or zero.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day3_exercise_solution.py</div>
+                        <pre class="line-numbers"><code class="language-python">num = float(input("Enter a number: "))
+
+if num > 0:
+    print("The number is positive.")
+elif num < 0:
+    print("The number is negative.")
+else:
+    print("The number is zero.")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-interaction">Enter a number: -7
+                    The number is negative.</div>
+
+                    <div class="tip-box"><strong>💡 Instructor Tip:</strong> Show common mistakes like using <code>=</code> (assignment) instead of <code>==</code> (comparison) in conditions. This is the #1 beginner bug!</div>
+                </div>
+
+                <!-- DAY 4 -->
+                <div class="concept-card" id="day4">
+                    <h3><span class="day-badge">Day 4</span> Logical Operators &amp; Nested if (Leap Year)</h3>
+                    <p><strong>Learning Objectives:</strong> Use logical operators (<code>and</code>, <code>or</code>, <code>not</code>). Write nested <code>if</code> statements. Solve the classic leap year problem.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Logical Operators</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day4_logical.py</div>
+                        <pre class="line-numbers"><code class="language-python">x = 10
+print(x > 5 and x < 20)   # True  (both must be True)
+print(x < 5 or x > 8)     # True  (at least one True)
+print(not x == 10)        # False (reverses the result)</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Leap Year Rules</h4>
+                    <p>A year is a leap year if:<br>✅ It is <strong>divisible by 4</strong> AND<br>✅ (It is <strong>NOT divisible by 100</strong> OR it <strong>is divisible by 400</strong>)</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Nested if Approach</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day4_leap_nested.py</div>
+                        <pre class="line-numbers"><code class="language-python">year = 2024
+if year % 4 == 0:
+    if year % 100 == 0:
+        if year % 400 == 0:
+            print("Leap year")
+        else:
+            print("Not a leap year")
+    else:
+        print("Leap year")
+else:
+    print("Not a leap year")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Simpler: Logical Operators Approach</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day4_leap_logical.py</div>
+                        <pre class="line-numbers"><code class="language-python">year = int(input("Enter year: "))
+if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+    print(f"{year} is a leap year.")
+else:
+    print(f"{year} is not a leap year.")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-interaction">Enter year: 2024
+                        2024 is a leap year.
+                        ---
+                        Enter year: 1900
+                    1900 is not a leap year.</div>
+
+                    <div class="tip-box"><strong>💡 Test these years:</strong> 1900 (not leap), 2000 (leap), 2024 (leap), 2023 (not leap). Walk through the logic step by step for each.</div>
+                </div>
+
+                <!-- DAY 5 -->
+                <div class="concept-card" id="day5">
+                    <h3><span class="day-badge">Day 5</span> Mini-Project: Simple Calculator</h3>
+                    <p><strong>Learning Objectives:</strong> Combine everything learned—variables, input, conditionals, arithmetic. Handle division by zero. Build a menu-driven program.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Project Requirements</h4>
+                    <ol>
+                        <li>Show a menu: 1. Add &nbsp; 2. Subtract &nbsp; 3. Multiply &nbsp; 4. Divide</li>
+                        <li>Ask user to choose an option.</li>
+                        <li>Ask for two numbers.</li>
+                        <li>Perform the calculation and print the result.</li>
+                        <li>If dividing and second number is 0, print <strong>"Error: Cannot divide by zero"</strong>.</li>
+                    </ol>
+
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> calculator.py</div>
+                        <pre class="line-numbers"><code class="language-python">print("--- Simple Calculator ---")
+print("1. Add")
+print("2. Subtract")
+print("3. Multiply")
+print("4. Divide")
+
+choice = input("Choose (1-4): ")
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+if choice == '1':
+    result = num1 + num2
+    print(f"Result: {num1} + {num2} = {result}")
+elif choice == '2':
+    result = num1 - num2
+    print(f"Result: {num1} - {num2} = {result}")
+elif choice == '3':
+    result = num1 * num2
+    print(f"Result: {num1} * {num2} = {result}")
+elif choice == '4':
+    if num2 != 0:
+        result = num1 / num2
+        print(f"Result: {num1} / {num2} = {result}")
+    else:
+        print("Error: Cannot divide by zero.")
+else:
+    print("Invalid choice.")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-interaction">--- Simple Calculator ---
+                        1. Add
+                        2. Subtract
+                        3. Multiply
+                        4. Divide
+                        Choose (1-4): 3
+                        Enter first number: 12
+                        Enter second number: 5
+                    Result: 12.0 * 5.0 = 60.0</div>
+
+                    <div class="tip-box"><strong>🚀 Optional Challenge:</strong> Add a loop so the calculator repeats until the user chooses to exit. Wrap the menu in <code>while True:</code> and add a "5. Exit" option.</div>
+                </div>
+
+                <!-- DAY 6 -->
+                <div class="concept-card" id="day6">
+                    <h3><span class="day-badge">Day 6</span> Git: Version Control Basics</h3>
+                    <p><strong>Learning Objectives:</strong> Understand why we use Git. Install Git. Initialize a repository. Stage and commit changes. Check status and log.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">What is Git?</h4>
+                    <p>Git is a <strong>version control system</strong> that tracks changes in files. It lets you go back to previous versions and is essential for collaboration.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Basic Git Commands</h4>
+                    <table class="info-table">
+                        <thead><tr><th>Command</th><th>Purpose</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>git init</code></td><td>Create a new repository in the current folder</td></tr>
+                            <tr><td><code>git status</code></td><td>See which files have changed</td></tr>
+                            <tr><td><code>git add &lt;file&gt;</code></td><td>Stage a file for commit</td></tr>
+                            <tr><td><code>git commit -m "message"</code></td><td>Save staged changes with a message</td></tr>
+                            <tr><td><code>git log</code></td><td>View commit history</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">🧑‍💻 Exercise: Create Your First Git Repo</h4>
+                    <p><strong>Task:</strong> Create a folder <code>python-week1</code>, add your calculator code, initialize Git, and make your first commit.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> terminal</div>
+                        <pre class="line-numbers"><code class="language-bash">mkdir python-week1
+cd python-week1
+# Create calculator.py using any text editor (copy code from Day 5)
+git init
+git add calculator.py
+git commit -m "Added calculator project"
+git log</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-output">commit a1b2c3d4e5f6... (HEAD -> main)
+                        Author: Student Name &lt;student@example.com&gt;
+                        Date: Mon Apr 14 10:30:00 2025 +0530
+                    Added calculator project</div>
+
+                    <div class="tip-box"><strong>💡 Tips:</strong> Use <strong>Git Bash</strong> on Windows or <strong>Terminal</strong> on Mac. Write <em>meaningful commit messages</em>—future you will thank you! Run <code>git status</code> often to understand what's happening.</div>
+                </div>
+
+                <!-- Week 1 Practice Problems -->
+                <div class="concept-card" id="practice-problems">
+                    <h3><i class="fas fa-code"></i> Week 1 Practice Problems</h3>
+                    <p>Test your understanding with these problems covering all Week 1 concepts.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner Level</h4>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>1. Age in Days Calculator</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Ask the user for their age in years. Convert it to days (ignore leap years) and print the result.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">age_years = int(input("Enter your age in years: "))
+age_days = age_years * 365
+print(f"You are approximately {age_days} days old.")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>2. Even or Odd Checker</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Ask for an integer and print whether it is even or odd using the modulo operator.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">num = int(input("Enter an integer: "))
+if num % 2 == 0:
+    print(f"{num} is even.")
+else:
+    print(f"{num} is odd.")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>3. Grading System</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Accept marks (0–100) and assign a grade: A (90+), B (75–89), C (60–74), D (below 60).</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">marks = float(input("Enter marks (0-100): "))
+if marks >= 90:
+    grade = "A"
+elif marks >= 75:
+    grade = "B"
+elif marks >= 60:
+    grade = "C"
+else:
+    grade = "D"
+print(f"Grade: {grade}")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate Level</h4>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>4. Triangle Type Checker</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Input three side lengths. Determine if the triangle is equilateral, isosceles, or scalene. Bonus: check if it's a valid triangle first.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">a = float(input("Side 1: "))
+b = float(input("Side 2: "))
+c = float(input("Side 3: "))
+
+if a + b > c and b + c > a and c + a > b:
+    if a == b == c:
+        print("Equilateral triangle")
+    elif a == b or b == c or c == a:
+        print("Isosceles triangle")
+    else:
+        print("Scalene triangle")
+else:
+    print("Not a valid triangle.")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>5. Enhanced Calculator with Modulo &amp; Exponent</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Extend the Day 5 calculator to also support modulo (%) and exponent (**) operations.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">print("--- Enhanced Calculator ---")
+print("1. Add  2. Subtract  3. Multiply")
+print("4. Divide  5. Modulo  6. Exponent")
+choice = input("Choose (1-6): ")
+n1 = float(input("First number: "))
+n2 = float(input("Second number: "))
+
+if choice == '5':
+    print(f"Result: {n1} % {n2} = {n1 % n2}")
+elif choice == '6':
+    print(f"Result: {n1} ** {n2} = {n1 ** n2}")
+elif choice == '4':
+    print(f"Result: {n1} / {n2} = {n1 / n2}" if n2 != 0 else "Error: Division by zero")
+elif choice == '1':
+    print(f"Result: {n1} + {n2} = {n1 + n2}")
+elif choice == '2':
+    print(f"Result: {n1} - {n2} = {n1 - n2}")
+elif choice == '3':
+    print(f"Result: {n1} * {n2} = {n1 * n2}")
+else:
+    print("Invalid choice.")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Unsolved Exercises -->
+                <div class="concept-card" id="unsolved-exercises">
+                    <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
+                    <p>Challenge yourself! Try these without peeking at solutions. All concepts are from Week 1.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner</h4>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>1. Celsius to Fahrenheit Converter</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Read Celsius from the user and convert to Fahrenheit: <code>F = (C × 9/5) + 32</code>. Print rounded to 1 decimal.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>2. Swap Two Variables</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Input two values. Swap them <em>without a third variable</em> (hint: use tuple unpacking <code>a, b = b, a</code>).</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div>
+                        </details>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate</h4>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>3. Bill Splitter with Tip</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Input bill amount, tip %, and number of people. Calculate total (bill + tip) and split equally. Round to 2 decimals.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>4. Password Strength Checker</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Ask for a password string. Print "Strong" if length ≥ 8 AND contains at least one digit (hint: use <code>any(char.isdigit() for char in password)</code>), otherwise "Weak".</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#day1">Day 1: Print &amp; Variables</a></li>
+                <li><a href="#day2">Day 2: Input &amp; Arithmetic</a></li>
+                <li><a href="#day3">Day 3: Conditionals</a></li>
+                <li><a href="#day4">Day 4: Logical Operators</a></li>
+                <li><a href="#day5">Day 5: Mini-Project</a></li>
+                <li><a href="#day6">Day 6: Git Basics</a></li>
+                <li><a href="#practice-problems">Practice Problems</a></li>
+                <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+    </a>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/class-10/class10-testseries.html">Test Series</a>
+            <a href="/english.html">English</a>
+            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+        <p>Online &amp; Offline | Small batches | Expert faculty</p>
+    </footer>
+
+    <script>
+        function copyCode(button) {
+            const pre = button.closest('.code-block').querySelector('pre');
+            const code = pre.textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                button.classList.add('copied');
+                const icon = button.querySelector('i');
+                icon.classList.remove('fa-copy');
+                icon.classList.add('fa-check');
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    icon.classList.remove('fa-check');
+                    icon.classList.add('fa-copy');
+                }, 2000);
+            });
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
+            this.setAttribute('aria-expanded', navLinks.classList.contains('show'));
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('show');
+                document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Sidebar toggle for narrow screens
+        document.getElementById('sidebarToggleBtn')?.addEventListener('click', function() {
+            document.querySelector('.main-container').classList.toggle('sidebar-collapsed');
+        });
+
+        // ----- SIDEBAR COLLAPSE/EXPAND for 3-month sections -----
+        function initSidebarCollapse() {
+            const sections = document.querySelectorAll('.sidebar-section');
+            sections.forEach(section => {
+                const titleDiv = section.querySelector('.sidebar-title');
+                if (!titleDiv) return;
+                if (titleDiv.getAttribute('data-collapsible') === 'true') return;
+
+                // Add toggle icon if missing
+                if (!titleDiv.querySelector('.toggle-icon')) {
+                    const chevron = document.createElement('i');
+                    chevron.className = 'fas fa-chevron-down toggle-icon';
+                    chevron.setAttribute('aria-hidden', 'true');
+                    titleDiv.appendChild(chevron);
+                }
+
+                const isInitiallyCollapsed = section.classList.contains('collapsed');
+                titleDiv.setAttribute('aria-expanded', !isInitiallyCollapsed);
+
+                titleDiv.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    section.classList.toggle('collapsed');
+                    const isCollapsed = section.classList.contains('collapsed');
+                    titleDiv.setAttribute('aria-expanded', !isCollapsed);
+                });
+
+                titleDiv.setAttribute('data-collapsible', 'true');
+                titleDiv.style.cursor = 'pointer';
+            });
+        }
+
+        // Scroll spy for page tracker
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const link = document.querySelector(`.page-tracker a[href="#${id}"]`);
+                if (link) {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.page-tracker a').forEach(a => a.classList.remove(
+                            'active'));
+                        link.classList.add('active');
+                    }
+                }
+            });
+        }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+        document.querySelectorAll('.concept-card h3').forEach(heading => {
+            if (heading.parentElement && heading.parentElement.id) {
+                observer.observe(heading.parentElement);
+            }
+        });
+        // Observe all concept cards by their IDs
+        ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'practice-problems', 'unsolved-exercises'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+
+        initSidebarCollapse();
+    </script>
+</body>
+</html>
