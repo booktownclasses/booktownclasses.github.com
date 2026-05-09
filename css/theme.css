@@ -1,6 +1,5 @@
 /* =============================================
-   BOOKTOWN CLASSES – UNIFIED THEME CSS
-   Merges base styles + enhanced (coding.html)
+   BOOKTOWN CLASSES – ENHANCED UI/UX THEME
    ============================================= */
 
 /* ---------- ROOT VARIABLES ---------- */
@@ -67,7 +66,7 @@ h1, h2, h3, h4 {
   padding: 0 24px;
 }
 
-/* ---------- FLOATING SHAPES (index page) ---------- */
+/* ---------- FLOATING SHAPES ---------- */
 .floating-shapes {
   position: fixed;
   top: 0;
@@ -117,7 +116,7 @@ h1, h2, h3, h4 {
   100% { transform: translate(30px, 20px) rotate(5deg); }
 }
 
-/* ---------- NAVIGATION ---------- */
+/* ---------- DARK HEADER (MATCHES SIDEBAR STYLE) ---------- */
 .navbar {
   position: sticky;
   top: 0;
@@ -127,11 +126,9 @@ h1, h2, h3, h4 {
   align-items: center;
   padding: 0 32px;
   height: 72px;
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: #213351;                    /* deep navy */
   border-bottom: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 
 .navbar .logo {
@@ -139,89 +136,93 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 10px;
   font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
+  font-weight: 800;
+  color: #ea6060;                        /* red accent like sidebar title */
   font-family: var(--font-heading);
 }
 
-.navbar .logo span {
-  background: linear-gradient(135deg, var(--gold), #facc15);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.navbar .logo i {
+  color: #ea6060;
 }
 
-.navbar .nav-links {
+.navbar .logo span {
+  color: #ffffff;
+}
+
+.nav-links {
   display: flex;
   gap: 28px;
   align-items: center;
 }
 
-.navbar .nav-links a {
-  color: #cbd5e1;
+.nav-links a {
+  color: rgba(255,255,255,0.85);
   font-weight: 500;
   font-size: 0.95rem;
   transition: color var(--transition);
   position: relative;
 }
 
-.navbar .nav-links a:hover,
-.navbar .nav-links a.active {
-  color: #fff;
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffffff;
 }
 
-.navbar .nav-links a.active::after {
+.nav-links a::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: -6px;
-  width: 100%;
+  width: 0;
   height: 2px;
-  background: var(--gold);
-  border-radius: 2px;
+  background: #ea6060;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
 }
 
 .btn-cta-small {
-  background: linear-gradient(135deg, var(--gold), #b38b2a);
-  color: #0f172a !important;
+  background: #3b82f6;                   /* blue button – pops on dark bg */
+  color: #ffffff !important;
   padding: 8px 18px;
   border-radius: 30px;
   font-weight: 600;
   transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
 }
 
 .btn-cta-small:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(196,167,71,0.4);
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59,130,246,0.4);
 }
 
-/* Mobile menu button */
 .mobile-menu-btn {
   display: none;
   background: none;
   border: none;
-  color: #fff;
+  color: #ffffff;
   font-size: 1.6rem;
   cursor: pointer;
   padding: 8px;
 }
 
-/* Mobile overlay */
+/* Mobile sidebar navigation */
 @media (max-width: 768px) {
   .mobile-menu-btn {
     display: block;
   }
 
-  /* Mobile sidebar navigation */
   .navbar .nav-links {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     width: 280px;
-    background: linear-gradient(135deg, rgba(15,23,42,0.99), rgba(30,41,59,0.99));
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: #213351;
     flex-direction: column;
     gap: 4px;
     padding: 100px 24px 32px;
@@ -238,43 +239,24 @@ h1, h2, h3, h4 {
     opacity: 1;
   }
 
-  /* Overlay backdrop when menu is open */
-  .navbar .nav-links.show::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.5);
-    z-index: -1;
-  }
-
   .navbar .nav-links a {
-    color: #cbd5e1;
+    color: rgba(255,255,255,0.85);
     padding: 14px 16px;
     border-radius: 8px;
-    transition: all 0.2s ease;
   }
 
   .navbar .nav-links a:hover {
-    background: rgba(139,92,246,0.15);
-    color: #fff;
+    background: rgba(255,255,255,0.1);
   }
 
   .navbar .nav-links a.active {
-    background: rgba(139,92,246,0.25);
-    color: #fff;
-    border-left: 3px solid var(--gold);
-    padding-left: 13px;
-  }
-
-  .navbar .nav-links .btn-cta-small {
-    margin-top: 16px;
+    background: rgba(234,96,96,0.15);
+    color: #ffffff;
+    border-left: 3px solid #ea6060;
   }
 }
 
-/* ---------- HERO (index) ---------- */
+/* ---------- HERO SECTION ---------- */
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -314,7 +296,7 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, var(--accent), #7c3aed);
+  background: var(--accent);
   color: #fff;
   padding: 14px 28px;
   border-radius: 40px;
@@ -451,12 +433,13 @@ h1, h2, h3, h4 {
   padding: 32px 24px;
   text-align: center;
   transition: transform var(--transition), box-shadow var(--transition);
-  position: relative;
+  border: 1px solid #e2e8f0;
 }
 
 .advantage-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
 }
 
 .advantage-icon {
@@ -508,12 +491,13 @@ h1, h2, h3, h4 {
   text-align: center;
   box-shadow: var(--shadow);
   transition: transform var(--transition), box-shadow var(--transition);
-  position: relative;
+  border: 1px solid #e2e8f0;
 }
 
 .program-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
 }
 
 .program-icon {
@@ -557,10 +541,12 @@ h1, h2, h3, h4 {
   text-align: center;
   box-shadow: var(--shadow);
   transition: transform var(--transition);
+  border: 1px solid #e2e8f0;
 }
 
 .faculty-card:hover {
   transform: translateY(-4px);
+  border-color: var(--accent);
 }
 
 .faculty-card img {
@@ -639,6 +625,7 @@ h1, h2, h3, h4 {
   padding: 28px;
   box-shadow: var(--shadow);
   font-style: italic;
+  border: 1px solid #e2e8f0;
 }
 
 .testimonial p {
@@ -687,6 +674,7 @@ h1, h2, h3, h4 {
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow);
   overflow: hidden;
+  border: 1px solid #e2e8f0;
 }
 
 .faq-question {
@@ -832,7 +820,7 @@ footer p {
   font-size: 0.9rem;
 }
 
-/* ---------- CODING PAGE SPECIFIC (cards, tables) ---------- */
+/* ---------- CODING PAGE SPECIFIC ---------- */
 .infocard-grid,
 .why-grid {
   display: grid;
@@ -851,11 +839,13 @@ footer p {
   text-align: center;
   box-shadow: var(--shadow);
   transition: transform var(--transition), box-shadow var(--transition);
+  border: 1px solid #e2e8f0;
 }
 
 .infocard:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
 }
 
 .infocard-icon {
@@ -901,7 +891,7 @@ footer p {
 }
 
 .curriculum-table th {
-  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  background: var(--accent);
   color: #fff;
   padding: 16px;
   text-align: left;
@@ -910,14 +900,12 @@ footer p {
 .curriculum-table td {
   padding: 14px 16px;
   border-bottom: 1px solid #e2e8f0;
-  color: var(--text);
 }
 
 .curriculum-table tr:last-child td {
   border-bottom: none;
 }
 
-/* CTA dark block – used on coding page */
 .cta-dark {
   background: linear-gradient(135deg, #0f172a, #1e293b);
   border-radius: var(--radius);
@@ -937,17 +925,7 @@ footer p {
   color: #94a3b8;
 }
 
-/* ---------- UTILITIES ---------- */
-.text-center {
-  text-align: center;
-}
-
-.mb-1 { margin-bottom: 8px; }
-.mb-2 { margin-bottom: 16px; }
-.mb-3 { margin-bottom: 24px; }
-.mb-4 { margin-bottom: 32px; }
-
-/* Responsive adjustments */
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
   .about-wrap {
     grid-template-columns: 1fr;
@@ -957,62 +935,4 @@ footer p {
   .contact-cta {
     padding: 40px 20px;
   }
-}
-
-
-/* ========== MODERN DARK HEADER (matching learn-python sidebar) ========== */
-.navbar {
-  background: #213351 !important;          /* dark navy like the sidebar */
-  backdrop-filter: none;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-}
-
-.logo {
-  background: none !important;
-  -webkit-background-clip: unset !important;
-  color: #ea6060 !important;               /* red accent, same as sidebar titles */
-  font-weight: 800;
-}
-
-.logo i {
-  color: #ea6060 !important;
-}
-
-.logo span {
-  color: #ffffff !important;               /* white text for "Classes" */
-}
-
-.nav-links a {
-  color: rgba(255,255,255,0.85) !important;
-  font-weight: 500;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: #ffffff !important;
-}
-
-.nav-links a::after {
-  background: #ea6060 !important;           /* red underline on hover/active */
-}
-
-.nav-links a.active::after {
-  width: 100%;
-}
-
-.btn-cta-small {
-  background: #3b82f6 !important;           /* blue button pops on dark bg */
-  color: #ffffff !important;
-  box-shadow: 0 2px 8px rgba(59,130,246,0.3);
-}
-
-.btn-cta-small:hover {
-  background: #2563eb !important;
-  box-shadow: 0 8px 16px rgba(59,130,246,0.4);
-}
-
-/* Mobile menu button */
-.mobile-menu-btn {
-  color: #ffffff !important;
 }
