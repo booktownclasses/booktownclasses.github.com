@@ -1003,3 +1003,6 @@ footer {
 @media (min-width: 769px) { .sidebar-toggle-btn { display: block; } }
 .main-container.sidebar-collapsed { grid-template-columns: 1fr 200px; }
 .main-container.sidebar-collapsed .sidebar { display: none; }
+
+
+

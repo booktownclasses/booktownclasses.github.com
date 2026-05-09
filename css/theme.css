@@ -958,3 +958,61 @@ footer p {
     padding: 40px 20px;
   }
 }
+
+
+/* ========== MODERN DARK HEADER (matching learn-python sidebar) ========== */
+.navbar {
+  background: #213351 !important;          /* dark navy like the sidebar */
+  backdrop-filter: none;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+.logo {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  color: #ea6060 !important;               /* red accent, same as sidebar titles */
+  font-weight: 800;
+}
+
+.logo i {
+  color: #ea6060 !important;
+}
+
+.logo span {
+  color: #ffffff !important;               /* white text for "Classes" */
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.85) !important;
+  font-weight: 500;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffffff !important;
+}
+
+.nav-links a::after {
+  background: #ea6060 !important;           /* red underline on hover/active */
+}
+
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.btn-cta-small {
+  background: #3b82f6 !important;           /* blue button pops on dark bg */
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(59,130,246,0.3);
+}
+
+.btn-cta-small:hover {
+  background: #2563eb !important;
+  box-shadow: 0 8px 16px rgba(59,130,246,0.4);
+}
+
+/* Mobile menu button */
+.mobile-menu-btn {
+  color: #ffffff !important;
+}
