@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/dsa/iterative-sorting.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>Iterative Sorting: Bubble, Selection, Insertion Sort | DSA Preparation | BookTown Classes</title>
+    <meta name="description" content="Master iterative sorting algorithms for DSA: Bubble Sort, Selection Sort, Insertion Sort. Detailed pseudocode, time & space complexity analysis, comparative study, and DSA practice questions." />
+    <meta name="keywords" content="DSA, sorting algorithms, bubble sort, selection sort, insertion sort, iterative sorting, time complexity, space complexity, pseudocode, DSA questions, BookTown Classes" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Iterative Sorting: Bubble, Selection, Insertion Sort | DSA Preparation | BookTown Classes" />
+    <meta property="og:description" content="Learn Bubble, Selection & Insertion Sort with pseudocode, complexity analysis, comparative table, and DSA practice problems. Perfect for DSA beginners." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Prism CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <!-- Prism line numbers plugin -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js">
+    </script>
+   
+    <link rel="stylesheet" href="../css/learn-python.css" />
+     <link rel="stylesheet" href="../css/theme.css" />
+    <style>
+        /* Additional styling for comparative table */
+        .comparative-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .comparative-table th,
+        .comparative-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        .comparative-table th {
+            background: #1e293b;
+            color: #f0f9ff;
+            font-weight: 600;
+        }
+        .comparative-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparative-table tr:hover td {
+            background: rgba(59,130,246,0.08);
+        }
+        .pseudocode-block {
+            font-family: 'Fira Code', monospace;
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            white-space: pre;
+            overflow-x: auto;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+        .tag-stable {
+            background: #059669;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.3rem;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        .tag-unstable {
+            background: #dc2626;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.3rem;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        .tag-adaptive {
+            background: #2563eb;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.3rem;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+        <div class="nav-links" id="navLinks" role="menubar">
+            <a href="/index.html" role="menuitem">Home</a>
+            <a href="/coding/coding.html" role="menuitem">Coding</a>
+            <a href="/class-10/class10.html" role="menuitem">Class 10</a>
+            <a href="/class-10/class10-testseries.html" role="menuitem">Test Series</a>
+            <a href="/english.html" role="menuitem">English</a>
+            <a href="/dsa/dsa-intro.html" class="active" role="menuitem" aria-current="page">DSA Prep</a>
+            <a href="/info-center/books-notes.html" role="menuitem">Books & Notes</a>
+            <a href="#contact" class="btn-cta-small" role="button">Join Now</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <aside class="sidebar" id="mainSidebar"></aside>
+
+        <main class="content">
+            <div class="content-section active">
+                <h1 class="section-title"><i class="fas fa-sort-amount-down-alt"></i> Iterative Sorting Algorithms</h1>
+                <p class="section-subtitle">Bubble Sort, Selection Sort &amp; Insertion Sort — pseudocode, complexity analysis, and a deep comparative breakdown.</p>
+
+                <!-- Course Overview -->
+                <div class="section-intro">
+                    <p><strong>📌 Core Topic:</strong> Iterative sorting forms the foundation of algorithm design. Understanding these three O(n²) sorts is essential for DSA interviews and building intuition for more advanced algorithms like Merge Sort and Quick Sort.</p>
+                    <p style="margin-bottom:0;"><strong>🎯 What you'll learn:</strong> How each algorithm works step‑by‑step, its pseudocode, time/space complexity, stability, adaptivity, and common DSA questions that use them.</p>
+                </div>
+
+                <!-- BUBBLE SORT -->
+                <div class="concept-card" id="bubble-sort">
+                    <h3><span class="day-badge">1</span> Bubble Sort <span class="tag-stable">Stable</span><span class="tag-adaptive">Adaptive</span></h3>
+                    <p><strong>How it works:</strong> Repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed. Larger elements "bubble" toward the end of the list.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Pseudocode</h4>
+                    <div class="pseudocode-block">
+for i from 0 to n-2:
+    swapped = false
+    for j from 0 to n-i-2:
+        if arr[j] > arr[j+1]:
+            swap(arr[j], arr[j+1])
+            swapped = true
+    if not swapped:
+        break
+                    </div>
+                    <p><em>Optimization:</em> The <code>swapped</code> flag stops the algorithm early if the array becomes sorted before all passes complete, making it adaptive.</p>
+
+              
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Complexity Analysis</h4>
+                    <table class="info-table">
+                        <thead><tr><th>Case</th><th>Time Complexity</th><th>Space Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Best</strong> (already sorted)</td><td>O(n)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Average</strong></td><td>O(n²)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Worst</strong> (reverse sorted)</td><td>O(n²)</td><td>O(1)</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Stability:</strong> ✅ Stable – equal elements maintain their relative order.<br>
+                    <strong>Adaptivity:</strong> ✅ Adaptive – performs better on partially sorted data.</p>
+
+                    <div class="tip-box"><strong>💡 Key Insight:</strong> The largest element is placed at its correct position in each pass. Use Bubble Sort when you need a simple, stable algorithm and the input is nearly sorted (best-case O(n)).</div>
+                </div>
+
+                <!-- SELECTION SORT -->
+                <div class="concept-card" id="selection-sort">
+                    <h3><span class="day-badge">2</span> Selection Sort <span class="tag-unstable">Unstable</span></h3>
+                    <p><strong>How it works:</strong> Divides the input into a sorted and an unsorted region. It repeatedly selects the smallest (or largest) element from the unsorted region and moves it to the end of the sorted region.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Pseudocode</h4>
+                    <div class="pseudocode-block">
+for i from 0 to n-2:
+    min_idx = i
+    for j from i+1 to n-1:
+        if arr[j] < arr[min_idx]:
+            min_idx = j
+    swap(arr[i], arr[min_idx])
+                    </div>
+                    <p>Selection Sort always performs O(n²) comparisons, regardless of initial order. It makes the minimum possible number of swaps: O(n).</p>
+
+
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Complexity Analysis</h4>
+                    <table class="info-table">
+                        <thead><tr><th>Case</th><th>Time Complexity</th><th>Space Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Best</strong></td><td>O(n²)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Average</strong></td><td>O(n²)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Worst</strong></td><td>O(n²)</td><td>O(1)</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Stability:</strong> ❌ Unstable – swapping can change relative order of equal elements.<br>
+                    <strong>Adaptivity:</strong> ❌ Not adaptive – always O(n²) comparisons.</p>
+
+                    <div class="warning-box"><strong>⚠️ Note:</strong> Selection Sort is not stable, but it has the advantage of minimal writes (O(n) swaps). It can be useful when write operations are expensive.</div>
+                </div>
+
+                <!-- INSERTION SORT -->
+                <div class="concept-card" id="insertion-sort">
+                    <h3><span class="day-badge">3</span> Insertion Sort <span class="tag-stable">Stable</span><span class="tag-adaptive">Adaptive</span></h3>
+                    <p><strong>How it works:</strong> Builds the final sorted array one item at a time. It picks each element from the unsorted part and inserts it into its correct position within the sorted part, shifting larger elements to the right.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Pseudocode</h4>
+                    <div class="pseudocode-block">
+for i from 1 to n-1:
+    key = arr[i]
+    j = i - 1
+    while j >= 0 and arr[j] > key:
+        arr[j+1] = arr[j]
+        j = j - 1
+    arr[j+1] = key
+                    </div>
+                    <p>It is like sorting playing cards in your hand. Insertion Sort is efficient for small datasets and nearly sorted arrays.</p>
+
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Complexity Analysis</h4>
+                    <table class="info-table">
+                        <thead><tr><th>Case</th><th>Time Complexity</th><th>Space Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Best</strong> (already sorted)</td><td>O(n)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Average</strong></td><td>O(n²)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Worst</strong> (reverse sorted)</td><td>O(n²)</td><td>O(1)</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Stability:</strong> ✅ Stable – equal keys maintain order.<br>
+                    <strong>Adaptivity:</strong> ✅ Adaptive – very fast on nearly sorted data.</p>
+
+                    <div class="tip-box"><strong>💡 Key Usage:</strong> Insertion Sort is the algorithm of choice for small subarrays in quicksort and mergesort (hybrid sorts) and for online algorithms where data arrives continuously.</div>
+                </div>
+
+                <!-- COMPARATIVE ANALYSIS -->
+                <div class="concept-card" id="comparison">
+                    <h3><i class="fas fa-balance-scale"></i> Comparative Analysis</h3>
+                    <p>All three algorithms have O(n²) average time complexity and O(1) auxiliary space – but their behaviour differs significantly.</p>
+
+                    <table class="comparative-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Bubble Sort</th>
+                                <th>Selection Sort</th>
+                                <th>Insertion Sort</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Best Time</strong></td>
+                                <td>O(n)</td>
+                                <td>O(n²)</td>
+                                <td>O(n)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Average Time</strong></td>
+                                <td>O(n²)</td>
+                                <td>O(n²)</td>
+                                <td>O(n²)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Worst Time</strong></td>
+                                <td>O(n²)</td>
+                                <td>O(n²)</td>
+                                <td>O(n²)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Space</strong></td>
+                                <td>O(1)</td>
+                                <td>O(1)</td>
+                                <td>O(1)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Stable</strong></td>
+                                <td>✅ Yes</td>
+                                <td>❌ No</td>
+                                <td>✅ Yes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Adaptive</strong></td>
+                                <td>✅ Yes</td>
+                                <td>❌ No</td>
+                                <td>✅ Yes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Swaps (Worst)</strong></td>
+                                <td>O(n²)</td>
+                                <td>O(n)</td>
+                                <td>O(n²) (shifts)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Best Use Case</strong></td>
+                                <td>Nearly sorted, small data</td>
+                                <td>Minimal writes needed</td>
+                                <td>Small or online data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Verdict:</strong> In practice, <em>Insertion Sort</em> outperforms both for small N or partially sorted data. Bubble Sort is rarely used except for teaching. Selection Sort has niche applications where write cost is high.</p>
+                </div>
+
+                <!-- DSA QUESTIONS -->
+                <div class="concept-card" id="dsa-questions">
+                    <h3><i class="fas fa-question"></i> DSA Questions &amp; Drills</h3>
+                    <p>Sharpen your understanding with these problems that directly use or modify the three sorting algorithms.</p>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner Level</h4>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>1. Count Swaps in Bubble Sort</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Given an array, sort it using Bubble Sort and return the total number of swaps performed. (Useful for array inversion count approximation.)</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">def bubble_swap_count(arr):
+    n = len(arr)
+    swaps = 0
+    for i in range(n-1):
+        for j in range(n-1-i):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+                swaps += 1
+    return swaps, arr</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>2. Selection Sort on a List of Tuples (by second element)</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Adapt Selection Sort to sort a list of (name, age) tuples in ascending order of age. Ensure stability? (Is it stable?)</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">def selection_by_age(people):
+    n = len(people)
+    for i in range(n-1):
+        min_idx = i
+        for j in range(i+1, n):
+            if people[j][1] < people[min_idx][1]:
+                min_idx = j
+        people[i], people[min_idx] = people[min_idx], people[i]
+    return people</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                                <p>(Note: Selection Sort is unstable, so if two people have the same age, their original order may change.)</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>3. Insertion Sort on a Nearly Sorted Array</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Write a function that takes an array where each element is at most K positions away from its sorted position. Use Insertion Sort to sort it in O(nK) time. Assume small K.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">def insertion_sort_k(arr, k):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i-1
+        while j >= max(0, i-k) and key < arr[j]:
+            arr[j+1] = arr[j]
+            j -= 1
+        arr[j+1] = key
+    return arr</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate Level</h4>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>4. Cocktail Shaker Sort (Bidirectional Bubble Sort)</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Implement a variant of Bubble Sort that passes alternately from left to right and then from right to left. This helps turtles (small elements near the end) move faster.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">def cocktail_sort(arr):
+    n = len(arr)
+    swapped = True
+    start, end = 0, n-1
+    while swapped:
+        swapped = False
+        for i in range(start, end):
+            if arr[i] > arr[i+1]:
+                arr[i], arr[i+1] = arr[i+1], arr[i]
+                swapped = True
+        if not swapped:
+            break
+        swapped = False
+        end -= 1
+        for i in range(end-1, start-1, -1):
+            if arr[i] > arr[i+1]:
+                arr[i], arr[i+1] = arr[i+1], arr[i]
+                swapped = True
+        start += 1
+    return arr</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>5. Use Insertion Sort to Find the Kth Smallest Element</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Instead of fully sorting, stop Insertion Sort after K elements have been placed correctly. Return the Kth element. (Modified partial sort.)</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">def kth_smallest_insertion(arr, k):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i-1
+        while j >= 0 and key < arr[j]:
+            arr[j+1] = arr[j]
+            j -= 1
+        arr[j+1] = key
+        if i >= k-1 and i == k-1:
+            return arr[k-1]
+    return arr[k-1]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- UNSOLVED EXERCISES -->
+                <div class="concept-card" id="unsolved-exercises">
+                    <h3><i class="fas fa-question-circle"></i> Unsolved Practice</h3>
+                    <p>Test yourself: apply the concepts without looking at solutions.</p>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>1. Bubble Sort with Early Termination (adaptive)</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Implement Bubble Sort that counts the number of passes actually executed and prints it. Compare with worst‑case passes.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>2. Selection Sort in Descending Order</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Modify Selection Sort to sort the array in descending order by selecting the maximum element instead of the minimum.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>3. Check Sortedness with One Pass</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Write a function that returns <code>True</code> if a given list is already sorted (non‑decreasing). Derive it from the insertion sort logic (without actually sorting).</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#bubble-sort">Bubble Sort</a></li>
+                <li><a href="#selection-sort">Selection Sort</a></li>
+                <li><a href="#insertion-sort">Insertion Sort</a></li>
+                <li><a href="#comparison">Comparative Analysis</a></li>
+                <li><a href="#dsa-questions">DSA Questions</a></li>
+                <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20DSA%20preparation%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+    </a>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/class-10/class10-testseries.html">Test Series</a>
+            <a href="/english.html">English</a>
+            <a href="/dsa/dsa-intro.html">DSA Prep</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+        <p>Online &amp; Offline | Small batches | Expert faculty</p>
+    </footer>
+
+    <script src="../js/learn-python.js"></script>
+</body>
+</html>

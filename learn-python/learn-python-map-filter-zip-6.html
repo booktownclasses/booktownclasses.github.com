@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/learn-python-map-filter-zip-comprehensions.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>map, filter, zip, enumerate & Comprehensions | BookTown Classes</title>
+    <meta name="description" content="Master Python's functional tools: map, filter, zip, enumerate, and all comprehensions (list, dict, set) with clear examples and practice problems." />
+    <meta name="keywords" content="Python map, Python filter, Python zip, Python enumerate, list comprehension, dict comprehension, set comprehension, Python functional programming" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="map, filter, zip, enumerate & Comprehensions | BookTown Classes" />
+    <meta property="og:description" content="Master Python's functional tools with clear, practical tutorials and code examples. Includes map, filter, zip, enumerate, and all types of comprehensions." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Prism for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    
+    <!-- Theme files -->
+    <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+</head>
+<body>
+    <!-- Floating background shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+        <div class="nav-links" id="navLinks" role="menubar">
+            <a href="/index.html" role="menuitem">Home</a>
+            <a href="/coding/coding.html" role="menuitem">Coding</a>
+            <a href="/class-10/class10.html" role="menuitem">Class 10</a>
+            <a href="/class-10/class10-testseries.html" role="menuitem">Test Series</a>
+            <a href="/english.html" role="menuitem">English</a>
+            <a href="/learn-python/learn-python-intro-2.html" class="active" role="menuitem" aria-current="page">Learn Python+</a>
+            <a href="/info-center/books-notes.html" role="menuitem">Books & Notes</a>
+            <a href="#contact" class="btn-cta-small" role="button">Join Now</a>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="main-container" id="mainContainer">
+        <!-- Sidebar (loaded dynamically) -->
+        <aside class="sidebar" id="mainSidebar"></aside>
+
+        <!-- Main Content -->
+        <main class="content" id="mainContent">
+            <div class="content-section active" id="section-functional">
+                <h1 class="section-title"><i class="fas fa-cogs"></i> map, filter, zip, enumerate &amp; Comprehensions</h1>
+                <div class="section-intro">
+                    <p><strong>Write cleaner, faster Python</strong> with built‑in functions like <code>map</code>, <code>filter</code>, <code>zip</code>, <code>enumerate</code>, and powerful comprehensions. They replace many loops and make your code more readable and Pythonic.</p>
+                </div>
+
+                <!-- Overview cards -->
+                <div class="infographic-grid">
+                    <article class="infographic-card"><div class="infographic-icon">🗺️</div><h3>map</h3><p>Apply a function to every item</p></article>
+                    <article class="infographic-card"><div class="infographic-icon">🔍</div><h3>filter</h3><p>Keep items that pass a test</p></article>
+                    <article class="infographic-card"><div class="infographic-icon">🤐</div><h3>zip</h3><p>Combine iterables element‑wise</p></article>
+                    <article class="infographic-card"><div class="infographic-icon">🔢</div><h3>enumerate</h3><p>Loop with index &amp; value</p></article>
+                    <article class="infographic-card"><div class="infographic-icon">⚡</div><h3>Comprehensions</h3><p>Create lists/dicts/sets in one line</p></article>
+                </div>
+
+                <!-- ========== MAP ========== -->
+                <div class="concept-card">
+                    <h3 id="map"><i class="fas fa-map"></i> map – Apply a Function to Every Element</h3>
+                    <p><code>map(func, iterable)</code> runs <code>func</code> on each item and returns a map object (lazy iterator).</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> map_basics.py</div>
+                        <pre class="line-numbers"><code class="language-python"># Double each number
+nums = [1, 2, 3, 4]
+doubled = list(map(lambda x: x * 2, nums))
+
+# Convert strings to integers
+str_nums = ["10", "20", "30"]
+int_nums = list(map(int, str_nums))
+
+print(doubled)   # [2, 4, 6, 8]
+print(int_nums)  # [10, 20, 30]</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-output">[2, 4, 6, 8]
+[10, 20, 30]</div>
+                </div>
+
+                <!-- ========== FILTER ========== -->
+                <div class="concept-card">
+                    <h3 id="filter"><i class="fas fa-filter"></i> filter – Keep Elements That Satisfy a Condition</h3>
+                    <p><code>filter(func, iterable)</code> returns items for which <code>func(item)</code> is truthy.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> filter_example.py</div>
+                        <pre class="line-numbers"><code class="language-python">nums = [5, 12, 17, 18, 24, 32]
+
+# Keep even numbers
+evens = list(filter(lambda x: x % 2 == 0, nums))
+
+# Keep words longer than 4 letters
+words = ["apple", "cat", "banana", "dog"]
+long_words = list(filter(lambda w: len(w) > 4, words))
+
+print(evens)        # [12, 18, 24, 32]
+print(long_words)   # ['apple', 'banana']</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <!-- ========== ZIP ========== -->
+                <div class="concept-card">
+                    <h3 id="zip"><i class="fas fa-zipper"></i> zip – Combine Multiple Iterables</h3>
+                    <p><code>zip(*iterables)</code> returns tuples of corresponding elements. Stops at the shortest iterable.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> zip_example.py</div>
+                        <pre class="line-numbers"><code class="language-python">names = ["Aarav", "Priya", "Rohan"]
+scores = [95, 88, 76]
+
+# Pair names with scores
+paired = list(zip(names, scores))
+print(paired)   # [('Aarav', 95), ('Priya', 88), ('Rohan', 76)]
+
+# Unzipping
+pairs = [('a', 1), ('b', 2)]
+letters, numbers = zip(*pairs)
+print(letters)  # ('a', 'b')
+print(numbers)  # (1, 2)</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <!-- ========== ENUMERATE ========== -->
+                <div class="concept-card">
+                    <h3 id="enumerate"><i class="fas fa-list-ol"></i> enumerate – Loop with Index &amp; Value</h3>
+                    <p><code>enumerate(iterable, start=0)</code> yields <code>(index, element)</code> pairs. Very useful when you need the position inside a loop.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> enumerate_example.py</div>
+                        <pre class="line-numbers"><code class="language-python">subjects = ["Maths", "Science", "English"]
+
+# Default start = 0
+for i, subj in enumerate(subjects):
+    print(f"{i}: {subj}")
+
+# Start at 1 (human‑friendly)
+print()
+for i, subj in enumerate(subjects, start=1):
+    print(f"{i} → {subj}")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-output">0: Maths
+1: Science
+2: English
+
+1 → Maths
+2 → Science
+3 → English</div>
+                </div>
+
+                <!-- ========== COMPREHENSIONS ========== -->
+                <div class="concept-card" id="comprehensions">
+                    <h3 id="list-comp"><i class="fas fa-list"></i> List Comprehension</h3>
+                    <p>A concise way to create lists. Syntax: <code>[expression for item in iterable if condition]</code></p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> list_comp.py</div>
+                        <pre class="line-numbers"><code class="language-python"># Squares of numbers from 1 to 5
+squares = [x**2 for x in range(1, 6)]
+
+# Even numbers from 0 to 9
+evens = [x for x in range(10) if x % 2 == 0]
+
+# Uppercase words
+words = ["hello", "world"]
+upper = [w.upper() for w in words]
+
+print(squares)   # [1, 4, 9, 16, 25]
+print(evens)     # [0, 2, 4, 6, 8]
+print(upper)     # ['HELLO', 'WORLD']</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="dict-comp">
+                    <h3 id="dict-comp"><i class="fas fa-book"></i> Dictionary Comprehension</h3>
+                    <p>Create dictionaries dynamically: <code>{key_expr: value_expr for item in iterable if condition}</code></p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> dict_comp.py</div>
+                        <pre class="line-numbers"><code class="language-python"># Word to length mapping
+words = ["apple", "banana", "cherry"]
+word_len = {w: len(w) for w in words}
+
+# Square numbers (key:value)
+squares = {x: x**2 for x in range(1, 5)}
+
+# Filter items
+grades = {"maths": 95, "science": 88, "history": 72}
+high = {k: v for k, v in grades.items() if v >= 80}
+
+print(word_len)  # {'apple': 5, 'banana': 6, 'cherry': 6}
+print(squares)   # {1:1, 2:4, 3:9, 4:16}
+print(high)      # {'maths': 95, 'science': 88}</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="concept-card" id="set-comp">
+                    <h3 id="set-comp"><i class="fas fa-circle"></i> Set Comprehension</h3>
+                    <p>Create sets with the same syntax, using curly braces: <code>{expression for item in iterable if condition}</code></p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> set_comp.py</div>
+                        <pre class="line-numbers"><code class="language-python"># Unique lengths of words
+words = ["apple", "banana", "cherry", "date"]
+lengths = {len(w) for w in words}
+
+# Squared numbers (duplicates removed)
+squares = {x**2 for x in range(-3, 4)}
+
+print(lengths)   # {5, 6}
+print(squares)   # {0, 1, 4, 9}</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <!-- Solved Practice Problems -->
+                <div class="concept-card" id="solved-problems">
+                    <h3><i class="fas fa-code"></i> Solved Practice Problems</h3>
+                    <p>Test your understanding with these examples.</p>
+
+                    <h4 style="color:var(--accent);">🔰 Beginner Level</h4>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>1. Convert list of Celsius to Fahrenheit using map</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Given Celsius temperatures, convert to Fahrenheit using <code>map</code>.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">celsius = [0, 10, 20, 30]
+fahrenheit = list(map(lambda c: (c * 9/5) + 32, celsius))
+print(fahrenheit)  # [32.0, 50.0, 68.0, 86.0]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>2. Extract all names starting with 'A' using filter</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> From a list of names, keep only those that start with 'A'.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">names = ["Aarav", "Priya", "Anika", "Rohan"]
+a_names = list(filter(lambda n: n.startswith('A'), names))
+print(a_names)  # ['Aarav', 'Anika']</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>3. Create a dictionary of numbers and their cubes using dict comprehension</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Make a dictionary mapping numbers 1‑5 to their cubes.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">cubes = {n: n**3 for n in range(1, 6)}
+print(cubes)  # {1: 1, 2: 8, 3: 27, 4: 64, 5: 125}</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <h4 style="color:var(--accent);">⚡ Intermediate Level</h4>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>4. Enumerate and build a dictionary of positions</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Create a dict where keys are the items and values are their indices.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">fruits = ["apple", "banana", "cherry"]
+pos = {fruit: idx for idx, fruit in enumerate(fruits)}
+print(pos)  # {'apple': 0, 'banana': 1, 'cherry': 2}</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>5. Use zip and dict to create a score dictionary from two lists</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Combine <code>names</code> and <code>scores</code> into a dictionary.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">names = ["Aarav", "Priya", "Rohan"]
+scores = [95, 88, 76]
+score_dict = dict(zip(names, scores))
+print(score_dict)  # {'Aarav': 95, 'Priya': 88, 'Rohan': 76}</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Unsolved Exercises -->
+                <div class="concept-card" id="unsolved-exercises">
+                    <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
+                    <p>Challenge yourself – no solutions provided!</p>
+                    <h4 style="color:var(--accent);">🔰 Beginner Level</h4>
+                    <div class="practice-problem">
+                        <details><summary>1. Square every number in a list using map</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Use <code>map</code> to square each element of a list.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;text-align:center;color:#64748b;"><em>Write your code here – solution not shown.</em></div></div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details><summary>2. Filter out negative numbers using filter</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Given a list of numbers, keep only the positive ones using <code>filter</code>.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;text-align:center;color:#64748b;"><em>Write your code here – solution not shown.</em></div></div>
+                        </details>
+                    </div>
+                    <h4 style="color:var(--accent);">⚡ Intermediate Level</h4>
+                    <div class="practice-problem">
+                        <details><summary>3. List comprehension to flatten a 2D list</summary>
+                            <div class="solution"><p><strong>Problem:</strong> <code>[[1,2], [3,4], [5,6]] → [1,2,3,4,5,6]</code> using a list comprehension.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;text-align:center;color:#64748b;"><em>Write your code here – solution not shown.</em></div></div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details><summary>4. Enumerate over a list to print numbered lines (starting at 101)</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Print each item with a custom start index (101, 102, …).</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;text-align:center;color:#64748b;"><em>Write your code here – solution not shown.</em></div></div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Page Tracker -->
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#map">map</a></li>
+                <li><a href="#filter">filter</a></li>
+                <li><a href="#zip">zip</a></li>
+                <li><a href="#enumerate">enumerate</a></li>
+                <li><a href="#list-comp">List Comprehension</a></li>
+                <li><a href="#dict-comp">Dict Comprehension</a></li>
+                <li><a href="#set-comp">Set Comprehension</a></li>
+                <li><a href="#solved-problems">Solved Problems</a></li>
+                <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/class-10/class10-testseries.html">Test Series</a>
+            <a href="/english.html">English</a>
+            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+        <p>Online &amp; Offline | Small batches | Expert faculty</p>
+    </footer>
+
+    <!-- Shared JavaScript -->
+    <script src="../js/learn-python.js"></script>
+</body>
+</html>
