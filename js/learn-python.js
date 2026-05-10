@@ -162,9 +162,31 @@ if (unsolvedCard) observer.observe(unsolvedCard);
   });
 })();
 
+
+
 // ================================
 //  Initialise Everything
 // ================================
 initSidebarCollapse();
 
 
+// Coaching Banner Loader
+
+
+// Coaching Banner – loads into a placeholder div on Python lesson pages
+(function() {
+  const placeholder = document.getElementById('coaching-banner-placeholder');
+  if (!placeholder) return; // no placeholder = no banner on this page
+
+  fetch('/snippets/coaching-banner.html')
+    .then(function(response) {
+      if (!response.ok) throw new Error('Snippet not found (HTTP ' + response.status + ')');
+      return response.text();
+    })
+    .then(function(html) {
+      placeholder.innerHTML = html;
+    })
+    .catch(function(err) {
+      console.warn('Coaching banner not loaded:', err.message);
+    });
+})();

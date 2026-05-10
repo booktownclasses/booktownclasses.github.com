@@ -1,0 +1,80 @@
+<!-- /snippets/coaching-banner.html -->
+<div class="coaching-banner" style="
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 40%, #8b5cf6 100%);
+  border-radius: 15px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  color: white;
+  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.12),
+              0 10px 30px rgba(37, 99, 235, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 16px rgba(37,99,235,0.18), 0 16px 40px rgba(37,99,235,0.28), inset 0 1px 0 rgba(255,255,255,0.12)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(37,99,235,0.12), 0 10px 30px rgba(37,99,235,0.2), inset 0 1px 0 rgba(255,255,255,0.1)';">
+  <div style="
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 180px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 50%;
+    pointer-events: none;
+  "></div>
+
+  <div style="display: flex; align-items: center; gap: 0.85rem; position: relative; z-index: 1;">
+    <span style="
+      font-size: 1.9rem;
+      line-height: 1;
+      flex-shrink: 0;
+      color: #fbbf24;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+    ">⚡</span>
+
+    <div>
+      <p style="
+        margin: 0;
+        font-weight: 700;
+        font-size: 1.05rem;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        color: #ffffff;
+      ">Learn coding 3× faster with a dedicated mentor</p>
+      <p style="
+        margin: 0.25rem 0 0;
+        font-weight: 400;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.78);
+        letter-spacing: 0.01em;
+      ">Personal guidance · Live doubt solving · Structured roadmaps</p>
+    </div>
+  </div>
+
+  <a href="https://wa.me/919414700737?text=I%20want%20to%20join%20BookTown%20Classes" style="
+    background: #ffffff;
+    color: #1e3a8a;
+    padding: 0.7rem 1.65rem 0.7rem 1.45rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    position: relative;
+    z-index: 1;
+  " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.14), 0 0 0 6px rgba(255,255,255,0.12)'; this.style.background='#f8fafc';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.10)'; this.style.background='#ffffff';">
+    Join BookTown Classes
+    <span style="font-size: 0.85rem; transition: transform 0.2s ease;">→</span>
+  </a>
+</div>
