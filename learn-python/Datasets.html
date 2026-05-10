@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/Datasets.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>Datasets in AI/ML - Learn Python+ | BookTown Classes</title>
+    <meta name="description" content="Understand datasets and their crucial role in AI and machine learning. Download a sample Salary dataset (CSV) for practice and analysis." />
+    <meta name="keywords" content="AI datasets, ML datasets, machine learning data, dataset CSV, salary dataset, download dataset, data science practice" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Datasets in AI/ML - Learn Python+ | BookTown Classes" />
+    <meta property="og:description" content="Explore what datasets are and why they matter in AI. Download a real Salary dataset to start your data analysis journey." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <!-- Prism for syntax highlighting (optional) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    
+    <!-- CSS files -->
+    <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+</head>
+<body>
+    <!-- Floating background shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
+        <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+        <div class="nav-links" id="navLinks" role="menubar">
+            <a href="/index.html" role="menuitem">Home</a>
+            <a href="/coding/coding.html" role="menuitem">Coding</a>
+            <a href="/class-10/class10.html" role="menuitem">Class 10</a>
+            <a href="/class-10/class10-testseries.html" role="menuitem">Test Series</a>
+            <a href="/english.html" role="menuitem">English</a>
+            <a href="/learn-python/learn-python-intro.html" class="active" role="menuitem" aria-current="page">Learn Python+</a>
+            <a href="/info-center/books-notes.html" role="menuitem">Books & Notes</a>
+            <a href="#contact" class="btn-cta-small" role="button">Join Now</a>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="main-container" id="mainContainer">
+        <!-- Sidebar (loaded dynamically) -->
+        <aside class="sidebar" id="mainSidebar"></aside>
+
+        <!-- Main Content -->
+        <main class="content" id="mainContent">
+            <div id="coaching-banner-placeholder"></div>
+            <div class="content-section active" id="section-datasets">
+                <h1 class="section-title"><i class="fas fa-database"></i> Datasets in AI/ML</h1>
+                <div class="section-intro">
+                    <p><strong>Data is the foundation of all AI and machine learning models.</strong> Without quality datasets, even the most advanced algorithms can't learn. This page gives you a simple introduction and a real dataset to download and explore.</p>
+                </div>
+
+                <!-- What is a Dataset? -->
+                <div class="concept-card">
+                    <h3>📊 What is a Dataset?</h3>
+                    <p>A dataset is a <strong>collection of data</strong>, usually organized in a table with rows and columns. Each row is an <strong>instance</strong> (e.g., a person, a transaction), and each column is a <strong>feature</strong> (e.g., age, salary).</p>
+                    <div class="infographic-grid" style="margin-top:1rem;">
+                        <div class="infographic-card">
+                            <div class="infographic-icon">📂</div>
+                            <h4>Structured Data</h4>
+                            <p>Tabular formats like CSV, Excel, SQL tables. Each column has a fixed data type.</p>
+                        </div>
+                        <div class="infographic-card">
+                            <div class="infographic-icon">🖼️</div>
+                            <h4>Unstructured Data</h4>
+                            <p>Images, text, audio, video – not in rows/columns, but still useful with special techniques.</p>
+                        </div>
+                        <div class="infographic-card">
+                            <div class="infographic-icon">⚖️</div>
+                            <h4>Labelled vs Unlabelled</h4>
+                            <p>Supervised learning needs labelled data; unsupervised learning finds patterns without labels.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Datasets Matter -->
+                <div class="concept-card">
+                    <h3>🧠 Why Datasets Are Crucial in AI/ML</h3>
+                    <p>Machine learning models learn patterns from data. The quality and quantity of your dataset directly affect the model's performance.</p>
+                    <ul>
+                        <li><strong>Training:</strong> The model adjusts its internal parameters based on the training dataset.</li>
+                        <li><strong>Validation:</strong> A separate set to tune hyperparameters and avoid overfitting.</li>
+                        <li><strong>Testing:</strong> The final evaluation on completely unseen data.</li>
+                    </ul>
+                    <p style="margin-top:0.8rem;">A common dataset split is <strong>70% training, 15% validation, 15% test</strong>.</p>
+                </div>
+
+                <!-- Download Salary Dataset -->
+                <div class="concept-card" style="border-left: 5px solid #2563eb;">
+                    <h3>📥 Download the Salary Dataset</h3>
+                    <p>This simple CSV file contains <strong>Years of Experience</strong> and <strong>Salary</strong> – perfect for beginner regression tasks.</p>
+                    
+                    <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                        <a href="../dataset/Salary_dataset.csv" download style="
+                            background: #2563eb;
+                            color: #fff;
+                            padding: 0.8rem 1.8rem;
+                            border-radius: 50px;
+                            text-decoration: none;
+                            font-weight: 700;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            transition: background 0.2s;
+                            box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+                        " onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
+                            <i class="fas fa-download"></i> Salary_dataset.csv
+                        </a>
+                        <span style="color: var(--text-light); font-size: 0.9rem;">
+                            <i class="fas fa-table"></i> 6703 rows • 6 columns (Age	Gender	Education Level	Job Title	Years of Experience	Salary) • 341 KB
+                        </span>
+                    </div>
+
+                    <div style="margin-top: 1rem; background: #f1f5f9; padding: 0.8rem 1rem; border-radius: 8px;">
+                        <p style="margin:0; font-size:0.9rem;"><strong>💡 How to use it?</strong><br/>
+                        - Open in Excel / Google Sheets for a quick view.<br/>
+                        - Load with Python: <code>import pandas as pd; df = pd.read_csv('Salary_dataset.csv')</code><br/>
+                        - Practice simple linear regression: predict salary from years of experience.</p>
+                    </div>
+                </div>
+
+                <!-- Exploratory Analysis Suggestion -->
+                <div class="concept-card">
+                    <h3>🔍 What Can You Do With This Dataset?</h3>
+                    <ul style="line-height: 1.8;">
+                        <li>Plot YearsExperience vs Salary (scatter plot)</li>
+                        <li>Calculate mean, median, standard deviation</li>
+                        <li>Build a <strong>Linear Regression</strong> model</li>
+                        <li>Evaluate using R² and MSE</li>
+                        <li>Try polynomial regression for better fit</li>
+                    </ul>
+                    <p>This is the same dataset often used in introductory ML courses. Master it, and you’ll be ready for more complex data.</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Page Tracker -->
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul id="trackerList">
+                <li><a href="#section-datasets">What is a Dataset?</a></li>
+                <li><a href="#">Why Datasets Matter</a></li>
+                <li><a href="#">Download Salary Dataset</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/class-10/class10-testseries.html">Test Series</a>
+            <a href="/english.html">English</a>
+            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+        <p>Online &amp; Offline | Small batches | Expert faculty</p>
+    </footer>
+
+    <!-- Shared JavaScript -->
+    <script src="../js/learn-python.js"></script>
+
+    <!-- Breadcrumb Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://booktownclasses.github.io/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learn Python+",
+          "item": "https://booktownclasses.github.io/learn-python/learn-python-intro.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Datasets in AI/ML"
+        }
+      ]
+    }
+    </script>
+</body>
+</html>
