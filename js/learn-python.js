@@ -166,3 +166,5 @@ if (unsolvedCard) observer.observe(unsolvedCard);
 //  Initialise Everything
 // ================================
 initSidebarCollapse();
+
+
