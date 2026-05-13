@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Ap3gC+t3ZC9flVoYJv8k57i6bkWvs/37IIqzPUbJ5E59x2JSQae8R7bzH3+Krlbmd9OEa07kT2+UkzcZWeIlo3A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- Unified theme -->
+     <link rel="stylesheet" href="../css/learn-python-advance.css">
   <link rel="stylesheet" href="../css/theme.css">
 
   <!-- Minimal page‑specific overrides – everything else lives in theme.css -->
@@ -278,26 +279,26 @@
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="logo">
-  <i class="fas fa-code"></i> Code <span>BookTown</span>
-</div>
-    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="nav-links" id="navLinks">
-      <a href="/learn-python/learn-python-computer-fundamentals-1.html" class="active">Home</a>
-      <a href="/coding/coding.html">Coding</a>
-      <a href="/class-10/class10.html">Class 10</a>
-      <a href="/class-10/class10-testseries.html">Test Series</a>
-      <a href="/english.html">English</a>
-      <a href="/learn-python/learn-python-computer-fundamentals-1.html"  role="menuitem" aria-current="page">Learn Python+</a>
-      <a href="/info-center/books-notes.html">Books & Notes</a>
-      <a href="#contact" class="btn-cta-small">Join Now</a>
-    </div>
-  </nav>
+<div id="header-container"></div>
 
 <main class="container">
+        <div class="hero-header">
+        <br>
+        <br>
+        <br>
+        <nav class="program-tabs" id="programTabs">
+
+    <a class="prog-tab" href="/coding/coding.html">
+      <i class="fas fa-code"></i> Coding Courses
+    </a>
+    <a class="prog-tab" href="/english.html">
+      <i class="fas fa-language"></i> English Speaking
+    </a>
+    <a class="prog-tab" href="class-10/class10-testseries.html">
+      <i class="fas fa-vial"></i> Test Series
+    </a>
+  </nav>
+      </div>
 
   <!-- Program Tabs Selector (with GIF) -->
   <div class="learning-path-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin: 2rem 0 3rem 0;">
@@ -310,9 +311,7 @@
         <button class="tab-btn" onclick="switchTab('6month')" id="btn-6month" style="justify-content: flex-start; padding: 1rem 1.5rem;">
           <i class="fas fa-crown"></i> 6-Month Professional Program
         </button>
-        <button class="tab-btn" onclick="switchTab('dsa')" id="btn-dsa" style="justify-content: flex-start; padding: 1rem 1.5rem;">
-          <i class="fas fa-code"></i> Easy DSA Questions
-        </button>
+      
       </div>
     </div>
     <div style="display: flex; justify-content: center;">
@@ -996,6 +995,8 @@
 
 <!-- Shared mobile nav + page scripts -->
 <script src="../js/nav.js"></script>
+<script src="js/script.js"></script>
+ <script src="../js/learn-python-advance.js"></script>
 
 <script>
   // Tab switching
