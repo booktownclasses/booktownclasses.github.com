@@ -105,12 +105,12 @@ body {
     margin: 0 0.5rem;
 }
 .sidebar-title:hover { background: rgba(255,255,255,0.1); }
-.sidebar-title .title-content { display: flex; align-items: center; gap: 0.5rem; }
+.sidebar-title .title-content { display: flex; align-items: center; gap: 0.3rem; }
 .toggle-icon { transition: transform 0.25s ease; font-size: 0.8rem; color: #64748b; }
 .sidebar-section.collapsed .toggle-icon { transform: rotate(-90deg); }
 .sidebar-section.collapsed .sidebar-item { display: none; }
 .sidebar-item {
-    padding: 0.65rem 1rem;
+    padding: 0.55rem 1rem;
     margin-left: 1.2rem;
     color: #ffffff !important;   /* white links */
     transition: all 0.2s;
@@ -128,10 +128,10 @@ body {
     color: #0760ef !important;   /* bright blue */
     background: #fcfdff;
     border-left-color: #3b82f6 !important;
-    padding-left: 1.25rem;
+    padding-left: 1.05rem;
 }
 .sidebar-badge {
-    font-size: 0.68rem;
+    font-size: 0.58rem;
     background: #dbeafe;
     color: #3b82f6;
     padding: 0.18rem 0.5rem;
@@ -850,3 +850,4 @@ pre[class*="language-"] {
 .tracker-link:hover .tracker-bullet {
   background: var(--primary-light);
 }
+

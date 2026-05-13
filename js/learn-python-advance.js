@@ -199,3 +199,17 @@
     });
   });
 })();
+
+
+// Program tab switching (in-page)
+document.querySelectorAll('.prog-tab').forEach(tab => {
+  tab.addEventListener('click', function(e) {
+    document.querySelectorAll('.prog-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    // Show/hide content sections based on data-program attribute
+    const program = this.getAttribute('data-program');
+    document.querySelectorAll('[data-program-content]').forEach(el => {
+      el.style.display = el.getAttribute('data-program-content') === program ? 'block' : 'none';
+    });
+  });
+});

@@ -19,43 +19,67 @@
   <meta property="og:url" content="https://booktownclasses.github.io">
   <meta property="og:type" content="website">
 
-  <!-- Favicon (emoji SVG – instantly visible in all modern browsers) -->
+  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
-  <!-- Google tag (gtag.js) -->
+
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPKPM82P5B"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-FPKPM82P5B');
   </script>
-  
-  <!-- Shared theme (sticky nav, cards, footer, WhatsApp float, etc.) -->
+
+  <!-- Shared stylesheets -->
+  <link rel="stylesheet" href="../css/learn-python-advance.css">
   <link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
+  <!-- Floating background shapes -->
   <div class="floating-shapes">
     <div class="shape shape-1"></div>
     <div class="shape shape-2"></div>
     <div class="shape shape-3"></div>
   </div>
 
+  <!-- Shared header (navbar) -->
   <div id="header-container"></div>
 
-
+ 
 
   <main>
-    <!-- Hero section -->
+  
+    <!-- ============ HERO SECTION ============ -->
     <div class="container" id="home">
+      <div class="hero-header">
+        <br>
+        <br>
+        <br>
+        <nav class="program-tabs" id="programTabs">
+    <a class="prog-tab active" href="learn-python/learn-python-computer-fundamentals.html">
+      <i class="fab fa-python"></i> Python+
+    </a>
+    <a class="prog-tab" href="coding.html">
+      <i class="fas fa-code"></i> Coding Courses
+    </a>
+    <a class="prog-tab" href="/english.html">
+      <i class="fas fa-language"></i> English Speaking
+    </a>
+    <a class="prog-tab" href="class-10/class10-testseries.html">
+      <i class="fas fa-vial"></i> Test Series
+    </a>
+  </nav>
+      </div>
+
       <div class="hero">
+        
         <div class="hero-content">
-          <h1>Coaching that <span class="highlight">shapes futures</span> with academic excellence & integrity.</h1>
+          <h1>Coaching that <span class="highlight">shapes futures</span> with academic excellence &amp; integrity.</h1>
           <p class="hero-subtitle">BookTown Classes — where young minds grow through structure, strategy, and success. Personalized coaching for every learner.</p>
           <div class="btn-group">
             <a href="#contact" class="btn-primary"><i class="fas fa-book-open"></i> Enroll today</a>
@@ -70,70 +94,137 @@
               <div class="carousel-slide"><img src="images/outside1.jpeg" alt="Exterior of BookTown coaching centre – welcoming learning space" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Coaching'"></div>
               <div class="carousel-slide"><img src="images/outside2.jpeg" alt="Mentoring corner at BookTown – one-on-one guidance" loading="lazy" onerror="this.src='https://placehold.co/504x504/1e293b/c4a747?text=Mentoring'"></div>
             </div>
-            <button class="carousel-btn prev">❮</button>
-            <button class="carousel-btn next">❯</button>
+            <button class="carousel-btn prev" aria-label="Previous slide">❮</button>
+            <button class="carousel-btn next" aria-label="Next slide">❯</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Advantage Section -->
+    <!-- ============ ADVANTAGE SECTION ============ -->
     <div class="advantage-full-width">
       <div class="advantage-inner">
         <h2 class="section-title-accent"><i class="fas fa-award"></i> The BookTown Advantage</h2>
-        <div class="advantage-sub">Academic excellence, personalized mentorship & proven methodology — designed for success.</div>
+        <div class="advantage-sub">Academic excellence, personalized mentorship &amp; proven methodology — designed for success.</div>
         <div class="advantage-row">
-          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Elite Mentors</h3><p>5+ years experienced educators with subject mastery.</p><div class="advantage-tag">100% certified</div></div>
-          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-calendar-alt"></i></div><h3>Smart Scheduling</h3><p>Weekday/weekend batches + morning slots.</p><div class="advantage-tag">Flexible timings</div></div>
-          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-trophy"></i></div><h3>Proven Results</h3><p>90% grade improvement with consistent tracking.</p><div class="advantage-tag">Top rankers</div></div>
-          <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-users"></i></div><h3>Small Batches</h3><p>Limited to 6–16 students per batch.</p><div class="advantage-tag">Individual focus</div></div>
+          <div class="advantage-card">
+            <div class="advantage-icon"><i class="fas fa-chalkboard-user"></i></div>
+            <h3>Elite Mentors</h3>
+            <p>5+ years experienced educators with subject mastery.</p>
+            <div class="advantage-tag">100% certified</div>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon"><i class="fas fa-calendar-alt"></i></div>
+            <h3>Smart Scheduling</h3>
+            <p>Weekday/weekend batches + morning slots.</p>
+            <div class="advantage-tag">Flexible timings</div>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon"><i class="fas fa-trophy"></i></div>
+            <h3>Proven Results</h3>
+            <p>90% grade improvement with consistent tracking.</p>
+            <div class="advantage-tag">Top rankers</div>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon"><i class="fas fa-users"></i></div>
+            <h3>Small Batches</h3>
+            <p>Limited to 6–16 students per batch.</p>
+            <div class="advantage-tag">Individual focus</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Programs Overview -->
+    <!-- ============ PROGRAMS OVERVIEW ============ -->
     <div class="container" id="programs">
       <h2 class="section-title"><i class="fas fa-layer-group"></i> Our Programs</h2>
       <div class="programs-grid">
-        <div class="program-card"><div class="program-icon">📖✨</div><h3>Young Learners</h3><p>Grades 1-5: Phonics, comprehension & creative expression.</p><div class="badge">Grade 1-5</div></div>
-        <div class="program-card"><div class="program-icon">✍️📚</div><h3>Young Writers</h3><p>Grades 6-8: Essay writing, grammar mastery & storytelling.</p><div class="badge">Grade 6-8</div></div>
-        <div class="program-card"><div class="program-icon">🎯🏆</div><h3>Board & Preboard</h3><p>Grades 9-10: Weekly tests, extensive practice for exams.</p><div class="badge">Grade 9-10</div></div>
-        <div class="program-card"><div class="program-icon">🐍💻</div><h3>Coding</h3><p>Grades 8-12: Python, Git, Linux, DBMS, AI/ML, APIs, deployment.</p><div class="badge">Grade 8-12</div></div>
-        <div class="program-card"><div class="program-icon">🗣️🌍</div><h3>English Speaking</h3><p>All grades: Fluency, vocabulary, public speaking & communication.</p><div class="badge">All grades</div></div>
-      </div>
-    </div>
-
-    <!-- Faculty -->
-    <div class="container" id="faculty">
-      <h2 class="section-title"><i class="fas fa-user-graduate"></i> Meet Our Expert Faculty</h2>
-      <div class="faculty-grid">
-        <div class="faculty-card"><img src="images/nishat.jpeg" alt="Nishat Afroz" onerror="this.src='https://placehold.co/130x130/1e293b/c4a747?text=NA'"><h3>Nishat Afroz</h3><p class="role">Director & Founder</p><p>B.Ed, M.A. (English), 5+ years experience.</p></div>
-        <div class="faculty-card"><img src="images/tayyab2.jpeg" alt="Mohd Tayyab" onerror="this.src='https://placehold.co/130x130/1e293b/c4a747?text=MT'"><h3>Mohd Tayyab</h3><p class="role">Expert Faculty</p><p>MTech (CS), JMI, 3+ years experience.</p></div>
-      </div>
-    </div>
-
-    <!-- About -->
-    <div class="container" id="about">
-      <div class="about-wrap">
-        <div class="about-text"><h3><i class="fas fa-landmark"></i> Why BookTown Classes?</h3><p>Founded by educators who believe every child deserves a coach who listens, adapts, and inspires.</p><p>Small batch sizes (6-16 students) ensure personalized attention. We nurture curiosity, discipline, and joy for lifelong learning.</p></div>
-        <div class="about-stats">
-          <div class="stat-item"><span class="stat-number" id="statSatisfaction">85</span>% <br/>parent satisfaction</div>
-          <div class="stat-item"><span class="stat-number" id="statStudents">100</span>+ <br/>students guided</div>
-          <div class="stat-item"><span class="stat-number" id="statRating">4.9</span>★ <br/>parent rating</div>
+        <div class="program-card">
+          <div class="program-icon">📖✨</div>
+          <h3>Young Learners</h3>
+          <p>Grades 1-5: Phonics, comprehension &amp; creative expression.</p>
+          <div class="badge">Grade 1-5</div>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">✍️📚</div>
+          <h3>Young Writers</h3>
+          <p>Grades 6-8: Essay writing, grammar mastery &amp; storytelling.</p>
+          <div class="badge">Grade 6-8</div>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">🎯🏆</div>
+          <h3>Board &amp; Preboard</h3>
+          <p>Grades 9-10: Weekly tests, extensive practice for exams.</p>
+          <div class="badge">Grade 9-10</div>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">🐍💻</div>
+          <h3>Coding</h3>
+          <p>Grades 8-12: Python, Git, Linux, DBMS, AI/ML, APIs, deployment.</p>
+          <div class="badge">Grade 8-12</div>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">🗣️🌍</div>
+          <h3>English Speaking</h3>
+          <p>All grades: Fluency, vocabulary, public speaking &amp; communication.</p>
+          <div class="badge">All grades</div>
         </div>
       </div>
     </div>
 
-    <!-- Testimonials -->
-    <div class="container">
-      <h2 class="section-title"><i class="fas fa-heart"></i> What Families Say</h2>
-      <div class="testimonial-grid">
-        <div class="testimonial"><p>“Teaching style is easy to follow and the teacher is very patient.”</p><h4>— Harim Athar</h4><div class="stars">★★★★★</div></div>
-        <div class="testimonial"><p>“The coaching is good and teachers are very friendly.”</p><h4>— Musab Bin Umair</h4><div class="stars">★★★★★</div></div>
+    <!-- ============ FACULTY SECTION ============ -->
+    <div class="container" id="faculty">
+      <h2 class="section-title"><i class="fas fa-user-graduate"></i> Meet Our Expert Faculty</h2>
+      <div class="faculty-grid">
+        <div class="faculty-card">
+          <img src="images/nishat.jpeg" alt="Nishat Afroz" onerror="this.src='https://placehold.co/130x130/1e293b/c4a747?text=NA'">
+          <h3>Nishat Afroz</h3>
+          <p class="role">Director &amp; Founder</p>
+          <p>B.Ed, M.A. (English), 5+ years experience.</p>
+        </div>
+        <div class="faculty-card">
+          <img src="images/tayyab2.jpeg" alt="Mohd Tayyab" onerror="this.src='https://placehold.co/130x130/1e293b/c4a747?text=MT'">
+          <h3>Mohd Tayyab</h3>
+          <p class="role">Expert Faculty</p>
+          <p>MTech (CS), JMI, 3+ years experience.</p>
+        </div>
       </div>
     </div>
 
-    <!-- Free Demo Class CTA Banner -->
+    <!-- ============ ABOUT SECTION ============ -->
+    <div class="container" id="about">
+      <div class="about-wrap">
+        <div class="about-text">
+          <h3><i class="fas fa-landmark"></i> Why BookTown Classes?</h3>
+          <p>Founded by educators who believe every child deserves a coach who listens, adapts, and inspires.</p>
+          <p>Small batch sizes (6-16 students) ensure personalized attention. We nurture curiosity, discipline, and joy for lifelong learning.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-item"><span class="stat-number" id="statSatisfaction">85</span>% <br>parent satisfaction</div>
+          <div class="stat-item"><span class="stat-number" id="statStudents">100</span>+ <br>students guided</div>
+          <div class="stat-item"><span class="stat-number" id="statRating">4.9</span>★ <br>parent rating</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <div class="container">
+      <h2 class="section-title"><i class="fas fa-heart"></i> What Families Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p>"Teaching style is easy to follow and the teacher is very patient."</p>
+          <h4>— Harim Athar</h4>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="testimonial">
+          <p>"The coaching is good and teachers are very friendly."</p>
+          <h4>— Musab Bin Umair</h4>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ FREE DEMO CTA BANNER ============ -->
     <div class="container demo-cta-banner">
       <div class="demo-cta-content">
         <h2><i class="fas fa-gift"></i> Experience the BookTown Difference</h2>
@@ -142,18 +233,24 @@
       </div>
     </div>
 
-    <!-- FAQ -->
+    <!-- ============ FAQ SECTION ============ -->
     <div class="container" id="faq">
       <h2 class="section-title"><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
       <div class="faq-section">
         <div class="faq-grid">
-          <div class="faq-item"><div class="faq-question">What is the batch size? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Maximum 16 students per batch (12 for coding).</div></div>
-          <div class="faq-item"><div class="faq-question">Is there a trial class? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes, free demo class for all programs.</div></div>
+          <div class="faq-item">
+            <div class="faq-question">What is the batch size? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Maximum 16 students per batch (12 for coding).</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Is there a trial class? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Yes, free demo class for all programs.</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Contact -->
+    <!-- ============ CONTACT SECTION ============ -->
     <div class="container" id="contact">
       <div class="contact-cta">
         <h2><i class="fab fa-whatsapp"></i> Start Your Journey</h2>
@@ -162,8 +259,12 @@
           <input type="tel" id="phone" placeholder="Phone number" required>
           <select id="studentClass" required>
             <option value="">Select class/program</option>
-            <option>Grade 1-5 (Academic)</option><option>Grade 6-8 (Academic)</option><option>Grade 9-10 (Academic)</option>
-            <option>Coding (Grade 8-12)</option><option>English Speaking</option><option>Class 10 Test Series</option>
+            <option>Grade 1-5 (Academic)</option>
+            <option>Grade 6-8 (Academic)</option>
+            <option>Grade 9-10 (Academic)</option>
+            <option>Coding (Grade 8-12)</option>
+            <option>English Speaking</option>
+            <option>Class 10 Test Series</option>
           </select>
           <textarea rows="2" id="message" placeholder="Your message..."></textarea>
           <button id="submitFormBtn"><i class="fab fa-whatsapp"></i> Request Callback</button>
@@ -173,12 +274,12 @@
     </div>
   </main>
 
-  <!-- WhatsApp float – now with text and accessibility label -->
+  <!-- WhatsApp float -->
   <a href="https://wa.me/919414700737" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
     <i class="fab fa-whatsapp"></i> Chat
   </a>
 
-  <!-- Enhanced dark footer matching coding.html -->
+  <!-- Footer -->
   <footer>
     <div class="footer-links">
       <a href="index.html">Home</a>
@@ -186,16 +287,16 @@
       <a href="class10.html">Class 10</a>
       <a href="class10-testseries.html">Test Series</a>
       <a href="english.html">English</a>
-      <a href="books-notes.html">Books & Notes</a>
+      <a href="books-notes.html">Books &amp; Notes</a>
       <a href="#contact">Contact</a>
     </div>
     <p>© 2025 BookTown Classes — Next-Gen Coaching for Curious Minds. ✨</p>
-    <p>Online & Offline | Small batches | Expert faculty</p>
+    <p>Online &amp; Offline | Small batches | Expert faculty</p>
   </footer>
 
-  <!-- Shared mobile menu logic -->
+  <!-- Scripts -->
   <script src="js/nav.js"></script>
-  <!-- Page-specific interactivity (carousel, stats, FAQ) -->
   <script src="js/script.js"></script>
+  <script src="../js/learn-python-advance.js"></script>
 </body>
 </html>
