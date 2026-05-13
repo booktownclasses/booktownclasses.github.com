@@ -20,26 +20,7 @@ function copyCode(button) {
 // ================================
 //  Mobile Menu Toggle (fixed)
 // ================================
-document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-  const navLinks = document.getElementById('navLinks');
-  navLinks.classList.toggle('show');                     // ✅ matches CSS
-  this.setAttribute('aria-expanded', navLinks.classList.contains('show'));
-});
 
-// Close mobile menu when a link is clicked
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.getElementById('navLinks').classList.remove('show');
-    document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
-  });
-});
-
-// ================================
-//  Sidebar Toggle (hamburger button)
-// ================================
-document.getElementById('sidebarToggleBtn')?.addEventListener('click', function() {
-  document.querySelector('.main-container').classList.toggle('sidebar-collapsed');
-});
 
 // ================================
 //  Sidebar Section Collapse
@@ -190,3 +171,40 @@ initSidebarCollapse();
       console.warn('Coaching banner not loaded:', err.message);
     });
 })();
+
+
+fetch('/header_bar.html')  // absolute path from root
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('header-container').innerHTML = html;
+
+    // Highlight current page link
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      if (currentPath.includes(link.getAttribute('href').split('/').pop())) {
+        link.classList.add('active');
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    if (mobileBtn && navLinks) {
+      mobileBtn.addEventListener('click', () => {
+        const expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+        mobileBtn.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+      });
+    }
+
+    // Sidebar toggle – keep original behavior (toggle sidebar-collapsed on main-container)
+    const sidebarBtn = document.getElementById('sidebarToggleBtn');
+    if (sidebarBtn) {
+      const mainContainer = document.querySelector('.main-container');
+      sidebarBtn.addEventListener('click', () => {
+        mainContainer.classList.toggle('sidebar-collapsed');
+      });
+    }
+  })
+  .catch(err => console.error('Header load error:', err));
+

@@ -1,0 +1,66 @@
+<nav class="navbar">
+  <div class="logo">
+    Code  <i class="fas fa-code"></i> <span>BookTown</span>
+  </div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/learn-python/learn-python-computer-fundamentals-1.html" class="active">
+      <i class="fas fa-home"></i> Home
+    </a>
+    <a href="/coding/coding.html">
+      <i class="fas fa-laptop-code"></i> Coding
+    </a>
+    <a href="/class-10/class10.html">
+      <i class="fas fa-graduation-cap"></i> Class 10
+    </a>
+    <a href="/class-10/class10-testseries.html">
+      <i class="fas fa-tasks"></i> Test Series
+    </a>
+    <a href="/english.html">
+      <i class="fas fa-book-open"></i> English
+    </a>
+    <a href="/learn-python/learn-python-computer-fundamentals-1.html">
+      <i class="fas fa-python"></i> Learn Python+
+    </a>
+    <a href="/info-center/books-notes.html">
+      <i class="fas fa-folder-open"></i> Books & Notes
+    </a>
+    <a href="#contact" class="btn-cta-small">
+      <i class="fas fa-user-plus"></i> Join Now
+    </a>
+  </div>
+  <style>
+    .nav-links a i {
+  margin-right: 6px;
+  color: #00c6ff;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover i {
+  transform: rotate(10deg) scale(1.2);
+  color: #ee0979;
+}
+/* Header styling */
+#header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white; /* or your header background color */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Add padding to main content to prevent overlap */
+.main-container {
+    padding-top: 80px; /* Adjust based on header height */
+}
+
+/* If you have a sidebar */
+.main-container:not(.sidebar-collapsed) {
+    padding-top: 80px;
+}
+  </style>
+</nav>

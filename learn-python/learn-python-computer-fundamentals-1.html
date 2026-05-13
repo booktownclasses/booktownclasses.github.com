@@ -6,284 +6,436 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
-  <title>Computer Fundamentals & Python - Learn Python+ | BookTown Classes</title>
+  <title>Computer Fundamentals & Python | Learn Python+ | BookTown Classes</title>
   <meta name="description" content="Understand how a computer executes code: CPU, RAM, disk, OS, and other components. Plus, learn Python's key characteristics with practical examples and interactive visuals." />
   <meta name="keywords" content="computer fundamentals, CPU, RAM, disk, operating system, how computer executes code, Python characteristics, Python features, interpreted language, dynamically typed, interactive" />
   <meta name="author" content="BookTown Classes" />
-  <meta property="og:title" content="Computer Fundamentals & Python - Learn Python+ | BookTown Classes" />
+  <meta property="og:title" content="Computer Fundamentals & Python | Learn Python+ | BookTown Classes" />
   <meta property="og:description" content="Understand how a computer executes code: CPU, RAM, disk, OS, and other components. Plus, learn Python's key characteristics with interactive visuals." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#3b82f6" />
+  <meta name="theme-color" content="#4f46e5" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+  <!-- PrismJS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-  
-    <link rel="stylesheet" href="../css/learn-python.css" />
-    <link rel="stylesheet" href="../css/theme.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
-  
+  <!-- Existing site styles -->
+ 
+ 
+   <link rel="stylesheet" href="../css/learn-python.css" />
+   <link rel="stylesheet" href="../css/learn-python-advance.css" />
+   
+  <link rel="stylesheet" href="../css/theme.css" />
+   
+
+  <!-- Professional Advanced Styles (inline for portability) -->
+
 </head>
 <body>
-<div class="floating-shapes">
-  <div class="shape shape-1"></div>
-  <div class="shape shape-2"></div>
-  <div class="shape shape-3"></div>
-</div>
-
-<nav class="navbar" role="navigation" aria-label="Main navigation">
-  <div class="logo"><i class="fas fa-graduation-cap" aria-hidden="true"></i> BookTown <span>Classes</span></div>
-  <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
-  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
-  <div class="nav-links" id="navLinks" role="menubar">
-    <a href="/index.html" role="menuitem">Home</a>
-    <a href="/coding/coding.html" role="menuitem">Coding</a>
-    <a href="/class-10/class10.html" role="menuitem">Class 10</a>
-    <a href="/class-10/class10-testseries.html" role="menuitem">Test Series</a>
-    <a href="/english.html" role="menuitem">English</a>
-    <a href="/learn-python/learn-python-computer-fundamentals-1.html" class="active" role="menuitem" aria-current="page">Learn Python+</a>
-    <a href="/info-center/books-notes.html" role="menuitem">Books & Notes</a>
-    <a href="#contact" class="btn-cta-small" role="button">Join Now</a>
+  <!-- Floating shapes -->
+  <div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
   </div>
-</nav>
 
- <div class="main-container" id="mainContainer">
-      <aside class="sidebar" id="mainSidebar"></aside>
- 
+  <div id="header-container"></div>
 
-  <main class="content" id="mainContent">
-    <!-- Sleek Coaching Funnel Banner -->
-     <div id="coaching-banner-placeholder"></div>
-     
+  <!-- Fixed left sidebar -->
+  <aside class="sidebar" id="mainSidebar"></aside>
 
-    <div class="content-section active">
-      <h1 class="section-title"><i class="fas fa-microchip"></i> Computer Fundamentals &amp; Python</h1>
-      <div class="section-intro"><p><strong>Before you code, understand the machine:</strong> Discover how hardware components work together to run your programs, and explore Python's unique strengths with interactive visuals and live examples.</p></div>
+  <div class="main-container" id="mainContainer">
+    <main class="content" id="mainContent">
+      <div id="coaching-banner-placeholder"></div>
 
-      <!-- INTERACTIVE COMPONENTS OVERVIEW -->
-      <div class="concept-card" id="components-overview">
-        <h3><i class="fas fa-desktop"></i> Core Components – Visual Overview</h3>
-        <p>Click on the tabs below to explore each component's role in code execution.</p>
-        <div class="tab-container">
-          <div class="tab-buttons">
-            <button class="tab-btn active" data-tab="cpu-tab">🧠 CPU</button>
-            <button class="tab-btn" data-tab="ram-tab">💾 RAM</button>
-            <button class="tab-btn" data-tab="disk-tab">💿 Disk/SSD</button>
-            <button class="tab-btn" data-tab="os-tab">⚙️ OS</button>
-            <button class="tab-btn" data-tab="other-tab">🔌 Others</button>
-          </div>
-          <div class="tab-panel active" id="cpu-tab">
-            <div class="infographic-grid" style="margin-bottom:0;">
-              <div class="infographic-card"><div class="infographic-icon">⚙️</div><h4>ALU</h4><p>Performs arithmetic & logic operations</p></div>
-              <div class="infographic-card"><div class="infographic-icon">🚦</div><h4>Control Unit</h4><p>Directs instruction flow like a traffic cop</p></div>
-              <div class="infographic-card"><div class="infographic-icon">📌</div><h4>Registers</h4><p>Tiny ultra‑fast memory inside the CPU</p></div>
-              <div class="infographic-card"><div class="infographic-icon">🗄️</div><h4>Cache</h4><p>L1/L2/L3 – stores frequently used data close to the CPU</p></div>
+      <div class="content-section active">
+        <h1 class="section-title">
+          <i class="fas fa-microchip"></i> Computer Fundamentals &amp; Python
+        </h1>
+        <div class="section-intro">
+          <p><strong>Before you code, understand the machine.</strong> Discover how hardware components work together to run your programs, and explore Python's unique strengths with interactive visuals and live examples.</p>
+        </div>
+
+        <!-- Core Components Tabs -->
+        <div class="concept-card" id="components-overview">
+          <h3><i class="fas fa-desktop"></i> Core Components – Visual Overview</h3>
+          <p>Click on the tabs below to explore each component's role in code execution.</p>
+          <div class="tab-container">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-tab="cpu-tab">🧠 CPU</button>
+              <button class="tab-btn" data-tab="ram-tab">💾 RAM</button>
+              <button class="tab-btn" data-tab="disk-tab">💿 Disk / SSD</button>
+              <button class="tab-btn" data-tab="os-tab">⚙️ OS</button>
+              <button class="tab-btn" data-tab="other-tab">🔌 Others</button>
             </div>
-          </div>
-          <div class="tab-panel" id="ram-tab">
-            <p><strong>RAM (Random Access Memory)</strong> is the computer's short‑term workspace. Python variables live here while your program runs.</p>
-            <div class="speed-chart">
-              <div class="speed-item"><div class="bar-wrapper"><div class="bar" style="height:140px;"></div></div><div class="bar-label">RAM ~ 20 GB/s</div><div class="bar-desc">Volatile, fast</div></div>
-              <div class="speed-item"><div class="bar-wrapper"><div class="bar" style="height:40px; background:#f97316;"></div></div><div class="bar-label">SSD ~ 500 MB/s</div><div class="bar-desc">Permanent storage</div></div>
-              <div class="speed-item"><div class="bar-wrapper"><div class="bar" style="height:15px; background:#ef4444;"></div></div><div class="bar-label">HDD ~ 100 MB/s</div><div class="bar-desc">Moving parts</div></div>
+            <div class="tab-panel active" id="cpu-tab">
+              <p><span class="genz-badge badge-fire">🧠 brain cell</span> The CPU fetches, decodes, and executes instructions – the heart of the machine.</p>
+              <div class="infographic-grid">
+                <div class="infographic-card"><div class="infographic-icon">⚙️</div><h4>ALU</h4><p>Math & logic operations</p></div>
+                <div class="infographic-card"><div class="infographic-icon">🚦</div><h4>Control Unit</h4><p>Directs instruction flow</p></div>
+                <div class="infographic-card"><div class="infographic-icon">📌</div><h4>Registers</h4><p>Ultra‑fast CPU memory</p></div>
+                <div class="infographic-card"><div class="infographic-icon">🗄️</div><h4>Cache</h4><p>L1/L2/L3 – hot data nearby</p></div>
+              </div>
             </div>
-            <p class="highlight-box">💡 RAM is <strong>100x faster</strong> than SSD and <strong>200x faster</strong> than HDD – that's why programs are loaded into RAM first!</p>
-          </div>
-          <div class="tab-panel" id="disk-tab">
-            <p>Your <code>.py</code> files, Python interpreter, and libraries live on the disk permanently. They are copied to RAM when you run a program.</p>
-            <table class="comparison-table">
-              <tr><th></th><th>HDD</th><th>SSD</th></tr>
-              <tr><td>Speed</td><td>~100 MB/s</td><td>~500-7000 MB/s</td></tr>
-              <tr><td>Noise</td><td>Audible spinning</td><td>Silent</td></tr>
-              <tr><td>Durability</td><td>Fragile</td><td>Shock resistant</td></tr>
-            </table>
-          </div>
-          <div class="tab-panel" id="os-tab">
-            <p>The <strong>Operating System</strong> manages hardware and provides services to your Python code. It schedules processes, allocates memory, and handles files.</p>
-            <div class="infographic-grid">
-              <div class="infographic-card"><span style="font-size:2.5rem;">🧵</span><h4>Process Management</h4></div>
-              <div class="infographic-card"><span style="font-size:2.5rem;">💾</span><h4>Memory Allocation</h4></div>
-              <div class="infographic-card"><span style="font-size:2.5rem;">📁</span><h4>File System</h4></div>
-              <div class="infographic-card"><span style="font-size:2.5rem;">🖥️</span><h4>I/O Handling</h4></div>
-            </div>
-          </div>
-          <div class="tab-panel" id="other-tab">
-            <ul style="line-height:2.2;">
-              <li><strong>GPU:</strong> Graphics & parallel processing (important for AI/ML)</li>
-              <li><strong>Motherboard:</strong> Connects all components</li>
-              <li><strong>Network Card:</strong> Enables internet and pip install</li>
-              <li><strong>BIOS/UEFI:</strong> Starts the computer and initializes hardware</li>
-            </ul>
-          </div>
+           <div class="tab-panel" id="ram-tab">
+  <p><strong>RAM</strong> is the computer's short‑term workspace. Python variables live here while your program runs.</p>
+  
+  <!-- Speed Chart (existing) -->
+  <div class="speed-chart">
+    <div class="speed-item">
+      <div class="bar-wrapper"><div class="bar" style="height:140px;"></div></div>
+      <div class="bar-label">RAM ~ 20 GB/s</div>
+      <div class="bar-desc">Volatile, fast</div>
+    </div>
+    <div class="speed-item">
+      <div class="bar-wrapper"><div class="bar" style="height:40px; background: #f97316;"></div></div>
+      <div class="bar-label">SSD ~ 500 MB/s</div>
+      <div class="bar-desc">Permanent storage</div>
+    </div>
+    <div class="speed-item">
+      <div class="bar-wrapper"><div class="bar" style="height:15px; background: #ef4444;"></div></div>
+      <div class="bar-label">HDD ~ 100 MB/s</div>
+      <div class="bar-desc">Moving parts</div>
+    </div>
+  </div>
+  
+  <p class="highlight-box">💡 RAM is <strong>~100x faster</strong> than SSD and <strong>~200x faster</strong> than HDD – that's why programs are loaded into RAM first!</p>
+
+  <!-- Memory Hierarchy Pyramid (NEW) -->
+  <div class="memory-hierarchy">
+    <h4>🔺 The Memory Hierarchy Pyramid</h4>
+    <p class="pyramid-intro">Faster memory sits at the top, but is smaller and more expensive per byte. Slower memory sits at the bottom, but is cheap and vast.</p>
+    <div class="pyramid">
+      <div class="pyramid-level registers">
+        <div class="pyramid-details">
+          <span class="pyramid-name">Registers</span>
+          <span class="pyramid-speed">1 cycle</span>
+          <span class="pyramid-size">256 bytes</span>
         </div>
       </div>
-
-      <!-- HOW CODE EXECUTES - INTERACTIVE TIMELINE -->
-      <div class="concept-card" id="code-execution">
-        <h3>🚀 Journey of a Python Program</h3>
-        <p>Click each step to see what happens behind the scenes when you run <code>hello.py</code>.</p>
-        <div class="timeline">
-          <div class="timeline-step" id="step-load">
-            <div class="timeline-marker">1</div>
-            <div class="timeline-content">
-              <strong>💿 Disk → RAM:</strong> The Python interpreter loads your <code>.py</code> file from disk into RAM.
-            </div>
-          </div>
-          <div class="timeline-step">
-            <div class="timeline-marker">2</div>
-            <div class="timeline-content">
-              <strong>🔍 Parsing:</strong> Python checks syntax and converts code into an abstract syntax tree (AST).
-            </div>
-          </div>
-          <div class="timeline-step">
-            <div class="timeline-marker">3</div>
-            <div class="timeline-content">
-              <strong>📦 Compilation:</strong> AST is turned into <strong>bytecode</strong> (stored in <code>__pycache__</code>). This is platform‑independent.
-            </div>
-          </div>
-          <div class="timeline-step">
-            <div class="timeline-marker">4</div>
-            <div class="timeline-content">
-              <strong>⚙️ PVM (Python Virtual Machine):</strong> Reads bytecode and executes instructions one by one.
-            </div>
-          </div>
-          <div class="timeline-step">
-            <div class="timeline-marker">5</div>
-            <div class="timeline-content">
-              <strong>🧠 CPU Execution:</strong> The PVM translates bytecode into machine code that the CPU runs.
-            </div>
-          </div>
-          <div class="timeline-step">
-            <div class="timeline-marker">6</div>
-            <div class="timeline-content">
-              <strong>🖥️ Output:</strong> Results appear on your screen or are saved to disk – mission accomplished!
-            </div>
-          </div>
-        </div>
-        <div class="code-block">
-          <div class="code-block-header"><i class="fas fa-circle"></i> show_bytecode.py</div>
-          <pre class="line-numbers"><code class="language-python"># You can peek at bytecode with the dis module
-import dis
-dis.dis("print('Hello World')")</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+      <div class="pyramid-level l1">
+        <div class="pyramid-details">
+          <span class="pyramid-name">L1 Cache</span>
+          <span class="pyramid-speed">2‑4 cycles</span>
+          <span class="pyramid-size">64 KB</span>
         </div>
       </div>
-
-      <!-- PYTHON INTRODUCTION & CHARACTERISTICS (VISUALLY ENHANCED) -->
-      <div class="concept-card" id="python-characteristics">
-        <h3>🐍 Python – Why Developers Love It</h3>
-        <div class="python-feature-grid">
-          <div class="feature-card"><h4>📝 Interpreted</h4><p>No separate compile step – run code instantly. Great for rapid prototyping.</p></div>
-          <div class="feature-card"><h4>🧩 Dynamic Typing</h4><p>Variables don't need type declarations. Python figures out types at runtime.</p></div>
-          <div class="feature-card"><h4>📐 High‑Level</h4><p>Focus on logic, not memory management. Automatic garbage collection.</p></div>
-          <div class="feature-card"><h4>📚 Rich Standard Library</h4><p>Batteries included! Modules for JSON, CSV, email, web servers, and more.</p></div>
-          <div class="feature-card"><h4>🎯 Object‑Oriented</h4><p>Everything is an object – even integers and functions can have attributes.</p></div>
-          <div class="feature-card"><h4>🌍 Cross‑Platform</h4><p>Write once, run on Windows, macOS, Linux – no changes needed.</p></div>
-          <div class="feature-card"><h4>🔤 Indentation Matters</h4><p>Clean, readable code enforced by whitespace – no curly braces!</p></div>
-          <div class="feature-card"><h4>🤝 Open Source</h4><p>Free to use, modify, and distribute. Over 500,000 packages on PyPI.</p></div>
+      <div class="pyramid-level l2">
+        <div class="pyramid-details">
+          <span class="pyramid-name">L2 Cache</span>
+          <span class="pyramid-speed">10‑20 cycles</span>
+          <span class="pyramid-size">256 KB – 8 MB</span>
         </div>
       </div>
-
-      <!-- PYTHON VS OTHER LANGUAGES WITH STAR RATINGS -->
-      <div class="concept-card" id="python-comparison">
-        <h3>⚖️ Python vs Other Languages</h3>
-        <table class="comparison-table">
-          <tr><th>Feature</th><th>Python</th><th>Java</th><th>C++</th><th>JavaScript</th></tr>
-          <tr><td>Ease of Learning</td><td><div class="star-rating">⭐ ⭐ ⭐ ⭐ ⭐</div></td><td><div class="star-rating">⭐ ⭐ ⭐</div></td><td><div class="star-rating">⭐ ⭐</div></td><td><div class="star-rating">⭐ ⭐ ⭐</div></td></tr>
-          <tr><td>Execution Speed</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
-          <tr><td>Library Support</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
-          <tr><td>Typing</td><td>Dynamic</td><td>Static</td><td>Static</td><td>Dynamic</td></tr>
-          <tr><td>Best For</td><td>AI/ML, Web, Data</td><td>Enterprise, Android</td><td>Games, Systems</td><td>Web Front/Backend</td></tr>
-        </table>
+      <div class="pyramid-level l3">
+        <div class="pyramid-details">
+          <span class="pyramid-name">L3 Cache</span>
+          <span class="pyramid-speed">30‑50 cycles</span>
+          <span class="pyramid-size">4 MB – 32 MB</span>
+        </div>
       </div>
-
-      <!-- PRACTICE PROBLEMS (SOLVED) KEPT AS ACCORDION -->
-      <div class="concept-card" id="practice-problems">
-        <h3><i class="fas fa-code"></i> Practice Problems (Solved)</h3>
-        <div class="practice-problem"><details><summary>1. Check Your Python Version & OS</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">import sys, platform
-print(f"Python: {sys.version}")
-print(f"OS: {platform.system()} {platform.release()}")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
-        <div class="practice-problem"><details><summary>2. Demonstrate Dynamic Typing</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">x = 42; print(type(x))
-x = "hello"; print(type(x))</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
-        <div class="practice-problem"><details><summary>3. List Files Using os Module</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">import os
-for item in os.listdir('.'):
-    print(item)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+      <div class="pyramid-level ram">
+        <div class="pyramid-details">
+          <span class="pyramid-name">RAM</span>
+          <span class="pyramid-speed">200+ cycles</span>
+          <span class="pyramid-size">4 GB – 64 GB</span>
+        </div>
       </div>
-
-      <!-- UNSOLVED EXERCISES (KEPT AS PLACEHOLDER) -->
-      <div class="concept-card" id="unsolved-exercises">
-        <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
-        <div class="practice-problem"><details><summary>1. Print Your Computer's Hostname</summary><div class="solution"><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here</i></div></div></details></div>
-        <div class="practice-problem"><details><summary>2. Explore id() with Small Integers</summary><div class="solution"><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here</i></div></div></details></div>
-        <div class="practice-problem"><details><summary>3. Read a File and Count Lines</summary><div class="solution"><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here</i></div></div></details></div>
+      <div class="pyramid-level disk">
+        <div class="pyramid-details">
+          <span class="pyramid-name">Disk / SSD</span>
+          <span class="pyramid-speed">Millions of cycles</span>
+          <span class="pyramid-size">256 GB – 4 TB</span>
+        </div>
       </div>
     </div>
-  </main>
+    <p class="pyramid-note">✨ The CPU first looks in registers, then L1, L2, L3, then RAM, and finally disk – each step is dramatically slower.</p>
+  </div>
+</div>
+            <div class="tab-panel" id="disk-tab">
+              <p>Your <code>.py</code> files, Python interpreter, and libraries live on the disk permanently. They are copied to RAM when you run a program.</p>
+              <table class="comparison-table">
+                <tr><th></th><th>HDD</th><th>SSD</th></tr>
+                <tr><td>Speed</td><td>~100 MB/s</td><td>~500–7000 MB/s</td></tr>
+                <tr><td>Noise</td><td>Audible spinning</td><td>Silent</td></tr>
+                <tr><td>Durability</td><td>Fragile</td><td>Shock resistant</td></tr>
+              </table>
+            </div>
+            <div class="tab-panel" id="os-tab">
+              <p>The <strong>Operating System</strong> manages hardware and provides services to your Python code. It schedules processes, allocates memory, and handles files.</p>
+              <div class="infographic-grid">
+                <div class="infographic-card"><span style="font-size:2.2rem;">🧵</span><h4>Process Mgmt</h4></div>
+                <div class="infographic-card"><span style="font-size:2.2rem;">💾</span><h4>Memory Allocation</h4></div>
+                <div class="infographic-card"><span style="font-size:2.2rem;">📁</span><h4>File System</h4></div>
+                <div class="infographic-card"><span style="font-size:2.2rem;">🖥️</span><h4>I/O Handling</h4></div>
+              </div>
+            </div>
+            <div class="tab-panel" id="other-tab">
+              <ul style="line-height:2.2;">
+                <li><strong>GPU:</strong> Graphics & parallel processing (important for AI/ML)</li>
+                <li><strong>Motherboard:</strong> Connects all components</li>
+                <li><strong>Network Card:</strong> Enables internet and <code>pip install</code></li>
+                <li><strong>BIOS/UEFI:</strong> Starts the computer and initializes hardware</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-  <aside class="page-tracker" id="pageTracker">
-    <h4>On This Page</h4>
-    <ul>
-      <li><a href="#components-overview">Core Components</a></li>
-      <li><a href="#code-execution">How Code Executes</a></li>
-      <li><a href="#python-characteristics">Python Characteristics</a></li>
-      <li><a href="#python-comparison">Language Comparison</a></li>
-      <li><a href="#practice-problems">Practice Problems</a></li>
-      <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
-    </ul>
-  </aside>
+        <!-- Code Execution Journey -->
+        <div class="concept-card" id="code-execution">
+          <h3>🚀 Journey of a Python Program</h3>
+          <p>Click each step to see what happens behind the scenes when you run <code>hello.py</code>.</p>
+          <div class="journey-progress">
+            <div class="progress-track"><div class="progress-fill" id="journeyProgressFill"></div></div>
+          </div>
+          <div class="stage-carousel" id="stageCarousel">
+            <div class="stage-card" data-stage="1" data-detail="💿 <b>Disk → RAM:</b> The Python interpreter loads your <code>.py</code> file from disk into RAM.<br><span style='color:#4f46e5;'>NVMe • SATA • File allocation</span>">
+              <div class="stage-icon">💿</div><h3>Load from Disk</h3><p class="stage-slang">"Disk → RAM"</p>
+            </div>
+            <div class="stage-card" data-stage="2" data-detail="🔍 <b>Parsing:</b> Python checks syntax and builds an Abstract Syntax Tree (AST).<br><span style='color:#4f46e5;'>Lexer • Tokens • AST</span>">
+              <div class="stage-icon">🔍</div><h3>Parse & Check</h3><p class="stage-slang">"Syntax check"</p>
+            </div>
+            <div class="stage-card" data-stage="3" data-detail="📦 <b>Compilation:</b> AST is turned into <strong>bytecode</strong> (stored in <code>__pycache__</code>).<br><span style='color:#4f46e5;'>Bytecode • .pyc • Platform‑independent</span>">
+              <div class="stage-icon">📦</div><h3>Bytecode</h3><p class="stage-slang">"Compile to .pyc"</p>
+            </div>
+            <div class="stage-card" data-stage="4" data-detail="⚙️ <b>PVM (Python Virtual Machine):</b> Reads bytecode and executes instructions.<br><span style='color:#4f46e5;'>PVM • Stack machine • Opcodes</span>">
+              <div class="stage-icon">⚙️</div><h3>PVM Runs It</h3><p class="stage-slang">"Virtual machine"</p>
+            </div>
+            <div class="stage-card" data-stage="5" data-detail="🧠 <b>CPU Execution:</b> Bytecode becomes machine code that the CPU runs.<br><span style='color:#4f46e5;'>x86/ARM • Machine code • ALU • Registers</span>">
+              <div class="stage-icon">🧠</div><h3>CPU Crunches</h3><p class="stage-slang">"Machine code"</p>
+            </div>
+            <div class="stage-card" data-stage="6" data-detail="🖥️ <b>Output:</b> Results appear on screen or are saved – mission accomplished!<br><span style='color:#4f46e5;'>Display • File I/O • stdout</span>">
+              <div class="stage-icon">🖥️</div><h3>Output</h3><p class="stage-slang">"Result delivered"</p>
+            </div>
+          </div>
+          <div class="stage-detail" id="stageDetail">
+            <div class="detail-content" id="detailContent"></div>
+          </div>
+          </div>
+        
+
+        <!-- Python Characteristics -->
+        <div class="concept-card" id="python-characteristics">
+          <h3>🐍 Python – Why Developers Love It</h3>
+          <div class="python-feature-grid">
+            <div class="feature-card"><h4>📝 Interpreted</h4><p>No compile step – run code instantly. Great for rapid prototyping.</p></div>
+            <div class="feature-card"><h4>🧩 Dynamic Typing</h4><p>Variables don't need type declarations. Python figures out types at runtime.</p></div>
+            <div class="feature-card"><h4>📐 High‑Level</h4><p>Focus on logic, not memory management. Automatic garbage collection.</p></div>
+            <div class="feature-card"><h4>📚 Rich Standard Library</h4><p>Batteries included! Modules for JSON, CSV, email, web servers, and more.</p></div>
+            <div class="feature-card"><h4>🎯 Object‑Oriented</h4><p>Everything is an object – even integers and functions can have attributes.</p></div>
+            <div class="feature-card"><h4>🌍 Cross‑Platform</h4><p>Write once, run on Windows, macOS, Linux – no changes needed.</p></div>
+            <div class="feature-card"><h4>🔤 Indentation Matters</h4><p>Clean, readable code enforced by whitespace – no curly braces!</p></div>
+            <div class="feature-card"><h4>🤝 Open Source</h4><p>Free to use, modify, and distribute. Over 500,000 packages on PyPI.</p></div>
+          </div>
+        </div>
+
+        <!-- ========== REPLACE the existing #python-comparison card with this ========== -->
+<div class="concept-card" id="python-comparison">
+  <h3>⚖️ Python vs Other Languages</h3>
+  <p class="compare-subtitle">See how Python stacks up against popular languages in key areas. <em>All bars animate as you scroll.</em></p>
+
+  <div class="compare-grid">
+    <!-- Ease of Learning -->
+   
+
+    <!-- Execution Speed -->
+    <div class="compare-metric">
+      <div class="metric-header">
+        <h4>⚡ Execution Speed</h4>
+        <span class="metric-badge higher-better">Higher is better</span>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">
+          <span class="lang-icon">🐍</span> Python
+        </div>
+        <div class="compare-bar-bg">
+          <div class="compare-bar-fill fill-accent" data-width="50" style="width: 0%;">50%</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">
+          <span class="lang-icon">☕</span> Java
+        </div>
+        <div class="compare-bar-bg">
+          <div class="compare-bar-fill fill-primary" data-width="80" style="width: 0%;">80%</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">
+          <span class="lang-icon">⚡</span> C++
+        </div>
+        <div class="compare-bar-bg">
+          <div class="compare-bar-fill fill-primary" data-width="98" style="width: 0%;">98%</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">
+          <span class="lang-icon">🌐</span> JavaScript
+        </div>
+        <div class="compare-bar-bg">
+          <div class="compare-bar-fill fill-accent" data-width="72" style="width: 0%;">72%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Library / Ecosystem Support -->
+    <div class="compare-metric">
+      <div class="metric-header">
+        <h4>📚 Library / Ecosystem</h4>
+        <span class="metric-badge higher-better">Higher is better</span>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">
+          <span class="lang-icon">🐍</span> Python
+        </div>
+        <div class="compare-bar-bg">
+          <div class="compare-bar-fill fill-primary" data-width="98" style="width: 0%;">98%</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">
+          <span class="lang-icon">☕</span> Java
+        </div>
+        <div class="compare-bar-bg">
+          <div class="compare-bar-fill fill-accent" data-width="75" style="width: 0%;">75%</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">
+          <span class="lang-icon">⚡</span> C++
+        </div>
+        <div class="compare-bar-bg">
+          <div class="compare-bar-fill fill-warning" data-width="55" style="width: 0%;">55%</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">
+          <span class="lang-icon">🌐</span> JavaScript
+        </div>
+        <div class="compare-bar-bg">
+          <div class="compare-bar-fill fill-accent" data-width="92" style="width: 0%;">92%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick reference table -->
+  <div class="compare-table-wrapper">
+    <table class="comparison-table">
+      <thead>
+        <tr><th>Feature</th><th>Python 🐍</th><th>Java ☕</th><th>C++ ⚡</th><th>JavaScript 🌐</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Typing</td><td>Dynamic</td><td>Static</td><td>Static</td><td>Dynamic</td></tr>
+        <tr><td>Best For</td><td>AI/ML, Data, Web</td><td>Enterprise, Android</td><td>Games, Systems</td><td>Web Fullstack</td></tr>
+        <tr><td>Learning Curve</td><td>Gentle</td><td>Moderate</td><td>Steep</td><td>Moderate</td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-  <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
-</a>
 
-<footer>
-  <div class="footer-links">
-    <a href="/index.html">Home</a>
-    <a href="/coding/coding.html">Coding</a>
-    <a href="/class-10/class10.html">Class 10</a>
-    <a href="/class-10/class10-testseries.html">Test Series</a>
-    <a href="/english.html">English</a>
-    <a href="/learn-python/learn-python-computer-fundamentals.html">Learn Python+</a>
-    <a href="/info-center/books-notes.html">Books & Notes</a>
+
+        <!-- Practice Problems (Solved) -->
+        <div class="concept-card" id="practice-problems">
+          <h3><i class="fas fa-code"></i> Practice Problems (Solved)</h3>
+          <div class="practice-problem"><details><summary>1. Check Your Python Version & OS</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">import sys, platform
+print(f"Python: {sys.version}")
+print(f"OS: {platform.system()} {platform.release()}")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+          <div class="practice-problem"><details><summary>2. Demonstrate Dynamic Typing</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">x = 42; print(type(x))
+x = "hello"; print(type(x))</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+          <div class="practice-problem"><details><summary>3. List Files Using os Module</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">import os
+for item in os.listdir('.'):
+    print(item)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+        </div>
+
+        
+    </main>
+
+    <!-- Page Tracker -->
+     <!-- Improved Page Tracker -->
+<aside class="page-tracker" id="pageTracker">
+  <div class="tracker-header">
+    <i class="fas fa-compass"></i>
+    <h4>On This Page</h4>
   </div>
-  <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
-  <p>Online & Offline | Small batches | Expert faculty</p>
-</footer>
+  <nav class="tracker-nav">
+    <ul>
+      <li><a href="#components-overview" class="tracker-link">
+        <span class="tracker-bullet"></span>
+        <span class="tracker-text">Core Components</span>
+      </a></li>
+      <li><a href="#code-execution" class="tracker-link">
+        <span class="tracker-bullet"></span>
+        <span class="tracker-text">How Code Executes</span>
+      </a></li>
+      <li><a href="#python-characteristics" class="tracker-link">
+        <span class="tracker-bullet"></span>
+        <span class="tracker-text">Python Characteristics</span>
+      </a></li>
+      <li><a href="#python-comparison" class="tracker-link">
+        <span class="tracker-bullet"></span>
+        <span class="tracker-text">Language Comparison</span>
+      </a></li>
+      <li><a href="#practice-problems" class="tracker-link">
+        <span class="tracker-bullet"></span>
+        <span class="tracker-text">Practice Problems</span>
+      </a></li>
+    </ul>
+  </nav>
+</aside>
 
- <script src="../js/learn-python.js"></script>
-  <!-- Breadcrumb Structured Data -->
+  </div>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i> Chat
+  </a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="/index.html">Home</a>
+      <a href="/coding/coding.html">Coding</a>
+      <a href="/class-10/class10.html">Class 10</a>
+      <a href="/class-10/class10-testseries.html">Test Series</a>
+      <a href="/english.html">English</a>
+      <a href="/learn-python/learn-python-computer-fundamentals.html">Learn Python+</a>
+      <a href="/info-center/books-notes.html">Books & Notes</a>
+    </div>
+    <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+    <p>Online & Offline | Small batches | Expert faculty</p>
+  </footer>
+
+  <script src="../js/learn-python.js"></script>
+  <script src="../js/learn-python-advance.js"></script>
+
+  <!-- Structured Data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://booktownclasses.github.io/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Learn Python+",
-        "item": "https://booktownclasses.github.io/learn-python/learn-python-computer-fundamentals-1.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Computer Fundamentals & Python"
-      }
-    ]
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://booktownclasses.github.io/index.html" },
+        { "@type": "ListItem", "position": 2, "name": "Learn Python+", "item": "https://booktownclasses.github.io/learn-python/learn-python-computer-fundamentals-1.html" },
+        { "@type": "ListItem", "position": 3, "name": "Computer Fundamentals & Python" }
+      ]
+    }
   </script>
-  
+
+  <!-- Professional Interactive JS (no dark mode toggle) -->
+  <script>
+
+  </script>
 </body>
 </html>

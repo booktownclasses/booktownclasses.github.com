@@ -305,3 +305,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const unsolvedCard = document.getElementById('unsolved-exercises');
   if (unsolvedCard) trackerObserver.observe(unsolvedCard);
 });
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const headerContainer = document.getElementById('header-container');
+  if (!headerContainer) return; // skip if no placeholder
+
+  fetch('header_bar.html') // path relative to the page, adjust if needed
+    .then(res => {
+      if (!res.ok) throw new Error('Header not found');
+      return res.text();
+    })
+    .then(html => {
+      headerContainer.innerHTML = html;
+
+      // Highlight the current page link
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        // Compare last part of href with current page filename
+        const linkFile = href.split('/').pop();
+        link.classList.toggle('active', linkFile === currentPage);
+      });
+
+      // Activate mobile menu after the navbar is in the DOM
+      initMobileMenu();
+    })
+    .catch(err => console.error('Header load error:', err));
+});
+
+function initMobileMenu() {
+  const btn = document.getElementById('mobileMenuBtn');
+  const nav = document.getElementById('navLinks');
+  if (!btn || !nav) return;
+
+  btn.addEventListener('click', function () {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !expanded);
+    nav.classList.toggle('active');
+  });
+}
