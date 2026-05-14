@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/learn-python-recursion-backtracking.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>Recursion & Backtracking – Python Tutorial | BookTown Classes</title>
+    <meta name="description" content="Master recursion basics, backtracking, factorial, Fibonacci, generate parentheses, subsets, recursion depth, lru_cache, and recursive generators with yield." />
+    <meta name="keywords" content="Python recursion, backtracking, factorial, Fibonacci, generate parentheses, subsets, recursion depth, lru_cache, yield, Python tutorial" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Recursion & Backtracking – Python Tutorial | BookTown Classes" />
+    <meta property="og:description" content="Deep dive into recursive thinking with practical Python examples: factorial, Fibonacci, backtracking for subsets & parentheses, recursion depth, caching, and recursive generators." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Prism for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    
+    <!-- Theme files -->
+    <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+</head>
+<body>
+    <!-- Floating background shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div id="header-container"></div>
+
+    <!-- Main Layout -->
+    <div class="main-container" id="mainContainer">
+        <!-- Sidebar (loaded dynamically) -->
+        <aside class="sidebar" id="mainSidebar"></aside>
+
+        <!-- Main Content -->
+        <main class="content" id="mainContent">
+            <div id="coaching-banner-placeholder"></div>
+            <div class="content-section active" id="section-recursion">
+                <h1 class="section-title"><i class="fas fa-sitemap"></i> Recursion &amp; Backtracking in Python</h1>
+                <div class="section-intro">
+                    <p><strong>Think recursively – solve big problems by breaking them into smaller, identical sub‑problems.</strong> This page covers recursion basics, classic examples (factorial, Fibonacci), the powerful <em>backtracking</em> technique for generating combinations and parentheses, recursion depth control, caching with <code>lru_cache</code>, and even recursive generators using <code>yield</code>.</p>
+                </div>
+
+                <!-- Overview cards -->
+                <div class="infographic-grid">
+                    <article class="infographic-card"><div class="infographic-icon">🔄</div><h3>Recursion</h3><p>Function calls itself with a smaller input</p></article>
+                    <article class="infographic-card"><div class="infographic-icon">🧮</div><h3>Factorial / Fibonacci</h3><p>Classic recursive mathematical problems</p></article>
+                    <article class="infographic-card"><div class="infographic-icon">🧭</div><h3>Backtracking</h3><p>Explore all possibilities &amp; abandon dead ends</p></article>
+                    <article class="infographic-card"><div class="infographic-icon">⚡</div><h3>Optimisation</h3><p><code>lru_cache</code>, recursion depth, yield</p></article>
+                </div>
+
+                <!-- ========== RECURSION BASICS ========== -->
+                <div class="concept-card">
+                    <h3 id="recursion-basics"><i class="fas fa-redo"></i> Recursion – A Function Calling Itself</h3>
+                    <p>Every recursive function needs two things:</p>
+                    <ul>
+                        <li><strong>Base case</strong> – the simplest version of the problem (stops recursion).</li>
+                        <li><strong>Recursive case</strong> – reduces the problem and calls itself again.</li>
+                    </ul>
+                    <p>The call stack remembers each call until the base case returns.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> recursive_countdown.py</div>
+                        <pre class="line-numbers"><code class="language-python">def countdown(n):
+    if n == 0:           # base case
+        print("Go!")
+        return
+    print(n)
+    countdown(n - 1)     # recursive case
+
+countdown(3)</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-output">3
+2
+1
+Go!</div>
+                </div>
+
+                <!-- ========== FACTORIAL ========== -->
+                <div class="concept-card" id="factorial">
+                    <h3><i class="fas fa-calculator"></i> Factorial – A Classic First Step</h3>
+                    <p>Factorial of <code>n</code> = <code>n × (n‑1) × … × 1</code>. Base case: <code>0! = 1</code>.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> factorial.py</div>
+                        <pre class="line-numbers"><code class="language-python">def factorial(n):
+    if n == 0:          # base case
+        return 1
+    return n * factorial(n - 1)   # recursive case
+
+print(factorial(5))     # 120</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-output">120</div>
+                    <p class="tip-box"><i class="fas fa-lightbulb"></i> <strong>Try it out:</strong> <code>factorial(1000)</code> will hit recursion depth limit – we'll fix that later with <code>lru_cache</code> or iterative approaches.</p>
+                </div>
+
+                <!-- ========== FIBONACCI ========== -->
+                <div class="concept-card" id="fibonacci">
+                    <h3><i class="fas fa-infinity"></i> Fibonacci Sequence</h3>
+                    <p>The Fibonacci series: <code>0, 1, 1, 2, 3, 5, 8, …</code> where <code>F(n) = F(n‑1) + F(n‑2)</code>. This is naturally recursive but very inefficient for large <code>n</code> due to repeated calculations.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> fibonacci_naive.py</div>
+                        <pre class="line-numbers"><code class="language-python">def fib(n):
+    if n == 0: return 0
+    if n == 1: return 1
+    return fib(n - 1) + fib(n - 2)
+
+print(fib(10))   # 55</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-output">55</div>
+                    <p>We'll use <code>lru_cache</code> to speed it up dramatically later on this page.</p>
+                </div>
+
+                <!-- ========== BACKTRACKING INTRODUCTION ========== -->
+                <div class="concept-card" id="backtracking">
+                    <h3><i class="fas fa-route"></i> Backtracking – Explore &amp; Undo</h3>
+                    <p>Backtracking builds candidates step by step and abandons a candidate (“backtracks”) as soon as it determines the candidate cannot lead to a valid solution. It's ideal for problems like generating all subsets, permutations, or valid parentheses combinations.</p>
+                    <p>The pattern: <code>choose → explore → unchoose</code> (recursive).</p>
+                </div>
+
+                <!-- ========== GENERATE PARENTHESES ========== -->
+                <div class="concept-card" id="generate-parentheses">
+                    <h3><i class="fas fa-parentheses"></i> Generate Parentheses</h3>
+                    <p><strong>LeetCode 22:</strong> Given <code>n</code> pairs of parentheses, write a function to generate all combinations of well‑formed parentheses.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> generate_parentheses.py</div>
+                        <pre class="line-numbers"><code class="language-python">def generateParenthesis(n):
+    result = []
+    def backtrack(current, open_count, close_count):
+        if len(current) == 2 * n:   # base: used all pairs
+            result.append(current)
+            return
+        if open_count < n:
+            backtrack(current + "(", open_count + 1, close_count)
+        if close_count < open_count:
+            backtrack(current + ")", open_count, close_count + 1)
+
+    backtrack("", 0, 0)
+    return result
+
+print(generateParenthesis(3))</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-output">['((()))', '(()())', '(())()', '()(())', '()()()']</div>
+                </div>
+
+                <!-- ========== SUBSETS ========== -->
+                <div class="concept-card" id="subsets">
+                    <h3><i class="fas fa-object-group"></i> Subsets (Power Set)</h3>
+                    <p><strong>LeetCode 78:</strong> Given an array of unique elements, return all possible subsets (the power set). Backtracking solution builds subsets by deciding for each element whether to include it or not.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> subsets_backtracking.py</div>
+                        <pre class="line-numbers"><code class="language-python">def subsets(nums):
+    result = []
+    def backtrack(start, path):
+        result.append(path[:])         # snapshot current subset
+        for i in range(start, len(nums)):
+            path.append(nums[i])       # choose
+            backtrack(i + 1, path)     # explore
+            path.pop()                 # unchoose (backtrack)
+
+    backtrack(0, [])
+    return result
+
+print(subsets([1, 2, 3]))</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-output">[[], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]]</div>
+                </div>
+
+                <!-- ========== RECURSION DEPTH & lru_cache ========== -->
+                <div class="concept-card" id="depth-and-cache">
+                    <h3><i class="fas fa-tachometer-alt"></i> Recursion Depth &amp; <code>lru_cache</code></h3>
+                    <p><strong>Recursion depth limit</strong> prevents stack overflow (default ~1000). You can view/set it with <code>sys.getrecursionlimit()</code> and <code>sys.setrecursionlimit()</code>.</p>
+                    <p><strong><code>@functools.lru_cache</code></strong> memoizes results so repeated recursive calls return instantly. It turns the slow <code>fib(n)</code> into a lightning‑fast version.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> fib_cached.py</div>
+                        <pre class="line-numbers"><code class="language-python">from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def fib(n):
+    if n < 2: return n
+    return fib(n - 1) + fib(n - 2)
+
+print(fib(100))           # 354224848179261915075 (instant)
+print(fib.cache_info())   # hits, misses, etc.</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-output">354224848179261915075
+CacheInfo(hits=98, misses=101, maxsize=None, currsize=101)</div>
+                </div>
+
+                <!-- ========== RECURSIVE GENERATORS (yield) ========== -->
+                <div class="concept-card" id="recursive-yield">
+                    <h3><i class="fas fa-stream"></i> Recursive Generators with <code>yield</code></h3>
+                    <p>You can write recursive functions that <strong>yield</strong> values lazily, avoiding storing the entire result in memory. Use <code>yield from</code> to delegate to a sub‑generator.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> recursive_generator.py</div>
+                        <pre class="line-numbers"><code class="language-python"># Recursively flatten a nested list
+def flatten(nested):
+    for item in nested:
+        if isinstance(item, list):
+            yield from flatten(item)   # delegate recursion
+        else:
+            yield item
+
+nested = [1, [2, [3, 4], 5], 6]
+print(list(flatten(nested)))   # [1, 2, 3, 4, 5, 6]</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="example-output">[1, 2, 3, 4, 5, 6]</div>
+                    <p>This pattern is extremely memory‑efficient for deeply nested structures.</p>
+                </div>
+
+                <!-- ========== SOLVED PRACTICE PROBLEMS ========== -->
+                <div class="concept-card" id="solved-problems">
+                    <h3><i class="fas fa-code"></i> Solved Practice Problems</h3>
+                    <p>Work through these recursive and backtracking examples step by step.</p>
+
+                    <h4 style="color:var(--accent);">🔰 Beginner Level</h4>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>1. Sum of digits using recursion</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Return the sum of digits of a non‑negative integer. Example: <code>123 → 6</code>.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">def digit_sum(n):
+    if n == 0:
+        return 0
+    return n % 10 + digit_sum(n // 10)
+
+print(digit_sum(123))   # 6</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>2. Recursive power function (a^b)</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Compute <code>a**b</code> without using <code>**</code>. Use recursion.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">def power(a, b):
+    if b == 0: return 1
+    return a * power(a, b - 1)
+
+print(power(2, 5))   # 32</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>3. Print numbers from 1 to N using recursion</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Print 1 to N without loops. Example: <code>n=5 → 1 2 3 4 5</code>.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">def print_numbers(n):
+    if n == 0: return
+    print_numbers(n - 1)
+    print(n, end=' ')
+
+print_numbers(5)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+
+                    <h4 style="color:var(--accent);">⚡ Intermediate Level</h4>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>4. Generate all binary strings of length n (backtracking)</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Generate all binary strings of length <code>n</code>. Example: <code>n=3 → ['000','001','010','011','100','101','110','111']</code>.</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">def binary_strings(n):
+    result = []
+    def backtrack(current):
+        if len(current) == n:
+            result.append(current)
+            return
+        backtrack(current + '0')
+        backtrack(current + '1')
+    backtrack('')
+    return result
+
+print(binary_strings(2))   # ['00', '01', '10', '11']</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details>
+                            <summary>5. Palindrome check using recursion</summary>
+                            <div class="solution">
+                                <p><strong>Problem:</strong> Check if a string is palindrome using recursion (ignore non‑alphanumeric).</p>
+                                <div class="code-block"><pre class="line-numbers"><code class="language-python">def is_palindrome(s):
+    s = ''.join(filter(str.isalnum, s)).lower()
+    def recurse(left, right):
+        if left >= right: return True
+        if s[left] != s[right]: return False
+        return recurse(left + 1, right - 1)
+    return recurse(0, len(s)-1)
+
+print(is_palindrome("A man, a plan, a canal: Panama"))  # True</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- ========== UNSOLVED EXERCISES ========== -->
+                <div class="concept-card" id="unsolved-exercises">
+                    <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
+                    <p>Challenge yourself – no solutions provided!</p>
+                    <h4 style="color:var(--accent);">🔰 Beginner Level</h4>
+                    <div class="practice-problem">
+                        <details><summary>1. Recursive reverse of a string</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Write a recursive function that reverses a string. Example: <code>"hello" → "olleh"</code>.</p><div class="code-block exercise-placeholder"><em>Write your code here</em></div></div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details><summary>2. Recursive GCD (Euclidean algorithm)</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Implement the greatest common divisor using recursion. Example: <code>gcd(48, 18) → 6</code>.</p><div class="code-block exercise-placeholder"><em>Write your code here</em></div></div>
+                        </details>
+                    </div>
+                    <h4 style="color:var(--accent);">⚡ Intermediate Level</h4>
+                    <div class="practice-problem">
+                        <details><summary>3. Letter Case Permutation (backtracking)</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Given a string S, transform every letter individually to lowercase or uppercase to create another string. Return all possible strings. Example: <code>"a1b2" → ["a1b2","a1B2","A1b2","A1B2"]</code>.</p><div class="code-block exercise-placeholder"><em>Write your code here</em></div></div>
+                        </details>
+                    </div>
+                    <div class="practice-problem">
+                        <details><summary>4. Permutations using backtracking</summary>
+                            <div class="solution"><p><strong>Problem:</strong> Given an array of distinct integers, return all possible permutations. Example: <code>[1,2,3]</code> returns 6 permutations.</p><div class="code-block exercise-placeholder"><em>Write your code here</em></div></div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Page Tracker -->
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#recursion-basics">Recursion Basics</a></li>
+                <li><a href="#factorial">Factorial</a></li>
+                <li><a href="#fibonacci">Fibonacci</a></li>
+                <li><a href="#backtracking">Backtracking Intro</a></li>
+                <li><a href="#generate-parentheses">Generate Parentheses</a></li>
+                <li><a href="#subsets">Subsets</a></li>
+                <li><a href="#depth-and-cache">Recursion Depth &amp; lru_cache</a></li>
+                <li><a href="#recursive-yield">Recursive Generators</a></li>
+                <li><a href="#solved-problems">Solved Problems</a></li>
+                <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/class-10/class10-testseries.html">Test Series</a>
+            <a href="/english.html">English</a>
+            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+        <p>Online &amp; Offline | Small batches | Expert faculty</p>
+    </footer>
+
+    <!-- Shared JavaScript -->
+    <script src="../js/learn-python.js"></script>
+    <script src="../js/learn-python-advance.js"></script>
+
+    <!-- Structured Data (Breadcrumb) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://booktownclasses.github.io/index.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Learn Python+",
+                "item": "https://booktownclasses.github.io/learn-python/learn-python-recursion-backtracking.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Recursion & Backtracking"
+            }
+        ]
+    }
+    </script>
+</body>
+</html>
