@@ -279,7 +279,28 @@
 </head>
 <body>
 
-<div id="header-container"></div>
+<nav class="navbar">
+  <a href="/index.html" class="logo" style="text-decoration: none;">
+    Code <i class="fas fa-code"></i> <span>BookTown</span>
+  </a>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="/learn-python/learn-python-computer-fundamentals-1.html">
+      <i class="fas fa-python"></i> Learn Python+
+    </a>
+    <a href="/coaching_details.html">
+      <i class="fas fa-laptop-code"></i> Classes
+    </a>
+    <a href="/info-center/books-notes.html">
+      <i class="fas fa-folder-open"></i> Books & Notes
+    </a>
+    <a href="#contact" class="btn-cta-small">
+      <i class="fas fa-user-plus"></i> Join Now
+    </a>
+  </div>
+</nav>
 
 <main class="container">
         <div class="hero-header">
@@ -999,7 +1020,31 @@
  <script src="../js/learn-python-advance.js"></script>
 
 <script>
-  // Tab switching
+  // Tab switching – with null checks
+  function switchTab(tabName) {
+    // Hide all content panels
+    var panels = ['content-3month', 'content-6month', 'content-dsa'];
+    panels.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.classList.remove('active');
+    });
+
+    // Deactivate all tab buttons
+    var buttons = ['btn-3month', 'btn-6month', 'btn-dsa'];
+    buttons.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.classList.remove('active');
+    });
+
+    // Activate the selected content & button
+    var content = document.getElementById('content-' + tabName);
+    var button = document.getElementById('btn-' + tabName);
+    
+    if (content) content.classList.add('active');
+    if (button) button.classList.add('active');
+    if (content) content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   // DSA Solutions toggle
   function toggleDSASolution(element) {
     event.preventDefault();
@@ -1017,26 +1062,10 @@
     const filter = searchInput.value.toLowerCase();
     const cards = document.querySelectorAll('.dsa-card');
     cards.forEach(card => {
-      const title = card.querySelector('h3').textContent.toLowerCase();
-      const description = card.querySelector('p').textContent.toLowerCase();
-      if (title.includes(filter) || description.includes(filter)) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
+      const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+      const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+      card.style.display = (title.includes(filter) || description.includes(filter)) ? '' : 'none';
     });
-  }
-
-  function switchTab(tabName) {
-    document.getElementById('content-3month').classList.remove('active');
-    document.getElementById('content-6month').classList.remove('active');
-    document.getElementById('content-dsa').classList.remove('active');
-    document.getElementById('btn-3month').classList.remove('active');
-    document.getElementById('btn-6month').classList.remove('active');
-    document.getElementById('btn-dsa').classList.remove('active');
-    document.getElementById('content-' + tabName).classList.add('active');
-    document.getElementById('btn-' + tabName).classList.add('active');
-    document.getElementById('content-' + tabName).scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // Skill meter animation
@@ -1055,7 +1084,7 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.skill-meter').forEach(m => observer.observe(m));
 
-  // Smooth scroll for anchor links (optional, keeps existing behaviour)
+  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
