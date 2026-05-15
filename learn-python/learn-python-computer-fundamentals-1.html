@@ -20,7 +20,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   
-  <!-- Prism for syntax highlighting (matching intro page) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
@@ -32,12 +31,11 @@
   <link rel="stylesheet" href="../css/learn-python-advance.css" />
   <link rel="stylesheet" href="../css/theme.css" />
 
-  <!-- Additional interactive infographic styles (kept separate, won't conflict) -->
   <style>
     :root {
       --primary: #2563eb;
       --primary-light: #3b82f6;
-      --accent: #0d9488;
+      --accent: #3b82f6;
       --warning: #d97706;
       --danger: #dc2626;
       --success: #059669;
@@ -103,7 +101,34 @@
     .py-feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
     .py-feature { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; transition: 0.3s; cursor: pointer; }
     .py-feature:hover { border-color: var(--primary); box-shadow: var(--shadow); transform: translateY(-2px); }
+    .py-feature.active { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(37,99,235,0.3); }
     .py-feature h4 { margin: 0 0 6px; font-size: 1rem; color: var(--primary); }
+
+    /* SIDE DETAIL PANEL for Python feature cards */
+    .py-detail-panel {
+      display: none;
+      background: var(--card);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: fadeSlide 0.3s ease;
+    }
+    .py-detail-panel.open { display: block; }
+    .py-detail-panel .detail-close {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: 0.2s;
+    }
+    .py-detail-panel .detail-close:hover { color: var(--danger); }
 
     .compare-row { display: flex; align-items: center; margin: 8px 0; }
     .compare-label { width: 120px; font-weight: 600; font-size: 0.85rem; }
@@ -220,18 +245,40 @@
           <div class="journey-detail" id="journeyDetail"><div class="detail-content" id="detailContent"></div></div>
         </div>
 
-        <!-- Python Characteristics -->
+        <!-- Python Characteristics (NOW WITH SIDE DETAIL PANEL) -->
         <div class="concept-card" id="python-characteristics">
           <h3>🐍 Python – Why Developers Love It</h3>
-          <div class="py-feature-grid">
-            <div class="py-feature" data-detail="Run code without a separate compile step – great for fast experimentation."><h4>📝 Interpreted</h4><p>No compile step – run instantly.</p></div>
-            <div class="py-feature" data-detail="Variables don't need type declarations. Python figures out types at runtime."><h4>🧩 Dynamic Typing</h4><p>No type declarations needed.</p></div>
-            <div class="py-feature" data-detail="Focus on logic, not memory management. Automatic garbage collection."><h4>📐 High‑Level</h4><p>Focus on logic, not memory.</p></div>
-            <div class="py-feature" data-detail="Batteries included! Modules for JSON, CSV, email, web servers, and more."><h4>📚 Rich Standard Library</h4><p>Batteries included!</p></div>
-            <div class="py-feature" data-detail="Everything is an object – even integers and functions can have attributes."><h4>🎯 Object‑Oriented</h4><p>Everything is an object.</p></div>
-            <div class="py-feature" data-detail="Write once, run on Windows, macOS, Linux – no changes needed."><h4>🌍 Cross‑Platform</h4><p>Write once, run anywhere.</p></div>
-            <div class="py-feature" data-detail="Indentation defines blocks – no curly braces, leading to cleaner code."><h4>🔤 Indentation Matters</h4><p>Clean code enforced.</p></div>
-            <div class="py-feature" data-detail="Free to use, modify, and distribute. Over 500,000 packages on PyPI."><h4>🤝 Open Source</h4><p>Free & vast ecosystem.</p></div>
+          <div class="py-feature-grid" id="pyFeatureGrid">
+            <div class="py-feature" data-detail="Run code without a separate compile step – great for fast experimentation and rapid prototyping.">
+              <h4>📝 Interpreted</h4><p>No compile step – run instantly.</p>
+            </div>
+            <div class="py-feature" data-detail="Variables don't need type declarations. Python figures out types at runtime, making code flexible and easy to write.">
+              <h4>🧩 Dynamic Typing</h4><p>No type declarations needed.</p>
+            </div>
+            <div class="py-feature" data-detail="Focus on logic, not memory management. Automatic garbage collection frees you from manual memory chores.">
+              <h4>📐 High‑Level</h4><p>Focus on logic, not memory.</p>
+            </div>
+            <div class="py-feature" data-detail="Batteries included! Modules for JSON, CSV, email, web servers, and more are ready to use out of the box.">
+              <h4>📚 Rich Standard Library</h4><p>Batteries included!</p>
+            </div>
+            <div class="py-feature" data-detail="Everything is an object – even integers and functions can have attributes. Python supports multiple programming paradigms.">
+              <h4>🎯 Object‑Oriented</h4><p>Everything is an object.</p>
+            </div>
+            <div class="py-feature" data-detail="Write once, run on Windows, macOS, Linux – no changes needed. The same code works across platforms seamlessly.">
+              <h4>🌍 Cross‑Platform</h4><p>Write once, run anywhere.</p>
+            </div>
+            <div class="py-feature" data-detail="Indentation defines blocks – no curly braces, leading to cleaner, more readable code that is consistent across the community.">
+              <h4>🔤 Indentation Matters</h4><p>Clean code enforced.</p>
+            </div>
+            <div class="py-feature" data-detail="Free to use, modify, and distribute. Over 500,000 packages on PyPI provide solutions for almost any problem.">
+              <h4>🤝 Open Source</h4><p>Free & vast ecosystem.</p>
+            </div>
+          </div>
+
+          <!-- SIDE DETAIL PANEL (replaces alert) -->
+          <div class="py-detail-panel" id="pyDetailPanel">
+            <button class="detail-close" id="closePyDetail">&times;</button>
+            <div id="pyDetailText"></div>
           </div>
         </div>
 
@@ -395,10 +442,32 @@ for item in os.listdir('.'):
     // open first step by default
     if (journeySteps.length) journeySteps[0].click();
 
-    // Python feature cards click
-    document.querySelectorAll('.py-feature').forEach(card => {
-      card.addEventListener('click', function() { alert(this.dataset.detail); });
+    // ---- PYTHON FEATURE CARDS: Show detail in side panel instead of alert ----
+    const pyFeatureCards = document.querySelectorAll('.py-feature');
+    const pyDetailPanel = document.getElementById('pyDetailPanel');
+    const pyDetailText = document.getElementById('pyDetailText');
+    const closePyDetail = document.getElementById('closePyDetail');
+
+    function showFeatureDetail(detailText, cardElement) {
+      // Remove active from all cards, add to current
+      pyFeatureCards.forEach(c => c.classList.remove('active'));
+      cardElement.classList.add('active');
+      pyDetailText.textContent = detailText;
+      pyDetailPanel.classList.add('open');
+      // Scroll panel into view if needed
+      pyDetailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    pyFeatureCards.forEach(card => {
+      card.addEventListener('click', function() {
+        showFeatureDetail(this.dataset.detail, this);
+      });
       card.style.cursor = 'pointer';
+    });
+
+    closePyDetail.addEventListener('click', () => {
+      pyDetailPanel.classList.remove('open');
+      pyFeatureCards.forEach(c => c.classList.remove('active'));
     });
 
     // Animate comparison bars on scroll
