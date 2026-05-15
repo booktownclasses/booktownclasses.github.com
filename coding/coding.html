@@ -26,7 +26,9 @@
   <link rel="stylesheet" href="../css/theme.css">
 
   <!-- Minimal page‑specific overrides – everything else lives in theme.css -->
+   
   <style>
+
     /* Tabs */
     .program-tabs {
       display: flex;
@@ -37,7 +39,7 @@
     }
     .tab-btn {
       padding: 0.75rem 2rem;
-      border: 2px solid #e2e8f0;
+      border: 2px solid #17427a;
       background: var(--surface);
       color: var(--text);
       border-radius: 40px;
@@ -276,6 +278,200 @@
 }
     }
   </style>
+  <style>
+    /* ============ HERO TABS – VIBRANT & INTERACTIVE ============ */
+    .hero-tabs-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin: 1.5rem 0 2.5rem;
+      flex-wrap: wrap;
+      /* Light glass container */
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 50px;
+      padding: 6px 8px;
+      border: 1px solid rgba(203, 213, 225, 0.6);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      max-width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.65rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      color: #475569;
+      background: transparent;
+      border: 2px solid transparent;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      cursor: pointer;
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-tab i {
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .hero-tab .tab-label {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .hero-tab small {
+      font-size: 0.65rem;
+      font-weight: 500;
+      opacity: 0.65;
+      letter-spacing: 0.02em;
+    }
+
+    /* Hover: subtle lift + color change */
+    .hero-tab:hover {
+      color: #2563eb;
+      background: rgba(37, 99, 235, 0.06);
+      border-color: rgba(37, 99, 235, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+    }
+
+    .hero-tab:active {
+      transform: scale(0.95);
+    }
+
+    /* Active tab – vibrant blue gradient with glow */
+    .hero-tab.active-tab {
+      background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%) !important;
+      color: #ffffff !important;
+      font-weight: 700;
+      border-color: transparent !important;
+      box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-tab.active-tab small {
+      color: rgba(255, 255, 255, 0.9);
+      opacity: 1;
+    }
+
+    .hero-tab.active-tab i {
+      color: #ffffff !important;
+    }
+
+    .hero-tab.active-tab:hover {
+      background: linear-gradient(135deg, #1d4ed8 0%, #4338ca 100%) !important;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(37, 99, 235, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      color: #ffffff !important;
+    }
+
+    /* Icon colors – bright and distinct (high specificity) */
+    a.hero-tab.code i { color: #2563eb !important; }
+    a.hero-tab.english i { color: #059669 !important; }
+    a.hero-tab.test i { color: #d97706 !important; }
+
+    /* Active tab overrides icon colors */
+    a.hero-tab.active-tab i,
+    a.hero-tab.active-tab.code i,
+    a.hero-tab.active-tab.english i,
+    a.hero-tab.active-tab.test i {
+      color: #ffffff !important;
+    }
+
+    /* Hover icon color for inactive tabs */
+    a.hero-tab:not(.active-tab):hover i {
+      color: #2563eb !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero-tabs-row {
+        flex-direction: column;
+        border-radius: 30px;
+        gap: 4px;
+        padding: 4px;
+        width: 100%;
+        max-width: 100%;
+      }
+      .hero-tab {
+        width: 100%;
+        justify-content: center;
+        padding: 0.7rem 1rem;
+      }
+    }
+</style>
+ <style>
+    .nav-links a i {
+  margin-right: 6px;
+  color: #00c6ff;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover i {
+  transform: rotate(10deg) scale(1.2);
+  color: #ee0979;
+}
+/* Header styling */
+#header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white; /* or your header background color */
+    box-shadow: 0 2px 10px rgba(210, 208, 208, 0.1);
+}
+
+/* Add padding to main content to prevent overlap */
+.main-container {
+    padding-top: 80px; /* Adjust based on header height */
+}
+
+/* If you have a sidebar */
+.main-container:not(.sidebar-collapsed) {
+    padding-top: 80px;
+}
+.btn-genz-accent {
+  background:linear-gradient(to right, #1A2980 0%, #26D0CE 51%, #1A2980 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(13, 148, 136, 0.4);
+}
+
+
+.btn-genz-secondary {
+  background:linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(13, 148, 136, 0.4);
+}
+.btn-genz-secondary:hover {
+  background: linear-gradient(135deg, #c8e73b, #ee0814);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(210, 212, 212, 0.55);
+}
+
+.btn-genz-universal {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(13, 148, 136, 0.4);
+}
+
+
+  </style>
+
 </head>
 <body>
 
@@ -303,23 +499,30 @@
 </nav>
 
 <main class="container">
-        <div class="hero-header">
-        <br>
-        <br>
-        <br>
-        <nav class="program-tabs" id="programTabs">
 
-    <a class="prog-tab" href="/coding/coding.html">
-      <i class="fas fa-code"></i> Coding Courses
-    </a>
-    <a class="prog-tab" href="/english.html">
-      <i class="fas fa-language"></i> English Speaking
-    </a>
-    <a class="prog-tab" href="class-10/class10-testseries.html">
-      <i class="fas fa-vial"></i> Test Series
-    </a>
-  </nav>
-      </div>
+  <div class="hero-tabs-row">
+    <div class="hero-buttons">
+   <a href="/coaching_details.html" class="btn-genz btn-genz-universal active-tab">
+    <i class="fas fa-bolt"></i> <span class="tab-label">Coaching Details</small></span>
+  </a>
+
+ 
+  <a href="/english.html" class="btn-genz btn-genz-secondary">
+    <i class="fas fa-play"></i> <span class="tab-label">English<small> [All levels]</small></span>
+  </a>
+
+   <a href="/coding/coding.html" class="btn-genz btn-genz-primary">
+    <i class="fas fa-bolt"></i> <span class="tab-label">Coding<small> [3‑6 month course]</small></span>
+  </a>
+   <a href="/class-10/class10-testseries.html" class="btn-genz btn-genz-accent">
+    <i class="fas fa-clipboard-list"></i> <span class="tab-label">Test Series<small> [Class 10]</small></span>
+  </a>
+</div>
+   
+  </div>
+
+
+
 
   <!-- Program Tabs Selector (with GIF) -->
   <div class="learning-path-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin: 2rem 0 3rem 0;">
