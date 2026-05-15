@@ -12,8 +12,6 @@
     <meta property="og:description" content="Beginner‑friendly Python tutorial. Learn print, variables, conditionals, arithmetic, and Git in one week. Full of practice problems and a calculator project." />
     <meta name="keywords" content="Python course, learn Python, Python fundamentals, Git tutorial, Python week 1, Python variables, Python conditionals, Python for beginners, 3-month Python course" />
     <meta name="author" content="BookTown Classes" />
-    <meta property="og:title" content="Week 1: Python Fundamentals + Git | 3-Month Python Course | BookTown Classes" />
-    <meta property="og:description" content="Start your 3-month Python journey. Week 1 covers print(), variables, data types, input/output, f-strings, arithmetic, conditionals, logical operators, and Git basics." />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#3b82f6" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -21,9 +19,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Prism CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
-    <!-- Prism line numbers plugin -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js">
     </script>
@@ -33,36 +29,1023 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js">
     </script>
-    
+
     <link rel="stylesheet" href="../css/learn-python.css" />
-     <link rel="stylesheet" href="../css/learn-python-advance.css" />
-    
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
     <link rel="stylesheet" href="../css/theme.css" />
 
+    <!-- ============ ENHANCED STYLES: Infographics & Interactivity ============ -->
+    <style>
+        :root {
+            --infographic-bg: #f8fafc;
+            --infographic-border: #e2e8f0;
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --card-hover-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --type-str: #10b981;
+            --type-int: #3b82f6;
+            --type-float: #f59e0b;
+            --type-bool: #ef4444;
+            --operator-add: #6366f1;
+            --operator-sub: #ec4899;
+            --operator-mul: #8b5cf6;
+            --operator-div: #06b6d4;
+            --operator-floor: #f97316;
+            --operator-mod: #14b8a6;
+            --operator-exp: #a855f7;
+            --git-orange: #f05032;
+            --git-green: #2ea44f;
+            --git-blue: #79c0ff;
+            --surface-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --bg-page: #f1f5f9;
+            --accent: #3b82f6;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --border-subtle: #e2e8f0;
+            --highlight-yellow: #fef9c3;
+            --highlight-blue: #dbeafe;
+            --highlight-green: #d1fae5;
+            --highlight-red: #fee2e2;
+            --highlight-purple: #ede9fe;
+        }
 
-   
+        body.dark-mode {
+            --infographic-bg: #1e293b;
+            --infographic-border: #334155;
+            --surface-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --bg-page: #0f172a;
+            --border-subtle: #334155;
+            --highlight-yellow: #422006;
+            --highlight-blue: #1e3a5f;
+            --highlight-green: #064e3b;
+            --highlight-red: #450a0a;
+            --highlight-purple: #2e1065;
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --card-hover-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+        }
+
+        /* ===== PROGRESS BAR ===== */
+        .week-progress-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--surface-card);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 10px 20px;
+            margin: 0 0 20px 0;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            transition: all 0.3s ease;
+        }
+        .week-progress-wrap .progress-label {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+        }
+        .week-progress-track {
+            flex: 1;
+            min-width: 100px;
+            height: 10px;
+            background: var(--border-subtle);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .week-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6);
+            border-radius: 10px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .week-progress-fill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 20px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            animation: progressShimmer 2s infinite;
+        }
+        @keyframes progressShimmer {
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.9;
+            }
+        }
+        .progress-days {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .progress-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            color: var(--text-secondary);
+            position: relative;
+        }
+        .progress-dot.completed {
+            background: #10b981;
+            color: #fff;
+            border-color: #10b981;
+        }
+        .progress-dot.active {
+            background: #3b82f6;
+            color: #fff;
+            border-color: #3b82f6;
+            box-shadow: 0 0 16px rgba(59, 130, 246, 0.5);
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot {
+            0%,
+            100% {
+                box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 22px rgba(59, 130, 246, 0.8);
+            }
+        }
+        .progress-dot:hover {
+            transform: scale(1.15);
+            border-color: var(--accent);
+        }
+        .progress-dot[data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* ===== INFOGRAPHIC CARD BASE ===== */
+        .infographic-card {
+            background: var(--infographic-bg);
+            border: 2px solid var(--infographic-border);
+            border-radius: 16px;
+            padding: 22px 20px;
+            margin: 20px 0;
+            box-shadow: var(--card-shadow);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .infographic-card:hover {
+            box-shadow: var(--card-hover-shadow);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .infographic-card .ig-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.01em;
+        }
+        .infographic-card .ig-title i {
+            font-size: 1.3rem;
+            background: var(--accent-glow);
+            padding: 8px;
+            border-radius: 10px;
+        }
+        .infographic-card .ig-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-left: auto;
+        }
+        .ig-badge.concept {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+        .ig-badge.visual {
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+
+        /* ===== DATA TYPE INFOGRAPHIC (Day 1) ===== */
+        .datatype-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+        }
+        .datatype-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 16px 14px;
+            text-align: center;
+            border: 2px solid var(--border-subtle);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark-mode .datatype-card {
+            background: #1e293b;
+        }
+        .datatype-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+        }
+        .datatype-card.str {
+            border-left: 4px solid var(--type-str);
+        }
+        .datatype-card.int {
+            border-left: 4px solid var(--type-int);
+        }
+        .datatype-card.float {
+            border-left: 4px solid var(--type-float);
+        }
+        .datatype-card.bool {
+            border-left: 4px solid var(--type-bool);
+        }
+        .datatype-card .dt-icon {
+            font-size: 2.2rem;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .datatype-card .dt-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .datatype-card .dt-keyword {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            background: var(--highlight-blue);
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+        .datatype-card .dt-example {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .datatype-card .dt-color-strip {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+        .dt-color-strip.str-bg {
+            background: var(--type-str);
+        }
+        .dt-color-strip.int-bg {
+            background: var(--type-int);
+        }
+        .dt-color-strip.float-bg {
+            background: var(--type-float);
+        }
+        .dt-color-strip.bool-bg {
+            background: var(--type-bool);
+        }
+
+        /* ===== ARITHMETIC OPERATORS INFOGRAPHIC (Day 2) ===== */
+        .operator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+        }
+        .operator-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            border: 2px solid var(--border-subtle);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        body.dark-mode .operator-card {
+            background: #1e293b;
+        }
+        .operator-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+        .operator-card .op-symbol {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Fira Code', monospace;
+            display: block;
+        }
+        .operator-card .op-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        .operator-card .op-result {
+            font-size: 0.7rem;
+            color: var(--accent);
+            margin-top: 2px;
+            font-family: 'Fira Code', monospace;
+        }
+        .op-add {
+            color: var(--operator-add);
+        }
+        .op-sub {
+            color: var(--operator-sub);
+        }
+        .op-mul {
+            color: var(--operator-mul);
+        }
+        .op-div {
+            color: var(--operator-div);
+        }
+        .op-floor {
+            color: var(--operator-floor);
+        }
+        .op-mod {
+            color: var(--operator-mod);
+        }
+        .op-exp {
+            color: var(--operator-exp);
+        }
+
+        /* ===== f-STRING ANATOMY (Day 2) ===== */
+        .fstring-anatomy {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: center;
+            font-family: 'Fira Code', monospace;
+            font-size: 1.1rem;
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px 20px;
+            border-radius: 12px;
+            justify-content: center;
+            overflow-x: auto;
+        }
+        .fstring-part {
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+        .fstring-part:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+        .fstring-part.f-prefix {
+            background: #f59e0b;
+            color: #000;
+            font-weight: 700;
+        }
+        .fstring-part.f-quote {
+            background: #10b981;
+            color: #fff;
+        }
+        .fstring-part.f-text {
+            background: #3b82f6;
+            color: #fff;
+        }
+        .fstring-part.f-brace {
+            background: #ef4444;
+            color: #fff;
+            font-weight: 700;
+        }
+        .fstring-part.f-variable {
+            background: #8b5cf6;
+            color: #fff;
+        }
+        .fstring-part.f-format {
+            background: #ec4899;
+            color: #fff;
+            font-size: 0.85rem;
+        }
+        .fstring-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+        }
+        .fstring-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .fstring-legend .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        /* ===== CONDITIONAL FLOW DIAGRAM (Day 3) ===== */
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 0;
+        }
+        .flow-node {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            min-width: 140px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .flow-node:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+        .flow-node.start {
+            background: #6366f1;
+            color: #fff;
+            border-radius: 20px;
+        }
+        .flow-node.condition {
+            background: #f59e0b;
+            color: #000;
+            border-radius: 10px;
+            font-family: 'Fira Code', monospace;
+        }
+        .flow-node.action {
+            background: #10b981;
+            color: #fff;
+            border-radius: 8px;
+        }
+        .flow-node.end {
+            background: #ef4444;
+            color: #fff;
+            border-radius: 20px;
+        }
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            animation: bounceArrow 1.5s infinite;
+        }
+        @keyframes bounceArrow {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(6px);
+            }
+        }
+        .flow-branch {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            position: relative;
+        }
+        .flow-branch::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            width: 2px;
+            height: 16px;
+            background: var(--text-secondary);
+        }
+        .flow-branch-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 2px;
+        }
+
+        /* ===== TRUTH TABLE (Day 4) ===== */
+        .truth-table-wrap {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 2px solid var(--border-subtle);
+        }
+        .truth-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .truth-table th {
+            background: #3b82f6;
+            color: #fff;
+            padding: 10px 14px;
+            font-weight: 700;
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+            letter-spacing: 0.03em;
+        }
+        .truth-table td {
+            padding: 10px 14px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-subtle);
+            font-family: 'Fira Code', monospace;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+        .truth-table tbody tr:hover td {
+            background: var(--highlight-blue);
+        }
+        .truth-table .true-val {
+            color: #10b981;
+            font-weight: 700;
+        }
+        .truth-table .false-val {
+            color: #ef4444;
+            font-weight: 700;
+        }
+        .truth-highlight {
+            background: var(--highlight-yellow);
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+
+        /* ===== LEAP YEAR FLOW (Day 4) ===== */
+        .leapyear-flow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            font-size: 0.82rem;
+        }
+        .leapyear-node {
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .leapyear-node:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        .leapyear-node.check {
+            background: #fef3c7;
+            color: #92400e;
+            font-family: 'Fira Code', monospace;
+        }
+        .leapyear-node.yes {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .leapyear-node.no {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .leapyear-arrow {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* ===== GIT WORKFLOW VISUAL (Day 6) ===== */
+        .git-workflow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 0;
+        }
+        .git-stage {
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px 16px;
+            text-align: center;
+            min-width: 110px;
+            border: 3px solid var(--border-subtle);
+            transition: all 0.35s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        body.dark-mode .git-stage {
+            background: #1e293b;
+        }
+        .git-stage:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            border-color: var(--git-orange);
+        }
+        .git-stage .git-icon {
+            font-size: 2rem;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .git-stage .git-cmd {
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--git-orange);
+            background: #fef2f2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .git-stage .git-desc {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .git-arrow-connector {
+            font-size: 1.8rem;
+            color: var(--git-orange);
+            animation: gitArrowPulse 2s infinite;
+        }
+        @keyframes gitArrowPulse {
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: translateX(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(6px);
+            }
+        }
+        .git-stage.working {
+            border-top: 4px solid #f59e0b;
+        }
+        .git-stage.staging {
+            border-top: 4px solid #3b82f6;
+        }
+        .git-stage.committed {
+            border-top: 4px solid #10b981;
+        }
+        .git-stage.remote {
+            border-top: 4px solid #8b5cf6;
+        }
+
+        /* ===== CONCEPT MAP (top overview) ===== */
+        .concept-map {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            padding: 16px;
+            background: var(--infographic-bg);
+            border-radius: 16px;
+            border: 2px dashed var(--border-subtle);
+            margin-bottom: 24px;
+        }
+        .concept-node {
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            white-space: nowrap;
+        }
+        .concept-node:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+        .concept-node.cn-print {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+        .concept-node.cn-vars {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .concept-node.cn-input {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .concept-node.cn-cond {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+        .concept-node.cn-logic {
+            background: #fce7f3;
+            color: #9d174d;
+        }
+        .concept-node.cn-git {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .concept-connector {
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ===== INTERACTIVE CODE TOGGLE ===== */
+        .code-toggle-btn {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            margin-top: 6px;
+        }
+        .code-toggle-btn:hover {
+            background: #2563eb;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        .code-preview-collapsed {
+            max-height: 60px;
+            overflow: hidden;
+            position: relative;
+        }
+        .code-preview-collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(transparent, var(--surface-card));
+            pointer-events: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .datatype-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .operator-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .git-workflow {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .git-arrow-connector {
+                transform: rotate(90deg);
+            }
+            .flow-branch {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .concept-map {
+                gap: 6px;
+                padding: 10px;
+            }
+            .concept-node {
+                padding: 7px 10px;
+                font-size: 0.7rem;
+            }
+            .week-progress-wrap {
+                padding: 8px 12px;
+                gap: 8px;
+            }
+            .fstring-anatomy {
+                font-size: 0.85rem;
+                padding: 10px 14px;
+                flex-wrap: wrap;
+            }
+        }
+        @media (max-width: 480px) {
+            .datatype-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .operator-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+            .datatype-card {
+                padding: 10px 8px;
+            }
+            .datatype-card .dt-icon {
+                font-size: 1.5rem;
+            }
+            .datatype-card .dt-name {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ===== PULSE HIGHLIGHT FOR NEW SECTIONS ===== */
+        @keyframes gentlePulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 0 12px rgba(59, 130, 246, 0);
+            }
+        }
+        .pulse-highlight {
+            animation: gentlePulse 3s ease-in-out 1;
+        }
+
+        /* ===== COMPARISON OPERATORS VISUAL ===== */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 8px;
+        }
+        .comparison-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 12px 8px;
+            text-align: center;
+            border: 2px solid var(--border-subtle);
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        body.dark-mode .comparison-card {
+            background: #1e293b;
+        }
+        .comparison-card:hover {
+            border-color: var(--accent);
+            background: var(--highlight-blue);
+            transform: scale(1.04);
+        }
+        .comparison-card .comp-symbol {
+            font-size: 1.6rem;
+            color: var(--accent);
+            display: block;
+        }
+        .comparison-card .comp-meaning {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        /* ===== TIP BOX ENHANCED ===== */
+        .tip-box {
+            background: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        body.dark-mode .tip-box {
+            background: #1e3a5f;
+        }
+        .tip-box:hover {
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
+        }
+        .warning-box {
+            background: #fffbeb;
+            border-left: 5px solid #f59e0b;
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        body.dark-mode .warning-box {
+            background: #422006;
+        }
+        .warning-box:hover {
+            box-shadow: 0 4px 16px rgba(245, 158, 11, 0.2);
+        }
+
+        /* ===== SCROLL TO TOP ===== */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 99;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .scroll-top-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+        }
+    </style>
 </head>
 <body>
-     <div class="floating-shapes">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-  </div>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
 
-   
-
-<div id="header-container"></div>
+    <div id="header-container"></div>
 
     <div class="main-container">
         <aside class="sidebar" id="mainSidebar"></aside>
 
         <main class="content">
             <div id="coaching-banner-placeholder"></div>
-          
 
-             <div class="content-section active">
+            <!-- ============ WEEK PROGRESS BAR (Interactive) ============ -->
+            <div class="week-progress-wrap" id="weekProgressBar">
+                <span class="progress-label">📅 Week 1 Progress</span>
+                <div class="week-progress-track">
+                    <div class="week-progress-fill" id="weekProgressFill" style="width: 0%;"></div>
+                </div>
+                <div class="progress-days">
+                    <span class="progress-dot active" data-tooltip="Day 1: Print & Variables" data-day="1" onclick="scrollToDay('day1')">1</span>
+                    <span class="progress-dot" data-tooltip="Day 2: Input & Arithmetic" data-day="2" onclick="scrollToDay('day2')">2</span>
+                    <span class="progress-dot" data-tooltip="Day 3: Conditionals" data-day="3" onclick="scrollToDay('day3')">3</span>
+                    <span class="progress-dot" data-tooltip="Day 4: Logical Operators" data-day="4" onclick="scrollToDay('day4')">4</span>
+                    <span class="progress-dot" data-tooltip="Day 5: Mini-Project" data-day="5" onclick="scrollToDay('day5')">5</span>
+                    <span class="progress-dot" data-tooltip="Day 6: Git Basics" data-day="6" onclick="scrollToDay('day6')">6</span>
+                </div>
+            </div>
+
+            <div class="content-section active">
                 <h1 class="section-title"><i class="fas fa-star"></i> Week 1: Python Fundamentals + Git</h1>
                 <p class="section-subtitle">A 6-day course covering Python basics—variables, data types, input/output, conditionals, arithmetic—plus Git version control.</p>
+
+                <!-- ============ CONCEPT MAP INFOGRAPHIC ============ -->
+                <div class="infographic-card pulse-highlight">
+                    <div class="ig-title"><i class="fas fa-project-diagram"></i> 🧭 Week 1 Concept Map <span class="ig-badge concept">Overview</span></div>
+                    <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:10px;">Click any concept to jump directly to that section!</p>
+                    <div class="concept-map">
+                        <span class="concept-node cn-print" onclick="scrollToDay('day1')">🖨️ print()</span>
+                        <span class="concept-connector">→</span>
+                        <span class="concept-node cn-vars" onclick="scrollToDay('day1')">📦 Variables</span>
+                        <span class="concept-connector">→</span>
+                        <span class="concept-node cn-input" onclick="scrollToDay('day2')">⌨️ input()</span>
+                        <span class="concept-connector">→</span>
+                        <span class="concept-node cn-input" onclick="scrollToDay('day2')">🧮 Arithmetic</span>
+                        <span class="concept-connector">→</span>
+                        <span class="concept-node cn-cond" onclick="scrollToDay('day3')">🔀 if/else</span>
+                        <span class="concept-connector">→</span>
+                        <span class="concept-node cn-logic" onclick="scrollToDay('day4')">🔗 and/or/not</span>
+                        <span class="concept-connector">→</span>
+                        <span class="concept-node cn-git" onclick="scrollToDay('day6')">🔧 Git</span>
+                    </div>
+                </div>
 
                 <!-- Course Overview -->
                 <div class="section-intro">
@@ -72,42 +1055,78 @@
 
                 <!-- Day Cards -->
                 <div class="course-overview-grid">
-                    <div class="overview-card day-1">
+                    <div class="overview-card day-1" onclick="scrollToDay('day1')">
                         <div class="day-num">Day 1</div>
                         <h4>Print, Comments, Variables</h4>
                         <p>print(), comments, data types</p>
                     </div>
-                    <div class="overview-card day-2">
+                    <div class="overview-card day-2" onclick="scrollToDay('day2')">
                         <div class="day-num">Day 2</div>
                         <h4>Input, f-strings, Arithmetic</h4>
                         <p>input(), f-strings, operators</p>
                     </div>
-                    <div class="overview-card day-3">
+                    <div class="overview-card day-3" onclick="scrollToDay('day3')">
                         <div class="day-num">Day 3</div>
                         <h4>Conditional Statements</h4>
                         <p>if, elif, else</p>
                     </div>
-                    <div class="overview-card day-4">
+                    <div class="overview-card day-4" onclick="scrollToDay('day4')">
                         <div class="day-num">Day 4</div>
                         <h4>Logical Operators</h4>
                         <p>and, or, not, leap year</p>
                     </div>
-                    <div class="overview-card day-5">
+                    <div class="overview-card day-5" onclick="scrollToDay('day5')">
                         <div class="day-num">Day 5</div>
                         <h4>Mini-Project</h4>
                         <p>Simple Calculator</p>
                     </div>
-                    <div class="overview-card day-6">
+                    <div class="overview-card day-6" onclick="scrollToDay('day6')">
                         <div class="day-num">Day 6</div>
                         <h4>Git Basics</h4>
                         <p>init, add, commit, log</p>
                     </div>
                 </div>
 
-                <!-- DAY 1 -->
+                <!-- ==================== DAY 1 ==================== -->
                 <div class="concept-card" id="day1">
                     <h3><span class="day-badge">Day 1</span> Print, Comments, Variables &amp; Data Types</h3>
                     <p><strong>Learning Objectives:</strong> Understand what a program is. Use <code>print()</code> to display output. Write single-line and multi-line comments. Create variables to store different types of data. Identify basic data types: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>.</p>
+
+                    <!-- INFOGRAPHIC: Data Types Overview -->
+                    <div class="infographic-card" id="datatype-infographic">
+                        <div class="ig-title"><i class="fas fa-cubes"></i> 📊 Python Data Types — Visual Guide <span class="ig-badge visual">Infographic</span></div>
+                        <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:12px;">Hover each card to learn more. These are the 4 fundamental data types you'll use every day!</p>
+                        <div class="datatype-grid">
+                            <div class="datatype-card str" title="String — Text in quotes">
+                                <span class="dt-icon">🔤</span>
+                                <span class="dt-name">String</span>
+                                <span class="dt-keyword">str</span>
+                                <span class="dt-example">"Hello" 'World'</span>
+                                <div class="dt-color-strip str-bg"></div>
+                            </div>
+                            <div class="datatype-card int" title="Integer — Whole numbers">
+                                <span class="dt-icon">🔢</span>
+                                <span class="dt-name">Integer</span>
+                                <span class="dt-keyword">int</span>
+                                <span class="dt-example">42, -7, 0</span>
+                                <div class="dt-color-strip int-bg"></div>
+                            </div>
+                            <div class="datatype-card float" title="Float — Decimal numbers">
+                                <span class="dt-icon">📏</span>
+                                <span class="dt-name">Float</span>
+                                <span class="dt-keyword">float</span>
+                                <span class="dt-example">3.14, -0.5</span>
+                                <div class="dt-color-strip float-bg"></div>
+                            </div>
+                            <div class="datatype-card bool" title="Boolean — True or False only">
+                                <span class="dt-icon">✅</span>
+                                <span class="dt-name">Boolean</span>
+                                <span class="dt-keyword">bool</span>
+                                <span class="dt-example">True / False</span>
+                                <div class="dt-color-strip bool-bg"></div>
+                            </div>
+                        </div>
+                    </div>
 
                     <h4 style="color:var(--accent);margin-top:1.5rem;">The print() Function</h4>
                     <div class="code-block">
@@ -148,6 +1167,28 @@ print(type(is_student)) # <class 'bool'></code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
+                    <!-- INFOGRAPHIC: Variable Assignment Visual -->
+                    <div class="infographic-card">
+                        <div class="ig-title"><i class="fas fa-tag"></i> 🏷️ How Variable Assignment Works <span class="ig-badge visual">Visual</span></div>
+                        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center;padding:10px;font-family:'Fira Code',monospace;">
+                            <div style="background:#dbeafe;padding:12px 18px;border-radius:10px;text-align:center;">
+                                <span style="font-weight:700;color:#1d4ed8;">name</span><br>
+                                <span style="font-size:0.7rem;color:#64748b;">variable</span>
+                            </div>
+                            <span style="font-size:2rem;font-weight:800;color:#3b82f6;">=</span>
+                            <div style="background:#d1fae5;padding:12px 18px;border-radius:10px;text-align:center;">
+                                <span style="font-weight:700;color:#065f46;">"Alice"</span><br>
+                                <span style="font-size:0.7rem;color:#64748b;">value</span>
+                            </div>
+                            <span style="font-size:1.5rem;color:#64748b;">→</span>
+                            <div style="background:#fef3c7;padding:12px 18px;border-radius:10px;text-align:center;">
+                                <span style="font-weight:700;color:#92400e;">str</span><br>
+                                <span style="font-size:0.7rem;color:#64748b;">type</span>
+                            </div>
+                        </div>
+                        <p style="text-align:center;font-size:0.75rem;color:var(--text-secondary);margin-top:8px;">Python figures out the type <strong>automatically</strong> — no need to declare it!</p>
+                    </div>
+
                     <h4 style="color:var(--accent);margin-top:1.5rem;">🧑‍💻 Exercise: Student Info</h4>
                     <p>Create variables for your name, age, height, and whether you are a student. Print each variable along with its data type.</p>
                     <div class="code-block">
@@ -168,12 +1209,12 @@ print("Student:", is_student, "Type:", type(is_student))</code></pre>
                     <div class="example-output">Name: Rahul Type: &lt;class 'str'&gt;
                         Age: 14 Type: &lt;class 'int'&gt;
                         Height: 5.2 Type: &lt;class 'float'&gt;
-                    Student: True Type: &lt;class 'bool'&gt;</div>
+                        Student: True Type: &lt;class 'bool'&gt;</div>
 
                     <div class="tip-box"><strong>💡 Instructor Tip:</strong> Variable names are <em>case-sensitive</em> (<code>name</code> ≠ <code>Name</code>) and cannot start with a number. Use meaningful, descriptive names.</div>
                 </div>
 
-                <!-- DAY 2 -->
+                <!-- ==================== DAY 2 ==================== -->
                 <div class="concept-card" id="day2">
                     <h3><span class="day-badge">Day 2</span> Input/Output, f-strings &amp; Arithmetic Operators</h3>
                     <p><strong>Learning Objectives:</strong> Take user input with <code>input()</code>. Convert strings to numbers (<code>int()</code>, <code>float()</code>). Use f-strings for formatted output. Perform arithmetic: <code>+ - * / // % **</code>.</p>
@@ -192,6 +1233,34 @@ print(f"Hello {name}, age {age}, height {height}")</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
+                    <!-- INFOGRAPHIC: f-string Anatomy -->
+                    <div class="infographic-card">
+                        <div class="ig-title"><i class="fas fa-paint-brush"></i> 🎨 Anatomy of an f-string <span class="ig-badge visual">Visual</span></div>
+                        <p style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:10px;">Hover each part to see what it does!</p>
+                        <div class="fstring-anatomy">
+                            <span class="fstring-part f-prefix" title="The 'f' tells Python this is a formatted string">f</span>
+                            <span class="fstring-part f-quote" title="Opening quote marks the string boundary">"</span>
+                            <span class="fstring-part f-text" title="Plain text is printed as-is">Hello </span>
+                            <span class="fstring-part f-brace" title="Curly braces wrap a variable or expression">{</span>
+                            <span class="fstring-part f-variable" title="The variable whose value will be inserted">name</span>
+                            <span class="fstring-part f-brace" title="Closing brace — the value appears here">}</span>
+                            <span class="fstring-part f-text" title="More plain text">, you scored </span>
+                            <span class="fstring-part f-brace">{</span>
+                            <span class="fstring-part f-variable">marks</span>
+                            <span class="fstring-part f-format" title="Format specifier: show 2 decimal places">:.2f</span>
+                            <span class="fstring-part f-brace">}</span>
+                            <span class="fstring-part f-quote" title="Closing quote">"</span>
+                        </div>
+                        <div class="fstring-legend">
+                            <span><span class="legend-dot" style="background:#f59e0b;"></span> f-prefix</span>
+                            <span><span class="legend-dot" style="background:#10b981;"></span> quotes</span>
+                            <span><span class="legend-dot" style="background:#3b82f6;"></span> text</span>
+                            <span><span class="legend-dot" style="background:#ef4444;"></span> braces { }</span>
+                            <span><span class="legend-dot" style="background:#8b5cf6;"></span> variable</span>
+                            <span><span class="legend-dot" style="background:#ec4899;"></span> format spec</span>
+                        </div>
+                    </div>
+
                     <h4 style="color:var(--accent);margin-top:1.5rem;">f-strings (Formatted Strings)</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_fstrings.py</div>
@@ -200,6 +1269,49 @@ marks = 91.567
 print(f"{name} scored {marks:.2f} marks.")  # formats to 2 decimal places
 # Output: Priya scored 91.57 marks.</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <!-- INFOGRAPHIC: Arithmetic Operators Visual -->
+                    <div class="infographic-card">
+                        <div class="ig-title"><i class="fas fa-calculator"></i> 🧮 Arithmetic Operators — Quick Reference <span class="ig-badge visual">Infographic</span></div>
+                        <p style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:10px;">Using <strong>a = 10</strong> and <strong>b = 3</strong> — hover each card!</p>
+                        <div class="operator-grid">
+                            <div class="operator-card" title="Addition: 10 + 3">
+                                <span class="op-symbol op-add">+</span>
+                                <span class="op-name">Addition</span>
+                                <span class="op-result">10+3 = 13</span>
+                            </div>
+                            <div class="operator-card" title="Subtraction: 10 - 3">
+                                <span class="op-symbol op-sub">−</span>
+                                <span class="op-name">Subtraction</span>
+                                <span class="op-result">10-3 = 7</span>
+                            </div>
+                            <div class="operator-card" title="Multiplication: 10 × 3">
+                                <span class="op-symbol op-mul">×</span>
+                                <span class="op-name">Multiply</span>
+                                <span class="op-result">10*3 = 30</span>
+                            </div>
+                            <div class="operator-card" title="Float Division: 10 ÷ 3">
+                                <span class="op-symbol op-div">÷</span>
+                                <span class="op-name">Division</span>
+                                <span class="op-result">10/3 = 3.33</span>
+                            </div>
+                            <div class="operator-card" title="Floor Division: 10 // 3">
+                                <span class="op-symbol op-floor">//</span>
+                                <span class="op-name">Floor Div</span>
+                                <span class="op-result">10//3 = 3</span>
+                            </div>
+                            <div class="operator-card" title="Modulus: 10 % 3">
+                                <span class="op-symbol op-mod">%</span>
+                                <span class="op-name">Modulus</span>
+                                <span class="op-result">10%3 = 1</span>
+                            </div>
+                            <div class="operator-card" title="Exponent: 10³">
+                                <span class="op-symbol op-exp">**</span>
+                                <span class="op-name">Exponent</span>
+                                <span class="op-result">10**3 = 1000</span>
+                            </div>
+                        </div>
                     </div>
 
                     <h4 style="color:var(--accent);margin-top:1.5rem;">Arithmetic Operators</h4>
@@ -240,15 +1352,91 @@ print(f"Quotient: {num1} / {num2} = {quot_result:.2f}")</code></pre>
                         Sum: 15.0 + 4.0 = 19.0
                         Difference: 15.0 - 4.0 = 11.0
                         Product: 15.0 * 4.0 = 60.0
-                    Quotient: 15.0 / 4.0 = 3.75</div>
+                        Quotient: 15.0 / 4.0 = 3.75</div>
 
                     <div class="warning-box"><strong>⚠️ Common Mistake:</strong> Forgetting to convert <code>input()</code> with <code>int()</code> or <code>float()</code>. Without conversion, <code>+</code> will <em>concatenate strings</em> instead of adding numbers!</div>
                 </div>
 
-                <!-- DAY 3 -->
+                <!-- ==================== DAY 3 ==================== -->
                 <div class="concept-card" id="day3">
                     <h3><span class="day-badge">Day 3</span> Conditional Statements (if, elif, else)</h3>
                     <p><strong>Learning Objectives:</strong> Use <code>if</code>, <code>elif</code>, <code>else</code> to make decisions. Write comparison operators: <code>== != &gt; &lt; &gt;= &lt;=</code>. Combine conditions with <code>and</code>, <code>or</code>, <code>not</code>.</p>
+
+                    <!-- INFOGRAPHIC: Comparison Operators -->
+                    <div class="infographic-card">
+                        <div class="ig-title"><i class="fas fa-balance-scale"></i> ⚖️ Comparison Operators <span class="ig-badge visual">Reference</span></div>
+                        <div class="comparison-grid">
+                            <div class="comparison-card" title="Equal to">
+                                <span class="comp-symbol">==</span>
+                                <span class="comp-meaning">equal to</span>
+                            </div>
+                            <div class="comparison-card" title="Not equal to">
+                                <span class="comp-symbol">!=</span>
+                                <span class="comp-meaning">not equal</span>
+                            </div>
+                            <div class="comparison-card" title="Greater than">
+                                <span class="comp-symbol">&gt;</span>
+                                <span class="comp-meaning">greater than</span>
+                            </div>
+                            <div class="comparison-card" title="Less than">
+                                <span class="comp-symbol">&lt;</span>
+                                <span class="comp-meaning">less than</span>
+                            </div>
+                            <div class="comparison-card" title="Greater than or equal">
+                                <span class="comp-symbol">&gt;=</span>
+                                <span class="comp-meaning">greater/equal</span>
+                            </div>
+                            <div class="comparison-card" title="Less than or equal">
+                                <span class="comp-symbol">&lt;=</span>
+                                <span class="comp-meaning">less/equal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INFOGRAPHIC: Conditional Flow Diagram -->
+                    <div class="infographic-card">
+                        <div class="ig-title"><i class="fas fa-code-branch"></i> 🔀 How if-elif-else Works <span class="ig-badge visual">Flow Diagram</span></div>
+                        <div class="flow-diagram">
+                            <div class="flow-node start">🚀 Start</div>
+                            <div class="flow-arrow">⬇️</div>
+                            <div class="flow-node condition">if marks >= 90 ?</div>
+                            <div class="flow-branch">
+                                <div>
+                                    <div class="flow-branch-label">✅ True</div>
+                                    <div class="flow-node action">Grade = "A"</div>
+                                </div>
+                                <div>
+                                    <div class="flow-branch-label">❌ False</div>
+                                    <div class="flow-node condition">elif marks >= 75 ?</div>
+                                </div>
+                            </div>
+                            <div class="flow-arrow">⬇️</div>
+                            <div class="flow-branch">
+                                <div>
+                                    <div class="flow-branch-label">✅ True</div>
+                                    <div class="flow-node action">Grade = "B"</div>
+                                </div>
+                                <div>
+                                    <div class="flow-branch-label">❌ False</div>
+                                    <div class="flow-node condition">elif marks >= 60 ?</div>
+                                </div>
+                            </div>
+                            <div class="flow-arrow">⬇️</div>
+                            <div class="flow-branch">
+                                <div>
+                                    <div class="flow-branch-label">✅ True</div>
+                                    <div class="flow-node action">Grade = "C"</div>
+                                </div>
+                                <div>
+                                    <div class="flow-branch-label">❌ False</div>
+                                    <div class="flow-node action">Grade = "D"</div>
+                                </div>
+                            </div>
+                            <div class="flow-arrow">⬇️</div>
+                            <div class="flow-node end">🏁 End</div>
+                        </div>
+                        <p style="text-align:center;font-size:0.75rem;color:var(--text-secondary);">Only <strong>one</strong> branch executes — the first condition that's True!</p>
+                    </div>
 
                     <h4 style="color:var(--accent);margin-top:1.5rem;">Basic if-else</h4>
                     <div class="code-block">
@@ -292,15 +1480,59 @@ else:
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
                     <div class="example-interaction">Enter a number: -7
-                    The number is negative.</div>
+                        The number is negative.</div>
 
                     <div class="tip-box"><strong>💡 Instructor Tip:</strong> Show common mistakes like using <code>=</code> (assignment) instead of <code>==</code> (comparison) in conditions. This is the #1 beginner bug!</div>
                 </div>
 
-                <!-- DAY 4 -->
+                <!-- ==================== DAY 4 ==================== -->
                 <div class="concept-card" id="day4">
                     <h3><span class="day-badge">Day 4</span> Logical Operators &amp; Nested if (Leap Year)</h3>
                     <p><strong>Learning Objectives:</strong> Use logical operators (<code>and</code>, <code>or</code>, <code>not</code>). Write nested <code>if</code> statements. Solve the classic leap year problem.</p>
+
+                    <!-- INFOGRAPHIC: Truth Tables -->
+                    <div class="infographic-card">
+                        <div class="ig-title"><i class="fas fa-table"></i> 📋 Logical Operators — Truth Tables <span class="ig-badge visual">Infographic</span></div>
+                        <div style="display:flex;flex-wrap:wrap;gap:16px;">
+                            <!-- AND Table -->
+                            <div class="truth-table-wrap" style="flex:1;min-width:200px;">
+                                <table class="truth-table">
+                                    <thead><tr><th colspan="3" style="background:#6366f1;">AND (both must be True)</th></tr></thead>
+                                    <thead><tr><th>A</th><th>B</th><th>A and B</th></tr></thead>
+                                    <tbody>
+                                        <tr><td class="true-val">True</td><td class="true-val">True</td><td class="true-val truth-highlight">True ✅</td></tr>
+                                        <tr><td class="true-val">True</td><td class="false-val">False</td><td class="false-val">False</td></tr>
+                                        <tr><td class="false-val">False</td><td class="true-val">True</td><td class="false-val">False</td></tr>
+                                        <tr><td class="false-val">False</td><td class="false-val">False</td><td class="false-val">False</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- OR Table -->
+                            <div class="truth-table-wrap" style="flex:1;min-width:200px;">
+                                <table class="truth-table">
+                                    <thead><tr><th colspan="3" style="background:#f59e0b;">OR (at least one True)</th></tr></thead>
+                                    <thead><tr><th>A</th><th>B</th><th>A or B</th></tr></thead>
+                                    <tbody>
+                                        <tr><td class="true-val">True</td><td class="true-val">True</td><td class="true-val truth-highlight">True ✅</td></tr>
+                                        <tr><td class="true-val">True</td><td class="false-val">False</td><td class="true-val truth-highlight">True ✅</td></tr>
+                                        <tr><td class="false-val">False</td><td class="true-val">True</td><td class="true-val truth-highlight">True ✅</td></tr>
+                                        <tr><td class="false-val">False</td><td class="false-val">False</td><td class="false-val">False</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- NOT Table -->
+                            <div class="truth-table-wrap" style="flex:1;min-width:150px;">
+                                <table class="truth-table">
+                                    <thead><tr><th colspan="2" style="background:#ef4444;">NOT (reverses)</th></tr></thead>
+                                    <thead><tr><th>A</th><th>not A</th></tr></thead>
+                                    <tbody>
+                                        <tr><td class="true-val">True</td><td class="false-val">False</td></tr>
+                                        <tr><td class="false-val">False</td><td class="true-val truth-highlight">True ✅</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
                     <h4 style="color:var(--accent);margin-top:1.5rem;">Logical Operators</h4>
                     <div class="code-block">
@@ -310,6 +1542,30 @@ print(x > 5 and x < 20)   # True  (both must be True)
 print(x < 5 or x > 8)     # True  (at least one True)
 print(not x == 10)        # False (reverses the result)</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <!-- INFOGRAPHIC: Leap Year Flow -->
+                    <div class="infographic-card">
+                        <div class="ig-title"><i class="fas fa-calendar-check"></i> 📅 Leap Year Decision Flow <span class="ig-badge visual">Logic Map</span></div>
+                        <p style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:8px;">Follow the arrows to determine if a year is a leap year:</p>
+                        <div class="leapyear-flow">
+                            <span class="leapyear-node check">Divisible by 4?</span>
+                            <span class="leapyear-arrow">→ No →</span>
+                            <span class="leapyear-node no">❌ Not Leap</span>
+                        </div>
+                        <div class="leapyear-flow">
+                            <span class="leapyear-node check">Divisible by 100?</span>
+                            <span class="leapyear-arrow">→ No →</span>
+                            <span class="leapyear-node yes">✅ Leap!</span>
+                        </div>
+                        <div class="leapyear-flow">
+                            <span class="leapyear-node check">Divisible by 400?</span>
+                            <span class="leapyear-arrow">→ Yes →</span>
+                            <span class="leapyear-node yes">✅ Leap!</span>
+                            <span class="leapyear-arrow">→ No →</span>
+                            <span class="leapyear-node no">❌ Not Leap</span>
+                        </div>
+                        <p style="text-align:center;font-size:0.73rem;color:var(--text-secondary);margin-top:6px;">Test: 2000 ✅ | 1900 ❌ | 2024 ✅ | 2023 ❌</p>
                     </div>
 
                     <h4 style="color:var(--accent);margin-top:1.5rem;">Leap Year Rules</h4>
@@ -346,12 +1602,12 @@ else:
                         2024 is a leap year.
                         ---
                         Enter year: 1900
-                    1900 is not a leap year.</div>
+                        1900 is not a leap year.</div>
 
                     <div class="tip-box"><strong>💡 Test these years:</strong> 1900 (not leap), 2000 (leap), 2024 (leap), 2023 (not leap). Walk through the logic step by step for each.</div>
                 </div>
 
-                <!-- DAY 5 -->
+                <!-- ==================== DAY 5 ==================== -->
                 <div class="concept-card" id="day5">
                     <h3><span class="day-badge">Day 5</span> Mini-Project: Simple Calculator</h3>
                     <p><strong>Learning Objectives:</strong> Combine everything learned—variables, input, conditionals, arithmetic. Handle division by zero. Build a menu-driven program.</p>
@@ -404,15 +1660,46 @@ else:
                         Choose (1-4): 3
                         Enter first number: 12
                         Enter second number: 5
-                    Result: 12.0 * 5.0 = 60.0</div>
+                        Result: 12.0 * 5.0 = 60.0</div>
 
                     <div class="tip-box"><strong>🚀 Optional Challenge:</strong> Add a loop so the calculator repeats until the user chooses to exit. Wrap the menu in <code>while True:</code> and add a "5. Exit" option.</div>
                 </div>
 
-                <!-- DAY 6 -->
+                <!-- ==================== DAY 6 ==================== -->
                 <div class="concept-card" id="day6">
                     <h3><span class="day-badge">Day 6</span> Git: Version Control Basics</h3>
                     <p><strong>Learning Objectives:</strong> Understand why we use Git. Install Git. Initialize a repository. Stage and commit changes. Check status and log.</p>
+
+                    <!-- INFOGRAPHIC: Git Workflow -->
+                    <div class="infographic-card">
+                        <div class="ig-title"><i class="fab fa-git-alt"></i> 🔧 Git Workflow — Step by Step <span class="ig-badge visual">Infographic</span></div>
+                        <p style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:12px;">Your code travels through these stages. Hover each one!</p>
+                        <div class="git-workflow">
+                            <div class="git-stage working" title="Your files on disk — edit freely!">
+                                <span class="git-icon">📝</span>
+                                <span class="git-cmd">Working Directory</span>
+                                <span class="git-desc">Write & edit files</span>
+                            </div>
+                            <span class="git-arrow-connector">→</span>
+                            <div class="git-stage staging" title="git add — mark files to be saved">
+                                <span class="git-icon">📦</span>
+                                <span class="git-cmd">git add</span>
+                                <span class="git-desc">Stage changes</span>
+                            </div>
+                            <span class="git-arrow-connector">→</span>
+                            <div class="git-stage committed" title="git commit — save a snapshot forever">
+                                <span class="git-icon">💾</span>
+                                <span class="git-cmd">git commit</span>
+                                <span class="git-desc">Save snapshot</span>
+                            </div>
+                            <span class="git-arrow-connector">→</span>
+                            <div class="git-stage remote" title="git push — share with the world (optional)">
+                                <span class="git-icon">☁️</span>
+                                <span class="git-cmd">git push</span>
+                                <span class="git-desc">Share remotely</span>
+                            </div>
+                        </div>
+                    </div>
 
                     <h4 style="color:var(--accent);margin-top:1.5rem;">What is Git?</h4>
                     <p>Git is a <strong>version control system</strong> that tracks changes in files. It lets you go back to previous versions and is essential for collaboration.</p>
@@ -445,12 +1732,12 @@ git log</code></pre>
                     <div class="example-output">commit a1b2c3d4e5f6... (HEAD -> main)
                         Author: Student Name &lt;student@example.com&gt;
                         Date: Mon Apr 14 10:30:00 2025 +0530
-                    Added calculator project</div>
+                        Added calculator project</div>
 
                     <div class="tip-box"><strong>💡 Tips:</strong> Use <strong>Git Bash</strong> on Windows or <strong>Terminal</strong> on Mac. Write <em>meaningful commit messages</em>—future you will thank you! Run <code>git status</code> often to understand what's happening.</div>
                 </div>
 
-                <!-- Week 1 Practice Problems -->
+                <!-- ==================== PRACTICE PROBLEMS ==================== -->
                 <div class="concept-card" id="practice-problems">
                     <h3><i class="fas fa-code"></i> Week 1 Practice Problems</h3>
                     <p>Test your understanding with these problems covering all Week 1 concepts.</p>
@@ -552,7 +1839,7 @@ else:
                     </div>
                 </div>
 
-                <!-- Unsolved Exercises -->
+                <!-- ==================== UNSOLVED EXERCISES ==================== -->
                 <div class="concept-card" id="unsolved-exercises">
                     <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
                     <p>Challenge yourself! Try these without peeking at solutions. All concepts are from Week 1.</p>
@@ -603,6 +1890,11 @@ else:
         </aside>
     </div>
 
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
     </a>
@@ -620,37 +1912,143 @@ else:
         <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
         <p>Online &amp; Offline | Small batches | Expert faculty</p>
     </footer>
-    <script src="../js/learn-python.js"></script>
-   <script src="../js/learn-python-advance.js"></script>
-  
-    
 
-    
-      <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://booktownclasses.github.io/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Learn Python+",
-        "item": "https://booktownclasses.github.io/learn-python/3m-learn-python-week1.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Week 1: Python Fundamentals + Git",
-      }
-    ]
-  }
-  </script>
-   
+    <script src="../js/learn-python.js"></script>
+    <script src="../js/learn-python-advance.js"></script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://booktownclasses.github.io/index.html" },
+                { "@type": "ListItem", "position": 2, "name": "Learn Python+", "item": "https://booktownclasses.github.io/learn-python/3m-learn-python-week1.html" },
+                { "@type": "ListItem", "position": 3, "name": "Week 1: Python Fundamentals + Git" }
+            ]
+        }
+    </script>
+
+    <!-- ============ ENHANCED SCRIPTS: Interactivity ============ -->
+    <script>
+        // ==================== SCROLL TO DAY ====================
+        function scrollToDay(dayId) {
+            const el = document.getElementById(dayId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Pulse highlight
+                el.classList.add('pulse-highlight');
+                setTimeout(() => el.classList.remove('pulse-highlight'), 3000);
+            }
+            updateProgressDots(dayId);
+        }
+
+        // ==================== PROGRESS BAR UPDATE ====================
+        function updateProgressDots(activeDayId) {
+            const dayMap = { 'day1': 1, 'day2': 2, 'day3': 3, 'day4': 4, 'day5': 5, 'day6': 6 };
+            const activeDay = dayMap[activeDayId] || 1;
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach(dot => {
+                const d = parseInt(dot.getAttribute('data-day'));
+                dot.classList.remove('active', 'completed');
+                if (d === activeDay) dot.classList.add('active');
+                else if (d < activeDay) dot.classList.add('completed');
+            });
+            const fill = document.getElementById('weekProgressFill');
+            if (fill) fill.style.width = ((activeDay / 6) * 100) + '%';
+        }
+
+        // ==================== SCROLL SPY ====================
+        const dayIds = ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'practice-problems', 'unsolved-exercises'];
+        const dayMapFull = { 'day1': 1, 'day2': 2, 'day3': 3, 'day4': 4, 'day5': 5, 'day6': 6, 'practice-problems': 6,
+            'unsolved-exercises': 6 };
+
+        function onScrollSpy() {
+            let currentDay = 'day1';
+            dayIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top <= 160) currentDay = id;
+                }
+            });
+            updateProgressDots(currentDay);
+            // Highlight sidebar link
+            document.querySelectorAll('.page-tracker a').forEach(a => {
+                a.style.fontWeight = a.getAttribute('href') === '#' + currentDay ? '700' : '400';
+                a.style.color = a.getAttribute('href') === '#' + currentDay ? 'var(--accent)' : '';
+            });
+        }
+
+        window.addEventListener('scroll', onScrollSpy, { passive: true });
+
+        // ==================== SCROLL TO TOP BUTTON ====================
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 600) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        }, { passive: true });
+
+        // ==================== COPY CODE (fallback if not defined) ====================
+        if (typeof copyCode !== 'function') {
+            window.copyCode = function(btn) {
+                const codeBlock = btn.closest('.code-block');
+                const code = codeBlock ? codeBlock.querySelector('code') : null;
+                if (code) {
+                    const text = code.textContent;
+                    navigator.clipboard.writeText(text).then(() => {
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-copy');
+                            icon.classList.add('fa-check');
+                            setTimeout(() => {
+                                icon.classList.remove('fa-check');
+                                icon.classList.add('fa-copy');
+                            }, 2000);
+                        }
+                    }).catch(() => {
+                        alert('Failed to copy code. Please try manually.');
+                    });
+                }
+            };
+        }
+
+        // ==================== INITIAL SETUP ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgressDots('day1');
+            // Make overview cards clickable
+            document.querySelectorAll('.overview-card').forEach(card => {
+                card.style.cursor = 'pointer';
+            });
+        });
+
+        // ==================== INFOGRAPHIC CARD TOGGLE (mobile-friendly) ====================
+        document.querySelectorAll('.infographic-card .ig-title').forEach(title => {
+            title.style.cursor = 'pointer';
+            title.addEventListener('click', function() {
+                const card = this.closest('.infographic-card');
+                const content = card.querySelectorAll(
+                    '.datatype-grid, .operator-grid, .fstring-anatomy, .flow-diagram, .truth-table-wrap, .git-workflow, .leapyear-flow, .comparison-grid, .concept-map, .fstring-legend'
+                    );
+                content.forEach(c => {
+                    if (c.style.display === 'none') {
+                        c.style.display = '';
+                        this.querySelector('i:last-child')?.classList.remove('fa-chevron-down');
+                        this.querySelector('i:last-child')?.classList.add('fa-chevron-up');
+                    } else {
+                        c.style.display = 'none';
+                        this.querySelector('i:last-child')?.classList.remove('fa-chevron-up');
+                        this.querySelector('i:last-child')?.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+        });
+
+        console.log('🐍 Week 1 Python + Git — Enhanced with Infographics ready!');
+        console.log('📊 Features: Data Type Cards | Operator Visuals | f-string Anatomy | Truth Tables | Git Workflow | Flow Diagrams');
+        console.log('💡 Tip: Hover over infographic elements for more details!');
+    </script>
 </body>
 </html>
