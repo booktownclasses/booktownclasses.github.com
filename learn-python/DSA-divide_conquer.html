@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/dsa/divide-and-conquer-algorithms.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>Divide & Conquer Algorithms: Binary Search, Quick Select, Strassen’s, Closest Pair | DSA | BookTown Classes</title>
+    <meta name="description" content="Master the most important divide & conquer algorithms for DSA: Binary Search, Quick Select, Strassen’s Matrix Multiplication, and Closest Pair of Points. Pseudocode, complexity analysis, comparative study, and practice problems." />
+    <meta name="keywords" content="DSA, divide and conquer, binary search, quick select, strassen matrix multiplication, closest pair of points, algorithm complexity, pseudocode, BookTown Classes" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Divide & Conquer Algorithms: Binary Search, Quick Select, Strassen’s & Closest Pair | DSA | BookTown Classes" />
+    <meta property="og:description" content="From search to geometry — explore four classic divide & conquer algorithms with detailed pseudocode, complexity breakdown, and DSA questions." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+    <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --accent: #3b82f6;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --success: #059669;
+            --info: #7c3aed;
+            --radius: 14px;
+            --shadow: 0 4px 20px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+            --infographic-bg: #f1f5f9;
+            --infographic-border: #cbd5e1;
+        }
+        body.dark-mode {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: #334155;
+            --infographic-bg: #1e293b;
+            --infographic-border: #334155;
+        }
+
+        /* ===== MINI HERO ===== */
+        .mini-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        .mini-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 8s ease-in-out infinite;
+        }
+        .mini-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px; left: -40px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 10s ease-in-out infinite reverse;
+        }
+        @keyframes heroFloat {
+            0%,100%{transform:translate(0,0) scale(1);}
+            50%{transform:translate(15px,-10px) scale(1.05);}
+        }
+        .mini-hero .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(37,99,235,0.2);
+            color: #93c5fd;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            border: 1px solid rgba(37,99,235,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .mini-hero .hero-badge .pulse-dot {
+            width: 7px; height: 7px;
+            background: #60a5fa;
+            border-radius: 50%;
+            animation: dotPulse 2s infinite;
+        }
+        @keyframes dotPulse {
+            0%,100%{box-shadow:0 0 0 0 rgba(96,165,250,0.6);}
+            50%{box-shadow:0 0 0 10px rgba(96,165,250,0);}
+        }
+        .mini-hero .hero-headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin: 0 0 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 5s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+        }
+        .mini-hero .hero-sub {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== STICKY PROGRESS BAR ===== */
+        .week-progress-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 18px;
+            margin-bottom: 20px;
+            border-radius: 0 0 var(--radius) var(--radius);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .week-progress-wrap {
+            background: rgba(30,41,59,0.8);
+        }
+        .progress-label {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .progress-track {
+            flex: 1;
+            height: 8px;
+            background: var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--info));
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+        .progress-days { display: flex; gap: 5px; }
+        .progress-dot {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            color: var(--muted);
+        }
+        .progress-dot.completed { background: var(--success); color: #fff; }
+        .progress-dot.active {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            box-shadow: 0 0 14px rgba(37,99,235,0.5);
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot {
+            0%,100%{box-shadow:0 0 8px rgba(37,99,235,0.4);}
+            50%{box-shadow:0 0 22px rgba(37,99,235,0.8);}
+        }
+        .progress-dot:hover { transform: scale(1.15); }
+
+        /* ===== GLASS INFO CARD ===== */
+        .info-card {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(203,213,225,0.5);
+            border-radius: var(--radius);
+            padding: 22px 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark-mode .info-card {
+            background: rgba(30,41,59,0.7);
+            border-color: rgba(51,65,85,0.5);
+        }
+        .info-card:hover { box-shadow: var(--shadow-lg); border-color: var(--primary-light); transform: translateY(-2px); }
+        .info-card .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info-card .card-title i {
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(124,58,237,0.1));
+            padding: 8px;
+            border-radius: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-left: auto;
+        }
+        .badge.visual { background: #ede9fe; color: #6d28d9; }
+
+        /* ===== GEN Z TOPIC CARDS ===== */
+        .genz-course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin: 1.1rem 0;
+        }
+        .genz-day-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
+            border-radius: 1.25rem;
+            padding: 1.5rem 1.25rem;
+            color: #f1f5f9;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .genz-day-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,198,255,0.25);
+        }
+        .genz-day-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s ease;
+        }
+        .genz-day-card:hover::after { left: 100%; }
+        .genz-day-num {
+            font-size: 1.5rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(to right, #00c6ff, #ee0979);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.2rem;
+        }
+        .genz-day-icon {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+            filter: drop-shadow(0 0 4px rgba(0,198,255,0.5));
+        }
+        .genz-day-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin: 0.3rem 0 0.4rem;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+        .genz-day-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.2rem;
+            margin-top: 0.2rem;
+        }
+        .genz-day-tags span {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #cbd5e1;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            margin: 2px 2px;
+            font-weight: 500;
+        }
+        .genz-day-card:hover .genz-day-tags span {
+            background: rgba(1,36,45,0.2);
+            border-color: #00c6ff;
+            color: #ffffff;
+        }
+
+        /* ===== COMPARATIVE TABLE ===== */
+        .comparative-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .comparative-table th, .comparative-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        .comparative-table th {
+            background: #1e293b;
+            color: #f0f9ff;
+            font-weight: 600;
+        }
+        .comparative-table tr:last-child td { border-bottom: none; }
+        .comparative-table tr:hover td { background: rgba(59,130,246,0.08); }
+
+        /* ===== PSEUDOCODE BLOCK ===== */
+        .pseudocode-block {
+            font-family: 'Fira Code', monospace;
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            white-space: pre;
+            overflow-x: auto;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        /* ===== PARTICLE BURST ===== */
+        .particle-emoji {
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+            font-size: 1.2rem;
+            animation: particleBurst 0.7s cubic-bezier(0,0.9,0.3,1) forwards;
+        }
+        @keyframes particleBurst {
+            0%{opacity:1;transform:translate(0,0) scale(1);}
+            100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0.2);}
+        }
+        .pulse-highlight { animation: gentlePulse 3s ease-in-out 1; }
+        @keyframes gentlePulse {
+            0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,0.3);}
+            50%{box-shadow:0 0 0 12px rgba(37,99,235,0);}
+        }
+
+        .scroll-top-btn {
+            position: fixed; bottom: 90px; right: 24px;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff; border: none; cursor: pointer;
+            font-size: 1.2rem; z-index: 99;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+            transition: 0.3s; opacity: 0; pointer-events: none;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .scroll-top-btn.visible { opacity: 1; pointer-events: auto; }
+        .scroll-top-btn:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(37,99,235,0.5); }
+
+        @media (max-width: 768px) {
+            .mini-hero { padding: 1.2rem; }
+            .mini-hero .hero-headline { font-size: 1.3rem; }
+            .genz-course-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .genz-course-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    <div id="header-container"></div>
+
+    <div class="main-container">
+        <aside class="sidebar" id="mainSidebar"></aside>
+        <main class="content">
+
+            <!-- ===== MINI HERO ===== -->
+            <div class="mini-hero">
+                <div class="hero-badge"><span class="pulse-dot"></span> DSA • Divide & Conquer</div>
+                <h1 class="hero-headline"><span class="gradient-text">Binary Search, Quick Select</span> & More</h1>
+                <p class="hero-sub">Break problems into subproblems, conquer recursively. Explore four essential divide & conquer algorithms with pseudocode, analysis, and practice.</p>
+            </div>
+
+            <!-- Sticky progress bar -->
+            <div class="week-progress-wrap">
+                <span class="progress-label">Algorithms</span>
+                <div class="progress-track"><div class="progress-fill" id="weekProgressFill" style="width:0%"></div></div>
+                <div class="progress-days">
+                    <div class="progress-dot" data-day="1" onclick="scrollToDay('day1')">1</div>
+                    <div class="progress-dot" data-day="2" onclick="scrollToDay('day2')">2</div>
+                    <div class="progress-dot" data-day="3" onclick="scrollToDay('day3')">3</div>
+                    <div class="progress-dot" data-day="4" onclick="scrollToDay('day4')">4</div>
+                </div>
+            </div>
+
+            <div class="content-section active">
+                <!-- Course Overview -->
+                <div class="section-intro">
+                    <p><strong>📌 Divide & Conquer Paradigm:</strong> A problem is broken into smaller subproblems of the same type, solved recursively, and then their solutions are combined. This strategy yields efficient algorithms for searching, selection, matrix operations, and geometry.</p>
+                    <p><strong>🎯 In this module:</strong> Binary Search (logarithmic search), Quick Select (average linear selection), Strassen’s Matrix Multiplication (faster matrix product), and Closest Pair of Points (geometric divide & conquer).</p>
+                </div>
+
+                <!-- Gen Z Topic Cards -->
+                <div class="genz-course-grid">
+                    <div class="genz-day-card" onclick="scrollToDay('day1')">
+                        <div class="genz-day-num">01</div>
+                        <div class="genz-day-icon"><i class="fas fa-search"></i></div>
+                        <h4 class="genz-day-title">Binary Search</h4>
+                        <div class="genz-day-tags">
+                            <span>O(log n)</span> <span>sorted</span> <span>iterative</span>
+                        </div>
+                    </div>
+                    <div class="genz-day-card" onclick="scrollToDay('day2')">
+                        <div class="genz-day-num">02</div>
+                        <div class="genz-day-icon"><i class="fas fa-hand-pointer"></i></div>
+                        <h4 class="genz-day-title">Quick Select</h4>
+                        <div class="genz-day-tags">
+                            <span>O(n) avg</span> <span>k‑th</span> <span>partition</span>
+                        </div>
+                    </div>
+                    <div class="genz-day-card" onclick="scrollToDay('day3')">
+                        <div class="genz-day-num">03</div>
+                        <div class="genz-day-icon"><i class="fas fa-th"></i></div>
+                        <h4 class="genz-day-title">Strassen’s</h4>
+                        <div class="genz-day-tags">
+                            <span>O(n².⁸¹)</span> <span>matrix</span> <span>7 mults</span>
+                        </div>
+                    </div>
+                    <div class="genz-day-card" onclick="scrollToDay('day4')">
+                        <div class="genz-day-num">04</div>
+                        <div class="genz-day-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h4 class="genz-day-title">Closest Pair</h4>
+                        <div class="genz-day-tags">
+                            <span>O(n log n)</span> <span>geometry</span> <span>strip</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== BINARY SEARCH ==================== -->
+                <div class="concept-card" id="day1">
+                    <h3><span class="day-badge">1</span> Binary Search</h3>
+                    <p><strong>How it works:</strong> Requires a sorted array. Repeatedly compares the target value with the middle element; if not equal, eliminates half of the remaining array from consideration. This halves the search space each step.</p>
+
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code"></i> 🔍 Binary Search — Pseudocode <span class="badge visual">Infographic</span></div>
+                        <div class="pseudocode-block">
+function binarySearch(arr, target):
+    low = 0
+    high = len(arr)-1
+    while low <= high:
+        mid = (low+high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid+1
+        else:
+            high = mid-1
+    return -1
+                        </div>
+                        <p style="font-size:0.85rem; margin-top:10px;">Recursive version follows same logic with base case low > high.</p>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Complexity Analysis</h4>
+                    <table class="info-table">
+                        <thead><tr><th>Case</th><th>Time Complexity</th><th>Space Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Best</strong> (target at mid)</td><td>O(1)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Average / Worst</strong></td><td>O(log n)</td><td>O(1) iterative, O(log n) recursive stack</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Condition:</strong> The input array must be sorted. Binary search is the optimal comparison‑based search algorithm for random‑access data structures.</p>
+                    <div class="tip-box"><strong>💡 Key Insight:</strong> Can be adapted to find first/last occurrence, floor/ceil, or in rotated sorted arrays. Many DSA problems rely on this template.</div>
+                </div>
+
+                <!-- ==================== QUICK SELECT ==================== -->
+                <div class="concept-card" id="day2">
+                    <h3><span class="day-badge">2</span> Quick Select</h3>
+                    <p><strong>How it works:</strong> A selection algorithm to find the k‑th smallest (or largest) element in an unordered list. It uses the same partitioning logic as Quick Sort: after partitioning, the pivot is placed at its correct sorted position. If the pivot index equals k-1, we’ve found it; otherwise we recursively search the left or right partition.</p>
+
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code"></i> 🎯 Quick Select — Pseudocode <span class="badge visual">Infographic</span></div>
+                        <div class="pseudocode-block">
+function quickSelect(arr, left, right, k):
+    if left == right:
+        return arr[left]
+    pivotIndex = partition(arr, left, right)
+    if k-1 == pivotIndex:
+        return arr[pivotIndex]
+    elif k-1 < pivotIndex:
+        return quickSelect(arr, left, pivotIndex-1, k)
+    else:
+        return quickSelect(arr, pivotIndex+1, right, k)
+
+// partition() same as Quick Sort (Lomuto/Hoare)
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Complexity Analysis</h4>
+                    <table class="info-table">
+                        <thead><tr><th>Case</th><th>Time Complexity</th><th>Space Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Average</strong></td><td>O(n)</td><td>O(log n) recursion stack</td></tr>
+                            <tr><td><strong>Worst</strong> (bad pivot choices)</td><td>O(n²)</td><td>O(n)</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Stability:</strong> Not stable. <strong>In‑place:</strong> Yes (apart from recursion).</p>
+                    <div class="warning-box"><strong>⚠️ Pivot Strategy:</strong> Random or median‑of‑three pivot selection reduces the chance of worst‑case to negligible in practice.</div>
+                </div>
+
+                <!-- ==================== STRASSEN’S MATRIX MULTIPLICATION ==================== -->
+                <div class="concept-card" id="day3">
+                    <h3><span class="day-badge">3</span> Strassen’s Matrix Multiplication</h3>
+                    <p><strong>How it works:</strong> Standard matrix multiplication of two n×n matrices takes O(n³). Strassen’s algorithm reduces the number of multiplications for 2×2 block matrices from 8 to 7, recursively. It computes 7 intermediate products and then combines them with additions/subtractions. The asymptotic complexity becomes O(n<sup>log₂7</sup>) ≈ O(n<sup>2.81</sup>).</p>
+
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code"></i> 🔢 Strassen’s — Recursive Step <span class="badge visual">Infographic</span></div>
+                        <div class="pseudocode-block">
+function strassen(A, B):
+    if n <= threshold: return standardMultiplication(A, B)
+    partition A, B into 4 submatrices (size n/2)
+    compute 7 products:
+        P1 = strassen(A11+A22, B11+B22)
+        P2 = strassen(A21+A22, B11)
+        P3 = strassen(A11, B12-B22)
+        P4 = strassen(A22, B21-B11)
+        P5 = strassen(A11+A12, B22)
+        P6 = strassen(A21-A11, B11+B12)
+        P7 = strassen(A12-A22, B21+B22)
+    combine:
+        C11 = P1+P4-P5+P7
+        C12 = P3+P5
+        C21 = P2+P4
+        C22 = P1-P2+P3+P6
+    return combined C
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Complexity Analysis</h4>
+                    <table class="info-table">
+                        <thead><tr><th>Algorithm</th><th>Time Complexity</th><th>Space Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td>Standard</td><td>O(n³)</td><td>O(1) (in‑place possible)</td></tr>
+                            <tr><td>Strassen</td><td>O(n^2.81)</td><td>O(n²) extra for temp matrices</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Practical note:</strong> Due to high constant factors and overhead, Strassen’s is often used only for very large matrices, sometimes in a hybrid approach with standard multiplication for small submatrices.</p>
+                    <div class="tip-box"><strong>💡 Insight:</strong> Strassen’s algorithm shows that divide & conquer can break the O(n³) barrier for matrix multiplication. It’s a classic example of algorithm design reducing computational complexity.</div>
+                </div>
+
+                <!-- ==================== CLOSEST PAIR OF POINTS ==================== -->
+                <div class="concept-card" id="day4">
+                    <h3><span class="day-badge">4</span> Closest Pair of Points</h3>
+                    <p><strong>How it works:</strong> Given n points in a 2D plane, find the pair with the smallest Euclidean distance. A naive O(n²) approach compares all pairs. The divide & conquer algorithm sorts points by x‑coordinate, recursively finds the closest distance in left and right halves, then checks a “strip” around the vertical dividing line. By only checking points within the strip that are close in y, it reduces the merging step to O(n) after sorting by y, yielding O(n log n) total time.</p>
+
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code"></i> 📍 Closest Pair — Pseudocode Outline <span class="badge visual">Infographic</span></div>
+                        <div class="pseudocode-block">
+function closestPair(points sorted by x):
+    if n <= 3: brute force
+    mid = n/2
+    leftMin = closestPair(left half)
+    rightMin = closestPair(right half)
+    d = min(leftMin, rightMin)
+    create strip of points within distance d of mid line
+    sort strip by y
+    for each point in strip:
+        check next 7 points in y-order
+        update d if closer pair found
+    return d
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">Complexity Analysis</h4>
+                    <table class="info-table">
+                        <thead><tr><th>Step</th><th>Time Complexity</th><th>Space Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td>Sorting by x</td><td>O(n log n)</td><td>O(n)</td></tr>
+                            <tr><td>Divide & conquer recursion</td><td>O(n log n)</td><td>O(n) temporary arrays</td></tr>
+                            <tr><td><strong>Overall</strong></td><td><strong>O(n log n)</strong></td><td>O(n)</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Key detail:</strong> The strip checking step is O(n) because each point is compared with at most 7 others, making the merge linear.</p>
+                    <div class="tip-box"><strong>💡 Application:</strong> Used in collision detection, clustering, and many geometric algorithms.</div>
+                </div>
+
+                <!-- ==================== COMPARATIVE ANALYSIS ==================== -->
+                <div class="concept-card" id="comparison">
+                    <h3><i class="fas fa-balance-scale"></i> Comparative Summary</h3>
+                    <table class="comparative-table">
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Use case</th>
+                                <th>Time Complexity</th>
+                                <th>Space Complexity</th>
+                                <th>Key Requirement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Binary Search</strong></td><td>Search in sorted array</td><td>O(log n)</td><td>O(1)</td><td>Sorted data</td></tr>
+                            <tr><td><strong>Quick Select</strong></td><td>Find k‑th smallest/largest</td><td>O(n) avg, O(n²) worst</td><td>O(log n) stack</td><td>Random pivot for average case</td></tr>
+                            <tr><td><strong>Strassen’s</strong></td><td>Multiply large matrices</td><td>O(n^2.81)</td><td>O(n²)</td><td>Square matrices, power of two size</td></tr>
+                            <tr><td><strong>Closest Pair</strong></td><td>Computational geometry</td><td>O(n log n)</td><td>O(n)</td><td>Pre‑sort by x and y</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ==================== DSA QUESTIONS ==================== -->
+                <div class="concept-card" id="dsa-questions">
+                    <h3><i class="fas fa-question"></i> Practice Problems</h3>
+                    <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner Level</h4>
+                    <div class="practice-problem"><details><summary>1. Binary Search — First Occurrence</summary><div class="solution"><p><strong>Problem:</strong> Modify binary search to return the index of the first occurrence of a target in a sorted array that may contain duplicates.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def first_occurrence(arr, target):
+    low, high = 0, len(arr)-1
+    result = -1
+    while low <= high:
+        mid = (low+high)//2
+        if arr[mid] == target:
+            result = mid
+            high = mid-1      # keep searching left
+        elif arr[mid] < target:
+            low = mid+1
+        else:
+            high = mid-1
+    return result</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Quick Select — Find Median</summary><div class="solution"><p><strong>Problem:</strong> Use quick select to find the median of an unsorted array. (If length even, return lower median.)</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def find_median(arr):
+    n = len(arr)
+    k = (n+1)//2   # ceil(n/2)
+    return quick_select(arr, 0, n-1, k)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+
+                    <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate Level</h4>
+                    <div class="practice-problem"><details><summary>3. Strassen’s for 2×2 Matrices</summary><div class="solution"><p><strong>Problem:</strong> Implement Strassen’s multiplication for 2×2 matrices without recursion (just the 7 products and addition).</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def strassen_2x2(A, B):
+    a,b,c,d = A[0][0], A[0][1], A[1][0], A[1][1]
+    e,f,g,h = B[0][0], B[0][1], B[1][0], B[1][1]
+    p1 = (a+d)*(e+h)
+    p2 = (c+d)*e
+    p3 = a*(f-h)
+    p4 = d*(g-e)
+    p5 = (a+b)*h
+    p6 = (c-a)*(e+f)
+    p7 = (b-d)*(g+h)
+    C11 = p1 + p4 - p5 + p7
+    C12 = p3 + p5
+    C21 = p2 + p4
+    C22 = p1 - p2 + p3 + p6
+    return [[C11,C12],[C21,C22]]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>4. Closest Pair — Brute Force for Small n</summary><div class="solution"><p><strong>Problem:</strong> Write the brute‑force O(n²) helper used when the number of points ≤ 3 in the recursive algorithm.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def brute_force_closest(points):
+    min_dist = float('inf')
+    n = len(points)
+    for i in range(n):
+        for j in range(i+1, n):
+            dist = math.dist(points[i], points[j])
+            if dist < min_dist:
+                min_dist = dist
+    return min_dist</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                </div>
+
+                <!-- ==================== UNSOLVED EXERCISES ==================== -->
+                <div class="concept-card" id="unsolved-exercises">
+                    <h3><i class="fas fa-question-circle"></i> Unsolved Practice</h3>
+                    <div class="practice-problem"><details><summary>1. Binary Search in Rotated Sorted Array</summary><div class="solution"><p><strong>Problem:</strong> Search for a target in a rotated sorted array (e.g., [4,5,6,7,0,1,2]). Return its index.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Quick Select to find Top K largest elements</summary><div class="solution"><p><strong>Problem:</strong> Use partitioning to find the K largest elements of an array without fully sorting.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>3. Implement full recursive Strassen’s for n×n matrices (n power of 2)</summary><div class="solution"><p><strong>Problem:</strong> Write a recursive function that pads matrices to the next power of two and applies Strassen’s algorithm.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>4. Closest Pair with Points Randomly Distributed</summary><div class="solution"><p><strong>Problem:</strong> Implement the full O(n log n) closest pair algorithm including pre‑sorting and strip merging.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#day1">Binary Search</a></li>
+                <li><a href="#day2">Quick Select</a></li>
+                <li><a href="#day3">Strassen’s</a></li>
+                <li><a href="#day4">Closest Pair</a></li>
+                <li><a href="#comparison">Comparative Summary</a></li>
+                <li><a href="#dsa-questions">Practice Problems</a></li>
+                <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20DSA%20preparation%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+    </a>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/class-10/class10-testseries.html">Test Series</a>
+            <a href="/english.html">English</a>
+            <a href="/dsa/dsa-intro.html">DSA Prep</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+        <p>Online &amp; Offline | Small batches | Expert faculty</p>
+    </footer>
+
+    <script src="../js/learn-python.js"></script>
+    <script>
+        // ===== PROGRESS & SCROLL =====
+        function scrollToDay(dayId) {
+            const el = document.getElementById(dayId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                el.classList.add('pulse-highlight');
+                setTimeout(() => el.classList.remove('pulse-highlight'), 3000);
+            }
+            updateProgressDots(dayId);
+        }
+        function updateProgressDots(activeDayId) {
+            const dayMap = { 'day1':1, 'day2':2, 'day3':3, 'day4':4 };
+            const activeDay = dayMap[activeDayId] || 1;
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                const d = parseInt(dot.getAttribute('data-day'));
+                dot.classList.remove('active','completed');
+                if (d === activeDay) dot.classList.add('active');
+                else if (d < activeDay) dot.classList.add('completed');
+            });
+            document.getElementById('weekProgressFill').style.width = ((activeDay / 4) * 100) + '%';
+        }
+        // Scroll spy
+        const dayIds = ['day1','day2','day3','day4','comparison','dsa-questions','unsolved-exercises'];
+        window.addEventListener('scroll', () => {
+            let currentDay = 'day1';
+            dayIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 160) currentDay = id;
+            });
+            if (dayIds.includes(currentDay)) updateProgressDots(currentDay);
+            document.querySelectorAll('.page-tracker a').forEach(a => {
+                const href = a.getAttribute('href');
+                a.style.fontWeight = href === '#' + currentDay ? '700' : '400';
+                a.style.color = href === '#' + currentDay ? 'var(--primary)' : '';
+            });
+        }, { passive: true });
+        // Scroll to top
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+        }, { passive: true });
+        // Copy code (fallback)
+        if (typeof copyCode !== 'function') {
+            window.copyCode = function(btn) {
+                const code = btn.closest('.code-block')?.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.textContent).then(() => {
+                        const icon = btn.querySelector('i');
+                        if (icon) { icon.classList.replace('fa-copy','fa-check'); setTimeout(() => icon.classList.replace('fa-check','fa-copy'), 2000); }
+                    });
+                }
+            };
+        }
+        // Particle burst
+        function createParticles(element, event) {
+            const emojis = ['🔍','🎯','🔢','📍','💡','🚀','✨'];
+            const rect = element.getBoundingClientRect();
+            const centerX = event.clientX - rect.left;
+            const centerY = event.clientY - rect.top;
+            for (let i = 0; i < 6; i++) {
+                const particle = document.createElement('span');
+                particle.className = 'particle-emoji';
+                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = 25 + Math.random() * 50;
+                particle.style.setProperty('--px', Math.cos(angle) * distance + 'px');
+                particle.style.setProperty('--py', Math.sin(angle) * distance + 'px');
+                element.appendChild(particle);
+                setTimeout(() => particle.remove(), 700);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgressDots('day1');
+        });
+        console.log('🧠 Divide & Conquer Algorithms — DSA page ready!');
+    </script>
+</body>
+</html>

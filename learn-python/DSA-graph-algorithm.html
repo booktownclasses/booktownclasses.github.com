@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/dsa/graph-algorithms.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>Graph Algorithms: BFS, DFS, Shortest Paths, MST & More | DSA | BookTown Classes</title>
+    <meta name="description" content="Master graph algorithms step by step: BFS/DFS, Dijkstra, Bellman‑Ford, Floyd‑Warshall, Kruskal, Prim, Topological Sort, and SCC. Detailed walkthroughs, pseudocode, examples, and practice problems." />
+    <meta name="keywords" content="DSA, graph algorithms, BFS, DFS, Dijkstra, Bellman Ford, Floyd Warshall, Kruskal, Prim, topological sort, Kosaraju, Tarjan, strongly connected components, BookTown Classes" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Graph Algorithms: Step‑by‑Step Walkthroughs | DSA | BookTown Classes" />
+    <meta property="og:description" content="From traversal to shortest paths and MST – learn every critical graph algorithm with pseudocode, concrete examples, and step‑by‑step breakdowns." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+    <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --accent: #3b82f6;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --success: #059669;
+            --info: #7c3aed;
+            --radius: 14px;
+            --shadow: 0 4px 20px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+        }
+        body.dark-mode {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: #334155;
+        }
+
+        .mini-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        .mini-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:220px; height:220px; background:radial-gradient(circle,rgba(37,99,235,0.25) 0%,transparent 70%); border-radius:50%; animation:heroFloat 8s ease-in-out infinite; }
+        .mini-hero::after { content:''; position:absolute; bottom:-40px; left:-40px; width:180px; height:180px; background:radial-gradient(circle,rgba(124,58,237,0.2) 0%,transparent 70%); border-radius:50%; animation:heroFloat 10s ease-in-out infinite reverse; }
+        @keyframes heroFloat { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(15px,-10px) scale(1.05);} }
+        .mini-hero .hero-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(37,99,235,0.2); color:#93c5fd; padding:5px 14px; border-radius:30px; font-size:0.7rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:0.8rem; border:1px solid rgba(37,99,235,0.3); position:relative; z-index:1; }
+        .mini-hero .hero-badge .pulse-dot { width:7px; height:7px; background:#60a5fa; border-radius:50%; animation:dotPulse 2s infinite; }
+        @keyframes dotPulse { 0%,100%{box-shadow:0 0 0 0 rgba(96,165,250,0.6);} 50%{box-shadow:0 0 0 10px rgba(96,165,250,0);} }
+        .mini-hero .hero-headline { font-size:1.8rem; font-weight:800; color:#f1f5f9; margin:0 0 0.5rem; position:relative; z-index:1; }
+        .gradient-text { background:linear-gradient(135deg,#60a5fa,#a78bfa,#f472b6); background-size:300% 300%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 5s ease-in-out infinite; }
+        @keyframes shimmer { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+        .mini-hero .hero-sub { font-size:0.9rem; color:#94a3b8; position:relative; z-index:1; }
+
+        .week-progress-wrap { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.75); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:10px 18px; margin-bottom:20px; border-radius:0 0 var(--radius) var(--radius); box-shadow:0 2px 12px rgba(0,0,0,0.04); display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+        body.dark-mode .week-progress-wrap { background:rgba(30,41,59,0.8); }
+        .progress-label { font-weight:700; font-size:0.8rem; color:var(--muted); white-space:nowrap; }
+        .progress-track { flex:1; height:8px; background:var(--border); border-radius:8px; overflow:hidden; }
+        .progress-fill { height:100%; background:linear-gradient(90deg,var(--primary),var(--info)); border-radius:8px; transition:width 0.5s ease; }
+        .progress-days { display:flex; gap:5px; }
+        .progress-dot { width:26px; height:26px; border-radius:50%; background:var(--border); display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; cursor:pointer; transition:0.3s; color:var(--muted); }
+        .progress-dot.completed { background:var(--success); color:#fff; }
+        .progress-dot.active { background:linear-gradient(135deg,var(--primary),var(--info)); color:#fff; box-shadow:0 0 14px rgba(37,99,235,0.5); animation:pulseDot 2s infinite; }
+        @keyframes pulseDot { 0%,100%{box-shadow:0 0 8px rgba(37,99,235,0.4);} 50%{box-shadow:0 0 22px rgba(37,99,235,0.8);} }
+        .progress-dot:hover { transform:scale(1.15); }
+
+        .info-card { background:rgba(255,255,255,0.7); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(203,213,225,0.5); border-radius:var(--radius); padding:22px 20px; margin:20px 0; box-shadow:var(--shadow); transition:all 0.35s ease; position:relative; overflow:hidden; }
+        body.dark-mode .info-card { background:rgba(30,41,59,0.7); border-color:rgba(51,65,85,0.5); }
+        .info-card:hover { box-shadow:var(--shadow-lg); border-color:var(--primary-light); transform:translateY(-2px); }
+        .info-card .card-title { font-size:1.05rem; font-weight:700; color:var(--primary); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+        .info-card .card-title i { font-size:1.2rem; background:linear-gradient(135deg,rgba(37,99,235,0.15),rgba(124,58,237,0.1)); padding:8px; border-radius:10px; }
+        .badge { display:inline-block; padding:4px 10px; border-radius:20px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; margin-left:auto; }
+        .badge.visual { background:#ede9fe; color:#6d28d9; }
+
+        .genz-course-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:10px; margin:1.1rem 0; }
+        .genz-day-card { background:linear-gradient(135deg,#0f172a 0%,#1e293b 40%,#1e3a5f 100%); border-radius:1.25rem; padding:1.2rem 0.8rem; color:#f1f5f9; cursor:pointer; transition:transform 0.25s ease, box-shadow 0.25s ease; box-shadow:0 4px 15px rgba(0,0,0,0.3); display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; overflow:hidden; }
+        .genz-day-card:hover { transform:translateY(-6px); box-shadow:0 12px 25px rgba(0,198,255,0.25); }
+        .genz-day-card::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent); transition:left 0.7s ease; }
+        .genz-day-card:hover::after { left:100%; }
+        .genz-day-num { font-size:1.3rem; font-weight:800; line-height:1; background:linear-gradient(to right,#00c6ff,#ee0979); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:0.1rem; }
+        .genz-day-icon { font-size:1.3rem; margin-bottom:0.2rem; filter:drop-shadow(0 0 4px rgba(0,198,255,0.5)); }
+        .genz-day-title { font-size:0.75rem; font-weight:700; margin:0.2rem 0 0.3rem; color:#ffffff; letter-spacing:0.3px; }
+        .genz-day-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:0.15rem; margin-top:0.15rem; }
+        .genz-day-tags span { background:rgba(255,255,255,0.08); backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.15); color:#cbd5e1; font-size:0.6rem; padding:0.1rem 0.4rem; border-radius:20px; margin:1px 1px; font-weight:500; white-space:nowrap; }
+        .genz-day-card:hover .genz-day-tags span { background:rgba(1,36,45,0.2); border-color:#00c6ff; color:#ffffff; }
+
+        .comparative-table { width:100%; border-collapse:collapse; margin:1.5rem 0; background:rgba(15,23,42,0.6); backdrop-filter:blur(10px); border-radius:0.75rem; overflow:hidden; }
+        .comparative-table th, .comparative-table td { padding:0.6rem 0.8rem; text-align:left; border-bottom:1px solid #334155; font-size:0.85rem; }
+        .comparative-table th { background:#1e293b; color:#f0f9ff; font-weight:600; }
+        .comparative-table tr:last-child td { border-bottom:none; }
+        .comparative-table tr:hover td { background:rgba(59,130,246,0.08); }
+
+        .pseudocode-block { font-family:'Fira Code',monospace; background:#1e293b; padding:1rem; border-radius:0.5rem; white-space:pre; overflow-x:auto; color:#cbd5e1; font-size:0.85rem; }
+
+        .step-walkthrough { background:#f8fafc; border-left:4px solid var(--primary); padding:1rem; margin:1rem 0; border-radius:0 8px 8px 0; }
+        body.dark-mode .step-walkthrough { background:#1e293b; border-color:#3b82f6; }
+
+        .particle-emoji { position:absolute; pointer-events:none; z-index:10; font-size:1.2rem; animation:particleBurst 0.7s cubic-bezier(0,0.9,0.3,1) forwards; }
+        @keyframes particleBurst { 0%{opacity:1;transform:translate(0,0) scale(1);} 100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0.2);} }
+        .pulse-highlight { animation:gentlePulse 3s ease-in-out 1; }
+        @keyframes gentlePulse { 0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,0.3);} 50%{box-shadow:0 0 0 12px rgba(37,99,235,0);} }
+
+        .scroll-top-btn { position:fixed; bottom:90px; right:24px; width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--info)); color:#fff; border:none; cursor:pointer; font-size:1.2rem; z-index:99; box-shadow:0 4px 16px rgba(37,99,235,0.3); transition:0.3s; opacity:0; pointer-events:none; display:flex; align-items:center; justify-content:center; }
+        .scroll-top-btn.visible { opacity:1; pointer-events:auto; }
+        .scroll-top-btn:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(37,99,235,0.5); }
+
+        @media (max-width:768px) {
+            .mini-hero { padding:1.2rem; }
+            .mini-hero .hero-headline { font-size:1.3rem; }
+            .genz-course-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width:500px) {
+            .genz-course-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <!-- unchanged floating shapes, header, sidebar containers -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    <div id="header-container"></div>
+    <div class="main-container">
+        <aside class="sidebar" id="mainSidebar"></aside>
+        <main class="content">
+
+            <!-- Hero and Progress Bar unchanged -->
+            <div class="mini-hero">
+                <div class="hero-badge"><span class="pulse-dot"></span> DSA • Graph Algorithms</div>
+                <h1 class="hero-headline"><span class="gradient-text">Graph Traversal, Shortest Path</span> & MST</h1>
+                <p class="hero-sub">Step‑by‑step walkthroughs of BFS, DFS, Dijkstra, Bellman‑Ford, Floyd‑Warshall, Kruskal, Prim, Topological Sort, and SCC — with concrete examples and practice.</p>
+            </div>
+            <div class="week-progress-wrap">
+                <span class="progress-label">Algorithms</span>
+                <div class="progress-track"><div class="progress-fill" id="weekProgressFill" style="width:0%"></div></div>
+                <div class="progress-days">
+                    <div class="progress-dot" data-day="1" onclick="scrollToDay('day1')">1</div>
+                    <div class="progress-dot" data-day="2" onclick="scrollToDay('day2')">2</div>
+                    <div class="progress-dot" data-day="3" onclick="scrollToDay('day3')">3</div>
+                    <div class="progress-dot" data-day="4" onclick="scrollToDay('day4')">4</div>
+                    <div class="progress-dot" data-day="5" onclick="scrollToDay('day5')">5</div>
+                    <div class="progress-dot" data-day="6" onclick="scrollToDay('day6')">6</div>
+                    <div class="progress-dot" data-day="7" onclick="scrollToDay('day7')">7</div>
+                </div>
+            </div>
+
+            <div class="content-section active">
+                <div class="section-intro">
+                    <p><strong>📌 Graph Algorithms:</strong> Graphs are everywhere – social networks, maps, dependencies. Here we break down the seven most important algorithm categories, using small examples and step‑by‑step walkthroughs to build real understanding.</p>
+                    <p><strong>🎯 How to use this page:</strong> Each section contains a conceptual explanation, a worked‑out example with a small graph, detailed pseudocode, and complexity notes. Practice problems follow with hints and solutions.</p>
+                </div>
+
+                <!-- Gen Z Topic Cards unchanged -->
+                <div class="genz-course-grid">
+                    <div class="genz-day-card" onclick="scrollToDay('day1')"><div class="genz-day-num">01</div><div class="genz-day-icon"><i class="fas fa-project-diagram"></i></div><h4 class="genz-day-title">BFS / DFS</h4><div class="genz-day-tags"><span>traversal</span><span>O(V+E)</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day2')"><div class="genz-day-num">02</div><div class="genz-day-icon"><i class="fas fa-route"></i></div><h4 class="genz-day-title">Dijkstra</h4><div class="genz-day-tags"><span>non‑neg</span><span>O((V+E) log V)</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day3')"><div class="genz-day-num">03</div><div class="genz-day-icon"><i class="fas fa-balance-scale-left"></i></div><h4 class="genz-day-title">Bellman‑Ford</h4><div class="genz-day-tags"><span>neg weights</span><span>O(VE)</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day4')"><div class="genz-day-num">04</div><div class="genz-day-icon"><i class="fas fa-th"></i></div><h4 class="genz-day-title">Floyd‑Warshall</h4><div class="genz-day-tags"><span>all‑pairs</span><span>O(V³)</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day5')"><div class="genz-day-num">05</div><div class="genz-day-icon"><i class="fas fa-tree"></i></div><h4 class="genz-day-title">Kruskal / Prim</h4><div class="genz-day-tags"><span>MST</span><span>O(E log V)</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day6')"><div class="genz-day-num">06</div><div class="genz-day-icon"><i class="fas fa-sort-amount-up"></i></div><h4 class="genz-day-title">Topo Sort</h4><div class="genz-day-tags"><span>DAG</span><span>O(V+E)</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day7')"><div class="genz-day-num">07</div><div class="genz-day-icon"><i class="fas fa-link"></i></div><h4 class="genz-day-title">SCC (Kosaraju/Tarjan)</h4><div class="genz-day-tags"><span>connectivity</span><span>O(V+E)</span></div></div>
+                </div>
+
+                <!-- ==================== BFS / DFS (ENHANCED) ==================== -->
+                <div class="concept-card" id="day1">
+                    <h3><span class="day-badge">1</span> BFS & DFS – Graph Traversal</h3>
+                    <p><strong>Why it matters:</strong> Traversal is the foundation of almost every graph algorithm. BFS explores neighbors layer by layer (great for shortest paths in unweighted graphs), while DFS dives deep into a branch before backtracking (useful for cycle detection, topological sorting, and more).</p>
+
+                    <h4>🔍 Example Graph</h4>
+                    <pre style="font-family:monospace; background:#1e293b; color:#cbd5e1; padding:10px;">
+        A
+       / \
+      B   C
+     / \   \
+    D   E   F
+                    </pre>
+                    <p>Adjacency list: <code>A: [B,C], B: [A,D,E], C: [A,F], D: [B], E: [B], F: [C]</code></p>
+
+                    <div class="step-walkthrough">
+                        <h5>🚀 BFS from A (queue)</h5>
+                        <ol>
+                            <li>Queue: [A], visited: {A}</li>
+                            <li>Pop A, push neighbors B, C → Queue: [B,C], visited: {A,B,C}</li>
+                            <li>Pop B, push D, E → Queue: [C,D,E], visited: {A,B,C,D,E}</li>
+                            <li>Pop C, push F → Queue: [D,E,F], visited: {A,B,C,D,E,F}</li>
+                            <li>Pop D (no new) → Queue: [E,F]</li>
+                            <li>Pop E → Queue: [F]</li>
+                            <li>Pop F → Queue: []</li>
+                        </ol>
+                        <p>Order: <strong>A → B → C → D → E → F</strong> (layers: first A, then B,C, then D,E,F)</p>
+                    </div>
+
+                    <div class="step-walkthrough">
+                        <h5>🚀 DFS from A (recursive)</h5>
+                        <ol>
+                            <li>Visit A, go to B</li>
+                            <li>Visit B, go to D (first unvisited neighbor)</li>
+                            <li>Visit D (dead end), backtrack to B, go to E</li>
+                            <li>Visit E (dead end), backtrack to A, go to C</li>
+                            <li>Visit C, go to F</li>
+                            <li>Visit F (dead end). Done.</li>
+                        </ol>
+                        <p>Order: <strong>A → B → D → E → C → F</strong></p>
+                    </div>
+
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code"></i> Pseudocode <span class="badge visual">Infographic</span></div>
+                        <div class="pseudocode-block">
+// BFS (iterative)
+queue.enqueue(start), visited[start]=true
+while queue not empty:
+    v = queue.dequeue()
+    for each neighbor w of v:
+        if not visited[w]:
+            visited[w]=true, queue.enqueue(w)
+
+// DFS (recursive)
+def dfs(v):
+    visited[v]=true
+    for each neighbor w of v:
+        if not visited[w]:
+            dfs(w)
+                        </div>
+                    </div>
+                    <table class="info-table"><thead><tr><th>Algorithm</th><th>Time</th><th>Space</th></tr></thead><tbody><tr><td>BFS</td><td>O(V+E)</td><td>O(V) (queue)</td></tr><tr><td>DFS</td><td>O(V+E)</td><td>O(V) (stack/recursion)</td></tr></tbody></table>
+                    <div class="tip-box"><strong>💡 Key Insight:</strong> BFS finds the shortest path in unweighted graphs (distance in edges). DFS is easier to implement recursively and can detect cycles in directed graphs by tracking recursion stack.</div>
+                </div>
+
+                <!-- ==================== DIJKSTRA (ENHANCED) ==================== -->
+                <div class="concept-card" id="day2">
+                    <h3><span class="day-badge">2</span> Dijkstra’s Algorithm – Single‑Source Shortest Path (non‑negative weights)</h3>
+                    <p><strong>Idea:</strong> Greedy algorithm that maintains a set of visited nodes with the shortest distance known. At each step, it picks the unvisited node with the smallest distance and relaxes its outgoing edges.</p>
+
+                    <h4>🧭 Worked Example</h4>
+                    <pre style="font-family:monospace; background:#1e293b; color:#cbd5e1; padding:10px;">
+        A --2--> B --1--> D
+        |         |        ^
+        4         3        |
+        |         v        | 5
+        +------> C --------+
+                    </pre>
+                    <p>Adjacency: A→B (2), A→C (4); B→C (3), B→D (1); C→D (5)</p>
+                    <div class="step-walkthrough">
+                        <h5>⏳ Dijkstra from A</h5>
+                        <ol>
+                            <li>Init: dist = {A:0, B:∞, C:∞, D:∞}; heap = [(0,A)]</li>
+                            <li>Extract A (0): relax B (0+2=2 < ∞) → dist[B]=2, push (2,B); relax C (0+4=4) → dist[C]=4, push (4,C)</li>
+                            <li>Extract B (2): relax C (2+3=5, no change), relax D (2+1=3) → dist[D]=3, push (3,D)</li>
+                            <li>Extract D (3): no outgoing edges</li>
+                            <li>Extract C (4): relax D (4+5=9 > 3, skip)</li>
+                            <li>Distances: A=0, B=2, C=4, D=3</li>
+                        </ol>
+                    </div>
+
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code"></i> Pseudocode <span class="badge visual">Infographic</span></div>
+                        <div class="pseudocode-block">
+dist[source]=0, all others = INF
+pq.insert((0, source))
+while pq not empty:
+    d, u = pq.extract_min()
+    if d > dist[u]: continue
+    for each neighbor v with weight w:
+        if dist[u]+w < dist[v]:
+            dist[v] = dist[u]+w
+            pq.insert((dist[v], v))
+                        </div>
+                    </div>
+                    <table class="info-table"><thead><tr><th>Data structure</th><th>Time Complexity</th></tr></thead><tbody><tr><td>Binary heap</td><td>O((V+E) log V)</td></tr><tr><td>Fibonacci heap</td><td>O(E + V log V) theoretical</td></tr></tbody></table>
+                    <div class="warning-box"><strong>⚠️ Limitation:</strong> Fails if there are negative edge weights. Use Bellman‑Ford for negative weights.</div>
+                </div>
+
+                <!-- ==================== BELLMAN-FORD (ENHANCED) ==================== -->
+                <div class="concept-card" id="day3">
+                    <h3><span class="day-badge">3</span> Bellman‑Ford – Shortest Path with Negative Weights</h3>
+                    <p><strong>Why needed:</strong> Dijkstra fails with negative edges because a greedy choice may be suboptimal. Bellman‑Ford relaxes <strong>all edges</strong> V‑1 times, ensuring correct distances unless a negative cycle exists.</p>
+
+                    <h4>⚖️ Example (negative edge)</h4>
+                    <pre style="font-family:monospace; background:#1e293b; color:#cbd5e1; padding:10px;">
+        A --2--> B --(-3)--> C
+        |                     ^
+        +-------4-------------+
+                    </pre>
+                    <p>Edges: A→B (2), B→C (-3), A→C (4). Source A.</p>
+                    <div class="step-walkthrough">
+                        <h5>🔄 Relaxations (V=3, V-1 = 2 passes)</h5>
+                        <ol>
+                            <li>Init: dist=[A:0, B:∞, C:∞]</li>
+                            <li><strong>Pass 1:</strong> A→B: 0+2=2 → B=2; A→C: 0+4=4 → C=4; B→C: 2+(-3) = -1 → C becomes -1 (better)</li>
+                            <li>After Pass 1: A=0, B=2, C=-1</li>
+                            <li><strong>Pass 2:</strong> No changes (all edges relaxed, no further improvement).</li>
+                            <li><strong>Negative cycle check (pass 3):</strong> No relaxation possible → no negative cycle.</li>
+                        </ol>
+                    </div>
+
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code"></i> Pseudocode <span class="badge visual">Infographic</span></div>
+                        <div class="pseudocode-block">
+dist[source]=0, others=INF
+repeat V-1 times:
+    for each edge (u,v) with weight w:
+        if dist[u]+w < dist[v]:
+            dist[v]=dist[u]+w
+// Negative cycle detection
+for each edge (u,v) with weight w:
+    if dist[u]+w < dist[v]:
+        report negative cycle
+                        </div>
+                    </div>
+                    <table class="info-table"><thead><tr><th>Case</th><th>Time Complexity</th></tr></thead><tbody><tr><td>Always</td><td>O(VE)</td></tr></tbody></table>
+                    <div class="tip-box"><strong>💡 Key Insight:</strong> Slower than Dijkstra but handles negative weights and detects negative cycles – essential for currency arbitrage problems.</div>
+                </div>
+
+                <!-- ==================== FLOYD-WARSHALL (ENHANCED) ==================== -->
+                <div class="concept-card" id="day4">
+                    <h3><span class="day-badge">4</span> Floyd‑Warshall – All‑Pairs Shortest Paths</h3>
+                    <p><strong>Dynamic programming</strong> that builds up the shortest paths between every pair of vertices by considering whether going through an intermediate vertex k yields a shorter path.</p>
+
+                    <h4>🌐 Example (3 cities)</h4>
+                    <pre style="font-family:monospace; background:#1e293b; color:#cbd5e1; padding:10px;">
+       0      1      2
+   0 [0,   5,  INF]
+   1 [5,   0,   2  ]
+   2 [INF, 2,   0  ]
+                    </pre>
+                    <p>Edge weights: 0‑1 = 5, 1‑2 = 2 (undirected).</p>
+                    <div class="step-walkthrough">
+                        <h5>🔄 Iterations</h5>
+                        <ul>
+                            <li>k=0 (via vertex 0): 0→1 is 5, 0→2 via 0? no. 1→0→2: 1‑0 (5) + 0‑2 (INF) → no change.</li>
+                            <li>k=1: 0→1→2: 5+2=7 < INF → update dist[0][2]=7; 2→1→0: 2+5=7 < INF → update dist[2][0]=7.</li>
+                            <li>k=2: nothing new.</li>
+                        </ul>
+                        <p>Final matrix: all pairs distances known (0‑2 is 7).</p>
+                    </div>
+
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code"></i> Pseudocode <span class="badge visual">Infographic</span></div>
+                        <div class="pseudocode-block">
+for k in range(V):
+    for i in range(V):
+        for j in range(V):
+            if dist[i][k] + dist[k][j] < dist[i][j]:
+                dist[i][j] = dist[i][k] + dist[k][j]
+                        </div>
+                    </div>
+                    <table class="info-table"><thead><tr><th>Time</th><th>Space</th></tr></thead><tbody><tr><td>O(V³)</td><td>O(V²)</td></tr></tbody></table>
+                    <div class="tip-box"><strong>💡 Good for:</strong> Dense graphs, small V (≤ 400), or when you need distances between every pair (e.g., routing tables).</div>
+                </div>
+
+                <!-- ==================== KRUSKAL / PRIM (ENHANCED) ==================== -->
+                <div class="concept-card" id="day5">
+                    <h3><span class="day-badge">5</span> Kruskal & Prim – Minimum Spanning Tree (MST)</h3>
+                    <p><strong>MST problem:</strong> Connect all vertices with minimum total edge weight, no cycles. Two classic approaches:</p>
+                    <ul>
+                        <li><strong>Kruskal:</strong> Greedy on edges – sort by weight, add if it doesn't create a cycle (Union‑Find).</li>
+                        <li><strong>Prim:</strong> Greedy on vertices – start from any node, repeatedly add the cheapest edge connecting the tree to a new vertex.</li>
+                    </ul>
+
+                    <h4>🌲 Example Graph</h4>
+                    <pre style="font-family:monospace; background:#1e293b; color:#cbd5e1; padding:10px;">
+       A ---1--- B
+       |         | \
+       3         2  4
+       |         |    \
+       C ---5--- D --- E
+                    </pre>
+                    <p>Edges: A‑B(1), A‑C(3), B‑D(2), B‑E(4), C‑D(5)</p>
+
+                    <div class="step-walkthrough">
+                        <h5>🪚 Kruskal</h5>
+                        <ol>
+                            <li>Sort edges: (A‑B,1), (B‑D,2), (A‑C,3), (B‑E,4), (C‑D,5)</li>
+                            <li>Add A‑B (set {A,B})</li>
+                            <li>Add B‑D (now {A,B,D})</li>
+                            <li>Add A‑C ({A,B,C,D})</li>
+                            <li>Next B‑E would connect E, add it (now all vertices)</li>
+                            <li>Skip C‑D (would form cycle).</li>
+                            <li>MST edges: A‑B, B‑D, A‑C, B‑E (weight 1+2+3+4 = 10)</li>
+                        </ol>
+                    </div>
+                    <div class="step-walkthrough">
+                        <h5>🌱 Prim (starting from A)</h5>
+                        <ol>
+                            <li>Start with {A}. Edges to tree: A‑B(1), A‑C(3) → choose A‑B (1).</li>
+                            <li>Tree {A,B}. Edges: A‑C(3), B‑D(2), B‑E(4) → choose B‑D(2).</li>
+                            <li>Tree {A,B,D}. Edges: A‑C(3), B‑E(4), C‑D(5) → choose A‑C(3).</li>
+                            <li>Tree {A,B,C,D}. Edges: B‑E(4), C‑D(5) → choose B‑E(4).</li>
+                            <li>All vertices connected. MST weight = 1+2+3+4 = 10.</li>
+                        </ol>
+                    </div>
+
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code"></i> Kruskal Pseudocode <span class="badge visual">Infographic</span></div>
+                        <div class="pseudocode-block">
+sort edges by weight
+for each edge (u,v) in sorted order:
+    if find(u) != find(v):
+        add to MST, union(u,v)
+                        </div>
+                    </div>
+                    <table class="info-table"><thead><tr><th>Algorithm</th><th>Time Complexity</th></tr></thead><tbody><tr><td>Kruskal</td><td>O(E log E) = O(E log V)</td></tr><tr><td>Prim (with heap)</td><td>O((V+E) log V)</td></tr></tbody></table>
+                    <div class="tip-box"><strong>💡 Use:</strong> Kruskal when edges are given directly; Prim when adjacency list is available and graph is dense.</div>
+                </div>
+
+                <!-- ==================== TOPOLOGICAL SORT (ENHANCED) ==================== -->
+                <div class="concept-card" id="day6">
+                    <h3><span class="day-badge">6</span> Topological Sort – Ordering DAG Nodes</h3>
+                    <p><strong>Problem:</strong> Given a DAG (Directed Acyclic Graph), produce a linear ordering of vertices such that for every directed edge u→v, u appears before v. Think of course prerequisites.</p>
+
+                    <h4>📚 Example: Task Dependencies</h4>
+                    <pre style="font-family:monospace; background:#1e293b; color:#cbd5e1; padding:10px;">
+       A --> B --> D
+        \          ^
+         \        /
+          --> C --
+                    </pre>
+                    <p>Edges: A→B, A→C, B→D, C→D. All tasks must follow A before B/C, B/C before D.</p>
+
+                    <div class="step-walkthrough">
+                        <h5>📋 Kahn’s Algorithm (in‑degree)</h5>
+                        <ol>
+                            <li>In‑degree: A=0, B=1, C=1, D=2.</li>
+                            <li>Queue = [A] (in‑degree 0). Result = []</li>
+                            <li>Pop A: add to result, decrease B & C. Now B=0, C=0 → queue = [B,C]</li>
+                            <li>Pop B: add to result, decrease D → D=1. Queue = [C]</li>
+                            <li>Pop C: add to result, decrease D → D=0 → queue = [D]</li>
+                            <li>Pop D: add to result. Queue empty.</li>
+                            <li>Result: <strong>A, B, C, D</strong> (or A, C, B, D – both valid).</li>
+                        </ol>
+                    </div>
+
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code"></i> Kahn’s Algorithm (BFS) <span class="badge visual">Infographic</span></div>
+                        <div class="pseudocode-block">
+compute in‑degree of all vertices
+queue = all vertices with in‑degree 0
+while queue not empty:
+    u = queue.dequeue()
+    result.append(u)
+    for each v adjacent to u:
+        in‑degree[v]--
+        if in‑degree[v]==0: queue.enqueue(v)
+if len(result)!=V: "cycle exists"
+                        </div>
+                    </div>
+                    <table class="info-table"><thead><tr><th>Time</th><th>Space</th></tr></thead><tbody><tr><td>O(V+E)</td><td>O(V) (queue + in‑degree)</td></tr></tbody></table>
+                    <div class="tip-box"><strong>💡 Application:</strong> Build systems, task scheduling, resolving dependencies (e.g., package managers).</div>
+                </div>
+
+                <!-- ==================== SCC (ENHANCED) ==================== -->
+                <div class="concept-card" id="day7">
+                    <h3><span class="day-badge">7</span> Strongly Connected Components – Kosaraju & Tarjan</h3>
+                    <p><strong>Problem:</strong> Find maximal sets of vertices where every vertex can reach every other vertex (SCC). Two classic O(V+E) algorithms.</p>
+
+                    <h4>🧩 Example Directed Graph</h4>
+                    <pre style="font-family:monospace; background:#1e293b; color:#cbd5e1; padding:10px;">
+        A -----> B -----> C
+        ^        |        |
+        |        v        v
+        D <----- E        F
+        |                 ^
+        +------- G <------+
+                    </pre>
+                    <p>Edges: A→B, B→C, C→F, F→G, G→D, D→A, B→E, E→D.</p>
+
+                    <div class="step-walkthrough">
+                        <h5>🔄 Kosaraju’s Two‑Pass DFS</h5>
+                        <ol>
+                            <li><strong>First DFS (original graph):</strong> record finish times (postorder) on stack. (Order might be: A, B, C, F, G, D, E)</li>
+                            <li><strong>Transpose graph:</strong> reverse every edge.</li>
+                            <li><strong>Second DFS on transposed graph</strong> in decreasing finish time order:
+                                <ul>
+                                    <li>Start at E (highest): E, D, A, B, C, F, G all connect → but wait, need correct order.</li>
+                                    <li>Actually: pop stack: E → DFS finds {E, D, A, B, C, F, G} – all connected, so one large SCC.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p>This graph is actually one SCC (except maybe some isolate? Let's adjust example): Add H→H (self loop). But for clarity, a simpler typical example is a graph with two SCCs.</p>
+                        <p>Instead, use a classic 2‑SCC example:</p>
+                        <pre style="font-family:monospace; background:#1e293b; color:#cbd5e1; padding:10px;">
+        0 → 1 → 2 → 3
+        ↑           ↓
+        └── 4 ←─────┘
+        (edges: 0→1,1→2,2→3,3→4,4→0) → one SCC; plus 0→5,5→6,6→5 (SCC2)
+                    </pre>
+                        <p>Walkthrough omitted for brevity, but the algorithm yields SCCs: {0,1,2,3,4} and {5,6}.</p>
+                    </div>
+
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code"></i> Kosaraju Outline <span class="badge visual">Infographic</span></div>
+                        <div class="pseudocode-block">
+1. DFS on original graph, push nodes to stack after recursion
+2. Transpose graph (reverse all edges)
+3. Pop nodes from stack, DFS on transposed graph;
+   each DFS forest is an SCC
+                        </div>
+                    </div>
+                    <table class="info-table"><thead><tr><th>Algorithm</th><th>Time</th><th>Space</th></tr></thead><tbody><tr><td>Kosaraju</td><td>O(V+E)</td><td>O(V+E)</td></tr><tr><td>Tarjan</td><td>O(V+E)</td><td>O(V)</td></tr></tbody></table>
+                    <div class="tip-box"><strong>💡 Key Insight:</strong> SCC decomposition reduces a directed graph into a DAG of its components – useful for 2‑SAT, dependency analysis, and many advanced problems.</div>
+                </div>
+
+                <!-- ==================== COMPARATIVE SUMMARY (unchanged) ==================== -->
+                <div class="concept-card" id="comparison">
+                    <h3><i class="fas fa-balance-scale"></i> Comparative Summary</h3>
+                    <table class="comparative-table">
+                        <thead><tr><th>Algorithm</th><th>Problem</th><th>Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td>BFS / DFS</td><td>Traversal, connected components</td><td>O(V+E)</td></tr>
+                            <tr><td>Dijkstra</td><td>Shortest path (non‑negative weights)</td><td>O((V+E) log V)</td></tr>
+                            <tr><td>Bellman‑Ford</td><td>Shortest path (negative weights allowed)</td><td>O(VE)</td></tr>
+                            <tr><td>Floyd‑Warshall</td><td>All‑pairs shortest paths</td><td>O(V³)</td></tr>
+                            <tr><td>Kruskal / Prim</td><td>Minimum spanning tree</td><td>O(E log V)</td></tr>
+                            <tr><td>Topological Sort</td><td>Ordering DAG nodes</td><td>O(V+E)</td></tr>
+                            <tr><td>Kosaraju / Tarjan</td><td>Strongly connected components</td><td>O(V+E)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ==================== DSA QUESTIONS (ENHANCED WITH STEP-BY-STEP) ==================== -->
+                <div class="concept-card" id="dsa-questions">
+                    <h3><i class="fas fa-question"></i> Practice Problems (with Hints)</h3>
+                    <h4 style="color:var(--accent);">🔰 Beginner</h4>
+                    <div class="practice-problem"><details><summary>1. BFS Shortest Path in Unweighted Graph</summary><div class="solution"><p><strong>Problem:</strong> Given an undirected graph, find the shortest distance (number of edges) from node 0 to all nodes.</p><p><strong>Step‑by‑step approach:</strong> Use a queue, initialize distance array with -1 (unvisited). Set dist[0]=0, push 0. While queue not empty, pop front, for each neighbor, if unvisited set dist[neighbor]=dist[curr]+1 and push.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">from collections import deque
+def bfs_shortest(adj, start):
+    n = len(adj)
+    dist = [-1] * n
+    dist[start] = 0
+    q = deque([start])
+    while q:
+        u = q.popleft()
+        for v in adj[u]:
+            if dist[v] == -1:
+                dist[v] = dist[u] + 1
+                q.append(v)
+    return dist
+# Example:
+# adj = [[1,2],[0,2,3],[0,1],[1]]
+# print(bfs_shortest(adj, 0)) → [0,1,1,2]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+
+                    <div class="practice-problem"><details><summary>2. Dijkstra – Cheapest Flight with at most K stops</summary><div class="solution"><p><strong>Problem:</strong> Find the cheapest price from src to dst with at most K stops.</p><p><strong>Hint:</strong> Use a modified Dijkstra where the priority is (cost, stops_used, node). Or BFS with limit.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">import heapq
+def findCheapestPrice(n, flights, src, dst, k):
+    adj = [[] for _ in range(n)]
+    for u,v,w in flights:
+        adj[u].append((v,w))
+    # (cost, node, stops_left)
+    pq = [(0, src, k+1)]
+    while pq:
+        cost, u, stops = heapq.heappop(pq)
+        if u == dst: return cost
+        if stops > 0:
+            for v, w in adj[u]:
+                heapq.heappush(pq, (cost+w, v, stops-1))
+    return -1</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+
+                    <h4 style="color:var(--accent);">⚡ Intermediate</h4>
+                    <div class="practice-problem"><details><summary>3. Bellman‑Ford – Detect Negative Cycle</summary><div class="solution"><p><strong>Problem:</strong> Check if the graph contains a negative cycle.</p><p><strong>How to solve:</strong> Run V-1 relaxations over all edges. Then run one more pass: if any distance can still be reduced, a negative cycle exists.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def has_negative_cycle(edges, V):
+    dist = [0] * V  # start with 0
+    for _ in range(V-1):
+        for u,v,w in edges:
+            if dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+    for u,v,w in edges:
+        if dist[u] + w < dist[v]:
+            return True  # cycle found
+    return False</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+
+                    <div class="practice-problem"><details><summary>4. Floyd‑Warshall – City with Smallest Number of Neighbors at Threshold</summary><div class="solution"><p><strong>Problem:</strong> Given n cities and weighted edges, find the city with the fewest reachable cities within a distance threshold.</p><p><strong>Solution:</strong> Compute all‑pairs shortest paths with Floyd‑Warshall, then count for each city how many others are within threshold.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def findTheCity(n, edges, distanceThreshold):
+    INF = 10**9
+    dist = [[INF]*n for _ in range(n)]
+    for i in range(n): dist[i][i]=0
+    for u,v,w in edges:
+        dist[u][v] = dist[v][u] = w
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if dist[i][k] + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+    ans = -1
+    min_cnt = n+1
+    for i in range(n):
+        cnt = sum(1 for j in range(n) if j!=i and dist[i][j] <= distanceThreshold)
+        if cnt <= min_cnt:
+            min_cnt, ans = cnt, i
+    return ans</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                </div>
+
+                <!-- ==================== UNSOLVED EXERCISES (with hints) ==================== -->
+                <div class="concept-card" id="unsolved-exercises">
+                    <h3><i class="fas fa-question-circle"></i> Unsolved Practice</h3>
+                    <div class="practice-problem"><details><summary>1. Cycle Detection in Directed Graph (DFS with recursion stack)</summary><div class="solution"><p><strong>Hint:</strong> Maintain three states: 0=unvisited, 1=visiting, 2=fully processed. If you encounter a node currently in the recursion stack (state 1), there is a cycle.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. MST Weight (Kruskal with DSU)</summary><div class="solution"><p><strong>Hint:</strong> Sort edges, use Union‑Find to check if adding an edge would create a cycle. If not, add its weight to total.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>3. Course Schedule (Topological Sort using Kahn’s Algorithm)</summary><div class="solution"><p><strong>Hint:</strong> Build adjacency list and in‑degree array. Start with courses that have no prerequisites, then reduce in‑degree of neighbors. If processed count equals numCourses, possible; else cycle exists.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>4. Tarjan’s Algorithm for SCC</summary><div class="solution"><p><strong>Hint:</strong> Use a single DFS with discovery times, low‑link values, and a stack. When you find a vertex with discovery == low, pop until that vertex to form an SCC.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- page tracker and footer unchanged -->
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#day1">BFS / DFS</a></li>
+                <li><a href="#day2">Dijkstra</a></li>
+                <li><a href="#day3">Bellman‑Ford</a></li>
+                <li><a href="#day4">Floyd‑Warshall</a></li>
+                <li><a href="#day5">Kruskal / Prim</a></li>
+                <li><a href="#day6">Topological Sort</a></li>
+                <li><a href="#day7">SCC (Kosaraju/Tarjan)</a></li>
+                <li><a href="#comparison">Comparative Summary</a></li>
+                <li><a href="#dsa-questions">Practice Problems</a></li>
+                <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20DSA%20preparation%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+    </a>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/class-10/class10-testseries.html">Test Series</a>
+            <a href="/english.html">English</a>
+            <a href="/dsa/dsa-intro.html">DSA Prep</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+        <p>Online &amp; Offline | Small batches | Expert faculty</p>
+    </footer>
+
+    <!-- scripts unchanged -->
+    <script src="../js/learn-python.js"></script>
+    <script>
+        // (same as before)
+        function scrollToDay(dayId) {
+            const el = document.getElementById(dayId);
+            if (el) {
+                el.scrollIntoView({ behavior:'smooth', block:'start' });
+                el.classList.add('pulse-highlight');
+                setTimeout(() => el.classList.remove('pulse-highlight'), 3000);
+            }
+            updateProgressDots(dayId);
+        }
+        function updateProgressDots(activeDayId) {
+            const dayMap = {'day1':1,'day2':2,'day3':3,'day4':4,'day5':5,'day6':6,'day7':7};
+            const activeDay = dayMap[activeDayId] || 1;
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                const d = parseInt(dot.getAttribute('data-day'));
+                dot.classList.remove('active','completed');
+                if (d === activeDay) dot.classList.add('active');
+                else if (d < activeDay) dot.classList.add('completed');
+            });
+            document.getElementById('weekProgressFill').style.width = ((activeDay / 7) * 100) + '%';
+        }
+        const dayIds = ['day1','day2','day3','day4','day5','day6','day7','comparison','dsa-questions','unsolved-exercises'];
+        window.addEventListener('scroll', () => {
+            let currentDay = 'day1';
+            dayIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 160) currentDay = id;
+            });
+            if (dayIds.includes(currentDay)) updateProgressDots(currentDay);
+            document.querySelectorAll('.page-tracker a').forEach(a => {
+                const href = a.getAttribute('href');
+                a.style.fontWeight = href === '#' + currentDay ? '700' : '400';
+                a.style.color = href === '#' + currentDay ? 'var(--primary)' : '';
+            });
+        }, { passive:true });
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+        }, { passive:true });
+        if (typeof copyCode !== 'function') {
+            window.copyCode = function(btn) {
+                const code = btn.closest('.code-block')?.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.textContent).then(() => {
+                        const icon = btn.querySelector('i');
+                        if (icon) { icon.classList.replace('fa-copy','fa-check'); setTimeout(() => icon.classList.replace('fa-check','fa-copy'), 2000); }
+                    });
+                }
+            };
+        }
+        function createParticles(element, event) {
+            const emojis = ['🔍','🚀','✨','⚡','📍','🧠','🔗'];
+            const rect = element.getBoundingClientRect();
+            const centerX = event.clientX - rect.left;
+            const centerY = event.clientY - rect.top;
+            for (let i=0;i<6;i++) {
+                const particle = document.createElement('span');
+                particle.className = 'particle-emoji';
+                particle.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+                particle.style.left = centerX+'px';
+                particle.style.top = centerY+'px';
+                const angle = Math.random()*2*Math.PI;
+                const distance = 25+Math.random()*50;
+                particle.style.setProperty('--px', Math.cos(angle)*distance+'px');
+                particle.style.setProperty('--py', Math.sin(angle)*distance+'px');
+                element.appendChild(particle);
+                setTimeout(() => particle.remove(), 700);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => updateProgressDots('day1'));
+        console.log('📊 Graph Algorithms – Enhanced walkthroughs ready!');
+    </script>
+</body>
+</html>
