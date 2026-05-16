@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="canonical" href="https://booktownclasses.github.io/dsa/iterative-sorting.html" />
+    <link rel="canonical" href="https://booktownclasses.github.io/dsa/divide-conquer-sorting.html" />
     <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
-    <title>Iterative Sorting: Bubble, Selection, Insertion Sort | DSA Preparation | BookTown Classes</title>
-    <meta name="description" content="Master iterative sorting algorithms for DSA: Bubble Sort, Selection Sort, Insertion Sort. Detailed pseudocode, time & space complexity analysis, comparative study, and DSA practice questions." />
-    <meta name="keywords" content="DSA, sorting algorithms, bubble sort, selection sort, insertion sort, iterative sorting, time complexity, space complexity, pseudocode, DSA questions, BookTown Classes" />
+    <title>Divide & Conquer Sorting: Merge, Quick & Heap Sort | DSA Preparation | BookTown Classes</title>
+    <meta name="description" content="Master advanced sorting algorithms for DSA: Merge Sort, Quick Sort, and Heap Sort. Detailed pseudocode, time & space complexity analysis, comparative study, and DSA practice questions." />
+    <meta name="keywords" content="DSA, sorting algorithms, merge sort, quick sort, heap sort, divide and conquer, time complexity, space complexity, pseudocode, DSA questions, BookTown Classes" />
     <meta name="author" content="BookTown Classes" />
-    <meta property="og:title" content="Iterative Sorting: Bubble, Selection, Insertion Sort | DSA Preparation | BookTown Classes" />
-    <meta property="og:description" content="Learn Bubble, Selection & Insertion Sort with pseudocode, complexity analysis, comparative table, and DSA practice problems. Perfect for DSA beginners." />
+    <meta property="og:title" content="Divide & Conquer Sorting: Merge, Quick & Heap Sort | DSA Preparation | BookTown Classes" />
+    <meta property="og:description" content="Learn Merge Sort, Quick Sort, and Heap Sort with pseudocode, complexity analysis, comparative table, and DSA practice problems. Ideal for DSA interviews and advanced learning." />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#3b82f6" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
 
     <link rel="stylesheet" href="../css/learn-python.css" />
@@ -258,7 +257,6 @@
             letter-spacing: 0.04em;
             margin-left: auto;
         }
-        .badge.concept { background: #dbeafe; color: #1e40af; }
         .badge.visual { background: #ede9fe; color: #6d28d9; }
 
         /* ===== GEN Z TOPIC CARDS ===== */
@@ -378,7 +376,8 @@
         }
         .tag-stable { background: #059669; color: white; padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.8rem; margin-left: 0.5rem; }
         .tag-unstable { background: #dc2626; color: white; padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.8rem; margin-left: 0.5rem; }
-        .tag-adaptive { background: #2563eb; color: white; padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.8rem; margin-left: 0.5rem; }
+        .tag-inplace { background: #7c3aed; color: white; padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.8rem; margin-left: 0.5rem; }
+        .tag-not-inplace { background: #d97706; color: white; padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.8rem; margin-left: 0.5rem; }
 
         /* ===== PARTICLE BURST ===== */
         .particle-emoji {
@@ -436,14 +435,14 @@
 
             <!-- ===== MINI HERO ===== -->
             <div class="mini-hero">
-                <div class="hero-badge"><span class="pulse-dot"></span> DSA • Sorting Algorithms</div>
-                <h1 class="hero-headline"><span class="gradient-text">Iterative Sorting</span> — Bubble, Selection &amp; Insertion</h1>
-                <p class="hero-sub">Deep dive into the three classic O(n²) sorts: pseudocode, complexity analysis, stability, adaptivity, and comparative breakdown — with hands‑on DSA problems.</p>
+                <div class="hero-badge"><span class="pulse-dot"></span> DSA • Advanced Sorting</div>
+                <h1 class="hero-headline"><span class="gradient-text">Merge, Quick &amp; Heap</span> Sort</h1>
+                <p class="hero-sub">Divide & conquer and tree‑based sorting: understand recursive splitting, partitioning, and heap‑based selection with pseudocode, analysis, and comparative insights.</p>
             </div>
 
             <!-- Sticky progress bar -->
             <div class="week-progress-wrap">
-                <span class="progress-label">Topics</span>
+                <span class="progress-label">Algorithms</span>
                 <div class="progress-track"><div class="progress-fill" id="weekProgressFill" style="width:0%"></div></div>
                 <div class="progress-days">
                     <div class="progress-dot" data-day="1" onclick="scrollToDay('day1')">1</div>
@@ -455,239 +454,281 @@
             <div class="content-section active">
                 <!-- Course Overview -->
                 <div class="section-intro">
-                    <p><strong>📌 Core Topic:</strong> Iterative sorting forms the foundation of algorithm design. Understanding these three O(n²) sorts is essential for DSA interviews and building intuition for more advanced algorithms like Merge Sort and Quick Sort.</p>
-                    <p><strong>🎯 What you'll learn:</strong> How each algorithm works step‑by‑step, its pseudocode, time/space complexity, stability, adaptivity, and common DSA questions that use them.</p>
+                    <p><strong>📌 Advanced Sorting:</strong> Moving beyond O(n²) iterative sorts, these three algorithms achieve O(n log n) average time complexity. Merge Sort uses the divide‑and‑conquer paradigm, Quick Sort is a fast in‑place partition‑based sort, and Heap Sort leverages a binary heap data structure.</p>
+                    <p><strong>🎯 What you'll learn:</strong> Pseudocode, time/space complexity, stability, in‑place behaviour, pivot strategies (Quick Sort), heapify process (Heap Sort), and a comparative matrix to choose the right algorithm.</p>
                 </div>
 
                 <!-- Gen Z Topic Cards -->
                 <div class="genz-course-grid">
                     <div class="genz-day-card" onclick="scrollToDay('day1')">
                         <div class="genz-day-num">01</div>
-                        <div class="genz-day-icon">🔥</div>
-                        <h4 class="genz-day-title">Bubble Sort</h4>
+                        <div class="genz-day-icon">🔗</div>
+                        <h4 class="genz-day-title">Merge Sort</h4>
                         <div class="genz-day-tags">
-                            <span>stable</span> <span>adaptive</span> <span>swap</span>
+                            <span>stable</span> <span>divide</span> <span>merge</span>
                         </div>
                     </div>
                     <div class="genz-day-card" onclick="scrollToDay('day2')">
                         <div class="genz-day-num">02</div>
-                        <div class="genz-day-icon">🎯</div>
-                        <h4 class="genz-day-title">Selection Sort</h4>
+                        <div class="genz-day-icon">⚡</div>
+                        <h4 class="genz-day-title">Quick Sort</h4>
                         <div class="genz-day-tags">
-                            <span>unstable</span> <span>min‑swap</span> <span>O(n²)</span>
+                            <span>unstable</span> <span>pivot</span> <span>in‑place</span>
                         </div>
                     </div>
                     <div class="genz-day-card" onclick="scrollToDay('day3')">
                         <div class="genz-day-num">03</div>
-                        <div class="genz-day-icon">📥</div>
-                        <h4 class="genz-day-title">Insertion Sort</h4>
+                        <div class="genz-day-icon">🏔️</div>
+                        <h4 class="genz-day-title">Heap Sort</h4>
                         <div class="genz-day-tags">
-                            <span>stable</span> <span>online</span> <span>adaptive</span>
+                            <span>unstable</span> <span>heapify</span> <span>in‑place</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- ==================== BUBBLE SORT ==================== -->
+                <!-- ==================== MERGE SORT ==================== -->
                 <div class="concept-card" id="day1">
-                    <h3><span class="day-badge">1</span> Bubble Sort <span class="tag-stable">Stable</span><span class="tag-adaptive">Adaptive</span></h3>
-                    <p><strong>How it works:</strong> Repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed. Larger elements "bubble" toward the end of the list.</p>
+                    <h3><span class="day-badge">1</span> Merge Sort <span class="tag-stable">Stable</span><span class="tag-not-inplace">Not In‑place</span></h3>
+                    <p><strong>How it works:</strong> Recursively splits the array into two halves until each subarray has one element, then merges them back together in sorted order. The merging step is the core: two sorted arrays are combined into one.</p>
 
-                    <!-- Infographic (pseudocode) -->
                     <div class="info-card" onclick="createParticles(this, event)">
-                        <div class="card-title"><i class="fas fa-code"></i> 🔄 Bubble Sort — Pseudocode <span class="badge visual">Infographic</span></div>
+                        <div class="card-title"><i class="fas fa-code"></i> 🔗 Merge Sort — Pseudocode <span class="badge visual">Infographic</span></div>
                         <div class="pseudocode-block">
-for i from 0 to n-2:
-    swapped = false
-    for j from 0 to n-i-2:
-        if arr[j] > arr[j+1]:
-            swap(arr[j], arr[j+1])
-            swapped = true
-    if not swapped:
-        break
+function mergeSort(arr, left, right):
+    if left < right:
+        mid = (left + right) // 2
+        mergeSort(arr, left, mid)
+        mergeSort(arr, mid+1, right)
+        merge(arr, left, mid, right)
+
+function merge(arr, l, m, r):
+    create temp arrays L = arr[l..m], R = arr[m+1..r]
+    i = 0, j = 0, k = l
+    while i < len(L) and j < len(R):
+        if L[i] <= R[j]:
+            arr[k++] = L[i++]
+        else:
+            arr[k++] = R[j++]
+    copy remaining elements of L and R
                         </div>
-                        <p style="font-size:0.85rem; margin-top:10px;"><em>Optimization:</em> The <code>swapped</code> flag stops early if already sorted – makes it adaptive.</p>
                     </div>
 
                     <h4 style="color:var(--accent);margin-top:1.5rem;">Complexity Analysis</h4>
                     <table class="info-table">
                         <thead><tr><th>Case</th><th>Time Complexity</th><th>Space Complexity</th></tr></thead>
                         <tbody>
-                            <tr><td><strong>Best</strong> (already sorted)</td><td>O(n)</td><td>O(1)</td></tr>
-                            <tr><td><strong>Average</strong></td><td>O(n²)</td><td>O(1)</td></tr>
-                            <tr><td><strong>Worst</strong> (reverse sorted)</td><td>O(n²)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Best</strong></td><td>O(n log n)</td><td>O(n) (auxiliary)</td></tr>
+                            <tr><td><strong>Average</strong></td><td>O(n log n)</td><td>O(n)</td></tr>
+                            <tr><td><strong>Worst</strong></td><td>O(n log n)</td><td>O(n)</td></tr>
                         </tbody>
                     </table>
-                    <p><strong>Stability:</strong> ✅ Stable – equal elements maintain their relative order.<br>
-                    <strong>Adaptivity:</strong> ✅ Adaptive – performs better on partially sorted data.</p>
-                    <div class="tip-box"><strong>💡 Key Insight:</strong> The largest element is placed at its correct position in each pass. Use Bubble Sort when you need a simple, stable algorithm and the input is nearly sorted (best-case O(n)).</div>
+                    <p><strong>Stability:</strong> ✅ Stable – merging preserves order of equal elements.<br>
+                    <strong>In‑place:</strong> ❌ Requires extra space proportional to the input.</p>
+                    <div class="tip-box"><strong>💡 Key Insight:</strong> Merge Sort is the best choice when stability is required and O(n) extra memory is acceptable. It guarantees O(n log n) even in the worst case, unlike Quick Sort.</div>
                 </div>
 
-                <!-- ==================== SELECTION SORT ==================== -->
+                <!-- ==================== QUICK SORT ==================== -->
                 <div class="concept-card" id="day2">
-                    <h3><span class="day-badge">2</span> Selection Sort <span class="tag-unstable">Unstable</span></h3>
-                    <p><strong>How it works:</strong> Divides the input into a sorted and an unsorted region. It repeatedly selects the smallest element from the unsorted region and moves it to the end of the sorted region.</p>
+                    <h3><span class="day-badge">2</span> Quick Sort <span class="tag-unstable">Unstable</span><span class="tag-inplace">In‑place</span></h3>
+                    <p><strong>How it works:</strong> Chooses a pivot element and partitions the array so that elements less than pivot come before it and elements greater come after. Recursively sorts the subarrays. The partition step is the heart of the algorithm.</p>
 
                     <div class="info-card" onclick="createParticles(this, event)">
-                        <div class="card-title"><i class="fas fa-code"></i> 🎯 Selection Sort — Pseudocode <span class="badge visual">Infographic</span></div>
+                        <div class="card-title"><i class="fas fa-code"></i> ⚡ Quick Sort — Pseudocode (Lomuto Partition) <span class="badge visual">Infographic</span></div>
                         <div class="pseudocode-block">
-for i from 0 to n-2:
-    min_idx = i
-    for j from i+1 to n-1:
-        if arr[j] < arr[min_idx]:
-            min_idx = j
-    swap(arr[i], arr[min_idx])
+function quickSort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        quickSort(arr, low, pi-1)
+        quickSort(arr, pi+1, high)
+
+function partition(arr, low, high):
+    pivot = arr[high]   // last element
+    i = low - 1
+    for j = low to high-1:
+        if arr[j] < pivot:
+            i++
+            swap arr[i] and arr[j]
+    swap arr[i+1] and arr[high]
+    return i+1
                         </div>
-                        <p style="font-size:0.85rem; margin-top:10px;">Always performs O(n²) comparisons, but only O(n) swaps — useful when writes are expensive.</p>
                     </div>
 
                     <h4 style="color:var(--accent);margin-top:1.5rem;">Complexity Analysis</h4>
                     <table class="info-table">
                         <thead><tr><th>Case</th><th>Time Complexity</th><th>Space Complexity</th></tr></thead>
                         <tbody>
-                            <tr><td><strong>Best</strong></td><td>O(n²)</td><td>O(1)</td></tr>
-                            <tr><td><strong>Average</strong></td><td>O(n²)</td><td>O(1)</td></tr>
-                            <tr><td><strong>Worst</strong></td><td>O(n²)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Best</strong> (balanced partitions)</td><td>O(n log n)</td><td>O(log n) (stack)</td></tr>
+                            <tr><td><strong>Average</strong></td><td>O(n log n)</td><td>O(log n)</td></tr>
+                            <tr><td><strong>Worst</strong> (sorted / reverse)</td><td>O(n²)</td><td>O(n) (stack)</td></tr>
                         </tbody>
                     </table>
-                    <p><strong>Stability:</strong> ❌ Unstable – swapping can change relative order of equal elements.<br>
-                    <strong>Adaptivity:</strong> ❌ Not adaptive – always O(n²) comparisons.</p>
-                    <div class="warning-box"><strong>⚠️ Note:</strong> Selection Sort is not stable, but it has the advantage of minimal writes (O(n) swaps). It can be useful when write operations are expensive.</div>
+                    <p><strong>Stability:</strong> ❌ Unstable – partitioning may swap equal elements.<br>
+                    <strong>In‑place:</strong> ✅ Yes, only recursive stack space used.</p>
+                    <div class="warning-box"><strong>⚠️ Pivot Choice Matters:</strong> Worst‑case O(n²) occurs with poor pivot (e.g., first/last element on sorted data). Use random pivot or median‑of‑three to mitigate this.</div>
                 </div>
 
-                <!-- ==================== INSERTION SORT ==================== -->
+                <!-- ==================== HEAP SORT ==================== -->
                 <div class="concept-card" id="day3">
-                    <h3><span class="day-badge">3</span> Insertion Sort <span class="tag-stable">Stable</span><span class="tag-adaptive">Adaptive</span></h3>
-                    <p><strong>How it works:</strong> Builds the final sorted array one item at a time. It picks each element from the unsorted part and inserts it into its correct position within the sorted part, shifting larger elements to the right.</p>
+                    <h3><span class="day-badge">3</span> Heap Sort <span class="tag-unstable">Unstable</span><span class="tag-inplace">In‑place</span></h3>
+                    <p><strong>How it works:</strong> First builds a max‑heap from the input array, then repeatedly extracts the maximum element (root) and places it at the end of the array, reducing the heap size by one each time. Relies on the <em>heapify</em> procedure.</p>
 
                     <div class="info-card" onclick="createParticles(this, event)">
-                        <div class="card-title"><i class="fas fa-code"></i> 📥 Insertion Sort — Pseudocode <span class="badge visual">Infographic</span></div>
+                        <div class="card-title"><i class="fas fa-code"></i> 🏔️ Heap Sort — Pseudocode <span class="badge visual">Infographic</span></div>
                         <div class="pseudocode-block">
-for i from 1 to n-1:
-    key = arr[i]
-    j = i - 1
-    while j >= 0 and arr[j] > key:
-        arr[j+1] = arr[j]
-        j = j - 1
-    arr[j+1] = key
+function heapSort(arr):
+    n = length(arr)
+    // Build max heap
+    for i from n//2 - 1 down to 0:
+        heapify(arr, n, i)
+    // Extract elements one by one
+    for i from n-1 down to 1:
+        swap arr[0] and arr[i]
+        heapify(arr, i, 0)
+
+function heapify(arr, n, i):
+    largest = i
+    left = 2*i + 1
+    right = 2*i + 2
+    if left < n and arr[left] > arr[largest]:
+        largest = left
+    if right < n and arr[right] > arr[largest]:
+        largest = right
+    if largest != i:
+        swap arr[i] and arr[largest]
+        heapify(arr, n, largest)
                         </div>
-                        <p style="font-size:0.85rem; margin-top:10px;">Like sorting playing cards in your hand. Very efficient for small or nearly sorted data.</p>
                     </div>
 
                     <h4 style="color:var(--accent);margin-top:1.5rem;">Complexity Analysis</h4>
                     <table class="info-table">
                         <thead><tr><th>Case</th><th>Time Complexity</th><th>Space Complexity</th></tr></thead>
                         <tbody>
-                            <tr><td><strong>Best</strong> (already sorted)</td><td>O(n)</td><td>O(1)</td></tr>
-                            <tr><td><strong>Average</strong></td><td>O(n²)</td><td>O(1)</td></tr>
-                            <tr><td><strong>Worst</strong> (reverse sorted)</td><td>O(n²)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Best</strong></td><td>O(n log n)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Average</strong></td><td>O(n log n)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Worst</strong></td><td>O(n log n)</td><td>O(1)</td></tr>
                         </tbody>
                     </table>
-                    <p><strong>Stability:</strong> ✅ Stable – equal keys maintain order.<br>
-                    <strong>Adaptivity:</strong> ✅ Adaptive – very fast on nearly sorted data.</p>
-                    <div class="tip-box"><strong>💡 Key Usage:</strong> Insertion Sort is the algorithm of choice for small subarrays in quicksort and mergesort (hybrid sorts) and for online algorithms where data arrives continuously.</div>
+                    <p><strong>Stability:</strong> ❌ Unstable – heap operations may change relative order.<br>
+                    <strong>In‑place:</strong> ✅ Yes, no extra array needed.</p>
+                    <div class="tip-box"><strong>💡 Key Insight:</strong> Heap Sort is the only O(n log n) sort that is both in‑place and not recursive (low stack overhead). It guarantees worst‑case performance but is often slower in practice than Quick Sort due to cache inefficiency.</div>
                 </div>
 
                 <!-- ==================== COMPARATIVE ANALYSIS ==================== -->
                 <div class="concept-card" id="comparison">
                     <h3><i class="fas fa-balance-scale"></i> Comparative Analysis</h3>
-                    <p>All three algorithms have O(n²) average time complexity and O(1) auxiliary space – but their behaviour differs significantly.</p>
+                    <p>All three achieve O(n log n) average time, but differ in space usage, stability, and worst‑case behaviour. Here’s the definitive comparison:</p>
                     <table class="comparative-table">
                         <thead>
                             <tr>
                                 <th>Property</th>
-                                <th>Bubble Sort</th>
-                                <th>Selection Sort</th>
-                                <th>Insertion Sort</th>
+                                <th>Merge Sort</th>
+                                <th>Quick Sort</th>
+                                <th>Heap Sort</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td><strong>Best Time</strong></td><td>O(n)</td><td>O(n²)</td><td>O(n)</td></tr>
-                            <tr><td><strong>Average Time</strong></td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td></tr>
-                            <tr><td><strong>Worst Time</strong></td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td></tr>
-                            <tr><td><strong>Space</strong></td><td>O(1)</td><td>O(1)</td><td>O(1)</td></tr>
-                            <tr><td><strong>Stable</strong></td><td>✅ Yes</td><td>❌ No</td><td>✅ Yes</td></tr>
-                            <tr><td><strong>Adaptive</strong></td><td>✅ Yes</td><td>❌ No</td><td>✅ Yes</td></tr>
-                            <tr><td><strong>Swaps (Worst)</strong></td><td>O(n²)</td><td>O(n)</td><td>O(n²) (shifts)</td></tr>
-                            <tr><td><strong>Best Use Case</strong></td><td>Nearly sorted, small data</td><td>Minimal writes needed</td><td>Small or online data</td></tr>
+                            <tr><td><strong>Average Time</strong></td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td></tr>
+                            <tr><td><strong>Worst Time</strong></td><td>O(n log n)</td><td>O(n²)</td><td>O(n log n)</td></tr>
+                            <tr><td><strong>Space</strong></td><td>O(n)</td><td>O(log n) (stack)</td><td>O(1)</td></tr>
+                            <tr><td><strong>Stable</strong></td><td>✅</td><td>❌</td><td>❌</td></tr>
+                            <tr><td><strong>In‑place</strong></td><td>❌</td><td>✅</td><td>✅</td></tr>
+                            <tr><td><strong>Adaptive</strong></td><td>❌</td><td>✅ (with proper pivot)</td><td>❌</td></tr>
+                            <tr><td><strong>Preferred for</strong></td><td>External sorting, linked lists</td><td>General purpose, small overhead</td><td>Memory‑constrained, worst‑case guarantee</td></tr>
                         </tbody>
                     </table>
-                    <p><strong>Verdict:</strong> In practice, <em>Insertion Sort</em> outperforms both for small N or partially sorted data. Bubble Sort is rarely used except for teaching. Selection Sort has niche applications where write cost is high.</p>
                 </div>
 
                 <!-- ==================== DSA QUESTIONS ==================== -->
                 <div class="concept-card" id="dsa-questions">
                     <h3><i class="fas fa-question"></i> DSA Questions &amp; Drills</h3>
-                    <p>Sharpen your understanding with these problems that directly use or modify the three sorting algorithms.</p>
+                    <p>Apply your understanding with these classic problems.</p>
 
                     <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner Level</h4>
-                    <div class="practice-problem"><details><summary>1. Count Swaps in Bubble Sort</summary><div class="solution"><p><strong>Problem:</strong> Given an array, sort it using Bubble Sort and return the total number of swaps performed. (Useful for array inversion count approximation.)</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def bubble_swap_count(arr):
-    n = len(arr)
-    swaps = 0
-    for i in range(n-1):
-        for j in range(n-1-i):
-            if arr[j] > arr[j+1]:
-                arr[j], arr[j+1] = arr[j+1], arr[j]
-                swaps += 1
-    return swaps, arr</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
-                    <div class="practice-problem"><details><summary>2. Selection Sort on a List of Tuples (by second element)</summary><div class="solution"><p><strong>Problem:</strong> Adapt Selection Sort to sort a list of (name, age) tuples in ascending order of age.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def selection_by_age(people):
-    n = len(people)
-    for i in range(n-1):
-        min_idx = i
-        for j in range(i+1, n):
-            if people[j][1] < people[min_idx][1]:
-                min_idx = j
-        people[i], people[min_idx] = people[min_idx], people[i]
-    return people</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div><p>(Note: Selection Sort is unstable, so equal ages may change order.)</p></div></details></div>
-                    <div class="practice-problem"><details><summary>3. Insertion Sort on a Nearly Sorted Array</summary><div class="solution"><p><strong>Problem:</strong> Write a function that takes an array where each element is at most K positions away from its sorted position. Use Insertion Sort to sort it in O(nK) time.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def insertion_sort_k(arr, k):
-    for i in range(1, len(arr)):
-        key = arr[i]
-        j = i-1
-        while j >= max(0, i-k) and key < arr[j]:
-            arr[j+1] = arr[j]
-            j -= 1
-        arr[j+1] = key
+                    <div class="practice-problem"><details><summary>1. Implement Merge Sort for an array of strings</summary><div class="solution"><p><strong>Problem:</strong> Write a function that sorts a list of words alphabetically using Merge Sort.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def merge_sort_strings(arr):
+    if len(arr) > 1:
+        mid = len(arr)//2
+        L = arr[:mid]
+        R = arr[mid:]
+        merge_sort_strings(L)
+        merge_sort_strings(R)
+        i=j=k=0
+        while i < len(L) and j < len(R):
+            if L[i] <= R[j]:
+                arr[k] = L[i]
+                i+=1
+            else:
+                arr[k] = R[j]
+                j+=1
+            k+=1
+        while i < len(L): arr[k]=L[i]; i+=1; k+=1
+        while j < len(R): arr[k]=R[j]; j+=1; k+=1
     return arr</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Quick Sort with random pivot</summary><div class="solution"><p><strong>Problem:</strong> Modify Quick Sort to use a randomly chosen pivot to avoid worst‑case on sorted input.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">import random
+def quick_sort_random(arr, low, high):
+    if low < high:
+        pi = partition_random(arr, low, high)
+        quick_sort_random(arr, low, pi-1)
+        quick_sort_random(arr, pi+1, high)
+def partition_random(arr, low, high):
+    pivot_idx = random.randint(low, high)
+    arr[pivot_idx], arr[high] = arr[high], arr[pivot_idx]
+    pivot = arr[high]
+    i = low-1
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i+=1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i+1], arr[high] = arr[high], arr[i+1]
+    return i+1</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>3. Build a max‑heap from an array and extract top K</summary><div class="solution"><p><strong>Problem:</strong> Given an unsorted list, use heap operations to find the 3 largest elements.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">import heapq
+def top_3(arr):
+    heapq.heapify(arr)          # min-heap
+    return heapq.nlargest(3, arr)
+# Or manually with max-heap using negative values</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
 
                     <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate Level</h4>
-                    <div class="practice-problem"><details><summary>4. Cocktail Shaker Sort (Bidirectional Bubble Sort)</summary><div class="solution"><p><strong>Problem:</strong> Implement a variant of Bubble Sort that passes alternately from left to right and then right to left.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def cocktail_sort(arr):
-    n = len(arr)
-    swapped = True
-    start, end = 0, n-1
-    while swapped:
-        swapped = False
-        for i in range(start, end):
-            if arr[i] > arr[i+1]:
-                arr[i], arr[i+1] = arr[i+1], arr[i]
-                swapped = True
-        if not swapped: break
-        swapped = False
-        end -= 1
-        for i in range(end-1, start-1, -1):
-            if arr[i] > arr[i+1]:
-                arr[i], arr[i+1] = arr[i+1], arr[i]
-                swapped = True
-        start += 1
-    return arr</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
-                    <div class="practice-problem"><details><summary>5. Use Insertion Sort to Find the Kth Smallest Element</summary><div class="solution"><p><strong>Problem:</strong> Instead of fully sorting, stop Insertion Sort after K elements have been placed correctly. Return the Kth element.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def kth_smallest_insertion(arr, k):
-    for i in range(1, len(arr)):
-        key = arr[i]
-        j = i-1
-        while j >= 0 and key < arr[j]:
-            arr[j+1] = arr[j]
-            j -= 1
-        arr[j+1] = key
-        if i >= k-1 and i == k-1:
-            return arr[k-1]
-    return arr[k-1]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>4. Count inversions using Merge Sort</summary><div class="solution"><p><strong>Problem:</strong> Modify Merge Sort to count the number of inversions (i<j and arr[i] > arr[j]).</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def merge_count(arr, temp, left, mid, right):
+    i = left; j = mid+1; k = left; inv = 0
+    while i <= mid and j <= right:
+        if arr[i] <= arr[j]:
+            temp[k] = arr[i]; i+=1
+        else:
+            temp[k] = arr[j]; inv += (mid-i+1); j+=1
+        k+=1
+    while i <= mid: temp[k] = arr[i]; i+=1; k+=1
+    while j <= right: temp[k] = arr[j]; j+=1; k+=1
+    for x in range(left, right+1): arr[x] = temp[x]
+    return inv
+def merge_sort_inv(arr, temp, left, right):
+    inv = 0
+    if left < right:
+        mid = (left+right)//2
+        inv += merge_sort_inv(arr, temp, left, mid)
+        inv += merge_sort_inv(arr, temp, mid+1, right)
+        inv += merge_count(arr, temp, left, mid, right)
+    return inv</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>5. Kth largest element using Quick Select (derived from Quick Sort)</summary><div class="solution"><p><strong>Problem:</strong> Find the Kth largest element in average O(n) using partitioning.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">def kth_largest(arr, k):
+    def quick_select(low, high):
+        pivot = arr[high]
+        i = low
+        for j in range(low, high):
+            if arr[j] >= pivot:  # for largest
+                arr[i], arr[j] = arr[j], arr[i]
+                i+=1
+        arr[i], arr[high] = arr[high], arr[i]
+        if i == k-1: return arr[i]
+        elif i > k-1: return quick_select(low, i-1)
+        else: return quick_select(i+1, high)
+    return quick_select(0, len(arr)-1)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
                 </div>
 
                 <!-- ==================== UNSOLVED EXERCISES ==================== -->
                 <div class="concept-card" id="unsolved-exercises">
                     <h3><i class="fas fa-question-circle"></i> Unsolved Practice</h3>
-                    <p>Test yourself: apply the concepts without looking at solutions.</p>
-                    <div class="practice-problem"><details><summary>1. Bubble Sort with Early Termination (adaptive)</summary><div class="solution"><p><strong>Problem:</strong> Implement Bubble Sort that counts the number of passes actually executed and prints it. Compare with worst‑case passes.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
-                    <div class="practice-problem"><details><summary>2. Selection Sort in Descending Order</summary><div class="solution"><p><strong>Problem:</strong> Modify Selection Sort to sort the array in descending order by selecting the maximum element instead of the minimum.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
-                    <div class="practice-problem"><details><summary>3. Check Sortedness with One Pass</summary><div class="solution"><p><strong>Problem:</strong> Write a function that returns <code>True</code> if a given list is already sorted (non‑decreasing). Derive it from the insertion sort logic (without actually sorting).</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <p>Test yourself: implement these without peeking at the solution.</p>
+                    <div class="practice-problem"><details><summary>1. Merge Sort on a linked list (without extra space)</summary><div class="solution"><p><strong>Problem:</strong> Sort a singly linked list using merge sort. You should split the list recursively and merge without auxiliary arrays. (Hint: find middle, break link, merge sorted halves.)</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Iterative Quick Sort (without recursion)</summary><div class="solution"><p><strong>Problem:</strong> Implement Quick Sort using an explicit stack to simulate recursion. Push subarray boundaries onto the stack.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>3. Heap Sort in descending order (min‑heap version)</summary><div class="solution"><p><strong>Problem:</strong> Modify heap sort to sort an array in descending order by building a min‑heap and extracting minimum each time.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
                 </div>
             </div>
         </main>
@@ -695,9 +736,9 @@ for i from 1 to n-1:
         <aside class="page-tracker" id="pageTracker">
             <h4>On This Page</h4>
             <ul>
-                <li><a href="#day1">Bubble Sort</a></li>
-                <li><a href="#day2">Selection Sort</a></li>
-                <li><a href="#day3">Insertion Sort</a></li>
+                <li><a href="#day1">Merge Sort</a></li>
+                <li><a href="#day2">Quick Sort</a></li>
+                <li><a href="#day3">Heap Sort</a></li>
                 <li><a href="#comparison">Comparative Analysis</a></li>
                 <li><a href="#dsa-questions">DSA Questions</a></li>
                 <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
@@ -767,7 +808,7 @@ for i from 1 to n-1:
         window.addEventListener('scroll', () => {
             scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
         }, { passive: true });
-        // Copy code (fallback if not defined in learn-python.js)
+        // Copy code (fallback)
         if (typeof copyCode !== 'function') {
             window.copyCode = function(btn) {
                 const code = btn.closest('.code-block')?.querySelector('code');
@@ -781,7 +822,7 @@ for i from 1 to n-1:
         }
         // Particle burst
         function createParticles(element, event) {
-            const emojis = ['🔥','🎯','📥','💡','🚀','✨'];
+            const emojis = ['🔗','⚡','🏔️','💡','🚀','✨'];
             const rect = element.getBoundingClientRect();
             const centerX = event.clientX - rect.left;
             const centerY = event.clientY - rect.top;
@@ -802,7 +843,7 @@ for i from 1 to n-1:
         document.addEventListener('DOMContentLoaded', () => {
             updateProgressDots('day1');
         });
-        console.log('🧠 Iterative Sorting — Enhanced DSA page ready!');
+        console.log('🚀 Divide & Conquer Sorting — Advanced DSA page ready!');
     </script>
 </body>
 </html>
