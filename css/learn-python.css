@@ -88,6 +88,9 @@ body {
     height: calc(100vh - 72px);
 }
 .sidebar-section { padding: 0 0.5rem; margin-bottom: 0.25rem; }
+.sidebar-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
+}
 .sidebar-title {
     font-weight: 700;
     color: #ea6060 !important;   /* red heading, forced */

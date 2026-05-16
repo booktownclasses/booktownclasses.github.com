@@ -7,33 +7,638 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
     <title>Week 3: Lists, Tuples & GitHub | 3-Month Python Course | BookTown Classes</title>
-    <meta name="description" content="Week 3 of our 3-month Python course. Master Python lists, tuples, list comprehensions, and GitHub remote workflows (push, pull, clone) with hands-on exercises." />
-    <meta name="keywords" content="Python course, learn Python, Python lists, Python tuples, list comprehension, GitHub push, GitHub pull, GitHub clone, Python week 3, BookTown Classes" />
+    <meta name="description" content="Week 3 of our 3-month Python course. Master Python lists, tuples, list comprehensions, and GitHub remote workflows with hands-on exercises." />
+    <meta name="keywords" content="Python course, learn Python, Python lists, Python tuples, list comprehension, GitHub push, GitHub pull, Python week 3" />
     <meta name="author" content="BookTown Classes" />
     <meta property="og:title" content="Week 3: Lists, Tuples & GitHub | 3-Month Python Course | BookTown Classes" />
-    <meta property="og:description" content="Continue your 3-month Python journey. Week 3 covers list creation, indexing, methods, tuple immutability, list comprehensions, mini-project, and GitHub remote collaboration." />
+    <meta property="og:description" content="Continue your 3-month Python journey. Week 3 covers list creation, indexing, methods, tuple immutability, list comprehensions, and GitHub remote collaboration." />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#3b82f6" />
+    <meta name="theme-color" content="#2563eb" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Prism CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
-    <!-- Prism line numbers plugin -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js">
-    </script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
     <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
     <link rel="stylesheet" href="../css/theme.css" />
+
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --accent: #3b82f6;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --success: #059669;
+            --info: #7c3aed;
+            --radius: 14px;
+            --radius-sm: 10px;
+            --shadow: 0 4px 20px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+            --infographic-bg: #f1f5f9;
+            --infographic-border: #cbd5e1;
+            --list-color: #2563eb;
+            --tuple-color: #059669;
+            --comp-color: #7c3aed;
+            --github-color: #d97706;
+        }
+
+        body.dark-mode {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: #334155;
+            --infographic-bg: #1e293b;
+            --infographic-border: #334155;
+        }
+
+        /* ===== MINI HERO SECTION ===== */
+        .mini-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
+            border-radius: 20px;
+            padding: 1rem 1rem .5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        .mini-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 8s ease-in-out infinite;
+        }
+        .mini-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px; left: -40px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 10s ease-in-out infinite reverse;
+        }
+        @keyframes heroFloat {
+            0%,100%{transform:translate(0,0) scale(1);}
+            50%{transform:translate(15px,-10px) scale(1.05);}
+        }
+        .mini-hero .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(37,99,235,0.2);
+            color: #93c5fd;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            border: 1px solid rgba(37,99,235,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .mini-hero .hero-badge .pulse-dot {
+            width: 7px; height: 7px;
+            background: #60a5fa;
+            border-radius: 50%;
+            animation: dotPulse 2s infinite;
+        }
+        @keyframes dotPulse {
+            0%,100%{box-shadow:0 0 0 0 rgba(96,165,250,0.6);}
+            50%{box-shadow:0 0 0 10px rgba(96,165,250,0);}
+        }
+        .mini-hero .hero-headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin: 0 0 0.5rem;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.02em;
+        }
+        .mini-hero .hero-headline .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 5s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+        }
+        .mini-hero .hero-sub {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        /* ===== STICKY PROGRESS BAR (glass) ===== */
+        .week-progress-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 18px;
+            margin-bottom: 20px;
+            border-radius: 0 0 var(--radius) var(--radius);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .week-progress-wrap {
+            background: rgba(30,41,59,0.8);
+        }
+        .progress-label {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .progress-track {
+            flex: 1;
+            height: 8px;
+            background: var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--info));
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+        .progress-days { display: flex; gap: 5px; }
+        .progress-dot {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            color: var(--muted);
+        }
+        .progress-dot.completed { background: var(--success); color: #fff; }
+        .progress-dot.active {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            box-shadow: 0 0 14px rgba(37,99,235,0.5);
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot {
+            0%,100%{box-shadow:0 0 8px rgba(37,99,235,0.4);}
+            50%{box-shadow:0 0 22px rgba(37,99,235,0.8);}
+        }
+        .progress-dot:hover { transform: scale(1.15); }
+
+        /* ===== GLASS INFO CARD ===== */
+        .info-card {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(203,213,225,0.5);
+            border-radius: var(--radius);
+            padding: 22px 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.35s ease;
+        }
+        body.dark-mode .info-card {
+            background: rgba(30,41,59,0.7);
+            border-color: rgba(51,65,85,0.5);
+        }
+        .info-card:hover { box-shadow: var(--shadow-lg); border-color: var(--primary-light); transform: translateY(-2px); }
+        .info-card .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info-card .card-title i {
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(124,58,237,0.1));
+            padding: 8px;
+            border-radius: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-left: auto;
+        }
+        .badge.concept { background: #dbeafe; color: #1e40af; }
+        .badge.visual { background: #ede9fe; color: #6d28d9; }
+        .badge.interactive { background: #fef3c7; color: #92400e; }
+
+        /* ===== CONCEPT MAP ===== */
+        .concept-map {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            padding: 12px;
+            background: rgba(241,245,249,0.5);
+            border-radius: 14px;
+            border: 2px dashed var(--border);
+            margin-bottom: 20px;
+        }
+        .concept-node {
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid transparent;
+            white-space: nowrap;
+        }
+        .concept-node:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .cn-list { background: #dbeafe; color: #1e40af; }
+        .cn-methods { background: #fef3c7; color: #92400e; }
+        .cn-tuple { background: #d1fae5; color: #065f46; }
+        .cn-comp { background: #ede9fe; color: #5b21b6; }
+        .cn-project { background: #fee2e2; color: #991b1b; }
+        .cn-github { background: #fce7f3; color: #9d174d; }
+        .concept-connector { color: var(--muted); font-weight: 700; font-size: 1rem; display: flex; align-items: center; }
+
+        /* ===== SLICING CARDS ===== */
+        .slicing-visual { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .slice-card {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+            cursor: pointer;
+            transition: 0.3s;
+            min-width: 110px;
+        }
+        .slice-card:hover {
+            border-color: var(--list-color);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.15);
+            transform: translateY(-3px);
+        }
+        .slice-card .slice-code { font-size: 1.3rem; font-weight: 800; color: var(--list-color); }
+        .slice-card .slice-result { font-size: 0.68rem; color: var(--muted); margin-top: 4px; }
+
+        /* ===== METHODS GRID ===== */
+        .methods-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+        .method-card {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .method-card:hover {
+            border-color: var(--list-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(37,99,235,0.12);
+        }
+        .method-card .method-name { font-family: 'Fira Code', monospace; font-weight: 700; color: var(--list-color); font-size: 0.95rem; }
+        .method-card .method-desc { font-size: 0.68rem; color: var(--muted); margin-top: 4px; }
+
+        /* ===== COMPARE BOXES ===== */
+        .compare-row { display: flex; gap: 16px; flex-wrap: wrap; }
+        .compare-box {
+            flex: 1; min-width: 200px;
+            background: var(--card);
+            border-radius: 12px;
+            padding: 18px;
+            border: 2px solid var(--border);
+            transition: 0.3s;
+        }
+        .compare-box:hover { box-shadow: var(--shadow); border-color: var(--primary); }
+        .compare-box h4 { margin-top: 0; }
+
+        /* ===== COMPREHENSION VISUAL ===== */
+        .comp-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            font-family: 'Fira Code', monospace;
+            padding: 10px;
+        }
+        .comp-part {
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .comp-part:hover { transform: scale(1.06); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .comp-part.expression { background: #ede9fe; color: #5b21b6; }
+        .comp-part.iterator { background: #dbeafe; color: #1e40af; }
+        .comp-part.condition { background: #fef3c7; color: #92400e; }
+
+        /* ===== GITHUB FLOW ===== */
+        .git-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            padding: 16px 0;
+        }
+        .git-node {
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.82rem;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+        .git-node.local { background: #dbeafe; color: #1e40af; }
+        .git-node.remote { background: #fef3c7; color: #92400e; }
+        .git-node.clone { background: #d1fae5; color: #065f46; }
+        .git-arrow {
+            font-size: 1.4rem;
+            color: var(--github-color);
+            animation: gitPulse 1.5s infinite;
+        }
+        @keyframes gitPulse {
+            0%,100%{opacity:0.5;transform:translateX(0);}
+            50%{opacity:1;transform:translateX(6px);}
+        }
+
+        /* ===== PARTICLE BURST ===== */
+        .particle-emoji {
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+            font-size: 1.2rem;
+            animation: particleBurst 0.7s cubic-bezier(0,0.9,0.3,1) forwards;
+        }
+        @keyframes particleBurst {
+            0%{opacity:1;transform:translate(0,0) scale(1);}
+            100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0.2);}
+        }
+
+        /* ===== SCROLL TO TOP ===== */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 99;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+            transition: 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-top-btn.visible { opacity: 1; pointer-events: auto; }
+        .scroll-top-btn:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(37,99,235,0.5); }
+
+        /* ===== TIP & WARNING BOXES ===== */
+        .tip-box {
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+        .warning-box {
+            background: #fffbeb;
+            border-left: 5px solid var(--warning);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        /* ===== PULSE HIGHLIGHT ===== */
+        @keyframes gentlePulse {
+            0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,0.3);}
+            50%{box-shadow:0 0 0 12px rgba(37,99,235,0);}
+        }
+        .pulse-highlight { animation: gentlePulse 3s ease-in-out 1; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .mini-hero { padding: 1.5rem 1.2rem; }
+            .mini-hero .hero-headline { font-size: 1.3rem; }
+            .methods-grid { grid-template-columns: repeat(2, 1fr); }
+            .compare-row { flex-direction: column; }
+            .git-flow { flex-direction: column; }
+            .concept-map { gap: 6px; padding: 8px; }
+            .concept-node { padding: 6px 10px; font-size: 0.7rem; }
+            .slicing-visual { gap: 6px; }
+            .slice-card { min-width: 90px; padding: 10px 12px; }
+            .slice-card .slice-code { font-size: 1rem; }
+        }
+
+           .genz-course-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+        margin: 1.1rem 0;
+    }
+
+    /* ===== GEN Z STYLE DAY CARDS ===== */
+    .genz-day-card {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
+    border-radius: 1.25rem;
+    padding: 1.5rem 1.25rem;
+    color: #f1f5f9; /* light text */
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* for a glossy stripe, if desired */
+}
+.genz-day-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,198,255,0.25);
+}
+
+    /* Gradient background tint per card (distinct but cohesive) */
+    
+
+    /* Dark mode adjustments */
+    body.dark-mode .genz-day-card:nth-child(1) { background: linear-gradient(135deg, #1e293b, #1e3a5f); }
+    body.dark-mode .genz-day-card:nth-child(2) { background: linear-gradient(135deg, #1e293b, #3b2e1a); }
+    body.dark-mode .genz-day-card:nth-child(3) { background: linear-gradient(135deg, #1e293b, #064e3b); }
+    body.dark-mode .genz-day-card:nth-child(4) { background: linear-gradient(135deg, #1e293b, #2e1065); }
+    body.dark-mode .genz-day-card:nth-child(5) { background: linear-gradient(135deg, #1e293b, #450a0a); }
+    body.dark-mode .genz-day-card:nth-child(6) { background: linear-gradient(135deg, #1e293b, #4a1942); }
+
+    .genz-day-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        border-color: var(--primary, #2563eb);
+    }
+    /* Shine sweep on hover */
+    .genz-day-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.7s ease;
+    }
+    .genz-day-card:hover::after {
+        left: 100%;
+    }
+.genz-day-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(to right, #00c6ff, #ee0979);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.2rem;
+}
+
+
+   .genz-day-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+    filter: drop-shadow(0 0 4px rgba(0,198,255,0.5));
+}
+ .genz-day-icon i {
+    font-size: 2rem;
+    color: #00c6ff;
+    filter: drop-shadow(0 0 6px rgba(0,198,255,0.6));
+}
+   .genz-day-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin: 0.3rem 0 0.4rem;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+}
+   .genz-day-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.2rem;
+    margin-top: 0.2rem;
+}
+    .genz-day-tags span {
+        display: inline-block;
+        background: rgba(0,0,0,0.06);
+        padding: 0.15rem 0.6rem;
+        border-radius: 20px;
+        margin: 2px 2px;
+        font-weight: 500;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+        .genz-course-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .genz-day-num {
+            font-size: 1.6rem;
+        }
+    }
+    .genz-day-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0.6rem 0 0.8rem;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.genz-day-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.genz-day-tags span {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #cbd5e1;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 2rem;
+    transition: all 0.25s;
+}
+
+.genz-day-card:hover .genz-day-tags span {
+    background: rgba(1, 36, 45, 0.2);
+    border-color: #00c6ff;
+    color: #ffffff;
+}
+.genz-course-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.8rem;
+    padding: 1.5rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+    
+    </style>
+ 
 </head>
 <body>
     <div class="floating-shapes">
@@ -41,18 +646,24 @@
         <div class="shape shape-2"></div>
         <div class="shape shape-3"></div>
     </div>
-
-<div id="header-container"></div>
-
+    <div id="header-container"></div>
     <div class="main-container">
         <aside class="sidebar" id="mainSidebar"></aside>
-
         <main class="content">
-            <div id="coaching-banner-placeholder"></div>
-            <div class="content-section active">
-                <h1 class="section-title"><i class="fas fa-list-ul"></i> Week 3: Lists, Tuples & GitHub Collaboration</h1>
-                <p class="section-subtitle">A 6-day course covering Python lists, tuples, list comprehensions—plus GitHub remote workflows (push, pull, clone).</p>
+           
 
+            <!-- ===== MINI HERO ===== -->
+            <div class="mini-hero">
+                <div class="hero-badge"><span class="pulse-dot"></span> Week 3 • Python Course</div>
+                <h1 class="hero-headline"><span class="gradient-text">Lists, Tuples</span> & GitHub</h1>
+                <p class="hero-sub">Master data collections, write elegant comprehensions, and collaborate remotely — all in one week.</p>
+            </div>
+
+            <!-- Progress bar -->
+            
+
+            <div class="content-section active">
+            
                 <!-- Course Overview -->
                 <div class="section-intro">
                     <p><strong>📅 Overview:</strong> Days 1–5 cover Python lists, tuples, and list comprehensions with a mini-project. Day 6 introduces GitHub for remote collaboration—pushing, pulling, and cloning repositories. Each day includes concept explanations, live coding demos, student exercises, and solution discussions.</p>
@@ -61,45 +672,85 @@
                 </div>
 
                 <!-- Day Cards -->
-                <div class="course-overview-grid">
-                    <div class="overview-card day-1">
-                        <div class="day-num">Day 1</div>
-                        <h4>Lists Basics</h4>
-                        <p>creation, indexing, slicing</p>
-                    </div>
-                    <div class="overview-card day-2">
-                        <div class="day-num">Day 2</div>
-                        <h4>List Methods</h4>
-                        <p>append, insert, remove, sort</p>
-                    </div>
-                    <div class="overview-card day-3">
-                        <div class="day-num">Day 3</div>
-                        <h4>Tuples</h4>
-                        <p>immutability, unpacking</p>
-                    </div>
-                    <div class="overview-card day-4">
-                        <div class="day-num">Day 4</div>
-                        <h4>List Comprehension</h4>
-                        <p>concise loops, conditionals</p>
-                    </div>
-                    <div class="overview-card day-5">
-                        <div class="day-num">Day 5</div>
-                        <h4>Mini-Project</h4>
-                        <p>Student Gradebook</p>
-                    </div>
-                    <div class="overview-card day-6">
-                        <div class="day-num">Day 6</div>
-                        <h4>GitHub Remotes</h4>
-                        <p>push, pull, clone</p>
-                    </div>
-                </div>
+               
+<div class="genz-course-grid">
+    <!-- Day 1 -->
+    <div class="genz-day-card" onclick="scrollToDay('day1')">
+        <div class="genz-day-num">01</div>
+        <div class="genz-day-icon"><i class="fas fa-list-ul"></i></div>
+        <h4 class="genz-day-title">Lists Basics</h4>
+        <div class="genz-day-tags">
+            <span>create</span> <span>index</span> <span>slice</span>
+        </div>
+    </div>
+    <!-- Day 2 -->
+    <div class="genz-day-card" onclick="scrollToDay('day2')">
+        <div class="genz-day-num">02</div>
+        <div class="genz-day-icon">🔧</div>
+        <h4 class="genz-day-title">List Methods</h4>
+        <div class="genz-day-tags">
+            <span>append</span> <span>insert</span> <span>remove</span> <span>sort</span>
+        </div>
+    </div>
+    <!-- Day 3 -->
+    <div class="genz-day-card" onclick="scrollToDay('day3')">
+        <div class="genz-day-num">03</div>
+        <div class="genz-day-icon">🔒</div>
+        <h4 class="genz-day-title">Tuples</h4>
+        <div class="genz-day-tags">
+            <span>immutable</span> <span>unpack</span>
+        </div>
+    </div>
+    <!-- Day 4 -->
+    <div class="genz-day-card" onclick="scrollToDay('day4')">
+        <div class="genz-day-num">04</div>
+        <div class="genz-day-icon">⚡</div>
+        <h4 class="genz-day-title">Comprehen
+            sions</h4>
+        <div class="genz-day-tags">
+            <span>concise</span> <span>loops</span> <span>if/else</span>
+        </div>
+    </div>
+    <!-- Day 5 -->
+    <div class="genz-day-card" onclick="scrollToDay('day5')">
+        <div class="genz-day-num">05</div>
+        <div class="genz-day-icon">📊</div>
+        <h4 class="genz-day-title">Mini Project</h4>
+        <div class="genz-day-tags">
+            <span>gradebook</span> <span>CRUD</span>
+        </div>
+    </div>
+    <!-- Day 6 -->
+    <div class="genz-day-card" onclick="scrollToDay('day6')">
+        <div class="genz-day-num">06</div>
+        <div class="genz-day-icon">🌐</div>
+        <h4 class="genz-day-title">GitHub Remotes</h4>
+        <div class="genz-day-tags">
+            <span>push</span> <span>pull</span> <span>clone</span>
+        </div>
+    </div>
+</div>
 
-                <!-- DAY 1 -->
+
+                <!-- ==================== DAY 1 ==================== -->
                 <div class="concept-card" id="day1">
+                    
                     <h3><span class="day-badge">Day 1</span> Lists: Creation, Indexing &amp; Slicing</h3>
                     <p><strong>Learning Objectives:</strong> Understand what lists are. Create lists with different data types. Access items using positive and negative indexing. Slice lists to extract sublists. Use <code>len()</code> and <code>in</code> operator.</p>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Creating Lists</h4>
+                    <!-- INFOGRAPHIC: Slicing Visual -->
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-cut"></i> ✂️ List Slicing — Quick Reference <span class="badge visual">Infographic</span></div>
+                        <div class="slicing-visual">
+                            <div class="slice-card"><span class="slice-code">nums[1:4]</span><span class="slice-result">[1, 2, 3]</span></div>
+                            <div class="slice-card"><span class="slice-code">nums[:3]</span><span class="slice-result">[0, 1, 2]</span></div>
+                            <div class="slice-card"><span class="slice-code">nums[2:]</span><span class="slice-result">[2, 3, 4, 5]</span></div>
+                            <div class="slice-card"><span class="slice-code">nums[::2]</span><span class="slice-result">[0, 2, 4]</span></div>
+                            <div class="slice-card"><span class="slice-code">nums[::-1]</span><span class="slice-result">[5,4,3,2,1,0]</span></div>
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Creating Lists</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_create.py</div>
                         <pre class="line-numbers"><code class="language-python"># Empty list
@@ -119,7 +770,7 @@ print(10 in numbers)    # True</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Indexing (positive &amp; negative)</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Indexing (positive &amp; negative)</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_indexing.py</div>
                         <pre class="line-numbers"><code class="language-python">fruits = ["apple", "banana", "cherry", "date"]
@@ -130,7 +781,7 @@ print(fruits[-2])     # cherry (second last)</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Slicing Lists</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Slicing Lists</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_slicing.py</div>
                         <pre class="line-numbers"><code class="language-python">nums = [0, 1, 2, 3, 4, 5]
@@ -142,7 +793,7 @@ print(nums[::-1])   # [5, 4, 3, 2, 1, 0]  reverse</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">🧑‍💻 Exercise: Slice &amp; Dice</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">🧑‍💻 Exercise: Slice &amp; Dice</h4>
                     <p>Given the list <code>colors = ["red", "green", "blue", "yellow", "purple"]</code>, write code to: 1) Print the first three colors. 2) Print the last two colors. 3) Print the list in reverse order.</p>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_exercise_solution.py</div>
@@ -156,55 +807,70 @@ print(colors[::-1])     # ['purple', 'yellow', 'blue', 'green', 'red']</code></p
                     <div class="tip-box"><strong>💡 Instructor Tip:</strong> Visualize a list as numbered boxes. The first box is index 0. Negative indices count from the right. Slicing always returns a new list; it does not modify the original.</div>
                 </div>
 
-                <!-- DAY 2 -->
+                <!-- ==================== DAY 2 ==================== -->
                 <div class="concept-card" id="day2">
                     <h3><span class="day-badge">Day 2</span> List Methods &amp; Operations</h3>
                     <p><strong>Learning Objectives:</strong> Add, remove, and modify elements using list methods. Combine lists with <code>+</code> and <code>extend()</code>. Sort, reverse, and copy lists. Avoid common mutation pitfalls.</p>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Adding &amp; Removing Elements</h4>
+                    <!-- INFOGRAPHIC: List Methods Grid -->
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-toolbox"></i> 🔧 List Methods — Quick Reference <span class="badge visual">Infographic</span></div>
+                        <div class="methods-grid">
+                            <div class="method-card"><span class="method-name">append(x)</span><span class="method-desc">Add to end</span></div>
+                            <div class="method-card"><span class="method-name">insert(i,x)</span><span class="method-desc">Insert at i</span></div>
+                            <div class="method-card"><span class="method-name">remove(x)</span><span class="method-desc">Remove first</span></div>
+                            <div class="method-card"><span class="method-name">pop(i)</span><span class="method-desc">Remove & return</span></div>
+                            <div class="method-card"><span class="method-name">sort()</span><span class="method-desc">Sort in place</span></div>
+                            <div class="method-card"><span class="method-name">reverse()</span><span class="method-desc">Reverse</span></div>
+                            <div class="method-card"><span class="method-name">copy()</span><span class="method-desc">Shallow copy</span></div>
+                            <div class="method-card"><span class="method-name">extend(lst)</span><span class="method-desc">Add all</span></div>
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Adding &amp; Removing Elements</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_add_remove.py</div>
                         <pre class="line-numbers"><code class="language-python">fruits = ["apple", "banana"]
-fruits.append("cherry")       # adds at end -> ['apple','banana','cherry']
-fruits.insert(1, "mango")     # insert at index 1 -> ['apple','mango','banana','cherry']
-fruits.remove("banana")       # removes first occurrence -> ['apple','mango','cherry']
-popped = fruits.pop()         # removes last, returns it -> 'cherry'; list: ['apple','mango']
-fruits.pop(0)                 # removes index 0 -> 'apple'; list: ['mango']
-del fruits[0]                 # deletes index 0 without returning
+fruits.append("cherry")       # adds at end
+fruits.insert(1, "mango")     # insert at index 1
+fruits.remove("banana")       # removes first occurrence
+popped = fruits.pop()         # removes last, returns it
+fruits.pop(0)                 # removes index 0
+del fruits[0]                 # deletes without returning
 print(fruits)                 # []</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Sorting, Reversing &amp; Copying</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Sorting, Reversing &amp; Copying</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_sort_copy.py</div>
                         <pre class="line-numbers"><code class="language-python">nums = [3, 1, 4, 1, 5, 9]
-nums.sort()              # in-place sort -> [1,1,3,4,5,9]
-nums.sort(reverse=True)  # descending -> [9,5,4,3,1,1]
-nums.reverse()           # reverse current order -> [1,1,3,4,5,9]
+nums.sort()              # [1,1,3,4,5,9]
+nums.sort(reverse=True)  # descending
+nums.reverse()           # reverse current order
 
-# Creating a copy (not a reference!)
+# Creating a true copy
 original = [1, 2, 3]
-copy1 = original.copy()    # method 1
-copy2 = original[:]        # method 2 (slicing)
+copy1 = original.copy()
+copy2 = original[:]
 copy1.append(4)
-print(original)   # [1,2,3] (unchanged because it's a true copy)</code></pre>
+print(original)   # [1,2,3] (unchanged)</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Combining Lists</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Combining Lists</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_combine.py</div>
                         <pre class="line-numbers"><code class="language-python">a = [1, 2]
 b = [3, 4]
-c = a + b            # [1,2,3,4] (creates new list)
-a.extend(b)          # a becomes [1,2,3,4] (mutates a)
+c = a + b            # [1,2,3,4] (new list)
+a.extend(b)          # a becomes [1,2,3,4]
 print(a)</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">🧑‍💻 Exercise: Shopping List Manager</h4>
-                    <p>Create an empty list <code>cart</code>. Ask the user to add 3 items one by one using <code>append()</code>. Then remove the second item using <code>pop()</code>. Finally sort the list and print it.</p>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">🧑‍💻 Exercise: Shopping List Manager</h4>
+                    <p>Create an empty list <code>cart</code>. Ask the user to add 3 items using <code>append()</code>. Then remove the second item using <code>pop()</code>. Finally sort the list and print it.</p>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_exercise_solution.py</div>
                         <pre class="line-numbers"><code class="language-python">cart = []
@@ -212,7 +878,7 @@ cart.append(input("Item 1: "))
 cart.append(input("Item 2: "))
 cart.append(input("Item 3: "))
 print("Cart before:", cart)
-cart.pop(1)          # remove index 1 (second item)
+cart.pop(1)          # remove index 1
 cart.sort()
 print("Sorted cart:", cart)</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
@@ -223,26 +889,47 @@ print("Sorted cart:", cart)</code></pre>
                         Cart before: ['milk', 'eggs', 'bread']
                     Sorted cart: ['bread', 'milk']</div>
 
-                    <div class="warning-box"><strong>⚠️ Beware of references:</strong> Assignment <code>b = a</code> does NOT copy a list; both variables point to the same object. Use <code>.copy()</code> or <code>[:]</code> for a shallow copy.</div>
+                    <div class="warning-box"><strong>⚠️ Beware of references:</strong> Assignment <code>b = a</code> does NOT copy a list; both point to the same object. Use <code>.copy()</code> or <code>[:]</code>.</div>
                 </div>
 
-                <!-- DAY 3 -->
+                <!-- ==================== DAY 3 ==================== -->
                 <div class="concept-card" id="day3">
                     <h3><span class="day-badge">Day 3</span> Tuples: Immutable Sequences</h3>
                     <p><strong>Learning Objectives:</strong> Understand tuple immutability. Create tuples with and without parentheses. Access tuple items (indexing &amp; slicing). Use tuple methods (<code>count()</code>, <code>index()</code>). Unpack tuples elegantly.</p>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Tuple Basics</h4>
+                    <!-- INFOGRAPHIC: Tuple vs List -->
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-balance-scale-left"></i> 🔒 Tuples vs Lists <span class="badge visual">Infographic</span></div>
+                        <div class="compare-row">
+                            <div class="compare-box">
+                                <h4 style="color:var(--list-color);">📋 List</h4>
+                                <ul style="font-size:0.85rem;padding-left:1.2rem;color:var(--muted);">
+                                    <li>Mutable — can be changed</li>
+                                    <li>Uses <code>[]</code></li>
+                                    <li>Slower, more memory</li>
+                                    <li>Cannot be dict keys</li>
+                                </ul>
+                            </div>
+                            <div class="compare-box">
+                                <h4 style="color:var(--tuple-color);">🔒 Tuple</h4>
+                                <ul style="font-size:0.85rem;padding-left:1.2rem;color:var(--muted);">
+                                    <li>Immutable — fixed</li>
+                                    <li>Uses <code>()</code></li>
+                                    <li>Faster, less memory</li>
+                                    <li>Can be dict keys</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Tuple Basics</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day3_tuple_basics.py</div>
                         <pre class="line-numbers"><code class="language-python"># Creating tuples
 empty = ()
-single = (5,)          # comma is required for single element!
+single = (5,)          # comma required!
 point = (3, 7)
-mixed = (1, "hello", 3.14)
-
-# Without parentheses (tuple packing)
-coords = 10, 20        # (10, 20)
-print(type(coords))    # <class 'tuple'>
+coords = 10, 20        # packing
 
 # Indexing works same as lists
 print(point[0])        # 3
@@ -250,378 +937,245 @@ print(point[-1])       # 7</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Immutability — Tuples Cannot Be Changed</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Immutability — Tuples Cannot Be Changed</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day3_immutable.py</div>
                         <pre class="line-numbers"><code class="language-python">t = (1, 2, 3)
-# t[0] = 10            # ❌ TypeError: 'tuple' object does not support item assignment
+# t[0] = 10            # ❌ TypeError
 # t.append(4)          # ❌ AttributeError
 
-# But you can create a new tuple by concatenation
-t = t + (4, 5)          # (1,2,3,4,5) – new tuple assigned to t
+# Create new tuple by concatenation
+t = t + (4, 5)          # (1,2,3,4,5)
 print(t)</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Tuple Methods &amp; Unpacking</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Tuple Methods &amp; Unpacking</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day3_unpacking.py</div>
                         <pre class="line-numbers"><code class="language-python">nums = (2, 4, 2, 6, 2)
-print(nums.count(2))    # 3 (occurrences of 2)
-print(nums.index(6))    # 3 (first index of 6)
+print(nums.count(2))    # 3
+print(nums.index(6))    # 3
 
 # Tuple unpacking
 point = (10, 20)
-x, y = point
-print(x, y)             # 10 20
+x, y = point            # 10 20
 
-# Swapping variables elegantly (uses tuple packing/unpacking)
+# Swapping variables
 a, b = 5, 10
-a, b = b, a
-print(a, b)             # 10 5</code></pre>
+a, b = b, a             # 10 5</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">🧑‍💻 Exercise: Student Record</h4>
-                    <p>Create a tuple <code>student</code> with (name, age, grade). Unpack it into three variables and print them. Then use <code>count()</code> to see how many students have grade 'A' in a list of tuples.</p>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">🧑‍💻 Exercise: Student Record</h4>
+                    <p>Create a tuple <code>student</code> with (name, age, grade). Unpack it into three variables and print them. Then count how many 'A' grades in a list of tuples.</p>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day3_exercise_solution.py</div>
-                        <pre class="line-numbers"><code class="language-python"># Single student unpacking
-student = ("Riya", 14, "A")
+                        <pre class="line-numbers"><code class="language-python">student = ("Riya", 14, "A")
 name, age, grade = student
 print(f"{name}, age {age}, grade {grade}")
 
-# Counting 'A' grades in a list of tuples
-students = [("Riya", "A"), ("Amit", "B"), ("Sara", "A"), ("Kunal", "C")]
+students = [("Riya","A"),("Amit","B"),("Sara","A")]
 a_count = sum(1 for _, g in students if g == "A")
 print(f"Students with A grade: {a_count}")</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
-                    <div class="tip-box"><strong>💡 Why tuples?</strong> Use tuples for data that shouldn't change (e.g., coordinates, days of the week). They are faster than lists and can be used as dictionary keys (lists cannot).</div>
+                    <div class="tip-box"><strong>💡 Why tuples?</strong> Use tuples for data that shouldn't change. They are faster than lists and can be used as dictionary keys.</div>
                 </div>
 
-                <!-- DAY 4 -->
+                <!-- ==================== DAY 4 ==================== -->
                 <div class="concept-card" id="day4">
                     <h3><span class="day-badge">Day 4</span> List Comprehension</h3>
-                    <p><strong>Learning Objectives:</strong> Write concise list transformations using comprehensions. Add conditional filtering (<code>if</code>) and <code>if-else</code> inside comprehensions. Handle nested loops in comprehensions. Compare with traditional loops.</p>
+                    <p><strong>Learning Objectives:</strong> Write concise list transformations using comprehensions. Add conditional filtering (<code>if</code>) and <code>if-else</code>. Handle nested loops in comprehensions.</p>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Basic Syntax</h4>
+                    <!-- INFOGRAPHIC: Comprehension Anatomy -->
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-bolt"></i> ⚡ Anatomy of a List Comprehension <span class="badge visual">Infographic</span></div>
+                        <p style="font-size:0.8rem;color:var(--muted);margin-bottom:10px;">Hover each part to understand its role:</p>
+                        <div class="comp-visual">
+                            <span class="comp-part expression" title="What gets added to the new list">[x**2</span>
+                            <span class="comp-part iterator" title="Where the values come from">for x in range(10)</span>
+                            <span class="comp-part condition" title="Optional filter">if x % 2 == 0]</span>
+                        </div>
+                        <p style="text-align:center;font-size:0.7rem;color:var(--muted);">Expression → Iterator → (optional) Condition</p>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Basic Syntax</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day4_basic_comp.py</div>
-                        <pre class="line-numbers"><code class="language-python"># Without comprehension
+                        <pre class="line-numbers"><code class="language-python"># Traditional loop
 squares = []
 for i in range(1, 6):
     squares.append(i ** 2)
-print(squares)   # [1, 4, 9, 16, 25]
 
-# With list comprehension
+# List comprehension
 squares_comp = [i ** 2 for i in range(1, 6)]
-print(squares_comp)   # [1, 4, 9, 16, 25]
-
-# From a list
-words = ["hello", "world", "python"]
-lengths = [len(w) for w in words]   # [5, 5, 6]</code></pre>
+print(squares_comp)   # [1, 4, 9, 16, 25]</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">With Conditionals</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">With Conditionals</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day4_conditionals.py</div>
                         <pre class="line-numbers"><code class="language-python"># Filtering: only even numbers
 evens = [x for x in range(1, 11) if x % 2 == 0]
-print(evens)   # [2, 4, 6, 8, 10]
 
-# if-else inside expression (note different position)
+# if-else inside expression
 labels = ["even" if x % 2 == 0 else "odd" for x in range(1, 6)]
-print(labels)  # ['odd', 'even', 'odd', 'even', 'odd']</code></pre>
+print(labels)  # ['odd','even','odd','even','odd']</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Nested Loops in Comprehension</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Nested Loops in Comprehension</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day4_nested_comp.py</div>
-                        <pre class="line-numbers"><code class="language-python"># Generate coordinate pairs
+                        <pre class="line-numbers"><code class="language-python"># Coordinate pairs
 pairs = [(x, y) for x in range(1, 3) for y in range(1, 3)]
-print(pairs)   # [(1,1), (1,2), (2,1), (2,2)]
 
-# Multiplication table (list of lists)
+# Multiplication table
 table = [[i*j for j in range(1, 4)] for i in range(1, 4)]
-print(table)   # [[1,2,3], [2,4,6], [3,6,9]]</code></pre>
+print(table)   # [[1,2,3],[2,4,6],[3,6,9]]</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">🧑‍💻 Exercise: Filter and Transform</h4>
-                    <p>Given a list of numbers <code>nums = [5, 12, 17, 24, 35]</code>, create a new list containing the string <code>"high"</code> if the number is > 15 else <code>"low"</code>. Use a list comprehension with an <code>if-else</code> expression.</p>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">🧑‍💻 Exercise: Filter and Transform</h4>
+                    <p>Given <code>nums = [5, 12, 17, 24, 35]</code>, create a new list with <code>"high"</code> if > 15 else <code>"low"</code>.</p>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day4_exercise_solution.py</div>
                         <pre class="line-numbers"><code class="language-python">nums = [5, 12, 17, 24, 35]
 result = ["high" if n > 15 else "low" for n in nums]
-print(result)   # ['low', 'low', 'high', 'high', 'high']</code></pre>
+print(result)   # ['low','low','high','high','high']</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <div class="warning-box"><strong>⚠️ Readability Note:</strong> List comprehensions are powerful but can become unreadable with too many expressions or nested loops. If it's longer than ~70 characters or has complex logic, use a regular <code>for</code> loop instead.</div>
+                    <div class="warning-box"><strong>⚠️ Readability Note:</strong> If a comprehension is longer than ~70 characters or has complex logic, use a regular <code>for</code> loop instead.</div>
                 </div>
 
-                <!-- DAY 5 -->
+                <!-- ==================== DAY 5 ==================== -->
                 <div class="concept-card" id="day5">
                     <h3><span class="day-badge">Day 5</span> Mini-Project: Student Gradebook</h3>
-                    <p><strong>Learning Objectives:</strong> Build a menu-driven program using lists and tuples. Store student records as tuples inside a list. Perform operations: add student, display all, show average grade, find top student. Apply all Week 3 concepts.</p>
+                    <p><strong>Learning Objectives:</strong> Build a menu-driven program using lists and tuples. Store student records as tuples inside a list. Perform operations: add, view, average, find top student.</p>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Project Requirements</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Project Requirements</h4>
                     <ol>
                         <li>Store each student as a tuple: (name, marks).</li>
-                        <li>Provide a menu: 1. Add student, 2. View all, 3. Average marks, 4. Top student, 5. Exit.</li>
-                        <li>Use a <code>while</code> loop to keep running until exit.</li>
-                        <li>For "Top student", find the tuple with the highest marks.</li>
-                        <li>Bonus: Use list comprehension where possible (e.g., extracting all marks).</li>
+                        <li>Provide a menu: 1. Add, 2. View all, 3. Average, 4. Top student, 5. Exit.</li>
+                        <li>Use <code>while</code> loop to keep running.</li>
+                        <li>Use list comprehension where possible.</li>
                     </ol>
 
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> gradebook.py</div>
-                        <pre class="line-numbers"><code class="language-python">students = []   # list of (name, marks) tuples
+                        <pre class="line-numbers"><code class="language-python">students = []
 
 while True:
     print("\n--- Student Gradebook ---")
-    print("1. Add student")
-    print("2. View all students")
-    print("3. Average marks")
-    print("4. Top student")
-    print("5. Exit")
+    print("1.Add 2.View 3.Average 4.Top 5.Exit")
     choice = input("Enter choice: ")
 
     if choice == '1':
-        name = input("Student name: ")
+        name = input("Name: ")
         marks = float(input("Marks: "))
         students.append((name, marks))
-        print("✅ Added.")
     elif choice == '2':
-        if not students:
-            print("No students yet.")
-        else:
-            for name, marks in students:
-                print(f"{name}: {marks}")
+        for name, marks in students:
+            print(f"{name}: {marks}")
     elif choice == '3':
-        if not students:
-            print("No students.")
-        else:
-            all_marks = [m for _, m in students]   # list comprehension
-            avg = sum(all_marks) / len(all_marks)
-            print(f"Average marks: {avg:.2f}")
+        all_marks = [m for _, m in students]
+        print(f"Avg: {sum(all_marks)/len(all_marks):.2f}")
     elif choice == '4':
-        if not students:
-            print("No students.")
-        else:
-            top = max(students, key=lambda s: s[1])   # s[1] is marks
-            print(f"Top student: {top[0]} with {top[1]} marks")
+        top = max(students, key=lambda s: s[1])
+        print(f"Top: {top[0]} with {top[1]}")
     elif choice == '5':
-        print("Goodbye!")
-        break
-    else:
-        print("Invalid choice.")</code></pre>
+        break</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
-                    <div class="example-interaction">--- Student Gradebook ---
-                        1. Add student
-                        2. View all students
-                        3. Average marks
-                        4. Top student
-                        5. Exit
-                        Enter choice: 1
-                        Student name: Ravi
-                        Marks: 87
-                        ✅ Added.
-                        ...
-                    Average marks: 84.50</div>
-
-                    <div class="tip-box"><strong>🚀 Extension:</strong> Add "Search by name" using a loop. Add "Remove student". Store data in a file (Week 4 covers files). Convert the program to use a dictionary for faster lookups (Week 5).</div>
+                    <div class="tip-box"><strong>🚀 Extension:</strong> Add "Search by name", "Remove student", or store data in a file.</div>
                 </div>
 
-                <!-- DAY 6 -->
+                <!-- ==================== DAY 6 ==================== -->
                 <div class="concept-card" id="day6">
                     <h3><span class="day-badge">Day 6</span> GitHub: Push, Pull &amp; Clone</h3>
                     <p><strong>Learning Objectives:</strong> Understand remote repositories. Connect a local Git repo to GitHub. Push code to GitHub. Pull changes from GitHub. Clone an existing GitHub repository.</p>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Why GitHub?</h4>
-                    <p>GitHub hosts your Git repositories online, enabling <strong>backup, sharing, and collaboration</strong>. Developers can work on the same project from anywhere.</p>
+                    <!-- INFOGRAPHIC: GitHub Workflow -->
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-cloud-upload-alt"></i> 🌐 GitHub Remote Workflow <span class="badge visual">Visual</span></div>
+                        <div class="git-flow">
+                            <div class="git-node local">💻 Local Repo</div>
+                            <span class="git-arrow">⬆️ push</span>
+                            <div class="git-node remote">☁️ GitHub</div>
+                            <span class="git-arrow">⬇️ pull</span>
+                            <div class="git-node local">💻 Local Repo</div>
+                        </div>
+                        <p style="text-align:center;font-size:0.8rem;color:var(--muted);"><strong>push</strong> = upload | <strong>pull</strong> = download | <strong>clone</strong> = copy entire repo</p>
+                    </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Essential GitHub Commands</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Essential GitHub Commands</h4>
                     <table class="info-table">
                         <thead><tr><th>Command</th><th>Purpose</th></tr></thead>
                         <tbody>
-                            <tr><td><code>git remote add origin &lt;url&gt;</code></td><td>Link your local repo to a GitHub remote</td></tr>
-                            <tr><td><code>git push -u origin main</code></td><td>Upload local commits to GitHub</td></tr>
-                            <tr><td><code>git pull origin main</code></td><td>Download and merge changes from GitHub</td></tr>
-                            <tr><td><code>git clone &lt;url&gt;</code></td><td>Copy a remote repository to your computer</td></tr>
-                            <tr><td><code>git remote -v</code></td><td>Show remote URLs</td></tr>
+                            <tr><td><code>git remote add origin &lt;url&gt;</code></td><td>Link local repo to GitHub</td></tr>
+                            <tr><td><code>git push -u origin main</code></td><td>Upload commits to GitHub</td></tr>
+                            <tr><td><code>git pull origin main</code></td><td>Download & merge from GitHub</td></tr>
+                            <tr><td><code>git clone &lt;url&gt;</code></td><td>Copy remote repo to computer</td></tr>
                         </tbody>
                     </table>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Pushing an Existing Project</h4>
-                    <p><strong>Scenario:</strong> You have a local repo (like the gradebook) and want to back it up to GitHub.</p>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Pushing an Existing Project</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> terminal — first push</div>
-                        <pre class="line-numbers"><code class="language-bash"># 1. Create an empty repo on GitHub (without README/.gitignore)
-# 2. In your local project folder:
-git init
+                        <pre class="line-numbers"><code class="language-bash">git init
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/yourusername/gradebook.git
-git push -u origin main      # -u sets upstream, so next time just 'git push'</code></pre>
+git remote add origin https://github.com/user/repo.git
+git push -u origin main</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Cloning a Repository</h4>
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Cloning a Repository</h4>
                     <div class="code-block">
                         <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> terminal — clone</div>
-                        <pre class="line-numbers"><code class="language-bash"># Get the URL from GitHub (green 'Code' button)
-git clone https://github.com/username/repo.git
+                        <pre class="line-numbers"><code class="language-bash">git clone https://github.com/user/repo.git
 cd repo
-# Now you have the full project, with Git history ready.</code></pre>
+# Full project with Git history ready.</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
                     </div>
 
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">Collaboration Flow: Push / Pull</h4>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> typical daily workflow</div>
-                        <pre class="line-numbers"><code class="language-bash"># Start of day: pull latest changes from GitHub
-git pull origin main
-
-# Work on your code...
-# After making changes and committing:
-git add .
-git commit -m "Added search feature"
-git push origin main        # sends your commits to GitHub
-
-# If partner also pushed, your push may be rejected. Then:
-git pull origin main        # merge partner's changes first
-# resolve any conflicts, then push again.</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-                    </div>
-
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">🧑‍💻 Exercise: Push Your Gradebook</h4>
-                    <p><strong>Task:</strong> Create a GitHub repository named <code>python-gradebook</code>. Init your local project, link the remote, and push. After pushing, make a small change (e.g., add a comment), commit, and push again. Then clone the repo into a new folder to verify it works.</p>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> terminal — exercise steps</div>
-                        <pre class="line-numbers"><code class="language-bash"># In project folder
-git remote add origin https://github.com/yourusername/python-gradebook.git
-git push -u origin main
-# Edit gradebook.py, add a comment
-git add gradebook.py
-git commit -m "Added documentation comment"
-git push
-
-# In a different directory (e.g., desktop)
-cd ~/Desktop
-git clone https://github.com/yourusername/python-gradebook.git
-ls python-gradebook   # verify files appear</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
-                    </div>
-
-                    <div class="tip-box"><strong>💡 Pro Tips:</strong> Always <code>git pull</code> before starting work. Use <code>git status</code> frequently. For team projects, create branches for features (Week 2 skill) and push those branches to GitHub. Use <code>.gitignore</code> to avoid committing temporary files.</div>
+                    <div class="tip-box"><strong>💡 Pro Tips:</strong> Always <code>git pull</code> before starting work. Use <code>git status</code> frequently. Create branches for features and push them to GitHub.</div>
                 </div>
 
-                <!-- Week 3 Practice Problems -->
+                <!-- Practice Problems & Unsolved Exercises (same as original) -->
                 <div class="concept-card" id="practice-problems">
                     <h3><i class="fas fa-code"></i> Week 3 Practice Problems</h3>
-                    <p>Test your understanding with these problems covering all Week 3 concepts.</p>
-
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner Level</h4>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>1. List Reverser</summary>
-                            <div class="solution">
-                                <p><strong>Problem:</strong> Ask the user for 5 numbers, store them in a list, then print the list in reverse order using slicing.</p>
-                                <div class="code-block"><pre class="line-numbers"><code class="language-python">nums = [int(input(f"Number {i+1}: ")) for i in range(5)]
-print("Reverse:", nums[::-1])</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
-                            </div>
-                        </details>
-                    </div>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>2. Remove Duplicates (Preserve Order)</summary>
-                            <div class="solution">
-                                <p><strong>Problem:</strong> Given a list with duplicates, create a new list with unique elements keeping the original order. Example: <code>[1,2,2,3,1] → [1,2,3]</code>.</p>
-                                <div class="code-block"><pre class="line-numbers"><code class="language-python">lst = [1, 2, 2, 3, 1]
+                    <h4 style="color:var(--primary);">🔰 Beginner Level</h4>
+                    <div class="practice-problem"><details><summary>1. List Reverser</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">nums = [int(input(f"Number {i+1}: ")) for i in range(5)]
+print("Reverse:", nums[::-1])</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Remove Duplicates</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">lst = [1,2,2,3,1]
 unique = []
 for x in lst:
-    if x not in unique:
-        unique.append(x)
-print(unique)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
-                            </div>
-                        </details>
-                    </div>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>3. Tuple Swap Challenge</summary>
-                            <div class="solution">
-                                <p><strong>Problem:</strong> Swap the values of two variables without a temporary variable using tuple unpacking.</p>
-                                <div class="code-block"><pre class="line-numbers"><code class="language-python">a = "first"
-b = "second"
+    if x not in unique: unique.append(x)
+print(unique)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>3. Tuple Swap</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">a, b = "first", "second"
 a, b = b, a
-print(a, b)   # second first</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
-                            </div>
-                        </details>
-                    </div>
-
-                    <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate Level</h4>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>4. Flatten a Matrix (List of Lists)</summary>
-                            <div class="solution">
-                                <p><strong>Problem:</strong> Given <code>matrix = [[1,2], [3,4], [5,6]]</code>, flatten it into <code>[1,2,3,4,5,6]</code> using list comprehension.</p>
-                                <div class="code-block"><pre class="line-numbers"><code class="language-python">matrix = [[1,2], [3,4], [5,6]]
+print(a, b)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <h4 style="color:var(--primary);">⚡ Intermediate Level</h4>
+                    <div class="practice-problem"><details><summary>4. Flatten a Matrix</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">matrix = [[1,2],[3,4],[5,6]]
 flat = [num for row in matrix for num in row]
-print(flat)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
-                            </div>
-                        </details>
-                    </div>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>5. Find Common Elements in Two Lists</summary>
-                            <div class="solution">
-                                <p><strong>Problem:</strong> Given two lists, return a list of elements that appear in both, using list comprehension.</p>
-                                <div class="code-block"><pre class="line-numbers"><code class="language-python">a = [1, 2, 3, 4]
-b = [3, 4, 5, 6]
+print(flat)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>5. Common Elements</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">a, b = [1,2,3,4], [3,4,5,6]
 common = [x for x in a if x in b]
-print(common)   # [3, 4]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
-                            </div>
-                        </details>
-                    </div>
+print(common)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
                 </div>
 
-                <!-- Unsolved Exercises -->
                 <div class="concept-card" id="unsolved-exercises">
                     <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
-                    <p>Challenge yourself! Try these without peeking at solutions.</p>
-
-                    <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner</h4>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>1. List Statistics</summary>
-                            <div class="solution"><p><strong>Problem:</strong> Ask the user for 5 numbers, store in a list. Print the sum, minimum, maximum, and average. Use built-in functions (<code>sum()</code>, <code>min()</code>, <code>max()</code>).</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div>
-                        </details>
-                    </div>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>2. Palindrome List Checker</summary>
-                            <div class="solution"><p><strong>Problem:</strong> Check if a given list is a palindrome (reads same forwards and backwards). Example: <code>[1,2,3,2,1] → True</code>. Hint: compare list with its reverse.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div>
-                        </details>
-                    </div>
-
-                    <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate</h4>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>3. Zip Two Lists into Dictionary</summary>
-                            <div class="solution"><p><strong>Problem:</strong> Given <code>keys = ['name','age']</code> and <code>values = ['Alice', 25]</code>, create a dictionary <code>{'name':'Alice','age':25}</code> using a dictionary comprehension with <code>zip()</code>. (Preview of Week 5).</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div>
-                        </details>
-                    </div>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>4. Matrix Transpose</summary>
-                            <div class="solution"><p><strong>Problem:</strong> Use nested list comprehension to transpose a matrix (swap rows and columns). Example: <code>[[1,2],[3,4],[5,6]]</code> becomes <code>[[1,3,5],[2,4,6]]</code>.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div>
-                        </details>
-                    </div>
+                    <h4 style="color:var(--primary);">🔰 Beginner</h4>
+                    <div class="practice-problem"><details><summary>1. List Statistics</summary><div class="solution"><p>Ask for 5 numbers, store in list. Print sum, min, max, average.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Palindrome List Checker</summary><div class="solution"><p>Check if list reads same forwards and backwards.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <h4 style="color:var(--primary);">⚡ Intermediate</h4>
+                    <div class="practice-problem"><details><summary>3. Zip into Dictionary</summary><div class="solution"><p>Given keys and values lists, create a dictionary.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>4. Matrix Transpose</summary><div class="solution"><p>Swap rows and columns using nested comprehension.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
                 </div>
             </div>
         </main>
@@ -641,10 +1195,10 @@ print(common)   # [3, 4]</code></pre><button class="copy-btn" onclick="copyCode(
         </aside>
     </div>
 
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
     <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
     </a>
-
     <footer>
         <div class="footer-links">
             <a href="/index.html">Home</a>
@@ -656,35 +1210,99 @@ print(common)   # [3, 4]</code></pre><button class="copy-btn" onclick="copyCode(
             <a href="/info-center/books-notes.html">Books & Notes</a>
         </div>
         <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
-        <p>Online &amp; Offline | Small batches | Expert faculty</p>
     </footer>
 
-      <script src="../js/learn-python.js"></script>
-   <script src="../js/learn-python-advance.js"></script>
-     <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://booktownclasses.github.io/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Learn Python+",
-        "item": "https://booktownclasses.github.io/learn-python/3m-learn-python-week3.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Week 3: Lists, Tuples & GitHub Collaboration",
-      }
-    ]
-  }
-  </script>
+    <script src="../js/learn-python.js"></script>
+    <script src="../js/learn-python-advance.js"></script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://booktownclasses.github.io/index.html" },
+                { "@type": "ListItem", "position": 2, "name": "Learn Python+", "item": "https://booktownclasses.github.io/learn-python/3m-learn-python-week3.html" },
+                { "@type": "ListItem", "position": 3, "name": "Week 3: Lists, Tuples & GitHub Collaboration" }
+            ]
+        }
+    </script>
+    <script>
+        // ===== PROGRESS & SCROLL =====
+        function scrollToDay(dayId) {
+            const el = document.getElementById(dayId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                el.classList.add('pulse-highlight');
+                setTimeout(() => el.classList.remove('pulse-highlight'), 3000);
+            }
+            updateProgressDots(dayId);
+        }
+        function updateProgressDots(activeDayId) {
+            const dayMap = { 'day1':1,'day2':2,'day3':3,'day4':4,'day5':5,'day6':6 };
+            const activeDay = dayMap[activeDayId] || 1;
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                const d = parseInt(dot.getAttribute('data-day'));
+                dot.classList.remove('active','completed');
+                if (d === activeDay) dot.classList.add('active');
+                else if (d < activeDay) dot.classList.add('completed');
+            });
+            document.getElementById('weekProgressFill').style.width = ((activeDay / 6) * 100) + '%';
+        }
+        // Scroll spy
+        const dayIds = ['day1','day2','day3','day4','day5','day6','practice-problems','unsolved-exercises'];
+        window.addEventListener('scroll', () => {
+            let currentDay = 'day1';
+            dayIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 160) currentDay = id;
+            });
+            updateProgressDots(currentDay);
+            document.querySelectorAll('.page-tracker a').forEach(a => {
+                const href = a.getAttribute('href');
+                a.style.fontWeight = href === '#' + currentDay ? '700' : '400';
+                a.style.color = href === '#' + currentDay ? 'var(--primary)' : '';
+            });
+        }, { passive: true });
+        // Scroll to top
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+        }, { passive: true });
+        // Copy code
+        if (typeof copyCode !== 'function') {
+            window.copyCode = function(btn) {
+                const code = btn.closest('.code-block')?.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.textContent).then(() => {
+                        const icon = btn.querySelector('i');
+                        if (icon) { icon.classList.replace('fa-copy','fa-check'); setTimeout(() => icon.classList.replace('fa-check','fa-copy'), 2000); }
+                    });
+                }
+            };
+        }
+        // Particle burst (from main page)
+        function createParticles(element, event) {
+            const emojis = ['📋','🔧','🔒','⚡','💻','✨','🚀','💡'];
+            const rect = element.getBoundingClientRect();
+            const centerX = event.clientX - rect.left;
+            const centerY = event.clientY - rect.top;
+            for (let i = 0; i < 6; i++) {
+                const particle = document.createElement('span');
+                particle.className = 'particle-emoji';
+                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = 25 + Math.random() * 50;
+                particle.style.setProperty('--px', Math.cos(angle) * distance + 'px');
+                particle.style.setProperty('--py', Math.sin(angle) * distance + 'px');
+                element.appendChild(particle);
+                setTimeout(() => particle.remove(), 700);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgressDots('day1');
+        });
+        console.log('🐍 Week 3 — Enhanced with Main Page Design System ready!');
+    </script>
 </body>
 </html>

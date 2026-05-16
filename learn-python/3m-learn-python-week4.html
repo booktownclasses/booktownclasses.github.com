@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/learn-python-week4.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>Week 4: Dictionaries, Sets, File I/O & GitHub | 3-Month Python Course | BookTown Classes</title>
+    <meta name="description" content="Week 4 of our 3-month Python course. Master dictionaries, sets, file input/output, and GitHub collaboration workflows with hands-on exercises." />
+    <meta name="keywords" content="Python course, learn Python, Python dictionaries, Python sets, file I/O, GitHub collaboration, Python week 4" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Week 4: Dictionaries, Sets, File I/O & GitHub | 3-Month Python Course | BookTown Classes" />
+    <meta property="og:description" content="Continue your 3-month Python journey. Week 4 covers key-value stores, unique collections, reading/writing files, and remote GitHub collaboration." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+    <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --accent: #3b82f6;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --success: #059669;
+            --info: #7c3aed;
+            --radius: 14px;
+            --radius-sm: 10px;
+            --shadow: 0 4px 20px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+            --infographic-bg: #f1f5f9;
+            --infographic-border: #cbd5e1;
+            --dict-color: #2563eb;
+            --set-color: #059669;
+            --file-color: #7c3aed;
+            --github-color: #d97706;
+        }
+
+        body.dark-mode {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: #334155;
+            --infographic-bg: #1e293b;
+            --infographic-border: #334155;
+        }
+
+        /* ===== MINI HERO SECTION (same as week3) ===== */
+        .mini-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
+            border-radius: 20px;
+            padding: 1rem 1rem .5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        .mini-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 8s ease-in-out infinite;
+        }
+        .mini-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px; left: -40px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 10s ease-in-out infinite reverse;
+        }
+        @keyframes heroFloat {
+            0%,100%{transform:translate(0,0) scale(1);}
+            50%{transform:translate(15px,-10px) scale(1.05);}
+        }
+        .mini-hero .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(37,99,235,0.2);
+            color: #93c5fd;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            border: 1px solid rgba(37,99,235,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .mini-hero .hero-badge .pulse-dot {
+            width: 7px; height: 7px;
+            background: #60a5fa;
+            border-radius: 50%;
+            animation: dotPulse 2s infinite;
+        }
+        @keyframes dotPulse {
+            0%,100%{box-shadow:0 0 0 0 rgba(96,165,250,0.6);}
+            50%{box-shadow:0 0 0 10px rgba(96,165,250,0);}
+        }
+        .mini-hero .hero-headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin: 0 0 0.5rem;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.02em;
+        }
+        .mini-hero .hero-headline .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 5s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+        }
+        .mini-hero .hero-sub {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        /* ===== STICKY PROGRESS BAR ===== */
+        .week-progress-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 18px;
+            margin-bottom: 20px;
+            border-radius: 0 0 var(--radius) var(--radius);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .week-progress-wrap {
+            background: rgba(30,41,59,0.8);
+        }
+        .progress-label {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .progress-track {
+            flex: 1;
+            height: 8px;
+            background: var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--info));
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+        .progress-days { display: flex; gap: 5px; }
+        .progress-dot {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            color: var(--muted);
+        }
+        .progress-dot.completed { background: var(--success); color: #fff; }
+        .progress-dot.active {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            box-shadow: 0 0 14px rgba(37,99,235,0.5);
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot {
+            0%,100%{box-shadow:0 0 8px rgba(37,99,235,0.4);}
+            50%{box-shadow:0 0 22px rgba(37,99,235,0.8);}
+        }
+        .progress-dot:hover { transform: scale(1.15); }
+
+        /* ===== GLASS INFO CARD ===== */
+        .info-card {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(203,213,225,0.5);
+            border-radius: var(--radius);
+            padding: 22px 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.35s ease;
+        }
+        body.dark-mode .info-card {
+            background: rgba(30,41,59,0.7);
+            border-color: rgba(51,65,85,0.5);
+        }
+        .info-card:hover { box-shadow: var(--shadow-lg); border-color: var(--primary-light); transform: translateY(-2px); }
+        .info-card .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info-card .card-title i {
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(124,58,237,0.1));
+            padding: 8px;
+            border-radius: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-left: auto;
+        }
+        .badge.concept { background: #dbeafe; color: #1e40af; }
+        .badge.visual { background: #ede9fe; color: #6d28d9; }
+        .badge.interactive { background: #fef3c7; color: #92400e; }
+
+        /* ===== DICT VISUAL ===== */
+        .dict-visual {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .dict-pair {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Fira Code', monospace;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .dict-pair:hover { border-color: var(--dict-color); box-shadow: 0 6px 18px rgba(37,99,235,0.15); transform: translateY(-3px); }
+        .dict-key { font-weight: 700; color: var(--dict-color); background: #dbeafe; padding: 4px 8px; border-radius: 6px; }
+        .dict-value { color: var(--muted); }
+
+        /* ===== SET OPERATIONS ===== */
+        .set-venn {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .set-box {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            min-width: 120px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .set-box:hover { border-color: var(--set-color); box-shadow: 0 6px 18px rgba(5,150,105,0.15); transform: translateY(-3px); }
+        .set-box .set-title { font-weight: 700; color: var(--set-color); margin-bottom: 5px; }
+
+        /* ===== FILE I/O CARDS ===== */
+        .file-modes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 8px;
+        }
+        .file-mode {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            color: var(--file-color);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .file-mode:hover { border-color: var(--file-color); box-shadow: 0 4px 12px rgba(124,58,237,0.15); transform: translateY(-2px); }
+
+        /* ===== GITHUB FLOW ===== */
+        .git-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            padding: 16px 0;
+        }
+        .git-node {
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.82rem;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+        .git-node.local { background: #dbeafe; color: #1e40af; }
+        .git-node.remote { background: #fef3c7; color: #92400e; }
+        .git-node.clone { background: #d1fae5; color: #065f46; }
+        .git-arrow {
+            font-size: 1.4rem;
+            color: var(--github-color);
+            animation: gitPulse 1.5s infinite;
+        }
+        @keyframes gitPulse {
+            0%,100%{opacity:0.5;transform:translateX(0);}
+            50%{opacity:1;transform:translateX(6px);}
+        }
+
+        /* ===== PARTICLE BURST ===== */
+        .particle-emoji {
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+            font-size: 1.2rem;
+            animation: particleBurst 0.7s cubic-bezier(0,0.9,0.3,1) forwards;
+        }
+        @keyframes particleBurst {
+            0%{opacity:1;transform:translate(0,0) scale(1);}
+            100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0.2);}
+        }
+
+        /* ===== SCROLL TO TOP ===== */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 99;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+            transition: 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-top-btn.visible { opacity: 1; pointer-events: auto; }
+        .scroll-top-btn:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(37,99,235,0.5); }
+
+        /* ===== TIP & WARNING BOXES ===== */
+        .tip-box {
+            background: #eff6ff;
+            border-left: 5px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+        .warning-box {
+            background: #fffbeb;
+            border-left: 5px solid var(--warning);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        /* ===== PULSE HIGHLIGHT ===== */
+        @keyframes gentlePulse {
+            0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,0.3);}
+            50%{box-shadow:0 0 0 12px rgba(37,99,235,0);}
+        }
+        .pulse-highlight { animation: gentlePulse 3s ease-in-out 1; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .mini-hero { padding: 1.5rem 1.2rem; }
+            .mini-hero .hero-headline { font-size: 1.3rem; }
+            .dict-visual { flex-direction: column; }
+            .set-venn { flex-direction: column; align-items: center; }
+            .git-flow { flex-direction: column; }
+        }
+
+        /* Gen Z day cards styles (identical to week3) */
+        .genz-course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin: 1.1rem 0;
+        }
+        .genz-day-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
+            border-radius: 1.25rem;
+            padding: 1.5rem 1.25rem;
+            color: #f1f5f9;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .genz-day-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,198,255,0.25);
+        }
+        .genz-day-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s ease;
+        }
+        .genz-day-card:hover::after { left: 100%; }
+        .genz-day-num {
+            font-size: 1.5rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(to right, #00c6ff, #ee0979);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.2rem;
+        }
+        .genz-day-icon {
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+            filter: drop-shadow(0 0 4px rgba(0,198,255,0.5));
+        }
+        .genz-day-icon i {
+            font-size: 2rem;
+            color: #00c6ff;
+            filter: drop-shadow(0 0 6px rgba(0,198,255,0.6));
+        }
+        .genz-day-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin: 0.3rem 0 0.4rem;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+            line-height: 1.2;
+        }
+        .genz-day-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.2rem;
+            margin-top: 0.2rem;
+        }
+        .genz-day-tags span {
+            display: inline-block;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #cbd5e1;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            margin: 2px 2px;
+            font-weight: 500;
+        }
+        .genz-day-card:hover .genz-day-tags span {
+            background: rgba(1,36,45,0.2);
+            border-color: #00c6ff;
+            color: #ffffff;
+        }
+        @media (max-width: 600px) {
+            .genz-course-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .genz-day-num { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    <div id="header-container"></div>
+    <div class="main-container">
+        <aside class="sidebar" id="mainSidebar"></aside>
+        <main class="content">
+
+            <!-- ===== MINI HERO ===== -->
+            <div class="mini-hero">
+                <div class="hero-badge"><span class="pulse-dot"></span> Week 4 • Python Course</div>
+                <h1 class="hero-headline"><span class="gradient-text">Dictionaries, Sets</span> & File I/O</h1>
+                <p class="hero-sub">Store key-value pairs, work with unique collections, read and write files — plus remote collaboration on GitHub.</p>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="week-progress-wrap">
+                <span class="progress-label">Week 4</span>
+                <div class="progress-track"><div class="progress-fill" id="weekProgressFill" style="width:0%"></div></div>
+                <div class="progress-days">
+                    <div class="progress-dot" data-day="1" onclick="scrollToDay('day1')">1</div>
+                    <div class="progress-dot" data-day="2" onclick="scrollToDay('day2')">2</div>
+                    <div class="progress-dot" data-day="3" onclick="scrollToDay('day3')">3</div>
+                    <div class="progress-dot" data-day="4" onclick="scrollToDay('day4')">4</div>
+                    <div class="progress-dot" data-day="5" onclick="scrollToDay('day5')">5</div>
+                    <div class="progress-dot" data-day="6" onclick="scrollToDay('day6')">6</div>
+                </div>
+            </div>
+
+            <div class="content-section active">
+
+                <!-- Course Overview -->
+                <div class="section-intro">
+                    <p><strong>📅 Overview:</strong> Days 1–4 cover dictionaries, sets, and file I/O. Day 5 is a mini-project combining all concepts. Day 6 reinforces GitHub remote collaboration—pull, push, fetch, merge, and resolving conflicts.</p>
+                    <p><strong>🔗 Prerequisite:</strong> Week 1 (variables, conditionals, git basics), Week 2 (loops, git branching), Week 3 (lists, tuples, git push/pull).</p>
+                    <p style="margin-bottom:0;"><strong>🎯 Goal:</strong> By the end of this week, you'll confidently use dictionaries for fast lookups, sets for unique data, files for persistent storage, and collaborate effectively on GitHub.</p>
+                </div>
+
+                <!-- Day Cards -->
+                <div class="genz-course-grid">
+                    <!-- Day 1 -->
+                    <div class="genz-day-card" onclick="scrollToDay('day1')">
+                        <div class="genz-day-num">01</div>
+                        <div class="genz-day-icon"><i class="fas fa-book"></i></div>
+                        <h4 class="genz-day-title">Dictionaries</h4>
+                        <div class="genz-day-tags">
+                            <span>key</span> <span>value</span> <span>lookup</span>
+                        </div>
+                    </div>
+                    <!-- Day 2 -->
+                    <div class="genz-day-card" onclick="scrollToDay('day2')">
+                        <div class="genz-day-num">02</div>
+                        <div class="genz-day-icon">🔢</div>
+                        <h4 class="genz-day-title">Sets</h4>
+                        <div class="genz-day-tags">
+                            <span>unique</span> <span>union</span> <span>intersect</span>
+                        </div>
+                    </div>
+                    <!-- Day 3 -->
+                    <div class="genz-day-card" onclick="scrollToDay('day3')">
+                        <div class="genz-day-num">03</div>
+                        <div class="genz-day-icon">📂</div>
+                        <h4 class="genz-day-title">File I/O</h4>
+                        <div class="genz-day-tags">
+                            <span>read</span> <span>write</span> <span>open</span>
+                        </div>
+                    </div>
+                    <!-- Day 4 -->
+                    <div class="genz-day-card" onclick="scrollToDay('day4')">
+                        <div class="genz-day-num">04</div>
+                        <div class="genz-day-icon">📝</div>
+                        <h4 class="genz-day-title">More File I/O</h4>
+                        <div class="genz-day-tags">
+                            <span>with</span> <span>modes</span> <span>error</span>
+                        </div>
+                    </div>
+                    <!-- Day 5 -->
+                    <div class="genz-day-card" onclick="scrollToDay('day5')">
+                        <div class="genz-day-num">05</div>
+                        <div class="genz-day-icon">🗂️</div>
+                        <h4 class="genz-day-title">Mini Project</h4>
+                        <div class="genz-day-tags">
+                            <span>phonebook</span> <span>CRUD</span>
+                        </div>
+                    </div>
+                    <!-- Day 6 -->
+                    <div class="genz-day-card" onclick="scrollToDay('day6')">
+                        <div class="genz-day-num">06</div>
+                        <div class="genz-day-icon">🔄</div>
+                        <h4 class="genz-day-title">GitHub Collab</h4>
+                        <div class="genz-day-tags">
+                            <span>fetch</span> <span>merge</span> <span>conflict</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== DAY 1 ==================== -->
+                <div class="concept-card" id="day1">
+                    <h3><span class="day-badge">Day 1</span> Dictionaries: Key-Value Stores</h3>
+                    <p><strong>Learning Objectives:</strong> Create dictionaries, access values via keys, add/update entries, use dictionary methods (keys(), values(), items()), and handle missing keys safely with get().</p>
+
+                    <!-- INFOGRAPHIC: Dictionary Visual -->
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-book"></i> 📖 Dictionary Quick Reference <span class="badge visual">Infographic</span></div>
+                        <div class="dict-visual">
+                            <div class="dict-pair"><span class="dict-key">"name"</span><span class="dict-value">"Amit"</span></div>
+                            <div class="dict-pair"><span class="dict-key">"age"</span><span class="dict-value">14</span></div>
+                            <div class="dict-pair"><span class="dict-key">"grade"</span><span class="dict-value">"A"</span></div>
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Creating & Accessing</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_create.py</div>
+                        <pre class="line-numbers"><code class="language-python"># Empty dictionary
+empty = {}
+# Pre-filled dictionary
+student = {"name": "Amit", "age": 14, "grade": "A"}
+# Access by key
+print(student["name"])        # Amit
+# Using get() to avoid KeyError
+print(student.get("marks", 0)) # 0 (default)</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Adding, Updating, Deleting</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_modify.py</div>
+                        <pre class="line-numbers"><code class="language-python">student["city"] = "Delhi"     # add
+student["age"] = 15           # update
+del student["grade"]          # delete
+print(student) # {'name':'Amit','age':15,'city':'Delhi'}</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Looping & Methods</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_looping.py</div>
+                        <pre class="line-numbers"><code class="language-python">for key in student:
+    print(key, student[key])
+for value in student.values():
+    print(value)
+for key, value in student.items():
+    print(f"{key}: {value}")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">🧑‍💻 Exercise: Student Dictionary</h4>
+                    <p>Create a dictionary with your name, age, and favourite subject. Print all keys and values using <code>items()</code>.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day1_exercise_solution.py</div>
+                        <pre class="line-numbers"><code class="language-python">me = {"name": "Riya", "age": 13, "subject": "Math"}
+for k, v in me.items():
+    print(f"{k}: {v}")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="tip-box"><strong>💡 Key takeaway:</strong> Dictionaries are unordered* (Python 3.7+ preserves insertion order). Use them for fast lookups by a unique key.</div>
+                </div>
+
+                <!-- ==================== DAY 2 ==================== -->
+                <div class="concept-card" id="day2">
+                    <h3><span class="day-badge">Day 2</span> Sets: Unique Collections</h3>
+                    <p><strong>Learning Objectives:</strong> Understand that sets store unique, unordered items. Perform union, intersection, difference. Use set methods like add(), remove(), discard().</p>
+
+                    <!-- INFOGRAPHIC: Set Operations -->
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-venn-diagram"></i> 🔢 Set Operations <span class="badge visual">Infographic</span></div>
+                        <div class="set-venn">
+                            <div class="set-box">
+                                <div class="set-title">Union</div>
+                                <code>A | B</code><br><small>All unique items</small>
+                            </div>
+                            <div class="set-box">
+                                <div class="set-title">Intersection</div>
+                                <code>A & B</code><br><small>Common items</small>
+                            </div>
+                            <div class="set-box">
+                                <div class="set-title">Difference</div>
+                                <code>A - B</code><br><small>In A not in B</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Set Basics</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_basics.py</div>
+                        <pre class="line-numbers"><code class="language-python">empty_set = set()   # NOT {} (that's dict)
+nums = {1, 2, 3, 2, 1}
+print(nums)          # {1, 2, 3} duplicates removed
+nums.add(4)
+nums.discard(2)      # no error if missing</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Set Operations</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_operations.py</div>
+                        <pre class="line-numbers"><code class="language-python">a = {1, 2, 3}
+b = {2, 3, 4}
+print(a | b)  # Union: {1, 2, 3, 4}
+print(a & b)  # Intersection: {2, 3}
+print(a - b)  # Difference: {1}
+print(b - a)  # {4}</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">🧑‍💻 Exercise: Unique Words</h4>
+                    <p>Ask user for a sentence, split into words, create a set to find unique words.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day2_exercise_solution.py</div>
+                        <pre class="line-numbers"><code class="language-python">sentence = input("Enter a sentence: ")
+words = sentence.split()
+unique = set(words)
+print(f"Unique words ({len(unique)}): {unique}")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="warning-box"><strong>⚠️ Note:</strong> Sets are unordered, so you cannot access by index. Convert to list if order matters.</div>
+                </div>
+
+                <!-- ==================== DAY 3 ==================== -->
+                <div class="concept-card" id="day3">
+                    <h3><span class="day-badge">Day 3</span> File I/O: Read & Write</h3>
+                    <p><strong>Learning Objectives:</strong> Open files in different modes ('r', 'w', 'a'). Read entire file content, read lines, write strings. Always close files.</p>
+
+                    <!-- INFOGRAPHIC: File Modes -->
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-folder-open"></i> 📂 File Modes <span class="badge visual">Infographic</span></div>
+                        <div class="file-modes">
+                            <div class="file-mode">'r'<br><small>read</small></div>
+                            <div class="file-mode">'w'<br><small>write (overwrites)</small></div>
+                            <div class="file-mode">'a'<br><small>append</small></div>
+                            <div class="file-mode">'r+'<br><small>read+write</small></div>
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Writing to a File</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day3_write.py</div>
+                        <pre class="line-numbers"><code class="language-python">f = open("data.txt", "w")
+f.write("Hello, Python!\n")
+f.write("Week 4 is fun.")
+f.close()</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Reading from a File</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day3_read.py</div>
+                        <pre class="line-numbers"><code class="language-python">f = open("data.txt", "r")
+content = f.read()        # whole string
+print(content)
+f.seek(0)                 # reset cursor
+lines = f.readlines()     # list of strings
+f.close()</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Appending to a File</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day3_append.py</div>
+                        <pre class="line-numbers"><code class="language-python">with open("data.txt", "a") as f:
+    f.write("\nNew line added!")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">🧑‍💻 Exercise: Log Writer</h4>
+                    <p>Write a program that asks for user input and appends it to a file called "log.txt" with a timestamp.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day3_exercise_solution.py</div>
+                        <pre class="line-numbers"><code class="language-python">from datetime import datetime
+entry = input("Log entry: ")
+with open("log.txt", "a") as f:
+    f.write(f"{datetime.now()}: {entry}\n")
+print("Logged!")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="tip-box"><strong>💡 Best Practice:</strong> Use <code>with</code> statement – it automatically closes the file even if an error occurs.</div>
+                </div>
+
+                <!-- ==================== DAY 4 ==================== -->
+                <div class="concept-card" id="day4">
+                    <h3><span class="day-badge">Day 4</span> More File I/O & Exceptions</h3>
+                    <p><strong>Learning Objectives:</strong> Handle file‑related errors with try/except. Work with CSV‑like data. Use <code>with</code> efficiently. Loop over file lines without loading everything into memory.</p>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Reading Line by Line (Memory Efficient)</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day4_readlines.py</div>
+                        <pre class="line-numbers"><code class="language-python">with open("bigfile.txt", "r") as f:
+    for line in f:
+        print(line.strip())</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Writing a CSV (Comma-Separated)</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day4_csv.py</div>
+                        <pre class="line-numbers"><code class="language-python">students = [("Amit",14,"A"), ("Sara",15,"B")]
+with open("students.csv", "w") as f:
+    for name, age, grade in students:
+        f.write(f"{name},{age},{grade}\n")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Handling File Errors</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day4_exceptions.py</div>
+                        <pre class="line-numbers"><code class="language-python">try:
+    with open("missing.txt", "r") as f:
+        print(f.read())
+except FileNotFoundError:
+    print("File not found! Creating a new one.")
+    with open("missing.txt", "w") as f:
+        f.write("Start")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">🧑‍💻 Exercise: Grade Reader</h4>
+                    <p>Read <code>students.csv</code> and print a dictionary mapping name → grade.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> day4_exercise_solution.py</div>
+                        <pre class="line-numbers"><code class="language-python">grades = {}
+with open("students.csv", "r") as f:
+    for line in f:
+        name, age, grade = line.strip().split(',')
+        grades[name] = grade
+print(grades)</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="warning-box"><strong>⚠️ Remember:</strong> Always close files. Prefer <code>with</code> to avoid resource leaks.</div>
+                </div>
+
+                <!-- ==================== DAY 5 ==================== -->
+                <div class="concept-card" id="day5">
+                    <h3><span class="day-badge">Day 5</span> Mini-Project: Phonebook Manager</h3>
+                    <p><strong>Learning Objectives:</strong> Build a CRUD phonebook using dictionaries and file storage. Save contacts to a text file, load them on startup. Use sets to find duplicate names.</p>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Project Structure</h4>
+                    <ol>
+                        <li>Load existing contacts from <code>phonebook.txt</code> (name,phone per line).</li>
+                        <li>Provide menu: 1. Add, 2. Search, 3. Delete, 4. View all, 5. Save & Exit.</li>
+                        <li>Use a dictionary: name → phone number.</li>
+                        <li>Use set operations to detect duplicate names before adding.</li>
+                    </ol>
+
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> phonebook.py</div>
+                        <pre class="line-numbers"><code class="language-python">import os
+contacts = {}
+filename = "phonebook.txt"
+# Load existing
+if os.path.exists(filename):
+    with open(filename, "r") as f:
+        for line in f:
+            name, phone = line.strip().split(',')
+            contacts[name] = phone
+
+while True:
+    print("\n--- Phonebook ---")
+    print("1.Add 2.Search 3.Delete 4.View 5.Save & Exit")
+    choice = input("Choice: ")
+    if choice == '1':
+        name = input("Name: ")
+        if name in contacts:
+            print("Contact exists. Use a different name.")
+            continue
+        phone = input("Phone: ")
+        contacts[name] = phone
+        print("Added.")
+    elif choice == '2':
+        name = input("Name to search: ")
+        print(contacts.get(name, "Not found"))
+    elif choice == '3':
+        name = input("Name to delete: ")
+        if contacts.pop(name, None):
+            print("Deleted.")
+        else:
+            print("Not found.")
+    elif choice == '4':
+        for n, p in contacts.items():
+            print(f"{n}: {p}")
+    elif choice == '5':
+        with open(filename, "w") as f:
+            for n, p in contacts.items():
+                f.write(f"{n},{p}\n")
+        print("Saved. Goodbye!")
+        break</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="tip-box"><strong>🚀 Extension:</strong> Add input validation (phone numbers only digits), or a “list duplicates” feature using a set.</div>
+                </div>
+
+                <!-- ==================== DAY 6 ==================== -->
+                <div class="concept-card" id="day6">
+                    <h3><span class="day-badge">Day 6</span> GitHub Collaboration: Fetch, Merge & Conflicts</h3>
+                    <p><strong>Learning Objectives:</strong> Understand remote tracking branches. Use <code>git fetch</code> and <code>git pull</code>. Merge branches and resolve simple conflicts. Simulate a collaborative workflow.</p>
+
+                    <!-- INFOGRAPHIC: Remote Workflow -->
+                    <div class="info-card" onclick="createParticles(this, event)">
+                        <div class="card-title"><i class="fas fa-code-branch"></i> 🔄 Remote Collaboration <span class="badge visual">Visual</span></div>
+                        <div class="git-flow">
+                            <div class="git-node local">💻 Local<br>feature branch</div>
+                            <span class="git-arrow">⬆️ push</span>
+                            <div class="git-node remote">☁️ GitHub</div>
+                            <span class="git-arrow">⬇️ fetch</span>
+                            <div class="git-node local">💻 origin/main</div>
+                        </div>
+                        <p style="text-align:center;font-size:0.8rem;color:var(--muted);"><strong>fetch</strong> = download updates without merging | <strong>pull</strong> = fetch + merge</p>
+                    </div>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Important Commands</h4>
+                    <table class="info-table">
+                        <thead><tr><th>Command</th><th>Purpose</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>git fetch origin</code></td><td>Download remote changes, don't integrate</td></tr>
+                            <tr><td><code>git merge origin/main</code></td><td>Merge fetched changes into current branch</td></tr>
+                            <tr><td><code>git pull origin main</code></td><td>Fetch + merge in one step</td></tr>
+                            <tr><td><code>git push origin feature</code></td><td>Upload branch to remote</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Resolving a Simple Conflict</h4>
+                    <p>Conflict occurs when two branches change the same line. Git marks the file like:</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> conflict_example.txt</div>
+                        <pre class="line-numbers"><code class="language-bash"><<<<<<< HEAD
+print("Hello from main")
+=======
+print("Hello from feature")
+>>>>>>> feature</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <p>Edit file to keep the correct version, remove the markers, then <code>git add</code> and <code>git commit</code>.</p>
+
+                    <h4 style="color:var(--primary);margin-top:1.5rem;">Collaboration Flow (Student Practice)</h4>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> terminal simulation</div>
+                        <pre class="line-numbers"><code class="language-bash"># Partner A pushes
+git push origin main
+# Partner B gets updates
+git fetch origin
+git merge origin/main
+# If conflict → resolve → add → commit
+git push origin main</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy code"><i class="fas fa-copy"></i></button>
+                    </div>
+
+                    <div class="tip-box"><strong>💡 Pro Tip:</strong> Always <code>git pull</code> before starting new work. Use feature branches and pull requests (GitHub UI) for team projects.</div>
+                </div>
+
+                <!-- Practice Problems -->
+                <div class="concept-card" id="practice-problems">
+                    <h3><i class="fas fa-code"></i> Week 4 Practice Problems</h3>
+                    <h4 style="color:var(--primary);">🔰 Beginner Level</h4>
+                    <div class="practice-problem"><details><summary>1. Word Frequency (Dictionary)</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">text = "apple banana apple orange banana apple"
+words = text.split()
+freq = {}
+for w in words:
+    freq[w] = freq.get(w, 0) + 1
+print(freq)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Common Elements in Two Lists (Set)</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">list1 = [1,2,3,4]
+list2 = [3,4,5,6]
+common = set(list1) & set(list2)
+print(common)  # {3,4}</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <h4 style="color:var(--primary);">⚡ Intermediate Level</h4>
+                    <div class="practice-problem"><details><summary>3. File Copy (with error handling)</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">try:
+    with open("source.txt","r") as src, open("dest.txt","w") as dest:
+        dest.write(src.read())
+    print("Copied.")
+except FileNotFoundError:
+    print("Source file missing.")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                </div>
+
+                <!-- Unsolved Exercises -->
+                <div class="concept-card" id="unsolved-exercises">
+                    <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
+                    <h4 style="color:var(--primary);">🔰 Beginner</h4>
+                    <div class="practice-problem"><details><summary>1. Student Grades Dictionary</summary><div class="solution"><p>Create dict from 3 student names & marks. Print average marks.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Unique Characters (Set)</summary><div class="solution"><p>Input a word, print the set of unique letters.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                    <h4 style="color:var(--primary);">⚡ Intermediate</h4>
+                    <div class="practice-problem"><details><summary>3. JSON-like file reader</summary><div class="solution"><p>Read a file where each line is "key:value", store in dict.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;color:#64748b;"><em>Write your solution here.</em></div></div></details></div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#day1">Day 1: Dictionaries</a></li>
+                <li><a href="#day2">Day 2: Sets</a></li>
+                <li><a href="#day3">Day 3: File I/O</a></li>
+                <li><a href="#day4">Day 4: More File I/O</a></li>
+                <li><a href="#day5">Day 5: Mini-Project</a></li>
+                <li><a href="#day6">Day 6: GitHub Collab</a></li>
+                <li><a href="#practice-problems">Practice Problems</a></li>
+                <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Tutorials%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat
+    </a>
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/class-10/class10-testseries.html">Test Series</a>
+            <a href="/english.html">English</a>
+            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+    </footer>
+
+    <script src="../js/learn-python.js"></script>
+    <script src="../js/learn-python-advance.js"></script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://booktownclasses.github.io/index.html" },
+                { "@type": "ListItem", "position": 2, "name": "Learn Python+", "item": "https://booktownclasses.github.io/learn-python/3m-learn-python-week4.html" },
+                { "@type": "ListItem", "position": 3, "name": "Week 4: Dictionaries, Sets, File I/O & GitHub Collaboration" }
+            ]
+        }
+    </script>
+    <script>
+        // ===== PROGRESS & SCROLL =====
+        function scrollToDay(dayId) {
+            const el = document.getElementById(dayId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                el.classList.add('pulse-highlight');
+                setTimeout(() => el.classList.remove('pulse-highlight'), 3000);
+            }
+            updateProgressDots(dayId);
+        }
+        function updateProgressDots(activeDayId) {
+            const dayMap = { 'day1':1,'day2':2,'day3':3,'day4':4,'day5':5,'day6':6 };
+            const activeDay = dayMap[activeDayId] || 1;
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                const d = parseInt(dot.getAttribute('data-day'));
+                dot.classList.remove('active','completed');
+                if (d === activeDay) dot.classList.add('active');
+                else if (d < activeDay) dot.classList.add('completed');
+            });
+            document.getElementById('weekProgressFill').style.width = ((activeDay / 6) * 100) + '%';
+        }
+        // Scroll spy
+        const dayIds = ['day1','day2','day3','day4','day5','day6','practice-problems','unsolved-exercises'];
+        window.addEventListener('scroll', () => {
+            let currentDay = 'day1';
+            dayIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 160) currentDay = id;
+            });
+            updateProgressDots(currentDay);
+            document.querySelectorAll('.page-tracker a').forEach(a => {
+                const href = a.getAttribute('href');
+                a.style.fontWeight = href === '#' + currentDay ? '700' : '400';
+                a.style.color = href === '#' + currentDay ? 'var(--primary)' : '';
+            });
+        }, { passive: true });
+        // Scroll to top
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+        }, { passive: true });
+        // Copy code
+        if (typeof copyCode !== 'function') {
+            window.copyCode = function(btn) {
+                const code = btn.closest('.code-block')?.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.textContent).then(() => {
+                        const icon = btn.querySelector('i');
+                        if (icon) { icon.classList.replace('fa-copy','fa-check'); setTimeout(() => icon.classList.replace('fa-check','fa-copy'), 2000); }
+                    });
+                }
+            };
+        }
+        // Particle burst
+        function createParticles(element, event) {
+            const emojis = ['📖','🔢','📂','📝','🗂️','🔄','✨','💡'];
+            const rect = element.getBoundingClientRect();
+            const centerX = event.clientX - rect.left;
+            const centerY = event.clientY - rect.top;
+            for (let i = 0; i < 6; i++) {
+                const particle = document.createElement('span');
+                particle.className = 'particle-emoji';
+                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = 25 + Math.random() * 50;
+                particle.style.setProperty('--px', Math.cos(angle) * distance + 'px');
+                particle.style.setProperty('--py', Math.sin(angle) * distance + 'px');
+                element.appendChild(particle);
+                setTimeout(() => particle.remove(), 700);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgressDots('day1');
+        });
+        console.log('🐍 Week 4 — Dictionaries, Sets, File I/O & GitHub ready!');
+    </script>
+</body>
+</html>
