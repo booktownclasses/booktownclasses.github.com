@@ -76,13 +76,7 @@
         }
 
         /* ===== MAIN CONTAINER (already defined in learn-python.css, but we ensure it) ===== */
-        .main-container {
-            display: flex;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 20px 18px;
-            gap: 28px;
-        }
+    
         .content {
             flex: 1;
             min-width: 0;
@@ -644,25 +638,7 @@
                 <p class="hero-sub">From raw data to coefficient interpretation — a complete 11-step pipeline with cross-validation, feature scaling, diagnostics, and model evaluation.</p>
             </div>
 
-            <!-- ===== STICKY PROGRESS ===== -->
-            <div class="week-progress-wrap">
-                <span class="progress-label">Pipeline</span>
-                <div class="progress-track"><div class="progress-fill" id="pipelineProgressFill" style="width:0%"></div></div>
-                <div class="progress-dots" id="progressDots">
-                    <button class="progress-dot" data-step="1" onclick="scrollToStep('step1')">1</button>
-                    <button class="progress-dot" data-step="2" onclick="scrollToStep('step2')">2</button>
-                    <button class="progress-dot" data-step="3" onclick="scrollToStep('step3')">3</button>
-                    <button class="progress-dot" data-step="4" onclick="scrollToStep('step4')">4</button>
-                    <button class="progress-dot" data-step="5" onclick="scrollToStep('step5')">5</button>
-                    <button class="progress-dot" data-step="6" onclick="scrollToStep('step6')">6</button>
-                    <button class="progress-dot" data-step="7" onclick="scrollToStep('step7')">7</button>
-                    <button class="progress-dot" data-step="8" onclick="scrollToStep('step8')">8</button>
-                    <button class="progress-dot" data-step="9" onclick="scrollToStep('step9')">9</button>
-                    <button class="progress-dot" data-step="10" onclick="scrollToStep('step10')">10</button>
-                    <button class="progress-dot" data-step="11" onclick="scrollToStep('step11')">11</button>
-                </div>
-            </div>
-
+           
             <div class="content-section active">
                 <!-- ===== INTRO ===== -->
                 <div class="section-intro">
