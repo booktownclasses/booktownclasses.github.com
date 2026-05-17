@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/exception-handling.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>Python Exception Handling: from Basics to Production | BookTown Classes</title>
+    <meta name="description" content="Master Python exception handling step by step: built‑in exceptions, try/except/else/finally, raise, custom exceptions, assertions, context managers, and production‑grade patterns. Includes solved and unsolved practice problems." />
+    <meta name="keywords" content="Python exception handling, try except, custom exception, built-in exceptions, finally, else, raise, assert, context manager, production error handling, BookTown Classes" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Python Exception Handling: Complete Guide | BookTown Classes" />
+    <meta property="og:description" content="From beginner errors to production‑grade exception strategies – learn every critical concept with examples, diagrams, and unsolved practice problems." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7c3aed" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+    <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --primary: #7c3aed;
+            --primary-light: #8b5cf6;
+            --accent: #a78bfa;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --success: #059669;
+            --info: #3b82f6;
+            --radius: 14px;
+            --shadow: 0 4px 20px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+        }
+        body.dark-mode {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: #334155;
+        }
+        .mini-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #2e1065 70%, #1e1b4b 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+        .mini-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:240px; height:240px; background:radial-gradient(circle,rgba(124,58,237,0.25) 0%,transparent 70%); border-radius:50%; animation:heroFloat 8s ease-in-out infinite; }
+        .mini-hero::after { content:''; position:absolute; bottom:-40px; left:-40px; width:200px; height:200px; background:radial-gradient(circle,rgba(5,150,105,0.2) 0%,transparent 70%); border-radius:50%; animation:heroFloat 10s ease-in-out infinite reverse; }
+        @keyframes heroFloat { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(15px,-10px) scale(1.05);} }
+        .mini-hero .hero-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(124,58,237,0.25); color:#c4b5fd; padding:5px 14px; border-radius:30px; font-size:0.7rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:0.8rem; border:1px solid rgba(124,58,237,0.35); position:relative; z-index:1; }
+        .mini-hero .hero-badge .pulse-dot { width:7px; height:7px; background:#a78bfa; border-radius:50%; animation:dotPulse 2s infinite; }
+        @keyframes dotPulse { 0%,100%{box-shadow:0 0 0 0 rgba(167,139,250,0.6);} 50%{box-shadow:0 0 0 10px rgba(167,139,250,0);} }
+        .mini-hero .hero-headline { font-size:1.8rem; font-weight:800; color:#f1f5f9; margin:0 0 0.5rem; position:relative; z-index:1; }
+        .gradient-text { background:linear-gradient(135deg,#a78bfa,#60a5fa,#34d399); background-size:300% 300%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 5s ease-in-out infinite; }
+        @keyframes shimmer { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+        .mini-hero .hero-sub { font-size:0.9rem; color:#94a3b8; position:relative; z-index:1; }
+
+        .week-progress-wrap { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.75); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:10px 18px; margin-bottom:20px; border-radius:0 0 var(--radius) var(--radius); box-shadow:0 2px 12px rgba(0,0,0,0.04); display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+        body.dark-mode .week-progress-wrap { background:rgba(30,41,59,0.85); }
+        .progress-label { font-weight:700; font-size:0.8rem; color:var(--muted); white-space:nowrap; }
+        .progress-track { flex:1; height:8px; background:var(--border); border-radius:8px; overflow:hidden; }
+        .progress-fill { height:100%; background:linear-gradient(90deg,var(--primary),var(--success)); border-radius:8px; transition:width 0.5s ease; }
+        .progress-days { display:flex; gap:5px; }
+        .progress-dot { width:26px; height:26px; border-radius:50%; background:var(--border); display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; cursor:pointer; transition:0.3s; color:var(--muted); }
+        .progress-dot.completed { background:var(--success); color:#fff; }
+        .progress-dot.active { background:linear-gradient(135deg,var(--primary),var(--info)); color:#fff; box-shadow:0 0 14px rgba(124,58,237,0.5); animation:pulseDot 2s infinite; }
+        @keyframes pulseDot { 0%,100%{box-shadow:0 0 8px rgba(124,58,237,0.4);} 50%{box-shadow:0 0 22px rgba(124,58,237,0.8);} }
+        .progress-dot:hover { transform:scale(1.15); }
+
+        .info-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:22px 20px; margin:20px 0; box-shadow:var(--shadow); transition:all 0.35s ease; position:relative; overflow:hidden; }
+        .info-card:hover { box-shadow:var(--shadow-lg); border-color:var(--primary-light); transform:translateY(-2px); }
+        .info-card .card-title { font-size:1.05rem; font-weight:700; color:var(--primary); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+        .info-card .card-title i { font-size:1.2rem; background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(59,130,246,0.1)); padding:8px; border-radius:10px; }
+        .badge { display:inline-block; padding:4px 10px; border-radius:20px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; }
+        .badge.visual { background:#ede9fe; color:#6d28d9; }
+        .badge.concept { background:#d1fae5; color:#065f46; }
+        .badge.why { background:#fef3c7; color:#92400e; }
+
+        .genz-course-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:10px; margin:1.1rem 0; }
+        .genz-day-card { background:linear-gradient(135deg,#0f172a 0%,#1e293b 40%,#1e3a5f 100%); border-radius:1.25rem; padding:1rem 0.6rem; color:#f1f5f9; cursor:pointer; transition:transform 0.25s ease, box-shadow 0.25s ease; box-shadow:0 4px 15px rgba(0,0,0,0.3); display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; overflow:hidden; }
+        .genz-day-card:hover { transform:translateY(-6px); box-shadow:0 12px 25px rgba(124,58,237,0.25); }
+        .genz-day-card::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); transition:left 0.7s ease; }
+        .genz-day-card:hover::after { left:100%; }
+        .genz-day-num { font-size:1.2rem; font-weight:800; line-height:1; background:linear-gradient(to right,#00c6ff,#ee0979); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:0.1rem; }
+        .genz-day-icon { font-size:1.4rem; margin-bottom:0.2rem; filter:drop-shadow(0 0 4px rgba(0,198,255,0.5)); }
+        .genz-day-title { font-size:0.75rem; font-weight:700; margin:0.2rem 0 0.3rem; color:#ffffff; letter-spacing:0.3px; }
+        .genz-day-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:0.15rem; margin-top:0.15rem; }
+        .genz-day-tags span { background:rgba(255,255,255,0.08); backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.15); color:#cbd5e1; font-size:0.6rem; padding:0.1rem 0.4rem; border-radius:20px; margin:1px 1px; font-weight:500; white-space:nowrap; }
+        .genz-day-card:hover .genz-day-tags span { background:rgba(124,58,237,0.2); border-color:#a78bfa; color:#ffffff; }
+
+        .comparative-table { width:100%; border-collapse:collapse; margin:1.5rem 0; background:rgba(15,23,42,0.6); backdrop-filter:blur(10px); border-radius:0.75rem; overflow:hidden; }
+        .comparative-table th, .comparative-table td { padding:0.6rem 0.8rem; text-align:left; border-bottom:1px solid #334155; font-size:0.85rem; color:#f1f5f9; }
+        .comparative-table th { background:#1e293b; color:#f0f9ff; font-weight:600; }
+        .comparative-table tr:last-child td { border-bottom:none; }
+        .comparative-table tr:hover td { background:rgba(124,58,237,0.08); }
+
+        .step-walkthrough { background:#f8fafc; border-left:4px solid var(--primary); padding:1rem; margin:1rem 0; border-radius:0 8px 8px 0; }
+        body.dark-mode .step-walkthrough { background:#1e293b; border-color:#7c3aed; }
+
+        .particle-emoji { position:absolute; pointer-events:none; z-index:10; font-size:1.2rem; animation:particleBurst 0.7s cubic-bezier(0,0.9,0.3,1) forwards; }
+        @keyframes particleBurst { 0%{opacity:1;transform:translate(0,0) scale(1);} 100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0.2);} }
+        .pulse-highlight { animation:gentlePulse 3s ease-in-out 1; }
+        @keyframes gentlePulse { 0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,0.3);} 50%{box-shadow:0 0 0 12px rgba(124,58,237,0);} }
+
+        .why-box { background:#fffbeb; border-left:5px solid var(--warning); border-radius:0 12px 12px 0; padding:14px 18px; margin:14px 0; font-size:0.85rem; line-height:1.5; }
+        body.dark-mode .why-box { background:#3b2a0a; border-left-color:#f59e0b; }
+        .tip-box { background:#f0fdf4; border-left:5px solid var(--success); border-radius:0 12px 12px 0; padding:14px 18px; margin:14px 0; font-size:0.85rem; }
+        body.dark-mode .tip-box { background:#0a3328; }
+        .danger-box { background:#fef2f2; border-left:5px solid var(--danger); border-radius:0 12px 12px 0; padding:14px 18px; margin:14px 0; font-size:0.85rem; }
+        body.dark-mode .danger-box { background:#3b0a0a; }
+
+        .code-block { position:relative; background:#1e293b; border-radius:10px; margin:14px 0; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,0.2); }
+        .code-block-header { background:#0f172a; padding:8px 14px; display:flex; gap:6px; align-items:center; font-size:0.7rem; color:#94a3b8; font-family:'Fira Code',monospace; }
+        .code-block pre { margin:0; padding:14px 16px; overflow-x:auto; font-size:0.82rem; line-height:1.5; background:#1e293b; }
+        .code-block code { font-family:'Fira Code',monospace; font-size:0.8rem; }
+        .copy-btn { position:absolute; top:36px; right:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#cbd5e1; padding:5px 10px; border-radius:6px; cursor:pointer; font-size:0.7rem; transition:0.3s; z-index:5; }
+        .copy-btn:hover { background:rgba(255,255,255,0.18); color:#fff; }
+
+        .scroll-top-btn { position:fixed; bottom:90px; right:24px; width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--info)); color:#fff; border:none; cursor:pointer; font-size:1.2rem; z-index:99; box-shadow:0 4px 16px rgba(124,58,237,0.3); transition:0.3s; opacity:0; pointer-events:none; display:flex; align-items:center; justify-content:center; }
+        .scroll-top-btn.visible { opacity:1; pointer-events:auto; }
+        .scroll-top-btn:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(124,58,237,0.5); }
+
+        @media (max-width:768px) {
+            .mini-hero { padding:1.2rem; }
+            .mini-hero .hero-headline { font-size:1.3rem; }
+            .genz-course-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width:500px) {
+            .genz-course-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    <div id="header-container"></div>
+    <div class="main-container">
+        <aside class="sidebar" id="mainSidebar"></aside>
+        <main class="content">
+            <div class="mini-hero">
+                <div class="hero-badge"><span class="pulse-dot"></span> Python • Error & Exception Mastery</div>
+                <h1 class="hero-headline"><span class="gradient-text">Exception Handling</span> from Basics to Production</h1>
+                <p class="hero-sub">Understand every built‑in exception, try/except/else/finally, raise, custom exceptions, assertions, and production‑grade patterns — with solved and unsolved practice problems.</p>
+            </div>
+
+            <div class="week-progress-wrap">
+                <span class="progress-label">Topics</span>
+                <div class="progress-track"><div class="progress-fill" id="weekProgressFill" style="width:0%"></div></div>
+                <div class="progress-days">
+                    <div class="progress-dot" data-day="1" onclick="scrollToDay('day1')">1</div>
+                    <div class="progress-dot" data-day="2" onclick="scrollToDay('day2')">2</div>
+                    <div class="progress-dot" data-day="3" onclick="scrollToDay('day3')">3</div>
+                    <div class="progress-dot" data-day="4" onclick="scrollToDay('day4')">4</div>
+                    <div class="progress-dot" data-day="5" onclick="scrollToDay('day5')">5</div>
+                    <div class="progress-dot" data-day="6" onclick="scrollToDay('day6')">6</div>
+                    <div class="progress-dot" data-day="7" onclick="scrollToDay('day7')">7</div>
+                </div>
+            </div>
+
+            <div class="content-section active">
+                <div class="section-intro">
+                    <p><strong>📌 What you'll learn:</strong> Exception handling is not just about <code>try</code> and <code>except</code>. It’s a mindset that separates fragile scripts from production‑ready software. This page covers everything: syntax errors vs exceptions, the full hierarchy, best practices, and how to design your own error strategy.</p>
+                    <p><strong>🎯 Goal:</strong> Write Python code that fails gracefully, logs meaningfully, and recovers intelligently — whether you’re a beginner or an experienced developer moving to production systems.</p>
+                </div>
+
+                <!-- ========== WHY EXCEPTION HANDLING DEEP DIVE ========== -->
+                <div class="concept-card" id="why-exception-handling">
+                    <h3><i class="fas fa-search"></i> Why Exception Handling? The Big Picture</h3>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-question-circle"></i> What is Exception Handling?</div>
+                        <p>Exception handling is a programming construct that allows you to <strong>catch and respond to runtime errors</strong> (exceptions) without crashing the program. It separates the normal flow of code from the error‑recovery logic, making programs more robust and maintainable.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-exclamation-triangle"></i> Why is it required?</div>
+                        <p>Without exception handling, any unexpected situation – a missing file, a network timeout, invalid user input – would immediately terminate the program. In production, that means lost data, unhappy users, and system downtime. Exception handling gives you control over these scenarios.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-star"></i> Why is it important?</div>
+                        <ul>
+                            <li><strong>User experience:</strong> Show friendly messages instead of raw tracebacks.</li>
+                            <li><strong>Data integrity:</strong> Roll back transactions or save progress before exiting.</li>
+                            <li><strong>Debugging:</strong> Log detailed error information for post‑mortem analysis.</li>
+                            <li><strong>Resilience:</strong> Retry operations, fall back to defaults, or degrade gracefully.</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-lightbulb"></i> What problem does it solve?</div>
+                        <p>It solves the <strong>fragility problem</strong>: a single unhandled error should not bring down an entire system. It turns unpredictable failures into manageable events, allowing software to self‑heal or at least shut down cleanly.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-cogs"></i> Role in Production Environments</div>
+                        <p>In production, exception handling is the backbone of <strong>observability and reliability</strong>. It enables:</p>
+                        <ul>
+                            <li>Centralized error logging and alerting (Sentry, ELK, CloudWatch).</li>
+                            <li>Automatic retry with backoff (protects against transient failures).</li>
+                            <li>Circuit breakers that prevent cascading failures.</li>
+                            <li>Graceful shutdowns that finish in‑flight tasks before termination.</li>
+                        </ul>
+                        <div class="tip-box"><strong>💡 Production example:</strong> A web server catches all exceptions at the top level, returns a 500 response, logs the traceback, and keeps running for the next request. Without this, one bug could crash the entire server.</div>
+                    </div>
+                </div>
+
+                <div class="genz-course-grid">
+                    <div class="genz-day-card" onclick="scrollToDay('day1')"><div class="genz-day-num">01</div><div class="genz-day-icon"><i class="fas fa-bug"></i></div><h4 class="genz-day-title">Errors vs Exceptions</h4><div class="genz-day-tags"><span>syntax</span><span>runtime</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day2')"><div class="genz-day-num">02</div><div class="genz-day-icon"><i class="fas fa-list"></i></div><h4 class="genz-day-title">Built‑in Exceptions</h4><div class="genz-day-tags"><span>hierarchy</span><span>examples</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day3')"><div class="genz-day-num">03</div><div class="genz-day-icon"><i class="fas fa-shield-alt"></i></div><h4 class="genz-day-title">try/except</h4><div class="genz-day-tags"><span>catching</span><span>multiple</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day4')"><div class="genz-day-num">04</div><div class="genz-day-icon"><i class="fas fa-check-circle"></i></div><h4 class="genz-day-title">else / finally</h4><div class="genz-day-tags"><span>cleanup</span><span>success</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day5')"><div class="genz-day-num">05</div><div class="genz-day-icon"><i class="fas fa-exclamation-circle"></i></div><h4 class="genz-day-title">raise & Custom</h4><div class="genz-day-tags"><span>raise</span><span>inheritance</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day6')"><div class="genz-day-num">06</div><div class="genz-day-icon"><i class="fas fa-gavel"></i></div><h4 class="genz-day-title">Assertions</h4><div class="genz-day-tags"><span>assert</span><span>debug</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day7')"><div class="genz-day-num">07</div><div class="genz-day-icon"><i class="fas fa-rocket"></i></div><h4 class="genz-day-title">Production Patterns</h4><div class="genz-day-tags"><span>logging</span><span>retry</span></div></div>
+                </div>
+
+                <!-- ========== CONCEPT CARDS (DAYS 1-7) ========== -->
+                <!-- DAY 1 -->
+                <div class="concept-card" id="day1">
+                    <h3><span class="day-badge">1</span> Errors vs Exceptions – The Foundation</h3>
+                    <p>Python distinguishes between <strong>syntax errors</strong> (parsing problems, your code never runs) and <strong>exceptions</strong> (runtime errors that occur during execution and can be caught).</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> syntax_vs_runtime.py</div>
+                        <pre class="line-numbers"><code class="language-python"># Syntax error – code won't execute
+if True
+    print("Missing colon")
+
+# Runtime exception – ZeroDivisionError
+print(10 / 0)</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="why-box"><strong>🔍 Why it matters:</strong> Syntax errors must be fixed before the program runs. Runtime exceptions must be anticipated and handled, because they often depend on external factors (user input, file availability, network).</div>
+                </div>
+
+                <!-- DAY 2 -->
+                <div class="concept-card" id="day2">
+                    <h3><span class="day-badge">2</span> Built‑in Exception Hierarchy & Examples</h3>
+                    <p>All built‑in exceptions inherit from <code>BaseException</code>. The main branch for everyday errors is <code>Exception</code>. Here are the most common ones every developer must know.</p>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-sitemap"></i> Common Built‑in Exceptions <span class="badge visual">Hierarchy</span></div>
+                        <table class="comparative-table">
+                            <thead><tr><th>Exception</th><th>Cause</th><th>Example Trigger</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>TypeError</code></td><td>Wrong type</td><td><code>len(42)</code></td></tr>
+                                <tr><td><code>ValueError</code></td><td>Right type, inappropriate value</td><td><code>int("hello")</code></td></tr>
+                                <tr><td><code>IndexError</code></td><td>List index out of range</td><td><code>lst[10]</code></td></tr>
+                                <tr><td><code>KeyError</code></td><td>Missing dict key</td><td><code>d["missing"]</code></td></tr>
+                                <tr><td><code>ZeroDivisionError</code></td><td>Division by zero</td><td><code>10/0</code></td></tr>
+                                <tr><td><code>FileNotFoundError</code></td><td>File doesn't exist</td><td><code>open("nofile.txt")</code></td></tr>
+                                <tr><td><code>ImportError</code></td><td>Module not found</td><td><code>import nonexistent</code></td></tr>
+                                <tr><td><code>AttributeError</code></td><td>Object has no such attribute</td><td><code>None.upper()</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tip-box"><strong>💡 Pro tip:</strong> Catching <code>Exception</code> is broad; prefer specific exceptions. Use <code>except (TypeError, ValueError) as e:</code> for multiple types.</div>
+                </div>
+
+                <!-- DAY 3 -->
+                <div class="concept-card" id="day3">
+                    <h3><span class="day-badge">3</span> try / except – Catching & Handling</h3>
+                    <p>The core mechanism. You can catch one, many, or all exceptions. Always capture the exception object for logging.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> try_except_examples.py</div>
+                        <pre class="line-numbers"><code class="language-python"># Basic try/except
+try:
+    result = 10 / int(input("Enter a number: "))
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+except ValueError:
+    print("That's not a valid number!")
+except Exception as e:
+    print(f"Unexpected error: {e}")
+
+# Multiple exceptions in one line
+try:
+    data = {"a":1}
+    print(data["b"])
+except (KeyError, IndexError) as e:
+    print(f"Lookup failed: {e}")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="why-box"><strong>🔍 Why it's crucial:</strong> Unhandled exceptions crash your program. A well‑placed <code>try/except</code> allows your application to continue running, maybe retry or show a friendly message.</div>
+                </div>
+
+                <!-- DAY 4 -->
+                <div class="concept-card" id="day4">
+                    <h3><span class="day-badge">4</span> else & finally – Success Path & Cleanup</h3>
+                    <p><code>else</code> runs only if no exception occurred. <code>finally</code> runs no matter what — perfect for releasing resources.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> else_finally.py</div>
+                        <pre class="line-numbers"><code class="language-python">def read_config(filename):
+    file = None
+    try:
+        file = open(filename, 'r')
+        data = file.read()
+    except FileNotFoundError:
+        print(f"Config file {filename} not found, using defaults")
+        data = {}
+    else:
+        print("Config loaded successfully")
+    finally:
+        if file:
+            file.close()
+        print("Cleanup done")
+    return data</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="tip-box"><strong>💡 Best practice:</strong> Use <code>else</code> for code that should only run on success (keeps the <code>try</code> block minimal). Use <code>finally</code> for closing files, releasing locks, or restoring state — it's guaranteed.</div>
+                </div>
+
+                <!-- DAY 5 -->
+                <div class="concept-card" id="day5">
+                    <h3><span class="day-badge">5</span> raise & Custom Exceptions</h3>
+                    <p>You can raise exceptions yourself to signal errors, and define your own exception classes for better readability and control.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> custom_exceptions.py</div>
+                        <pre class="line-numbers"><code class="language-python">class InsufficientFundsError(Exception):
+    """Custom exception for banking domain."""
+    def __init__(self, balance, amount):
+        super().__init__(f"Balance {balance} is insufficient for withdrawal of {amount}")
+        self.balance = balance
+        self.amount = amount
+
+def withdraw(balance, amount):
+    if amount > balance:
+        raise InsufficientFundsError(balance, amount)
+    return balance - amount
+
+# Usage
+try:
+    new_balance = withdraw(100, 200)
+except InsufficientFundsError as e:
+    print(e)  # Balance 100 is insufficient for withdrawal of 200</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="why-box"><strong>🔍 Why custom exceptions?</strong> They make error handling domain‑specific and self‑documenting. Instead of a generic <code>ValueError</code>, <code>InsufficientFundsError</code> tells you exactly what went wrong.</div>
+                </div>
+
+                <!-- DAY 6 -->
+                <div class="concept-card" id="day6">
+                    <h3><span class="day-badge">6</span> Assertions – Debugging Aid</h3>
+                    <p><code>assert condition, message</code> checks invariants. If the condition is false, it raises <code>AssertionError</code>. Disable assertions in production with <code>-O</code> flag.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> assertions.py</div>
+                        <pre class="line-numbers"><code class="language-python">def apply_discount(price, discount):
+    assert 0 <= discount <= 1, "Discount must be between 0 and 1"
+    return price * (1 - discount)
+
+# This will fail during development
+# apply_discount(100, 1.2)  # AssertionError</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="danger-box"><strong>⚠️ Warning:</strong> Never use assertions for data validation in production (they can be disabled). Use explicit <code>if</code> + <code>raise ValueError</code> for user‑facing checks.</div>
+                </div>
+
+                <!-- DAY 7 -->
+                <div class="concept-card" id="day7">
+                    <h3><span class="day-badge">7</span> Production‑Grade Exception Handling</h3>
+                    <p>In production, you need logging, retries, graceful degradation, and monitoring. Here are essential patterns.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> production_patterns.py</div>
+                        <pre class="line-numbers"><code class="language-python">import logging
+import time
+from functools import wraps
+
+logging.basicConfig(level=logging.ERROR)
+
+def retry(max_attempts=3, delay=1, backoff=2):
+    """Decorator to retry a function on exception."""
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            attempt = 0
+            while attempt < max_attempts:
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    attempt += 1
+                    logging.error(f"Attempt {attempt} failed: {e}")
+                    if attempt == max_attempts:
+                        raise
+                    time.sleep(delay * (backoff ** (attempt-1)))
+        return wrapper
+    return decorator
+
+@retry(max_attempts=3, delay=1)
+def unstable_network_call():
+    # simulate transient failure
+    raise ConnectionError("Network timeout")
+    </code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="tip-box"><strong>💡 Production essentials:</strong> Always log full tracebacks; never silence exceptions without logging. Use context managers (<code>with</code>) for resource safety. Implement circuit breakers for external calls.</div>
+                </div>
+
+                <!-- ========== SOLVED PROBLEMS ========== -->
+                <div class="concept-card" id="solved-problems">
+                    <h3><i class="fas fa-check-double"></i> Solved Practice Problems</h3>
+                    <p>Work through these solved examples to solidify your understanding. Each solution includes a step‑by‑step explanation.</p>
+
+                    <h4 style="color:var(--success);">🔰 Easy (3 problems)</h4>
+                    <div class="info-card">
+                        <div class="card-title">1. Safe Division Function</div>
+                        <div class="code-block">
+                            <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> solution.py</div>
+                            <pre class="line-numbers"><code class="language-python">def safe_divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        print("Error: Cannot divide by zero.")
+        return None
+
+# Test
+print(safe_divide(10, 2))   # 5.0
+print(safe_divide(10, 0))   # Error: Cannot divide by zero. → None</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-title">2. List Element Access with Fallback</div>
+                        <div class="code-block">
+                            <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> solution.py</div>
+                            <pre class="line-numbers"><code class="language-python">def get_element(lst, index):
+    try:
+        return lst[index]
+    except IndexError:
+        print(f"Index {index} is out of range. Returning None.")
+        return None
+
+numbers = [10, 20, 30]
+print(get_element(numbers, 1))  # 20
+print(get_element(numbers, 5))  # Error message + None</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-title">3. Dictionary Lookup with Default</div>
+                        <div class="code-block">
+                            <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> solution.py</div>
+                            <pre class="line-numbers"><code class="language-python">def get_config(key, config_dict):
+    try:
+        return config_dict[key]
+    except KeyError:
+        print(f"Key '{key}' not found. Using default.")
+        return "default_value"
+
+config = {"host": "localhost", "port": 8080}
+print(get_config("host", config))   # localhost
+print(get_config("timeout", config)) # Key 'timeout' not found. Using default. → default_value</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--warning);">⚡ Intermediate (3 problems)</h4>
+                    <div class="info-card">
+                        <div class="card-title">4. Multi‑Exception JSON Parser</div>
+                        <div class="code-block">
+                            <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> solution.py</div>
+                            <pre class="line-numbers"><code class="language-python">import json
+
+def parse_and_access(json_string, key):
+    try:
+        data = json.loads(json_string)
+        return data[key]
+    except json.JSONDecodeError:
+        print("Invalid JSON format.")
+    except KeyError:
+        print(f"Key '{key}' missing in JSON.")
+    return None
+
+# Example
+good_json = '{"name": "Alice", "age": 30}'
+bad_json = 'invalid'
+print(parse_and_access(good_json, "name"))   # Alice
+print(parse_and_access(good_json, "city"))   # Key missing
+print(parse_and_access(bad_json, "name"))    # Invalid JSON</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-title">5. Custom Exception for Banking</div>
+                        <div class="code-block">
+                            <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> solution.py</div>
+                            <pre class="line-numbers"><code class="language-python">class InsufficientFundsError(Exception):
+    def __init__(self, balance, amount):
+        super().__init__(f"Balance {balance} is insufficient for withdrawal of {amount}")
+        self.balance = balance
+        self.amount = amount
+
+def withdraw(balance, amount):
+    if amount > balance:
+        raise InsufficientFundsError(balance, amount)
+    return balance - amount
+
+try:
+    new_balance = withdraw(100, 200)
+except InsufficientFundsError as e:
+    print(e)  # Balance 100 is insufficient for withdrawal of 200</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-title">6. Retry Decorator for Transient Errors</div>
+                        <div class="code-block">
+                            <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> solution.py</div>
+                            <pre class="line-numbers"><code class="language-python">import time
+from functools import wraps
+
+def retry(max_attempts=3, delay=1):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_attempts):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    if attempt == max_attempts - 1:
+                        raise
+                    print(f"Attempt {attempt+1} failed: {e}. Retrying...")
+                    time.sleep(delay)
+        return wrapper
+    return decorator
+
+@retry(max_attempts=2, delay=0.5)
+def unstable_call():
+    # simulate failure
+    raise ConnectionError("Network issue")
+
+try:
+    unstable_call()
+except ConnectionError:
+    print("All retries exhausted")</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--danger);">🚀 Advanced (3 problems)</h4>
+                    <div class="info-card">
+                        <div class="card-title">7. Context Manager for Transaction</div>
+                        <div class="code-block">
+                            <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> solution.py</div>
+                            <pre class="line-numbers"><code class="language-python">class Transaction:
+    def __init__(self):
+        self.committed = False
+
+    def __enter__(self):
+        print("BEGIN TRANSACTION")
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if exc_type is None:
+            self.committed = True
+            print("COMMIT")
+        else:
+            print(f"ROLLBACK due to {exc_type.__name__}: {exc_val}")
+        return False  # don't suppress exception
+
+def process_order():
+    with Transaction() as t:
+        # raise ValueError("Invalid order")  # uncomment to test rollback
+        print("Order processed")
+
+process_order()</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-title">8. Chained Exceptions in Data Pipeline</div>
+                        <div class="code-block">
+                            <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> solution.py</div>
+                            <pre class="line-numbers"><code class="language-python">class DataPipelineError(Exception):
+    pass
+
+def parse_int(value):
+    try:
+        return int(value)
+    except ValueError as original:
+        raise DataPipelineError("Failed to convert to integer") from original
+
+try:
+    parse_int("abc")
+except DataPipelineError as e:
+    print(f"Pipeline error: {e}")
+    if e.__cause__:
+        print(f"Caused by: {e.__cause__}")</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-title">9. Global Unhandled Exception Hook</div>
+                        <div class="code-block">
+                            <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> solution.py</div>
+                            <pre class="line-numbers"><code class="language-python">import sys
+import traceback
+from datetime import datetime
+
+def global_exception_handler(exc_type, exc_value, exc_tb):
+    """Log unhandled exceptions to a file."""
+    error_msg = ''.join(traceback.format_exception(exc_type, exc_value, exc_tb))
+    with open('crash.log', 'a') as f:
+        f.write(f"[{datetime.now()}] UNHANDLED EXCEPTION\n{error_msg}\n")
+    print("A critical error occurred. Check crash.log", file=sys.stderr)
+
+sys.excepthook = global_exception_handler
+
+# Test – uncomment to see it in action (will crash but log)
+# raise RuntimeError("Something went very wrong")</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== UNSOLVED PROBLEMS ========== -->
+                <div class="concept-card" id="practice-problems">
+                    <h3><i class="fas fa-question-circle"></i> Unsolved Practice Problems</h3>
+                    <p>Test your understanding with these carefully graded exercises. No peeking — try to solve them first!</p>
+                    <h4 style="color:var(--success);">🔰 Easy (5 problems)</h4>
+                    <div class="practice-problem"><details><summary>1. Safe Division</summary><div class="solution"><p>Write a function that takes two numbers and returns their division. If the denominator is zero, catch <code>ZeroDivisionError</code> and return <code>None</code> instead of crashing.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;"><pre style="color:#64748b;">def safe_divide(a, b):
+    # your code here
+    pass</pre></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. List Element Access</summary><div class="solution"><p>Given a list and an index, return the element. If the index is out of range, catch <code>IndexError</code> and print "Index out of bounds".</p></div></details></div>
+                    <div class="practice-problem"><details><summary>3. Dictionary Lookup with Default</summary><div class="solution"><p>Write a function <code>get_config(key, config_dict)</code> that returns the value for the key. Catch <code>KeyError</code> and return <code>"default_value"</code> instead.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>4. Integer Conversion</summary><div class="solution"><p>Ask the user for input and convert it to an integer. Catch <code>ValueError</code> and print "Not a valid integer".</p></div></details></div>
+                    <div class="practice-problem"><details><summary>5. File Reader</summary><div class="solution"><p>Try to open a file and read its content. Catch <code>FileNotFoundError</code> and print a friendly message.</p></div></details></div>
+
+                    <h4 style="color:var(--warning);">⚡ Intermediate (5 problems)</h4>
+                    <div class="practice-problem"><details><summary>6. Multiple Exception Handling</summary><div class="solution"><p>Implement a function that parses a JSON string and accesses a specific key. Catch both <code>json.JSONDecodeError</code> and <code>KeyError</code>, printing different messages for each.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>7. Finally for Resource Cleanup</summary><div class="solution"><p>Write a context manager class (or use a function with <code>try/finally</code>) that opens a file, processes it, and ensures the file is closed even if an exception occurs.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>8. Custom Exception Hierarchy</summary><div class="solution"><p>Create a base exception <code>AppError</code> and two subclasses <code>DatabaseError</code> and <code>ValidationError</code>. Write a function that raises the appropriate error based on a condition.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>9. Retry with Backoff</summary><div class="solution"><p>Write a decorator <code>@retry_on_failure(max_retries=3)</code> that retries a function if it raises any <code>Exception</code>, with a 1‑second delay between retries.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>10. Assertion vs Exception</summary><div class="solution"><p>Write a function that calculates the square root of a number. Use <code>assert</code> to check non‑negative input, and catch it only if assertions are enabled. Then write a production‑ready version that raises <code>ValueError</code> instead.</p></div></details></div>
+
+                    <h4 style="color:var(--danger);">🚀 Advanced (5 problems)</h4>
+                    <div class="practice-problem"><details><summary>11. Chained Exceptions</summary><div class="solution"><p>In a data pipeline, catch a <code>ValueError</code> while converting a string to int. Raise a new <code>DataPipelineError</code> with the original exception as <code>__cause__</code> (using <code>raise ... from err</code>).</p></div></details></div>
+                    <div class="practice-problem"><details><summary>12. Context Manager with Error Handling</summary><div class="solution"><p>Create a context manager <code>Transaction</code> that simulates a database transaction. If an exception occurs inside the <code>with</code> block, roll back; otherwise commit. Use <code>__exit__</code> to decide.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>13. Global Exception Hook</summary><div class="solution"><p>Override <code>sys.excepthook</code> to log all unhandled exceptions to a file with timestamp and traceback, then exit gracefully.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>14. Circuit Breaker Pattern</summary><div class="solution"><p>Implement a simple circuit breaker class that, after 3 consecutive failures, stops calling a function for a timeout period.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>15. Nested try/except with Resource Cleanup</summary><div class="solution"><p>Write a function that opens two files (source and destination) and copies content. If opening the destination fails, ensure the source file is closed in an outer <code>finally</code> block. Use nested try structures.</p></div></details></div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#why-exception-handling">Why Exception Handling?</a></li>
+                <li><a href="#day1">Errors vs Exceptions</a></li>
+                <li><a href="#day2">Built‑in Exceptions</a></li>
+                <li><a href="#day3">try / except</a></li>
+                <li><a href="#day4">else / finally</a></li>
+                <li><a href="#day5">raise & Custom</a></li>
+                <li><a href="#day6">Assertions</a></li>
+                <li><a href="#day7">Production Patterns</a></li>
+                <li><a href="#solved-problems">Solved Problems</a></li>
+                <li><a href="#practice-problems">Unsolved Problems</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Exception%20Handling%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Chat</a>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2026 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+    </footer>
+
+    <script src="../js/learn-python.js"></script>
+    <script>
+        function scrollToDay(dayId) {
+            const el = document.getElementById(dayId);
+            if (el) {
+                el.scrollIntoView({ behavior:'smooth', block:'start' });
+                el.classList.add('pulse-highlight');
+                setTimeout(() => el.classList.remove('pulse-highlight'), 3000);
+            }
+            updateProgressDots(dayId);
+        }
+        function updateProgressDots(activeDayId) {
+            const dayMap = {'day1':1,'day2':2,'day3':3,'day4':4,'day5':5,'day6':6,'day7':7};
+            const activeDay = dayMap[activeDayId] || 1;
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                const d = parseInt(dot.getAttribute('data-day'));
+                dot.classList.remove('active','completed');
+                if (d === activeDay) dot.classList.add('active');
+                else if (d < activeDay) dot.classList.add('completed');
+            });
+            document.getElementById('weekProgressFill').style.width = ((activeDay / 7) * 100) + '%';
+        }
+        const dayIds = ['why-exception-handling','day1','day2','day3','day4','day5','day6','day7','solved-problems','practice-problems'];
+        window.addEventListener('scroll', () => {
+            let currentDay = 'day1';
+            dayIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 160) currentDay = id;
+            });
+            if (dayIds.includes(currentDay)) updateProgressDots(currentDay);
+            document.querySelectorAll('.page-tracker a').forEach(a => {
+                const href = a.getAttribute('href');
+                a.style.fontWeight = href === '#' + currentDay ? '700' : '400';
+                a.style.color = href === '#' + currentDay ? 'var(--primary)' : '';
+            });
+        }, { passive:true });
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+        }, { passive:true });
+        if (typeof copyCode !== 'function') {
+            window.copyCode = function(btn) {
+                const code = btn.closest('.code-block')?.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.textContent).then(() => {
+                        const icon = btn.querySelector('i');
+                        if (icon) { icon.classList.replace('fa-copy','fa-check'); setTimeout(() => icon.classList.replace('fa-check','fa-copy'), 2000); }
+                    });
+                }
+            };
+        }
+        function createParticles(element, event) {
+            const emojis = ['🐛','🛡️','✅','⚡','📁','🔧','🧪'];
+            const rect = element.getBoundingClientRect();
+            const centerX = event.clientX - rect.left;
+            const centerY = event.clientY - rect.top;
+            for (let i=0;i<6;i++) {
+                const particle = document.createElement('span');
+                particle.className = 'particle-emoji';
+                particle.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+                particle.style.left = centerX+'px';
+                particle.style.top = centerY+'px';
+                const angle = Math.random()*2*Math.PI;
+                const distance = 25+Math.random()*50;
+                particle.style.setProperty('--px', Math.cos(angle)*distance+'px');
+                particle.style.setProperty('--py', Math.sin(angle)*distance+'px');
+                element.appendChild(particle);
+                setTimeout(() => particle.remove(), 700);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => updateProgressDots('day1'));
+        console.log('🐍 Exception Handling Mastery – Ready!');
+    </script>
+</body>
+</html>
