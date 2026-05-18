@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/modules-packages.html" />
+    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/iterators-generators.html" />
     <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
-    <title>Python Modules & Packages: Complete Guide | BookTown Classes</title>
-    <meta name="description" content="Master Python modules, packages, imports, __init__.py, namespace packages, pip, virtual environments, and production-grade project structures. Solved examples and practice problems included." />
-    <meta name="keywords" content="Python modules, packages, import, __init__.py, pip, virtualenv, namespace package, __name__, __main__, sys.path, BookTown Classes" />
+    <title>Python Iterators & Generators: Complete Mastery | BookTown Classes</title>
+    <meta name="description" content="Master Python iterators, generators, yield, generator expressions, itertools, and production‑grade lazy evaluation patterns. Solved examples, deep explanations, and practice problems included." />
+    <meta name="keywords" content="Python iterators, generators, yield, __iter__, __next__, itertools, generator expression, lazy evaluation, BookTown Classes" />
     <meta name="author" content="BookTown Classes" />
-    <meta property="og:title" content="Python Modules & Packages: Complete Guide | BookTown Classes" />
-    <meta property="og:description" content="From basic imports to production package structures – build scalable, maintainable Python projects with deep explanations, solved examples, and practice problems." />
+    <meta property="og:title" content="Python Iterators & Generators: Complete Mastery | BookTown Classes" />
+    <meta property="og:description" content="From basic iteration to advanced generator patterns – build memory‑efficient, lazy, and production‑ready Python code with detailed walkthroughs, solved examples, and practice problems." />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#7c3aed" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -637,30 +637,6 @@
             background: #1e293b;
         }
 
-        /* Modules‑specific: directory tree styling */
-        .module-tree {
-            background: #1e293b;
-            border-radius: 10px;
-            padding: 16px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.78rem;
-            color: #cbd5e1;
-            line-height: 1.6;
-            overflow-x: auto;
-            white-space: pre;
-            margin: 14px 0;
-        }
-        .module-tree .dir {
-            color: #60a5fa;
-            font-weight: 600;
-        }
-        .module-tree .file {
-            color: #34d399;
-        }
-        .module-tree .comment {
-            color: #94a3b8;
-        }
-
         @media (max-width:768px) {
             .mini-hero {
                 padding: 1.2rem;
@@ -690,9 +666,9 @@
         <aside class="sidebar" id="mainSidebar"></aside>
         <main class="content">
             <div class="mini-hero">
-                <div class="hero-badge"><span class="pulse-dot"></span> Python • Modules & Packages</div>
-                <h1 class="hero-headline"><span class="gradient-text">Modules & Packages</span> Complete Guide</h1>
-                <p class="hero-sub">Master Python's modular architecture — from basic imports to production-grade package structures with __init__.py, namespace packages, pip, virtual environments, and real-world patterns.</p>
+                <div class="hero-badge"><span class="pulse-dot"></span> Python • Iterators & Generators</div>
+                <h1 class="hero-headline"><span class="gradient-text">Iterators & Generators</span> Deep Dive</h1>
+                <p class="hero-sub">Master lazy evaluation, infinite sequences, and memory‑efficient data pipelines with iterators, generators, generator expressions, and itertools — with solved examples and practice problems.</p>
             </div>
 
             <div class="week-progress-wrap">
@@ -711,357 +687,376 @@
 
             <div class="content-section active">
                 <div class="section-intro">
-                    <p><strong>📌 What you'll learn:</strong> Modules let you split code into reusable files. Packages group related modules into directories. Together they form the backbone of Python's scalability — from a single script to enterprise applications with hundreds of files.</p>
-                    <p><strong>🎯 Goal:</strong> Organize code like a pro using modules, packages, proper import styles, <code>__init__.py</code>, relative imports, and virtual environments — whether you're building a CLI tool or a web application.</p>
+                    <p><strong>📌 What you'll learn:</strong> Iterators let you traverse data without loading everything into memory. Generators produce values on the fly using <code>yield</code>. Together they power Python's lazy evaluation model — essential for handling streams, large files, and infinite sequences. This page covers the full stack: from <code>iter()</code> to <code>itertools</code> and async generators.</p>
+                    <p><strong>🎯 Goal:</strong> Write memory‑efficient, elegant Python code using iterators and generators — whether you're processing a billion log lines or building a real‑time data pipeline.</p>
                 </div>
 
                 <div class="genz-course-grid">
-                    <div class="genz-day-card" onclick="scrollToDay('day1')"><div class="genz-day-num">01</div><div class="genz-day-icon"><i class="fas fa-file-code"></i></div><h4 class="genz-day-title">Modules</h4><div class="genz-day-tags"><span>import</span><span>.py files</span></div></div>
-                    <div class="genz-day-card" onclick="scrollToDay('day2')"><div class="genz-day-num">02</div><div class="genz-day-icon"><i class="fas fa-download"></i></div><h4 class="genz-day-title">Import Styles</h4><div class="genz-day-tags"><span>from</span><span>as</span><span>*</span></div></div>
-                    <div class="genz-day-card" onclick="scrollToDay('day3')"><div class="genz-day-num">03</div><div class="genz-day-icon"><i class="fas fa-folder"></i></div><h4 class="genz-day-title">Packages</h4><div class="genz-day-tags"><span>__init__.py</span><span>subpackages</span></div></div>
-                    <div class="genz-day-card" onclick="scrollToDay('day4')"><div class="genz-day-num">04</div><div class="genz-day-icon"><i class="fas fa-exchange-alt"></i></div><h4 class="genz-day-title">Relative Imports</h4><div class="genz-day-tags"><span>.</span><span>..</span></div></div>
-                    <div class="genz-day-card" onclick="scrollToDay('day5')"><div class="genz-day-num">05</div><div class="genz-day-icon"><i class="fas fa-globe"></i></div><h4 class="genz-day-title">Namespace Pkgs</h4><div class="genz-day-tags"><span>PEP 420</span><span>no __init__</span></div></div>
-                    <div class="genz-day-card" onclick="scrollToDay('day6')"><div class="genz-day-num">06</div><div class="genz-day-icon"><i class="fas fa-box"></i></div><h4 class="genz-day-title">Built-in & pip</h4><div class="genz-day-tags"><span>os</span><span>requests</span><span>venv</span></div></div>
-                    <div class="genz-day-card" onclick="scrollToDay('day7')"><div class="genz-day-num">07</div><div class="genz-day-icon"><i class="fas fa-rocket"></i></div><h4 class="genz-day-title">Production</h4><div class="genz-day-tags"><span>src layout</span><span>pyproject.toml</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day1')"><div class="genz-day-num">01</div><div class="genz-day-icon"><i class="fas fa-redo"></i></div><h4 class="genz-day-title">Iterables & Iterators</h4><div class="genz-day-tags"><span>iter()</span><span>next()</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day2')"><div class="genz-day-num">02</div><div class="genz-day-icon"><i class="fas fa-cogs"></i></div><h4 class="genz-day-title">Custom Iterators</h4><div class="genz-day-tags"><span>__iter__</span><span>__next__</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day3')"><div class="genz-day-num">03</div><div class="genz-day-icon"><i class="fas fa-bolt"></i></div><h4 class="genz-day-title">Generator Functions</h4><div class="genz-day-tags"><span>yield</span><span>lazy</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day4')"><div class="genz-day-num">04</div><div class="genz-day-icon"><i class="fas fa-code"></i></div><h4 class="genz-day-title">Generator Expressions</h4><div class="genz-day-tags"><span>( ... )</span><span>comprehension</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day5')"><div class="genz-day-num">05</div><div class="genz-day-icon"><i class="fas fa-paper-plane"></i></div><h4 class="genz-day-title">Advanced Methods</h4><div class="genz-day-tags"><span>send()</span><span>throw()</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day6')"><div class="genz-day-num">06</div><div class="genz-day-icon"><i class="fas fa-infinity"></i></div><h4 class="genz-day-title">itertools</h4><div class="genz-day-tags"><span>count</span><span>chain</span><span>cycle</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day7')"><div class="genz-day-num">07</div><div class="genz-day-icon"><i class="fas fa-rocket"></i></div><h4 class="genz-day-title">Production</h4><div class="genz-day-tags"><span>pipelines</span><span>async gen</span></div></div>
                 </div>
 
                 <!-- ========== WHY SECTION ========== -->
-                <div class="concept-card" id="why-modules-packages">
-                    <h3><i class="fas fa-search"></i> Why Modules & Packages Matter</h3>
+                <div class="concept-card" id="why-iterators-generators">
+                    <h3><i class="fas fa-search"></i> Why Iterators & Generators Matter</h3>
                     <div class="info-card">
-                        <div class="card-title"><i class="fas fa-question-circle"></i> What problem do they solve?</div>
-                        <p>A single <code>.py</code> file with 5000 lines is a nightmare to debug. Modules break code into logical, reusable units. Packages organize related modules, preventing name clashes and making large codebases manageable.</p>
+                        <div class="card-title"><i class="fas fa-question-circle"></i> What problems do they solve?</div>
+                        <p>Iterators provide a uniform interface for traversing any collection, including infinite or lazily‑computed data. Generators let you write functions that produce a sequence of values over time, pausing and resuming state — ideal for memory‑efficient data processing.</p>
                     </div>
                     <div class="info-card">
                         <div class="card-title"><i class="fas fa-exclamation-triangle"></i> Why are they required?</div>
-                        <p>Without modules, every project would be one giant file. Without packages, all module names would have to be globally unique. Python's import system solves both: namespacing, encapsulation, and discoverability.</p>
+                        <p>Without iterators, every collection would need its own custom loop syntax. Without generators, you'd have to implement complex iterator classes by hand. Both are fundamental to Python's design — <code>for</code> loops, comprehensions, and even <code>range()</code> rely on them.</p>
                     </div>
                     <div class="info-card">
                         <div class="card-title"><i class="fas fa-cogs"></i> Role in Production</div>
-                        <p>Production projects use a <code>src/</code> layout, <code>pyproject.toml</code> for metadata, virtual environments for isolation, and tools like <code>pip</code>, <code>uv</code>, or <code>poetry</code> for dependency management. Well-structured packages are publishable on PyPI.</p>
+                        <p>In production, generators are used for streaming APIs, reading huge files line‑by‑line, building data pipelines, and implementing coroutines. Libraries like <code>itertools</code> and <code>more-itertools</code> provide battle‑tested building blocks for efficient data processing.</p>
                     </div>
                 </div>
 
-                <!-- ========== DAY 1: MODULES ========== -->
+                <!-- ========== DAY 1: ITERABLES & ITERATORS ========== -->
                 <div class="concept-card" id="day1">
-                    <h3><span class="day-badge">1</span> Modules – Every .py File Is a Module</h3>
-                    <p>A <strong>module</strong> is simply a Python file (extension <code>.py</code>) containing functions, classes, or variables. You can import it and use its contents in another file. Python ships with dozens of built-in modules (like <code>math</code>, <code>os</code>, <code>json</code>).</p>
+                    <h3><span class="day-badge">1</span> Iterables vs Iterators – The Foundation</h3>
+                    <p>An <strong>iterable</strong> is any object that can return an iterator (has <code>__iter__</code>). An <strong>iterator</strong> is an object with a <code>__next__</code> method that returns the next item or raises <code>StopIteration</code>. The <code>iter()</code> function gets an iterator from an iterable.</p>
                     <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> my_math.py (the module)</div>
-                        <pre class="line-numbers"><code class="language-python"># my_math.py — a custom module
-PI = 3.14159
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> iterable_vs_iterator.py</div>
+                        <pre class="line-numbers"><code class="language-python"># List is an iterable, not an iterator
+nums = [1, 2, 3]
+print(hasattr(nums, '__iter__'))  # True
+print(hasattr(nums, '__next__'))  # False
 
-def circle_area(radius):
-    """Return area of a circle."""
-    return PI * radius ** 2
+# iter() returns an iterator
+it = iter(nums)
+print(next(it))  # 1
+print(next(it))  # 2
+print(next(it))  # 3
+# next(it) would raise StopIteration
 
-def circle_circumference(radius):
-    return 2 * PI * radius</code></pre>
+# For loop does this automatically:
+for num in nums:   # calls iter(nums), then next() repeatedly
+    print(num)</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
                     </div>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> main.py (using the module)</div>
-                        <pre class="line-numbers"><code class="language-python">import my_math
-
-print(my_math.circle_area(5))       # 78.53975
-print(my_math.PI)                   # 3.14159</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                    </div>
-                    <div class="why-box"><strong>🔍 Key Insight:</strong> When you <code>import my_math</code>, Python searches <code>sys.path</code> (current directory first, then standard library, then site-packages). The module's code runs once and a module object is cached in <code>sys.modules</code>.</div>
+                    <div class="why-box"><strong>🔍 Key Insight:</strong> Iterators are <em>consumed once</em>. After <code>StopIteration</code>, they're exhausted. You need a new iterator to traverse again. Iterables, on the other hand, can produce fresh iterators every time.</div>
                 </div>
 
-                <!-- ========== DAY 2: IMPORT STYLES ========== -->
+                <!-- ========== DAY 2: CUSTOM ITERATORS ========== -->
                 <div class="concept-card" id="day2">
-                    <h3><span class="day-badge">2</span> Import Styles – Choose the Right One</h3>
-                    <p>Python offers several import syntaxes. Each has trade-offs between readability, namespace pollution, and convenience.</p>
-                    <table class="comparative-table">
-                        <thead>
-                            <tr><th>Style</th><th>Example</th><th>Pros / Cons</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><code>import module</code></td><td><code>import math</code></td><td>✅ Clear namespace ❌ More typing</td></tr>
-                            <tr><td><code>import module as alias</code></td><td><code>import numpy as np</code></td><td>✅ Short & readable</td></tr>
-                            <tr><td><code>from module import name</code></td><td><code>from math import pi</code></td><td>✅ Direct access ❌ Possible name clash</td></tr>
-                            <tr><td><code>from module import *</code></td><td><code>from math import *</code></td><td>❌ Pollutes namespace — avoid!</td></tr>
-                        </tbody>
-                    </table>
+                    <h3><span class="day-badge">2</span> Building Custom Iterators</h3>
+                    <p>Create a class with <code>__iter__</code> (returns self) and <code>__next__</code> (returns next value or raises <code>StopIteration</code>). Useful when you need to maintain complex iteration state.</p>
                     <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> import_styles.py</div>
-                        <pre class="line-numbers"><code class="language-python"># Recommended styles
-import math                # Use math.sqrt(16)
-import numpy as np         # Use np.array([1,2])
-from datetime import datetime  # Use datetime.now()
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> custom_iterator.py</div>
+                        <pre class="line-numbers"><code class="language-python">class Countdown:
+    def __init__(self, start):
+        self.current = start
 
-# Avoid this in production:
-from math import *         # Don't do this!</code></pre>
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current < 0:
+            raise StopIteration
+        value = self.current
+        self.current -= 1
+        return value
+
+# Usage
+for num in Countdown(3):
+    print(num)  # 3, 2, 1, 0
+
+# Separate iterator objects (better pattern):
+class CountdownIterable:
+    def __init__(self, start):
+        self.start = start
+    def __iter__(self):
+        return CountdownIterator(self.start)
+
+class CountdownIterator:
+    def __init__(self, start):
+        self.current = start
+    def __next__(self):
+        if self.current < 0:
+            raise StopIteration
+        val = self.current
+        self.current -= 1
+        return val</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
                     </div>
-                    <div class="danger-box"><strong>⚠️ Warning:</strong> <code>from module import *</code> imports all public names (those not starting with <code>_</code>) into the current namespace. This can silently overwrite existing names and makes code hard to debug.</div>
+                    <div class="tip-box"><strong>💡 Best Practice:</strong> Separate the iterable (returns fresh iterator) from the iterator (holds state). This allows multiple independent iterations. The first <code>Countdown</code> class above works but can only be iterated once.</div>
                 </div>
 
-                <!-- ========== DAY 3: PACKAGES & __init__.py ========== -->
+                <!-- ========== DAY 3: GENERATOR FUNCTIONS ========== -->
                 <div class="concept-card" id="day3">
-                    <h3><span class="day-badge">3</span> Packages – Directories with <code>__init__.py</code></h3>
-                    <p>A <strong>package</strong> is a directory containing an <code>__init__.py</code> file (and optionally subpackages). The <code>__init__.py</code> can be empty or can initialize the package, expose a public API, or run setup code.</p>
-                    <div class="module-tree">
-                        <span class="dir">my_package/</span>
-                        <span class="file">├── __init__.py</span>          <span class="comment"># Makes this directory a package</span>
-                        <span class="file">├── core.py</span>              <span class="comment"># Module: my_package.core</span>
-                        <span class="file">├── utils.py</span>             <span class="comment"># Module: my_package.utils</span>
-                        <span class="dir">└── sub_package/</span>
-                        <span class="file">    ├── __init__.py</span>
-                        <span class="file">    └── helper.py</span>         <span class="comment"># Module: my_package.sub_package.helper</span>
-                    </div>
+                    <h3><span class="day-badge">3</span> Generator Functions – <code>yield</code> Magic</h3>
+                    <p>A function with <code>yield</code> becomes a <strong>generator function</strong>. Calling it returns a generator object (an iterator). Each <code>yield</code> pauses the function, saving its state. <code>next()</code> resumes execution until the next <code>yield</code>.</p>
                     <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> __init__.py — controlling the public API</div>
-                        <pre class="line-numbers"><code class="language-python"># my_package/__init__.py
-from .core import CoreEngine
-from .utils import format_data
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> generator_function.py</div>
+                        <pre class="line-numbers"><code class="language-python">def fibonacci(limit):
+    """Generate Fibonacci numbers up to limit."""
+    a, b = 0, 1
+    while a <= limit:
+        yield a
+        a, b = b, a + b
 
-__all__ = ["CoreEngine", "format_data"]  # controls from package import *</code></pre>
+# Using the generator
+for num in fibonacci(50):
+    print(num, end=' ')  # 0 1 1 2 3 5 8 13 21 34
+
+# Or manually:
+gen = fibonacci(10)
+print(next(gen))  # 0
+print(next(gen))  # 1
+print(list(gen))  # [1, 2, 3, 5, 8]  (rest of values)
+
+# Infinite generator – no StopIteration (careful!)
+def infinite_counter(start=0):
+    while True:
+        yield start
+        start += 1</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
                     </div>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> using the package</div>
-                        <pre class="line-numbers"><code class="language-python"># Option A: import the package
-import my_package
-engine = my_package.CoreEngine()
-
-# Option B: import specific names
-from my_package import CoreEngine, format_data
-
-# Option C: import subpackage module
-from my_package.sub_package import helper</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                    </div>
-                    <div class="tip-box"><strong>💡 Best Practice:</strong> Keep <code>__init__.py</code> minimal. Import only the most important classes/functions. This makes the package's public API clear and avoids circular import problems.</div>
+                    <div class="why-box"><strong>🔍 Why generators?</strong> They are concise, memory‑efficient, and automatically implement <code>__iter__</code> and <code>__next__</code>. State (local variables) is saved between yields, making complex state machines trivial to write.</div>
                 </div>
 
-                <!-- ========== DAY 4: RELATIVE IMPORTS ========== -->
+                <!-- ========== DAY 4: GENERATOR EXPRESSIONS ========== -->
                 <div class="concept-card" id="day4">
-                    <h3><span class="day-badge">4</span> Relative Imports – Within a Package</h3>
-                    <p>Inside a package, use <strong>relative imports</strong> (starting with <code>.</code>) to refer to sibling modules or parent packages. This makes the package self-contained and movable.</p>
+                    <h3><span class="day-badge">4</span> Generator Expressions – Lazy Comprehensions</h3>
+                    <p>Similar to list comprehensions, but use parentheses <code>(...)</code> instead of brackets <code>[...]</code>. They produce values on demand, not all at once. Perfect for large or infinite data.</p>
                     <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> relative_imports_demo.py</div>
-                        <pre class="line-numbers"><code class="language-python"># Inside my_package/core.py
-from .utils import format_data          # sibling module (single dot)
-from .sub_package.helper import run     # subpackage module
-from .. import some_sibling_package     # parent package (double dot)
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> generator_expression.py</div>
+                        <pre class="line-numbers"><code class="language-python"># List comprehension – creates entire list in memory
+squares_list = [x**2 for x in range(10)]  # 10 items in memory
 
-def process():
-    data = format_data("raw")
-    run(data)</code></pre>
+# Generator expression – creates generator object
+squares_gen = (x**2 for x in range(10))   # lazy, no memory used yet
+print(next(squares_gen))  # 0
+print(next(squares_gen))  # 1
+print(list(squares_gen))  # [4, 9, 16, 25, 36, 49, 64, 81]
+
+# Passing generator expression directly to a function
+sum_of_squares = sum(x**2 for x in range(1000))  # no intermediate list
+
+# Filtering with generator expression
+even_squares = (x**2 for x in range(100) if x % 2 == 0)
+for sq in even_squares:
+    print(sq)  # prints on demand</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
                     </div>
+                    <div class="tip-box"><strong>💡 Performance Tip:</strong> For large datasets, generator expressions can drastically reduce memory. Compare <code>sum([x for x in range(10**7)])</code> (consumes ~80 MB) vs <code>sum(x for x in range(10**7))</code> (uses minimal memory).</div>
+                </div>
+
+                <!-- ========== DAY 5: ADVANCED GENERATOR METHODS ========== -->
+                <div class="concept-card" id="day5">
+                    <h3><span class="day-badge">5</span> Advanced Generator Methods – send(), throw(), close()</h3>
+                    <p>Generators aren't just for producing values. You can <strong>send</strong> values into a generator, <strong>throw</strong> exceptions, and <strong>close</strong> them prematurely. This enables coroutine‑like behavior.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> advanced_generator.py</div>
+                        <pre class="line-numbers"><code class="language-python">def accumulator():
+    total = 0
+    while True:
+        value = yield total   # yields current total, receives next value
+        if value is None:
+            break
+        total += value
+
+acc = accumulator()
+print(next(acc))      # 0 (start the generator, yields initial total)
+print(acc.send(10))   # 10 (adds 10, yields new total)
+print(acc.send(5))    # 15
+print(acc.send(3))    # 18
+acc.close()           # raises GeneratorExit inside generator
+
+# throw() to inject exceptions
+def controlled():
+    try:
+        while True:
+            yield "running"
+    except ValueError:
+        yield "caught ValueError"
+
+gen = controlled()
+print(next(gen))       # "running"
+print(gen.throw(ValueError))  # "caught ValueError"
+# gen is now exhausted</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="danger-box"><strong>⚠️ Important:</strong> Always call <code>next(gen)</code> or <code>gen.send(None)</code> before sending non‑None values — the generator must be at a <code>yield</code> expression ready to receive.</div>
+                </div>
+
+                <!-- ========== DAY 6: ITERTOOLS ========== -->
+                <div class="concept-card" id="day6">
+                    <h3><span class="day-badge">6</span> The <code>itertools</code> Module – Iteration Toolbox</h3>
+                    <p><code>itertools</code> provides fast, memory‑efficient building blocks for creating and combining iterators. Master these to write elegant data processing pipelines.</p>
                     <table class="comparative-table">
-                        <thead><tr><th>Notation</th><th>Meaning</th></tr></thead>
+                        <thead><tr><th>Function</th><th>Description</th><th>Example Output</th></tr></thead>
                         <tbody>
-                            <tr><td><code>.</code></td><td>Current package (sibling modules)</td></tr>
-                            <tr><td><code>..</code></td><td>Parent package</td></tr>
-                            <tr><td><code>... </code></td><td>Grandparent package (rare)</td></tr>
+                            <tr><td><code>count(10, 2)</code></td><td>Infinite arithmetic progression</td><td>10, 12, 14, 16, ...</td></tr>
+                            <tr><td><code>cycle('AB')</code></td><td>Cycle endlessly through iterable</td><td>A, B, A, B, A, ...</td></tr>
+                            <tr><td><code>repeat('x', 3)</code></td><td>Repeat an object (times optional)</td><td>x, x, x</td></tr>
+                            <tr><td><code>chain('ab', 'cd')</code></td><td>Concatenate multiple iterables</td><td>a, b, c, d</td></tr>
+                            <tr><td><code>compress('ABCD', [1,0,1,0])</code></td><td>Filter elements based on selectors</td><td>A, C</td></tr>
+                            <tr><td><code>islice('ABCDEF', 2, 5)</code></td><td>Slicing for any iterator</td><td>C, D, E</td></tr>
+                            <tr><td><code>product('AB', '12')</code></td><td>Cartesian product</td><td>('A',1), ('A',2), ('B',1), ('B',2)</td></tr>
+                            <tr><td><code>combinations('AB', 2)</code></td><td>r‑length combinations</td><td>('A','B')</td></tr>
                         </tbody>
                     </table>
-                    <div class="danger-box"><strong>⚠️ Common Pitfall:</strong> Relative imports only work inside a package. Running a file directly (e.g., <code>python core.py</code>) that uses relative imports will raise <code>ImportError: attempted relative import with no known parent package</code>. Always run from the project root or use <code>python -m my_package.core</code>.</div>
-                </div>
-
-                <!-- ========== DAY 5: NAMESPACE PACKAGES ========== -->
-                <div class="concept-card" id="day5">
-                    <h3><span class="day-badge">5</span> Namespace Packages – PEP 420</h3>
-                    <p>Python 3.3+ supports <strong>namespace packages</strong> — packages without <code>__init__.py</code> that can span multiple directories. This allows splitting a logical package across separate physical locations (useful for plugins and large monorepos).</p>
-                    <div class="module-tree">
-                        <span class="comment"># Directory 1: /path/to/plugins/auth/</span>
-                        <span class="dir">my_company/</span>
-                        <span class="dir">└── plugins/</span>
-                        <span class="file">    └── auth.py</span>          <span class="comment"># importable as my_company.plugins.auth</span>
-
-                        <span class="comment"># Directory 2: /another/path/payments/</span>
-                        <span class="dir">my_company/</span>
-                        <span class="dir">└── plugins/</span>
-                        <span class="file">    └── payments.py</span>      <span class="comment"># same namespace: my_company.plugins.payments</span>
-                    </div>
                     <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> namespace_usage.py</div>
-                        <pre class="line-numbers"><code class="language-python">import sys
-sys.path.extend(["/path/to/plugins/auth", "/another/path/payments"])
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> itertools_demo.py</div>
+                        <pre class="line-numbers"><code class="language-python">from itertools import chain, islice, product
 
-from my_company.plugins import auth, payments
-# Both work even though they live in different directories!</code></pre>
+# Chain multiple lists lazily
+for item in chain([1,2], ['a','b'], (True, False)):
+    print(item)  # 1 2 a b True False
+
+# Slice an infinite generator
+from itertools import count
+first_ten = islice(count(100, 5), 10)  # 100, 105, ..., 145
+print(list(first_ten))
+
+# Generate all 2‑letter combinations of 'abc'
+for combo in product('abc', repeat=2):
+    print(combo)  # ('a','a'), ('a','b'), ... ('c','c')</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
                     </div>
-                    <div class="why-box"><strong>🔍 When to use:</strong> Namespace packages are ideal for plugin systems, large organizations with many teams, or when you want to distribute a package in multiple parts. For most projects, regular packages with <code>__init__.py</code> are simpler and recommended.</div>
+                    <div class="tip-box"><strong>💡 Pro Tip:</strong> Use <code>itertools.tee()</code> to split a single iterator into multiple independent iterators (but it caches values, so use with care on large streams).</div>
                 </div>
 
-                <!-- ========== DAY 6: BUILT-IN & THIRD-PARTY ========== -->
-                <div class="concept-card" id="day6">
-                    <h3><span class="day-badge">6</span> Built-in Modules, pip & Virtual Environments</h3>
-                    <p>Python's <strong>standard library</strong> is vast: <code>os</code>, <code>sys</code>, <code>json</code>, <code>re</code>, <code>datetime</code>, <code>collections</code>, <code>itertools</code>, <code>pathlib</code>, <code>sqlite3</code>, and many more. For everything else, use <code>pip</code> to install third-party packages from PyPI.</p>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> built_in_demo.py</div>
-                        <pre class="line-numbers"><code class="language-python">import os
-import json
-from pathlib import Path
-from collections import defaultdict
-
-# Work with paths
-home = Path.home()
-config_file = home / ".myapp" / "config.json"
-
-# JSON serialization
-data = {"users": ["alice", "bob"], "active": True}
-print(json.dumps(data, indent=2))
-
-# defaultdict avoids KeyError
-counts = defaultdict(int)
-counts["apples"] += 1  # no KeyError!</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                    </div>
-                    <div class="step-walkthrough">
-                        <strong>📦 Virtual Environment Setup (recommended for every project):</strong>
-                        <div class="code-block" style="margin-top:8px;">
-                            <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> terminal</div>
-                            <pre class="line-numbers"><code class="language-bash"># Create a virtual environment
-python -m venv .venv
-
-# Activate it (Linux/macOS)
-source .venv/bin/activate
-# Activate it (Windows)
-.venv\Scripts\activate
-
-# Install packages
-pip install requests pandas
-
-# Freeze dependencies
-pip freeze > requirements.txt</code></pre>
-                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                        </div>
-                    </div>
-                    <div class="tip-box"><strong>💡 Pro Tip:</strong> Always use a virtual environment per project. This isolates dependencies and prevents version conflicts. Modern tools like <code>uv</code> (by Astral) are 10-100x faster than pip.</div>
-                </div>
-
-                <!-- ========== DAY 7: PRODUCTION STRUCTURE ========== -->
+                <!-- ========== DAY 7: PRODUCTION PATTERNS ========== -->
                 <div class="concept-card" id="day7">
-                    <h3><span class="day-badge">7</span> Production-Grade Package Structure</h3>
-                    <p>A well-organized project uses the <strong>src layout</strong>, a <code>pyproject.toml</code> for metadata, and separates source code from tests and configuration.</p>
-                    <div class="module-tree">
-                        <span class="dir">my_project/</span>
-                        <span class="file">├── pyproject.toml</span>        <span class="comment"># Package metadata & build config</span>
-                        <span class="file">├── README.md</span>
-                        <span class="file">├── LICENSE</span>
-                        <span class="dir">├── src/</span>
-                        <span class="dir">│   └── my_package/</span>       <span class="comment"># Actual source code</span>
-                        <span class="file">│       ├── __init__.py</span>
-                        <span class="file">│       ├── core.py</span>
-                        <span class="file">│       └── cli.py</span>         <span class="comment"># Entry point for CLI</span>
-                        <span class="dir">├── tests/</span>
-                        <span class="file">│   ├── __init__.py</span>
-                        <span class="file">│   ├── test_core.py</span>
-                        <span class="file">│   └── test_cli.py</span>
-                        <span class="dir">└── docs/</span>
-                    </div>
+                    <h3><span class="day-badge">7</span> Production‑Grade Generator Patterns</h3>
+                    <p>In production, generators power data pipelines, asynchronous streams, and memory‑safe processing. Here are patterns you'll encounter in real projects.</p>
                     <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> pyproject.toml</div>
-                        <pre class="line-numbers"><code class="language-toml">[build-system]
-requires = ["setuptools>=68.0", "wheel"]
-build-backend = "setuptools.build_meta"
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> production_patterns.py</div>
+                        <pre class="line-numbers"><code class="language-python"># 1. Processing pipeline with generators (efficient & composable)
+def read_logs(filename):
+    with open(filename) as f:
+        for line in f:
+            yield line.strip()
 
-[project]
-name = "my_package"
-version = "0.1.0"
-description = "A production-ready Python package"
-requires-python = ">=3.10"
-dependencies = ["requests>=2.28", "click>=8.0"]
+def filter_errors(lines):
+    for line in lines:
+        if "ERROR" in line:
+            yield line
 
-[project.scripts]
-mycli = "my_package.cli:main"</code></pre>
+def extract_timestamps(errors):
+    for err in errors:
+        yield err[:19]  # first 19 chars are timestamp
+
+# Compose the pipeline
+pipeline = extract_timestamps(filter_errors(read_logs("app.log")))
+for ts in pipeline:
+    print(ts)
+
+# 2. Async generator (Python 3.6+) – for async streaming
+async def async_counter():
+    for i in range(5):
+        await asyncio.sleep(0.1)
+        yield i
+
+# 3. Generator with resource cleanup (context manager inside)
+def read_csv_rows(filename):
+    with open(filename, newline='') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            yield row
+    # file automatically closed when generator is exhausted or garbage collected</code></pre>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
                     </div>
-                    <div class="why-box"><strong>🔍 Why src layout?</strong> It prevents accidentally importing the package from the project root during development (which would bypass the installed version). It forces you to install the package properly before testing, catching packaging bugs early.</div>
+                    <div class="why-box"><strong>🔍 Key Insight:</strong> Generator pipelines are lazy — each stage pulls data from the previous stage on demand. This avoids building intermediate lists and scales to infinite or very large datasets.</div>
+                    <div class="tip-box"><strong>💡 Async Generators:</strong> Use <code>async def</code> + <code>yield</code> with <code>async for</code>. Perfect for streaming HTTP responses, database cursors, or real‑time sensor data.</div>
                 </div>
 
                 <!-- ========== SOLVED PROBLEMS ========== -->
                 <div class="concept-card" id="solved-problems">
                     <h3><i class="fas fa-check-double"></i> Solved Practice Problems</h3>
                     <h4 style="color:var(--success);">🔰 Easy (3 problems)</h4>
-                    <div class="info-card"><div class="card-title">1. Create and Import a Module</div><p>Create a file <code>greetings.py</code> with a function <code>hello(name)</code>. Import and use it in <code>main.py</code>.</p>
-                        <div class="code-block"><pre class="line-numbers"><code class="language-python"># greetings.py
-def hello(name="World"):
-    return f"Hello, {name}!"
-
-# main.py
-import greetings
-print(greetings.hello("Alice"))  # Hello, Alice!</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
-                    <div class="info-card"><div class="card-title">2. Use a Built-in Module</div><p>Use the <code>datetime</code> module to print today's date and the current time.</p>
-                        <div class="code-block"><pre class="line-numbers"><code class="language-python">from datetime import datetime, date
-today = date.today()
-now = datetime.now()
-print(f"Date: {today}, Time: {now.strftime('%H:%M:%S')}")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
-                    <div class="info-card"><div class="card-title">3. Import with Alias</div><p>Import <code>numpy</code> as <code>np</code> and create a simple array.</p>
-                        <div class="code-block"><pre class="line-numbers"><code class="language-python">import numpy as np
-arr = np.array([1, 2, 3, 4, 5])
-print(arr * 2)  # [2 4 6 8 10]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">1. Simple Counter Generator</div><div class="code-block"><pre class="line-numbers"><code class="language-python">def counter(start, end):
+    while start <= end:
+        yield start
+        start += 1
+for n in counter(1, 5):
+    print(n)  # 1 2 3 4 5</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">2. Square Numbers Generator Expression</div><div class="code-block"><pre class="line-numbers"><code class="language-python">squares = (x*x for x in range(6))
+print(list(squares))  # [0, 1, 4, 9, 16, 25]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">3. Iterate Over Dictionary Keys</div><div class="code-block"><pre class="line-numbers"><code class="language-python">person = {"name": "Alice", "age": 30}
+for key in person:  # dict is iterable (keys by default)
+    print(key)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
                     <h4 style="color:var(--warning);">⚡ Intermediate (3 problems)</h4>
-                    <div class="info-card"><div class="card-title">4. Package with __init__.py</div><p>Create a package <code>shapes</code> with modules <code>circle.py</code> and <code>square.py</code>. Expose both via <code>__init__.py</code>.</p>
-                        <div class="code-block"><pre class="line-numbers"><code class="language-python"># shapes/__init__.py
-from .circle import Circle
-from .square import Square
-__all__ = ["Circle", "Square"]
-
-# Usage
-from shapes import Circle, Square</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
-                    <div class="info-card"><div class="card-title">5. Relative Import Inside a Package</div><p>In <code>shapes/circle.py</code>, import a utility function from <code>shapes/utils.py</code> using a relative import.</p>
-                        <div class="code-block"><pre class="line-numbers"><code class="language-python"># shapes/circle.py
-from .utils import validate_radius
-
-class Circle:
-    def __init__(self, radius):
-        validate_radius(radius)
-        self.radius = radius</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
-                    <div class="info-card"><div class="card-title">6. Virtual Environment & requirements.txt</div><p>Create a venv, install <code>requests</code>, and generate <code>requirements.txt</code>.</p>
-                        <div class="code-block"><pre class="line-numbers"><code class="language-bash">python -m venv .venv
-source .venv/bin/activate  # or .venv\Scripts\activate on Windows
-pip install requests
-pip freeze > requirements.txt</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">4. Filter Generator (yield with condition)</div><div class="code-block"><pre class="line-numbers"><code class="language-python">def even_only(numbers):
+    for n in numbers:
+        if n % 2 == 0:
+            yield n
+evens = even_only([1,2,3,4,5,6])
+print(list(evens))  # [2, 4, 6]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">5. Infinite Fibonacci Generator (truncated with islice)</div><div class="code-block"><pre class="line-numbers"><code class="language-python">from itertools import islice
+def fib():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a+b
+first_10 = list(islice(fib(), 10))
+print(first_10)  # [0,1,1,2,3,5,8,13,21,34]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">6. Chain Multiple Lists</div><div class="code-block"><pre class="line-numbers"><code class="language-python">from itertools import chain
+combined = chain([1,2], ['a','b'], (True, False))
+print(list(combined))  # [1,2,'a','b',True,False]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
                     <h4 style="color:var(--danger);">🚀 Advanced (3 problems)</h4>
-                    <div class="info-card"><div class="card-title">7. __name__ == "__main__" Guard</div><p>Write a module that can be both imported and run as a script.</p>
-                        <div class="code-block"><pre class="line-numbers"><code class="language-python"># calculator.py
-def add(a, b): return a + b
-def subtract(a, b): return a - b
-
-if __name__ == "__main__":
-    # Runs only when executed directly
-    print("Testing calculator:")
-    print(add(3, 4))       # 7
-    print(subtract(10, 3)) # 7</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
-                    <div class="info-card"><div class="card-title">8. Dynamic Import with importlib</div><p>Import a module by name (string) at runtime.</p>
-                        <div class="code-block"><pre class="line-numbers"><code class="language-python">import importlib
-module_name = "json"
-json_module = importlib.import_module(module_name)
-data = json_module.dumps({"key": "value"})
-print(data)  # {"key": "value"}</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
-                    <div class="info-card"><div class="card-title">9. Namespace Package Across Directories</div><p>Set up two directories containing <code>myorg/plugins/</code> and demonstrate that both are importable.</p>
-                        <div class="code-block"><pre class="line-numbers"><code class="language-python">import sys
-sys.path.extend(["/path/plugins-auth", "/path/plugins-pay"])
-
-from myorg.plugins import auth, payments
-auth.login()
-payments.process()</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">7. Coroutine‑style Generator with send()</div><div class="code-block"><pre class="line-numbers"><code class="language-python">def running_average():
+    total, count = 0, 0
+    avg = None
+    while True:
+        x = yield avg
+        if x is None:
+            break
+        total += x
+        count += 1
+        avg = total / count
+avg_gen = running_average()
+next(avg_gen)  # prime it
+print(avg_gen.send(10))  # 10.0
+print(avg_gen.send(20))  # 15.0</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">8. Lazy Line Parser for Large CSV</div><div class="code-block"><pre class="line-numbers"><code class="language-python">import csv
+def parse_large_csv(filename):
+    with open(filename, newline='') as f:
+        reader = csv.reader(f)
+        header = next(reader)
+        for row in reader:
+            yield dict(zip(header, row))
+# Memory‑safe: processes one row at a time
+for record in parse_large_csv("huge.csv"):
+    process(record)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">9. Async Generator for Paginated API</div><div class="code-block"><pre class="line-numbers"><code class="language-python">import asyncio
+async def paginated_api(url):
+    page = 1
+    while True:
+        data = await fetch(f"{url}?page={page}")
+        if not data:
+            break
+        for item in data['results']:
+            yield item
+        page += 1
+# Usage: async for item in paginated_api("..."):
+#            process(item)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
                 </div>
 
                 <!-- ========== UNSOLVED PROBLEMS ========== -->
                 <div class="concept-card" id="practice-problems">
                     <h3><i class="fas fa-question-circle"></i> Unsolved Practice Problems</h3>
                     <h4 style="color:var(--success);">🔰 Easy (3 problems)</h4>
-                    <div class="practice-problem"><details><summary>1. Create a Config Module</summary><div class="solution"><p>Create <code>config.py</code> with variables <code>DEBUG=True</code>, <code>PORT=8080</code>. Import and print them in <code>app.py</code>.</p></div></details></div>
-                    <div class="practice-problem"><details><summary>2. Use the random Module</summary><div class="solution"><p>Import <code>random</code> and write a function that returns a random integer between 1 and 100. Call it 5 times.</p></div></details></div>
-                    <div class="practice-problem"><details><summary>3. Import from a Subdirectory</summary><div class="solution"><p>Create a directory <code>lib/</code> with an <code>__init__.py</code> and a module <code>helpers.py</code>. Import a function from <code>lib.helpers</code> in your main script.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>1. Range‑like Generator</summary><div class="solution"><p>Write a generator function <code>my_range(start, end, step=1)</code> that works like built‑in <code>range</code> but yields values lazily. Test with <code>list(my_range(0, 10, 2))</code> → <code>[0, 2, 4, 6, 8]</code>.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>2. File Line Yielder</summary><div class="solution"><p>Write a generator that reads a text file and yields lines that are not empty (strip whitespace). Use <code>yield</code> inside a <code>with</code> block.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>3. Zip Generator Expression</summary><div class="solution"><p>Use a generator expression to create pairs <code>(i, i**2)</code> for <code>i</code> in <code>range(5)</code>. Convert to list and print it.</p></div></details></div>
                     <h4 style="color:var(--warning);">⚡ Intermediate (3 problems)</h4>
-                    <div class="practice-problem"><details><summary>4. Circular Import Fix</summary><div class="solution"><p>Module A imports from B, and B imports from A. Refactor to break the circular dependency using a third module C.</p></div></details></div>
-                    <div class="practice-problem"><details><summary>5. Package with __all__</summary><div class="solution"><p>Create a package <code>animals</code> with <code>cat.py</code>, <code>dog.py</code>, <code>_internal.py</code>. Set <code>__all__</code> in <code>__init__.py</code> to expose only <code>Cat</code> and <code>Dog</code>.</p></div></details></div>
-                    <div class="practice-problem"><details><summary>6. Install from requirements.txt</summary><div class="solution"><p>Given a <code>requirements.txt</code> with <code>flask</code> and <code>sqlalchemy</code>, create a venv and install all dependencies.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>4. Take N from an Infinite Generator</summary><div class="solution"><p>Given an infinite generator (e.g., <code>itertools.count()</code>), write a function <code>take(n, generator)</code> that returns the first <code>n</code> items as a list.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>5. Yield from a Nested Structure</summary><div class="solution"><p>Write a generator <code>flatten(nested_list)</code> that yields all non‑list elements from a nested list structure (e.g., <code>[1, [2, [3, 4], 5]]</code> → 1,2,3,4,5). Use recursion with <code>yield from</code>.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>6. Sliding Window Generator</summary><div class="solution"><p>Create a generator function <code>window(iterable, n)</code> that yields overlapping windows of size <code>n</code>. Example: <code>list(window('ABCDE', 3))</code> → <code>['ABC', 'BCD', 'CDE']</code>.</p></div></details></div>
                     <h4 style="color:var(--danger);">🚀 Advanced (3 problems)</h4>
-                    <div class="practice-problem"><details><summary>7. Lazy Import Pattern</summary><div class="solution"><p>Write a module that defers importing a heavy library (like <code>pandas</code>) until a function is actually called.</p></div></details></div>
-                    <div class="practice-problem"><details><summary>8. Plugin Discovery System</summary><div class="solution"><p>Write code that scans a <code>plugins/</code> directory and imports all <code>.py</code> files as modules dynamically.</p></div></details></div>
-                    <div class="practice-problem"><details><summary>9. Build a CLI Entry Point</summary><div class="solution"><p>Create a package with <code>pyproject.toml</code> that defines a <code>[project.scripts]</code> entry point. Install it with <code>pip install -e .</code> and test the CLI command.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>7. Generator Pipeline with tee()</summary><div class="solution"><p>Create a pipeline that reads numbers from a generator, and branches into two: one squares them, the other cubes them. Use <code>itertools.tee()</code>. Collect results from both branches.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>8. Coroutine‑based Data Broadcaster</summary><div class="solution"><p>Write a generator that receives values via <code>send()</code> and broadcasts each value to multiple target generators (consumers). Use a loop with <code>send()</code> on each consumer.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>9. Async Generator for Real‑time Sensor Simulation</summary><div class="solution"><p>Write an async generator that yields simulated temperature readings every 0.5 seconds, with random jitter. Collect 10 readings and print them. Use <code>asyncio.sleep()</code>.</p></div></details></div>
                 </div>
             </div>
         </main>
@@ -1069,14 +1064,14 @@ payments.process()</code></pre><button class="copy-btn" onclick="copyCode(this)"
         <aside class="page-tracker" id="pageTracker">
             <h4>On This Page</h4>
             <ul>
-                <li><a href="#why-modules-packages">Why Modules & Packages?</a></li>
-                <li><a href="#day1">Modules Basics</a></li>
-                <li><a href="#day2">Import Styles</a></li>
-                <li><a href="#day3">Packages & __init__.py</a></li>
-                <li><a href="#day4">Relative Imports</a></li>
-                <li><a href="#day5">Namespace Packages</a></li>
-                <li><a href="#day6">Built-in & Third-party</a></li>
-                <li><a href="#day7">Production Structure</a></li>
+                <li><a href="#why-iterators-generators">Why Iterators & Generators?</a></li>
+                <li><a href="#day1">Iterables & Iterators</a></li>
+                <li><a href="#day2">Custom Iterators</a></li>
+                <li><a href="#day3">Generator Functions</a></li>
+                <li><a href="#day4">Generator Expressions</a></li>
+                <li><a href="#day5">Advanced Methods</a></li>
+                <li><a href="#day6">itertools Module</a></li>
+                <li><a href="#day7">Production Patterns</a></li>
                 <li><a href="#solved-problems">Solved Problems</a></li>
                 <li><a href="#practice-problems">Unsolved Problems</a></li>
             </ul>
@@ -1084,7 +1079,7 @@ payments.process()</code></pre><button class="copy-btn" onclick="copyCode(this)"
     </div>
 
     <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
-    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Modules%20&%20Packages%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Chat</a>
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Iterators%20&%20Generators%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Chat</a>
 
     <footer>
         <div class="footer-links">
@@ -1121,7 +1116,7 @@ payments.process()</code></pre><button class="copy-btn" onclick="copyCode(this)"
             });
             document.getElementById('weekProgressFill').style.width = ((activeDay / 7) * 100) + '%';
         }
-        const dayIds = ['why-modules-packages', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7',
+        const dayIds = ['why-iterators-generators', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7',
             'solved-problems', 'practice-problems'
         ];
         window.addEventListener('scroll', () => {
@@ -1158,7 +1153,7 @@ payments.process()</code></pre><button class="copy-btn" onclick="copyCode(this)"
         }
 
         function createParticles(element, event) {
-            const emojis = ['📦', '📂', '🔧', '✅', '⚡', '🛡️', '🧩'];
+            const emojis = ['⚡', '🔄', '♾️', '📊', '✅', '💡', '🚀'];
             const rect = element.getBoundingClientRect();
             const centerX = event.clientX - rect.left;
             const centerY = event.clientY - rect.top;
@@ -1177,7 +1172,7 @@ payments.process()</code></pre><button class="copy-btn" onclick="copyCode(this)"
             }
         }
         document.addEventListener('DOMContentLoaded', () => updateProgressDots('day1'));
-        console.log('📦 Modules & Packages Mastery – Ready!');
+        console.log('⚡ Iterators & Generators Mastery – Ready!');
     </script>
 </body>
 </html>
