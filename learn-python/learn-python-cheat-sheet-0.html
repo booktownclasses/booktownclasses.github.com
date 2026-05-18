@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/python-cheat-sheet.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>🐍 Python Cheat Sheet · Quick Reference | BookTown Classes</title>
+    <meta name="description" content="Complete Python cheat sheet with data types, operators, control flow, data structures, functions, modules, and more. All sections expanded, one‑click PDF download, copy‑ready code examples." />
+    <meta name="keywords" content="Python cheat sheet, Python reference, data types, operators, list, dictionary, functions, file I/O, lambda, BookTown Classes" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Python Cheat Sheet – Quick Reference | BookTown Classes" />
+    <meta property="og:description" content="Every essential Python concept in one fully‑expanded page – data types, operators, control flow, functions, modules, and more. Copy code, search, and save as PDF." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7c3aed" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js">
+    </script>
+
+    <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --primary: #7c3aed;
+            --primary-light: #8b5cf6;
+            --accent: #a78bfa;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --success: #059669;
+            --info: #3b82f6;
+            --radius: 14px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+        body.dark-mode {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: #334155;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background 0.4s, color 0.4s;
+            overflow-x: hidden;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.06;
+            animation: floatShape 20s infinite ease-in-out;
+        }
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: #7c3aed;
+            top: -100px;
+            left: -100px;
+        }
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: #3b82f6;
+            bottom: -80px;
+            right: -80px;
+            animation-delay: -7s;
+        }
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            background: #059669;
+            top: 50%;
+            left: 60%;
+            animation-delay: -14s;
+        }
+        @keyframes floatShape {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(40px, -30px) scale(1.1);
+            }
+            50% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            75% {
+                transform: translate(30px, 15px) scale(1.05);
+            }
+        }
+
+        #header-container {
+            position: relative;
+            z-index: 10;
+        }
+        .main-container {
+            display: flex;
+            max-width: 100%;
+            margin: 0;
+            padding: 20px 16px 20px 0;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sidebar – flush to extreme left edge */
+        .sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 10px 16px 20px 20px;
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            z-index: 1;
+            border-left: none;
+            margin-left: 0;
+        }
+        .sidebar h4 {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 3px;
+        }
+        .sidebar ul li a {
+            display: block;
+            padding: 7px 12px;
+            border-radius: 6px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .sidebar ul li a:hover,
+        .sidebar ul li a.active {
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .content {
+            flex: 1;
+            min-width: 0;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-right: 16px;
+        }
+        .page-tracker {
+            width: 190px;
+            flex-shrink: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            z-index: 5;
+        }
+        .page-tracker h4 {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .page-tracker ul {
+            list-style: none;
+            padding: 0;
+        }
+        .page-tracker ul li {
+            margin-bottom: 2px;
+        }
+        .page-tracker ul li a {
+            display: block;
+            padding: 4px 8px;
+            border-radius: 5px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.73rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .page-tracker ul li a:hover,
+        .page-tracker ul li a.active {
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        @media (max-width:1100px) {
+            .page-tracker {
+                display: none;
+            }
+            .content {
+                padding-right: 0;
+            }
+        }
+        @media (max-width:860px) {
+            .sidebar {
+                display: none;
+            }
+            .main-container {
+                padding: 12px 8px;
+            }
+            .content {
+                max-width: 100%;
+                padding-right: 0;
+            }
+        }
+
+        .mini-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #2e1065 70%, #1e1b4b 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+        .mini-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 8s ease-in-out infinite;
+        }
+        .mini-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: -40px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(5, 150, 105, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 10s ease-in-out infinite reverse;
+        }
+        @keyframes heroFloat {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(15px, -10px) scale(1.05);
+            }
+        }
+        .mini-hero .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(124, 58, 237, 0.25);
+            color: #c4b5fd;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            border: 1px solid rgba(124, 58, 237, 0.35);
+            position: relative;
+            z-index: 1;
+        }
+        .mini-hero .hero-badge .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background: #a78bfa;
+            border-radius: 50%;
+            animation: dotPulse 2s infinite;
+        }
+        @keyframes dotPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(167, 139, 250, 0);
+            }
+        }
+        .mini-hero .hero-headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin: 0 0 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 5s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .mini-hero .hero-sub {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .search-wrap {
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .search-wrap input {
+            flex: 1;
+            padding: 14px 20px 14px 48px;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            background: var(--card);
+            color: var(--text);
+            transition: 0.3s;
+            outline: none;
+        }
+        .search-wrap input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+        }
+        .search-wrap .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+        .pdf-btn {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .pdf-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.5);
+            background: linear-gradient(135deg, var(--info), var(--primary));
+        }
+        .pdf-btn i {
+            font-size: 1.1rem;
+        }
+
+        /* Static cheat section – always visible, no collapse */
+        .cheat-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 18px;
+            box-shadow: var(--shadow);
+            transition: all 0.35s ease;
+            overflow: hidden;
+        }
+        .cheat-section .section-header {
+            padding: 18px 24px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+        }
+        .cheat-section .section-header i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .cheat-section .section-body {
+            padding: 20px 24px;
+        }
+
+        .code-block {
+            position: relative;
+            background: #1e293b;
+            border-radius: 10px;
+            margin: 14px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        .code-block-header {
+            background: #0f172a;
+            padding: 8px 14px;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-family: 'Fira Code', monospace;
+        }
+        .code-block pre {
+            margin: 0;
+            padding: 14px 16px;
+            overflow-x: auto;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            background: #1e293b;
+        }
+        .code-block code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 36px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #cbd5e1;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: 0.3s;
+            z-index: 5;
+        }
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .comparative-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .comparative-table th,
+        .comparative-table td {
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+            font-size: 0.85rem;
+            color: #f1f5f9;
+        }
+        .comparative-table th {
+            background: #1e293b;
+            color: #f0f9ff;
+            font-weight: 600;
+        }
+        .comparative-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparative-table tr:hover td {
+            background: rgba(124, 58, 237, 0.08);
+        }
+
+        .builtin-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin: 1rem 0;
+        }
+        .builtin-item {
+            background: #eef2ff;
+            padding: 0.2rem 0.8rem;
+            border-radius: 24px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e40af;
+        }
+
+        .tip-box {
+            background: #f0fdf4;
+            border-left: 5px solid var(--success);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 14px 0;
+            font-size: 0.85rem;
+        }
+        body.dark-mode .tip-box {
+            background: #0a3328;
+        }
+
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 99;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+            transition: 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .scroll-top-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.5);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 24px;
+            background: #25D366;
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            z-index: 99;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .whatsapp-float:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--muted);
+            font-size: 1rem;
+            display: none;
+        }
+        .pulse-highlight {
+            animation: gentlePulse 3s ease-in-out 1;
+        }
+        @keyframes gentlePulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 0 12px rgba(124, 58, 237, 0);
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 30px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Print styles – hide everything except cheat sheet content */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .floating-shapes,
+            #header-container,
+            .sidebar,
+            .page-tracker,
+            .search-wrap,
+            .scroll-top-btn,
+            .whatsapp-float,
+            footer,
+            .mini-hero::before,
+            .mini-hero::after,
+            .copy-btn,
+            .no-results {
+                display: none !important;
+            }
+            .main-container {
+                display: block !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .content {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding-right: 0 !important;
+            }
+            .mini-hero {
+                background: none !important;
+                box-shadow: none !important;
+                padding: 0.5rem 0 !important;
+                margin-bottom: 1rem !important;
+                border-radius: 0 !important;
+            }
+            .mini-hero .hero-headline {
+                color: black !important;
+                font-size: 1.4rem !important;
+            }
+            .mini-hero .hero-sub {
+                color: #333 !important;
+            }
+            .gradient-text {
+                background: none !important;
+                -webkit-background-clip: unset !important;
+                background-clip: unset !important;
+                color: black !important;
+                animation: none !important;
+            }
+            .hero-badge {
+                background: #eee !important;
+                color: #333 !important;
+                border: 1px solid #ccc !important;
+            }
+            .cheat-section {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                margin-bottom: 12px !important;
+            }
+            .cheat-section .section-header {
+                background: #f5f5f5 !important;
+                border-bottom: 1px solid #ccc !important;
+                color: black !important;
+            }
+            .code-block {
+                background: #f9f9f9 !important;
+                border: 1px solid #ddd !important;
+                box-shadow: none !important;
+            }
+            .code-block pre {
+                background: #fafafa !important;
+                color: #222 !important;
+            }
+            .code-block code {
+                color: #222 !important;
+            }
+            .code-block-header {
+                background: #eee !important;
+                color: #555 !important;
+            }
+            .comparative-table {
+                background: white !important;
+            }
+            .comparative-table th {
+                background: #eee !important;
+                color: #222 !important;
+            }
+            .comparative-table td {
+                color: #333 !important;
+            }
+            .comparative-table th,
+            .comparative-table td {
+                border-bottom: 1px solid #ccc !important;
+            }
+            .builtin-item {
+                background: #eee !important;
+                color: #222 !important;
+            }
+            .tip-box {
+                background: #f9f9f9 !important;
+                border-left-color: #059669 !important;
+                color: #222 !important;
+            }
+        }
+
+        @media (max-width:768px) {
+            .mini-hero {
+                padding: 1.2rem;
+            }
+            .mini-hero .hero-headline {
+                font-size: 1.3rem;
+            }
+            .cheat-section .section-header {
+                padding: 14px 18px;
+                font-size: 0.95rem;
+            }
+            .cheat-section .section-body {
+                padding: 14px 18px;
+            }
+            .pdf-btn {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    <div id="header-container"></div>
+
+    <div class="main-container">
+          <aside class="sidebar" id="mainSidebar"></aside>
+         
+
+        <main class="content">
+            <div class="mini-hero">
+                <div class="hero-badge"><span class="pulse-dot"></span> Python · Quick Reference</div>
+                <h1 class="hero-headline"><span class="gradient-text">🐍 Python Cheat Sheet</span> – Complete Reference</h1>
+                <p class="hero-sub">Data types · operators · control flow · data structures · functions · modules · best practices – all in one page. Click any section in the sidebar to jump, search to filter, or save as PDF.</p>
+            </div>
+
+            <div class="search-wrap">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search cheat sheet... (e.g., 'list', 'lambda', 'exception')" autocomplete="off">
+                <button class="pdf-btn" onclick="window.print()">
+                    <i class="fas fa-file-pdf"></i> Save as PDF
+                </button>
+            </div>
+
+            <div id="cheatSheetContainer">
+                <!-- 1. DATA TYPES -->
+                <div class="cheat-section" id="data-types">
+                    <div class="section-header"><i class="fas fa-database"></i> 📦 1. Data Types</div>
+                    <div class="section-body">
+                        <table class="comparative-table">
+                            <thead><tr><th>Type</th><th>Example</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>int</code></td><td>10</td><td>Integer</td></tr>
+                                <tr><td><code>float</code></td><td>10.5</td><td>Floating point</td></tr>
+                                <tr><td><code>str</code></td><td>'hello'</td><td>String</td></tr>
+                                <tr><td><code>bool</code></td><td>True / False</td><td>Boolean</td></tr>
+                                <tr><td><code>list</code></td><td>[1, 2, 3]</td><td>Mutable sequence</td></tr>
+                                <tr><td><code>tuple</code></td><td>(1, 2, 3)</td><td>Immutable sequence</td></tr>
+                                <tr><td><code>dict</code></td><td>{'a': 1, 'b': 2}</td><td>Key-value mapping</td></tr>
+                                <tr><td><code>set</code></td><td>{1, 2, 3}</td><td>Unique unordered</td></tr>
+                                <tr><td><code>NoneType</code></td><td>None</td><td>Null / absence</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 2. OPERATORS -->
+                <div class="cheat-section" id="operators">
+                    <div class="section-header"><i class="fas fa-calculator"></i> 🧮 2. Operators</div>
+                    <div class="section-body">
+                        <div class="code-block">
+                            <div class="code-block-header">Arithmetic & Comparison</div>
+                            <pre class="line-numbers"><code class="language-python"># Arithmetic
+10 + 3   # 13
+10 - 3   # 7
+10 * 3   # 30
+10 / 3   # 3.333...
+10 // 3  # 3  (floor division)
+10 % 3   # 1  (modulus)
+2 ** 4   # 16 (exponent)
+
+# Comparison
+a == b   # equal
+a != b   # not equal
+a > b    # greater than
+a < b    # less than
+a >= b   # greater or equal
+a <= b   # less or equal</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <p style="margin: 12px 0;"><strong>Logical:</strong> <code>and</code>, <code>or</code>, <code>not</code> &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Assignment:</strong> <code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>, etc.</p>
+                    </div>
+                </div>
+
+                <!-- 3. CONTROL FLOW -->
+                <div class="cheat-section" id="control-flow">
+                    <div class="section-header"><i class="fas fa-code-branch"></i> 🎮 3. Control Flow</div>
+                    <div class="section-body">
+                        <div class="code-block">
+                            <div class="code-block-header">if / elif / else</div>
+                            <pre class="line-numbers"><code class="language-python">if condition:
+    statement
+elif other_condition:
+    statement
+else:
+    statement</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-block-header">while & for loops</div>
+                            <pre class="line-numbers"><code class="language-python">while condition:
+    statement
+
+for item in iterable:
+    statement
+
+# for ... else (executes if no break)
+for item in items:
+    if found: break
+else:
+    print("Completed without break")</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. DATA STRUCTURES -->
+                <div class="cheat-section" id="data-structures">
+                    <div class="section-header"><i class="fas fa-layer-group"></i> 🗂️ 4. Data Structures</div>
+                    <div class="section-body">
+                        <div class="code-block">
+                            <div class="code-block-header">List</div>
+                            <pre class="line-numbers"><code class="language-python">lst = [1, 2, 3]
+lst.append(4)       # [1,2,3,4]
+lst[0] = 10
+lst[-1]             # last element
+lst[1:3] = [8,9]    # slice assignment</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-block-header">Tuple</div>
+                            <pre class="line-numbers"><code class="language-python">t = (1, 2, 3)
+t[0]          # access
+t.count(2)    # 1
+t.index(3)    # 2</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-block-header">Set</div>
+                            <pre class="line-numbers"><code class="language-python">s = {1, 2, 3}
+s.add(4)
+s.remove(2)
+2 in s        # False</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-block-header">Dictionary</div>
+                            <pre class="line-numbers"><code class="language-python">d = {'a': 1, 'b': 2}
+d['a'] = 1
+d['c'] = 3
+d.keys()      # dict_keys(['a','b','c'])
+d.values()    # dict_values([1,2,3])
+d.items()     # [('a',1),('b',2),('c',3)]</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. FUNCTIONS -->
+                <div class="cheat-section" id="functions">
+                    <div class="section-header"><i class="fas fa-cogs"></i> ⚙️ 5. Functions</div>
+                    <div class="section-body">
+                        <div class="code-block">
+                            <div class="code-block-header">Basic & default arguments</div>
+                            <pre class="line-numbers"><code class="language-python">def greet(name='User'):
+    return f"Hello, {name}!"
+
+def my_func(a, b):
+    """Docstring example"""
+    return a + b</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-block-header">*args and **kwargs</div>
+                            <pre class="line-numbers"><code class="language-python">def func(*args, **kwargs):
+    print(args)   # tuple
+    print(kwargs) # dict
+
+func(1, 2, lang="Python", version=3)</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. STRING METHODS -->
+                <div class="cheat-section" id="strings">
+                    <div class="section-header"><i class="fas fa-font"></i> 🔤 6. String Methods</div>
+                    <div class="section-body">
+                        <div class="code-block">
+                            <pre class="line-numbers"><code class="language-python">s = "  Hello, World!  "
+s.upper()            # '  HELLO, WORLD!  '
+s.lower()            # '  hello, world!  '
+s.strip()            # 'Hello, World!'
+s.replace('l','x')   # '  Hexxo, Worxd!  '
+s.split(', ')        # ['  Hello', 'World!  ']
+'-'.join(['a','b'])  # 'a-b'
+s.find('o')          # 6
+s.count('l')         # 3</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. LIST COMPREHENSION -->
+                <div class="cheat-section" id="comprehensions">
+                    <div class="section-header"><i class="fas fa-magic"></i> ✨ 7. List Comprehension</div>
+                    <div class="section-body">
+                        <div class="code-block">
+                            <pre class="line-numbers"><code class="language-python">squares = [x**2 for x in range(5)]          # [0,1,4,9,16]
+even_numbers = [x for x in range(10) if x % 2 == 0]  # [0,2,4,6,8]
+matrix = [[i*j for i in range(3)] for j in range(3)]
+# [[0,0,0],[0,1,2],[0,2,4]]</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. FILE I/O -->
+                <div class="cheat-section" id="file-io">
+                    <div class="section-header"><i class="fas fa-file-alt"></i> 📁 8. File I/O</div>
+                    <div class="section-body">
+                        <div class="code-block">
+                            <div class="code-block-header">Read / Write / Append</div>
+                            <pre class="line-numbers"><code class="language-python"># Read
+with open('file.txt', 'r') as f:
+    data = f.read()
+
+# Write (overwrites)
+with open('file.txt', 'w') as f:
+    f.write('Hello World')
+
+# Append
+with open('file.txt', 'a') as f:
+    f.write('\nNew Line')</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. EXCEPTION HANDLING -->
+                <div class="cheat-section" id="exceptions">
+                    <div class="section-header"><i class="fas fa-exclamation-triangle"></i> ⚠️ 9. Exception Handling</div>
+                    <div class="section-body">
+                        <div class="code-block">
+                            <pre class="line-numbers"><code class="language-python">try:
+    x = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+except Exception as e:
+    print("Error:", e)
+else:
+    print("No Exception")
+finally:
+    print("Always executed")</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. COMMON MODULES -->
+                <div class="cheat-section" id="modules">
+                    <div class="section-header"><i class="fas fa-box"></i> 📦 10. Common Modules</div>
+                    <div class="section-body">
+                        <div class="code-block">
+                            <pre class="line-numbers"><code class="language-python">import math, random, datetime, os, json
+math.sqrt(16)                # 4.0
+math.pi
+random.randint(1,10)
+datetime.datetime.now().strftime('%Y-%m-%d')
+os.getcwd()
+os.path.exists('file.txt')
+json_str = json.dumps({'key':'value'})
+data = json.loads(json_str)</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <div class="builtin-grid">
+                            <span class="builtin-item">math.factorial(5) → 120</span>
+                            <span class="builtin-item">random.choice([1,2,3])</span>
+                            <span class="builtin-item">datetime.now()</span>
+                            <span class="builtin-item">os.listdir('.')</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. BUILT-IN FUNCTIONS -->
+                <div class="cheat-section" id="builtins">
+                    <div class="section-header"><i class="fas fa-tools"></i> 🔧 11. Built‑in Functions</div>
+                    <div class="section-body">
+                        <div class="builtin-grid">
+                            <span class="builtin-item">print()</span> <span class="builtin-item">len()</span> <span class="builtin-item">type()</span>
+                            <span class="builtin-item">input()</span> <span class="builtin-item">sum()</span> <span class="builtin-item">max()</span>
+                            <span class="builtin-item">min()</span> <span class="builtin-item">sorted()</span> <span class="builtin-item">range()</span>
+                            <span class="builtin-item">enumerate()</span> <span class="builtin-item">abs()</span> <span class="builtin-item">round()</span>
+                            <span class="builtin-item">zip()</span> <span class="builtin-item">map()</span> <span class="builtin-item">filter()</span>
+                            <span class="builtin-item">any()</span> <span class="builtin-item">all()</span> <span class="builtin-item">open()</span>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-block-header">enumerate & zip example</div>
+                            <pre class="line-numbers"><code class="language-python">for idx, val in enumerate(['a','b','c']):
+    print(idx, val)
+pairs = list(zip([1,2], ['x','y']))   # [(1,'x'),(2,'y')]</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. LAMBDA & MAP/FILTER/REDUCE -->
+                <div class="cheat-section" id="lambda">
+                    <div class="section-header"><i class="fas fa-bolt"></i> ⚡ 12. Lambda · Map · Filter · Reduce</div>
+                    <div class="section-body">
+                        <div class="code-block">
+                            <pre class="line-numbers"><code class="language-python">add = lambda a, b: a + b
+print(add(2, 3))   # 5
+
+from functools import reduce
+nums = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, nums))   # [1,4,9,16,25]
+evens = list(filter(lambda x: x%2==0, nums)) # [2,4]
+total = reduce(lambda x,y: x+y, nums)        # 15</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 13. USEFUL TIPS -->
+                <div class="cheat-section" id="tips">
+                    <div class="section-header"><i class="fas fa-lightbulb"></i> 💡 13. Useful Tips</div>
+                    <div class="section-body">
+                        <div class="tip-box">
+                            ✅ Python is <strong>case sensitive</strong> (myVar vs myvar).<br>
+                            ✅ Use meaningful variable names.<br>
+                            ✅ Use list/dict/set comprehensions for cleaner code.<br>
+                            ✅ Handle exceptions gracefully – avoid bare except.<br>
+                            ✅ Use virtual environments: <code>python -m venv env</code>.<br>
+                            ✅ Readability counts! Follow PEP 8.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 14. VERSION & DOCSTRING -->
+                <div class="cheat-section" id="version">
+                    <div class="section-header"><i class="fas fa-code"></i> 📌 14. Version Check & Docstring</div>
+                    <div class="section-body">
+                        <div class="code-block">
+                            <div class="code-block-header">Python version</div>
+                            <pre class="line-numbers"><code class="language-python">import sys
+print(sys.version)</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-block-header">Docstring example</div>
+                            <pre class="line-numbers"><code class="language-python">def func():
+    """This is a docstring.
+    It describes the function.
+    """
+    pass
+
+print(func.__doc__)</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <div class="tip-box" style="background: #e9f5ff; border-left-color: #2563eb;">
+                            📖 Access docstring: <code>help(func)</code> or <code>func.__doc__</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="no-results" id="noResults">😕 No cheat sheet items match your search. Try a different keyword.</div>
+        </main>
+
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a onclick="scrollToSection('data-types')">Data Types</a></li>
+                <li><a onclick="scrollToSection('operators')">Operators</a></li>
+                <li><a onclick="scrollToSection('control-flow')">Control Flow</a></li>
+                <li><a onclick="scrollToSection('data-structures')">Data Structures</a></li>
+                <li><a onclick="scrollToSection('functions')">Functions</a></li>
+                <li><a onclick="scrollToSection('strings')">String Methods</a></li>
+                <li><a onclick="scrollToSection('comprehensions')">List Comprehension</a></li>
+                <li><a onclick="scrollToSection('file-io')">File I/O</a></li>
+                <li><a onclick="scrollToSection('exceptions')">Exception Handling</a></li>
+                <li><a onclick="scrollToSection('modules')">Common Modules</a></li>
+                <li><a onclick="scrollToSection('builtins')">Built‑in Functions</a></li>
+                <li><a onclick="scrollToSection('lambda')">Lambda & Map/Filter</a></li>
+                <li><a onclick="scrollToSection('tips')">Useful Tips</a></li>
+                <li><a onclick="scrollToSection('version')">Version & Docstring</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Cheat%20Sheet%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Chat</a>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2026 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+    </footer>
+
+    <script src="../js/learn-python.js">
+    </script>
+    <script>
+        const allSections = document.querySelectorAll('.cheat-section');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+
+        function filterSections() {
+            const query = searchInput.value.trim().toLowerCase();
+            let visibleCount = 0;
+            allSections.forEach(section => {
+                const sectionText = section.textContent.toLowerCase();
+                const matches = query === '' || sectionText.includes(query);
+                section.style.display = matches ? '' : 'none';
+                if (matches) visibleCount++;
+            });
+            noResults.style.display = visibleCount === 0 && query !== '' ? 'block' : 'none';
+        }
+        searchInput.addEventListener('input', filterSections);
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                section.classList.add('pulse-highlight');
+                setTimeout(() => section.classList.remove('pulse-highlight'), 3000);
+                updateActiveLinks(sectionId);
+            }
+        }
+
+        function updateActiveLinks(activeId) {
+            document.querySelectorAll('.sidebar a, .page-tracker a').forEach(a => {
+                const onclick = a.getAttribute('onclick') || '';
+                const isActive = onclick.includes(activeId);
+                a.style.fontWeight = isActive ? '700' : '400';
+                a.style.color = isActive ? 'var(--primary)' : '';
+                if (isActive) a.classList.add('active');
+                else a.classList.remove('active');
+            });
+        }
+
+        const sectionIds = [
+            'data-types', 'operators', 'control-flow', 'data-structures',
+            'functions', 'strings', 'comprehensions', 'file-io',
+            'exceptions', 'modules', 'builtins', 'lambda',
+            'tips', 'version'
+        ];
+
+        window.addEventListener('scroll', () => {
+            let current = 'data-types';
+            sectionIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 180) current = id;
+            });
+            updateActiveLinks(current);
+        }, { passive: true });
+
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+        }, { passive: true });
+
+        if (typeof copyCode !== 'function') {
+            window.copyCode = function(btn) {
+                const code = btn.closest('.code-block')?.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.textContent).then(() => {
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            icon.classList.replace('fa-copy', 'fa-check');
+                            setTimeout(() => icon.classList.replace('fa-check', 'fa-copy'), 2000);
+                        }
+                    });
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', () => updateActiveLinks('data-types'));
+    </script>
+</body>
+</html>
