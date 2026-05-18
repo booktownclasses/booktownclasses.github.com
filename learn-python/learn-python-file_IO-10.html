@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/file-io-context-managers.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>Python File I/O: Read, Write & Context Managers | BookTown Classes</title>
+    <meta name="description" content="Master Python File I/O – open, read, write, append, context managers, CSV, JSON, binary files, and production‑grade patterns. Solved examples, deep explanations, and practice problems included." />
+    <meta name="keywords" content="Python file I/O, read, write, context manager, with statement, open, CSV, JSON, binary file, pathlib, tempfile, BookTown Classes" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Python File I/O: Read, Write & Context Managers | BookTown Classes" />
+    <meta property="og:description" content="From basic file operations to production‑grade file handling – build robust, safe, and efficient file I/O code with detailed walkthroughs, solved examples, and practice problems." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7c3aed" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js">
+    </script>
+
+    <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --primary: #7c3aed;
+            --primary-light: #8b5cf6;
+            --accent: #a78bfa;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --success: #059669;
+            --info: #3b82f6;
+            --radius: 14px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+        body.dark-mode {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: #334155;
+        }
+        .mini-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #2e1065 70%, #1e1b4b 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+        .mini-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 8s ease-in-out infinite;
+        }
+        .mini-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: -40px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(5, 150, 105, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 10s ease-in-out infinite reverse;
+        }
+        @keyframes heroFloat {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(15px, -10px) scale(1.05);
+            }
+        }
+        .mini-hero .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(124, 58, 237, 0.25);
+            color: #c4b5fd;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            border: 1px solid rgba(124, 58, 237, 0.35);
+            position: relative;
+            z-index: 1;
+        }
+        .mini-hero .hero-badge .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background: #a78bfa;
+            border-radius: 50%;
+            animation: dotPulse 2s infinite;
+        }
+        @keyframes dotPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(167, 139, 250, 0);
+            }
+        }
+        .mini-hero .hero-headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin: 0 0 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 5s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .mini-hero .hero-sub {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .week-progress-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 18px;
+            margin-bottom: 20px;
+            border-radius: 0 0 var(--radius) var(--radius);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .week-progress-wrap {
+            background: rgba(30, 41, 59, 0.85);
+        }
+        .progress-label {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .progress-track {
+            flex: 1;
+            height: 8px;
+            background: var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+        .progress-days {
+            display: flex;
+            gap: 5px;
+        }
+        .progress-dot {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            color: var(--muted);
+        }
+        .progress-dot.completed {
+            background: var(--success);
+            color: #fff;
+        }
+        .progress-dot.active {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            box-shadow: 0 0 14px rgba(124, 58, 237, 0.5);
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot {
+            0%,
+            100% {
+                box-shadow: 0 0 8px rgba(124, 58, 237, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 22px rgba(124, 58, 237, 0.8);
+            }
+        }
+        .progress-dot:hover {
+            transform: scale(1.15);
+        }
+
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .info-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        .info-card .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info-card .card-title i {
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(59, 130, 246, 0.1));
+            padding: 8px;
+            border-radius: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .badge.visual {
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+        .badge.concept {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .badge.why {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .genz-course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 1.1rem 0;
+        }
+        .genz-day-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
+            border-radius: 1.25rem;
+            padding: 1rem 0.6rem;
+            color: #f1f5f9;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .genz-day-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(124, 58, 237, 0.25);
+        }
+        .genz-day-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        .genz-day-card:hover::after {
+            left: 100%;
+        }
+        .genz-day-num {
+            font-size: 1.2rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(to right, #00c6ff, #ee0979);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.1rem;
+        }
+        .genz-day-icon {
+            font-size: 1.4rem;
+            margin-bottom: 0.2rem;
+            filter: drop-shadow(0 0 4px rgba(0, 198, 255, 0.5));
+        }
+        .genz-day-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin: 0.2rem 0 0.3rem;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+        .genz-day-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.15rem;
+            margin-top: 0.15rem;
+        }
+        .genz-day-tags span {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 20px;
+            margin: 1px 1px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .genz-day-card:hover .genz-day-tags span {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: #a78bfa;
+            color: #ffffff;
+        }
+
+        .comparative-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .comparative-table th,
+        .comparative-table td {
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+            font-size: 0.85rem;
+            color: #f1f5f9;
+        }
+        .comparative-table th {
+            background: #1e293b;
+            color: #f0f9ff;
+            font-weight: 600;
+        }
+        .comparative-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparative-table tr:hover td {
+            background: rgba(124, 58, 237, 0.08);
+        }
+
+        .step-walkthrough {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        body.dark-mode .step-walkthrough {
+            background: #1e293b;
+            border-color: #7c3aed;
+        }
+
+        .particle-emoji {
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+            font-size: 1.2rem;
+            animation: particleBurst 0.7s cubic-bezier(0, 0.9, 0.3, 1) forwards;
+        }
+        @keyframes particleBurst {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--px), var(--py)) scale(0.2);
+            }
+        }
+        .pulse-highlight {
+            animation: gentlePulse 3s ease-in-out 1;
+        }
+        @keyframes gentlePulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 0 12px rgba(124, 58, 237, 0);
+            }
+        }
+
+        .why-box {
+            background: #fffbeb;
+            border-left: 5px solid var(--warning);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 14px 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        body.dark-mode .why-box {
+            background: #3b2a0a;
+            border-left-color: #f59e0b;
+        }
+        .tip-box {
+            background: #f0fdf4;
+            border-left: 5px solid var(--success);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 14px 0;
+            font-size: 0.85rem;
+        }
+        body.dark-mode .tip-box {
+            background: #0a3328;
+        }
+        .danger-box {
+            background: #fef2f2;
+            border-left: 5px solid var(--danger);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 14px 0;
+            font-size: 0.85rem;
+        }
+        body.dark-mode .danger-box {
+            background: #3b0a0a;
+        }
+
+        .code-block {
+            position: relative;
+            background: #1e293b;
+            border-radius: 10px;
+            margin: 14px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        .code-block-header {
+            background: #0f172a;
+            padding: 8px 14px;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-family: 'Fira Code', monospace;
+        }
+        .code-block pre {
+            margin: 0;
+            padding: 14px 16px;
+            overflow-x: auto;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            background: #1e293b;
+        }
+        .code-block code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 36px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #cbd5e1;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: 0.3s;
+            z-index: 5;
+        }
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 99;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+            transition: 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .scroll-top-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.5);
+        }
+
+        .concept-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            margin: 24px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.35s ease;
+        }
+        .concept-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .concept-card h3 .day-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .section-intro {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            line-height: 1.7;
+        }
+        .section-intro p {
+            margin: 0 0 8px;
+        }
+        .practice-problem {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            margin: 12px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .practice-problem summary {
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+        .practice-problem .solution {
+            margin-top: 10px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        body.dark-mode .practice-problem .solution {
+            background: #1e293b;
+        }
+
+        @media (max-width:768px) {
+            .mini-hero {
+                padding: 1.2rem;
+            }
+            .mini-hero .hero-headline {
+                font-size: 1.3rem;
+            }
+            .genz-course-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width:500px) {
+            .genz-course-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    <div id="header-container"></div>
+    <div class="main-container">
+        <aside class="sidebar" id="mainSidebar"></aside>
+        <main class="content">
+            <div class="mini-hero">
+                <div class="hero-badge"><span class="pulse-dot"></span> Python • File I/O & Context Managers</div>
+                <h1 class="hero-headline"><span class="gradient-text">File I/O: Read, Write</span> & Context Managers</h1>
+                <p class="hero-sub">Master Python file operations – open, read, write, append, context managers, CSV, JSON, binary files, and production‑grade file‑handling patterns with detailed examples, solved problems, and practice challenges.</p>
+            </div>
+
+            <div class="week-progress-wrap">
+                <span class="progress-label">Topics</span>
+                <div class="progress-track"><div class="progress-fill" id="weekProgressFill" style="width:0%"></div></div>
+                <div class="progress-days">
+                    <div class="progress-dot" data-day="1" onclick="scrollToDay('day1')">1</div>
+                    <div class="progress-dot" data-day="2" onclick="scrollToDay('day2')">2</div>
+                    <div class="progress-dot" data-day="3" onclick="scrollToDay('day3')">3</div>
+                    <div class="progress-dot" data-day="4" onclick="scrollToDay('day4')">4</div>
+                    <div class="progress-dot" data-day="5" onclick="scrollToDay('day5')">5</div>
+                    <div class="progress-dot" data-day="6" onclick="scrollToDay('day6')">6</div>
+                    <div class="progress-dot" data-day="7" onclick="scrollToDay('day7')">7</div>
+                </div>
+            </div>
+
+            <div class="content-section active">
+                <div class="section-intro">
+                    <p><strong>📌 What you'll learn:</strong> File I/O is essential for reading configuration, processing data files, logging, and persisting information. Python makes file handling simple yet powerful with built‑in functions, the <code>with</code> statement, and libraries like <code>csv</code>, <code>json</code>, and <code>pathlib</code>. This page covers everything from basic <code>open()</code> to production‑safe file operations.</p>
+                    <p><strong>🎯 Goal:</strong> Write safe, efficient, and idiomatic file‑handling code — whether you're parsing a small text file or building a data pipeline that processes thousands of files reliably.</p>
+                </div>
+
+                <div class="genz-course-grid">
+                    <div class="genz-day-card" onclick="scrollToDay('day1')"><div class="genz-day-num">01</div><div class="genz-day-icon"><i class="fas fa-file-alt"></i></div><h4 class="genz-day-title">File Basics</h4><div class="genz-day-tags"><span>open()</span><span>close()</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day2')"><div class="genz-day-num">02</div><div class="genz-day-icon"><i class="fas fa-layer-group"></i></div><h4 class="genz-day-title">File Modes</h4><div class="genz-day-tags"><span>r/w/a</span><span>r+/b</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day3')"><div class="genz-day-num">03</div><div class="genz-day-icon"><i class="fas fa-shield-alt"></i></div><h4 class="genz-day-title">Context Managers</h4><div class="genz-day-tags"><span>with</span><span>__enter__</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day4')"><div class="genz-day-num">04</div><div class="genz-day-icon"><i class="fas fa-book-open"></i></div><h4 class="genz-day-title">Reading</h4><div class="genz-day-tags"><span>read()</span><span>readlines()</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day5')"><div class="genz-day-num">05</div><div class="genz-day-icon"><i class="fas fa-pen"></i></div><h4 class="genz-day-title">Writing</h4><div class="genz-day-tags"><span>write()</span><span>writelines()</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day6')"><div class="genz-day-num">06</div><div class="genz-day-icon"><i class="fas fa-table"></i></div><h4 class="genz-day-title">CSV & JSON</h4><div class="genz-day-tags"><span>csv</span><span>json</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day7')"><div class="genz-day-num">07</div><div class="genz-day-icon"><i class="fas fa-rocket"></i></div><h4 class="genz-day-title">Production</h4><div class="genz-day-tags"><span>pathlib</span><span>tempfile</span></div></div>
+                </div>
+
+                <!-- ========== WHY SECTION ========== -->
+                <div class="concept-card" id="why-file-io">
+                    <h3><i class="fas fa-search"></i> Why File I/O & Context Managers Matter</h3>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-question-circle"></i> What problems do they solve?</div>
+                        <p>File I/O allows programs to persist data beyond runtime, read configuration, process datasets, and communicate with other systems. Context managers guarantee resources are released properly — even when errors occur — preventing file corruption and resource leaks.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-exclamation-triangle"></i> Why are they required?</div>
+                        <p>Without proper file handling, you risk data loss, file corruption, and exhausting system file descriptors. Manually calling <code>close()</code> is error‑prone; forgetting it can lock files and crash long‑running applications.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-cogs"></i> Role in Production</div>
+                        <p>Production systems read configs, write logs, process uploads, and manage temporary files. Using <code>pathlib</code> for cross‑platform paths, <code>tempfile</code> for secure temporary files, and atomic writes ensures reliability at scale.</p>
+                    </div>
+                </div>
+
+                <!-- ========== DAY 1: FILE BASICS ========== -->
+                <div class="concept-card" id="day1">
+                    <h3><span class="day-badge">1</span> File Basics – open(), read(), write(), close()</h3>
+                    <p>The <code>open()</code> function returns a file object. Always close files to free system resources. The default mode is <code>'r'</code> (read text). Use <code>'w'</code> to write (overwrites existing content) and <code>'a'</code> to append.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> file_basics.py</div>
+                        <pre class="line-numbers"><code class="language-python"># Writing to a file
+file = open("hello.txt", "w")
+file.write("Hello, World!\n")
+file.write("This is line 2.\n")
+file.close()  # ⚠️ Don't forget to close!
+
+# Reading from a file
+file = open("hello.txt", "r")
+content = file.read()       # reads entire file as a single string
+print(content)
+file.close()
+
+# Appending to a file
+file = open("hello.txt", "a")
+file.write("Appended line.\n")
+file.close()</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="why-box"><strong>🔍 Key Insight:</strong> The file object is a <em>stream</em>. After reading, the cursor moves to the end. Use <code>file.seek(0)</code> to reset to the beginning if you need to re‑read.</div>
+                </div>
+
+                <!-- ========== DAY 2: FILE MODES ========== -->
+                <div class="concept-card" id="day2">
+                    <h3><span class="day-badge">2</span> File Modes Deep Dive</h3>
+                    <p>Python supports multiple modes. Combine read/write with text/binary. Here's a comprehensive breakdown:</p>
+                    <table class="comparative-table">
+                        <thead>
+                            <tr><th>Mode</th><th>Meaning</th><th>File Exists</th><th>File Doesn't Exist</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>'r'</code></td><td>Read (text, default)</td><td>Opens for reading</td><td>❌ Raises <code>FileNotFoundError</code></td></tr>
+                            <tr><td><code>'w'</code></td><td>Write (text)</td><td>⚠️ Truncates (overwrites)</td><td>Creates new file</td></tr>
+                            <tr><td><code>'a'</code></td><td>Append (text)</td><td>Appends at end</td><td>Creates new file</td></tr>
+                            <tr><td><code>'x'</code></td><td>Exclusive creation</td><td>❌ Raises <code>FileExistsError</code></td><td>Creates new file</td></tr>
+                            <tr><td><code>'r+'</code></td><td>Read + Write</td><td>Opens for both; no truncation</td><td>❌ Raises error</td></tr>
+                            <tr><td><code>'w+'</code></td><td>Write + Read</td><td>⚠️ Truncates first</td><td>Creates new file</td></tr>
+                            <tr><td><code>'rb'</code></td><td>Read binary</td><td>Opens in binary mode</td><td>❌ Raises error</td></tr>
+                            <tr><td><code>'wb'</code></td><td>Write binary</td><td>⚠️ Truncates</td><td>Creates new file</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> file_modes_demo.py</div>
+                        <pre class="line-numbers"><code class="language-python"># Exclusive creation – safe when you don't want to overwrite
+try:
+    with open("unique_file.txt", "x") as f:
+        f.write("Created exclusively!\n")
+except FileExistsError:
+    print("File already exists – skipping.")
+
+# Binary mode – for images, PDFs, etc.
+with open("image_copy.png", "wb") as dest:
+    with open("original.png", "rb") as src:
+        dest.write(src.read())  # copies binary data</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="danger-box"><strong>⚠️ Warning:</strong> <code>'w'</code> mode silently deletes existing content. Use <code>'x'</code> if you want to avoid accidental overwrites, or check with <code>os.path.exists()</code> first.</div>
+                </div>
+
+                <!-- ========== DAY 3: CONTEXT MANAGERS ========== -->
+                <div class="concept-card" id="day3">
+                    <h3><span class="day-badge">3</span> Context Managers – The <code>with</code> Statement</h3>
+                    <p>The <code>with</code> statement ensures files are closed automatically — even if an exception occurs. This is the <strong>idiomatic Python</strong> way to handle files. You can also build custom context managers using classes or the <code>contextlib</code> module.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> context_manager_demo.py</div>
+                        <pre class="line-numbers"><code class="language-python"># ✅ The Pythonic way – no explicit close() needed
+with open("data.txt", "r") as file:
+    content = file.read()
+    print(content)
+# File is automatically closed here, even if an error occurred
+
+# Custom context manager using a class
+class ManagedFile:
+    def __init__(self, filename, mode='r'):
+        self.filename = filename
+        self.mode = mode
+
+    def __enter__(self):
+        self.file = open(self.filename, self.mode)
+        return self.file
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.file.close()
+        if exc_type is not None:
+            print(f"An error occurred: {exc_val}")
+        return False  # don't suppress exceptions
+
+with ManagedFile("log.txt", "w") as f:
+    f.write("Logging with custom context manager!\n")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="tip-box"><strong>💡 Pro Tip:</strong> Use <code>from contextlib import contextmanager</code> with the <code>@contextmanager</code> decorator and <code>yield</code> for simpler generator‑based context managers when you don't need a full class.</div>
+                    <div class="step-walkthrough">
+                        <strong>🧠 How <code>with</code> works step‑by‑step:</strong>
+                        <ol>
+                            <li><code>open()</code> is called → returns a file object.</li>
+                            <li>The file object's <code>__enter__()</code> method runs → returns the file handle.</li>
+                            <li>The block inside <code>with</code> executes.</li>
+                            <li>When the block ends (or an exception occurs), <code>__exit__()</code> is called → file is closed.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- ========== DAY 4: READING TECHNIQUES ========== -->
+                <div class="concept-card" id="day4">
+                    <h3><span class="day-badge">4</span> Reading Techniques – read(), readline(), readlines(), Iteration</h3>
+                    <p>Choose the right reading method based on file size and your use case. For large files, iterate line‑by‑line to avoid loading everything into memory.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> reading_methods.py</div>
+                        <pre class="line-numbers"><code class="language-python"># 1. read() – entire file as one string (use for small files)
+with open("poem.txt", "r") as f:
+    whole_text = f.read()
+
+# 2. readline() – one line at a time
+with open("poem.txt", "r") as f:
+    first_line = f.readline()
+    second_line = f.readline()
+
+# 3. readlines() – list of all lines (includes \n)
+with open("poem.txt", "r") as f:
+    all_lines = f.readlines()  # ['line1\n', 'line2\n', ...]
+
+# 4. ✅ Best for large files – iterate directly over file object
+with open("huge_log.txt", "r") as f:
+    for line in f:
+        process(line.strip())  # strip() removes \n and whitespace
+
+# 5. read(n) – read n characters (or bytes in binary mode)
+with open("data.txt", "r") as f:
+    chunk = f.read(1024)  # read first 1024 characters</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="why-box"><strong>🔍 Memory Tip:</strong> <code>f.read()</code> on a 2 GB file will crash your program with <code>MemoryError</code>. Always iterate with <code>for line in f</code> for files larger than available RAM.</div>
+                </div>
+
+                <!-- ========== DAY 5: WRITING TECHNIQUES ========== -->
+                <div class="concept-card" id="day5">
+                    <h3><span class="day-badge">5</span> Writing Techniques – write(), writelines(), Flushing & Buffering</h3>
+                    <p>Writing is straightforward, but understanding buffering and flushing helps when you need real‑time output (e.g., logging to a file that another process reads).</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> writing_methods.py</div>
+                        <pre class="line-numbers"><code class="language-python"># 1. write() – writes a single string
+with open("output.txt", "w") as f:
+    f.write("Line 1\n")
+    f.write("Line 2\n")
+
+# 2. writelines() – writes an iterable of strings
+lines = ["apple\n", "banana\n", "cherry\n"]
+with open("fruits.txt", "w") as f:
+    f.writelines(lines)
+
+# 3. print() to file – convenient for formatted output
+data = {"name": "Alice", "score": 95}
+with open("report.txt", "w") as f:
+    print(f"Student: {data['name']}", file=f)
+    print(f"Score: {data['score']}", file=f)
+
+# 4. Flushing – force write to disk immediately
+with open("live_log.txt", "w", buffering=1) as f:  # line-buffered
+    f.write("Processing...\n")
+    f.flush()  # ensures it's written now (useful for tail -f)</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="tip-box"><strong>💡 Buffering modes:</strong> <code>buffering=0</code> (unbuffered, binary only), <code>buffering=1</code> (line‑buffered, text only), <code>buffering>1</code> (fixed buffer size in bytes). Default is system‑dependent (~8KB).</div>
+                </div>
+
+                <!-- ========== DAY 6: CSV & JSON ========== -->
+                <div class="concept-card" id="day6">
+                    <h3><span class="day-badge">6</span> Working with CSV & JSON Files</h3>
+                    <p>Python's <code>csv</code> module handles delimiter parsing, quoting, and dialect detection. The <code>json</code> module serializes Python objects to JSON strings and deserializes them back — perfect for configs, APIs, and data exchange.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> csv_json_demo.py</div>
+                        <pre class="line-numbers"><code class="language-python">import csv
+import json
+
+# ========== CSV READING ==========
+with open("users.csv", "r", newline='') as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        print(f"{row['name']} – {row['email']}")
+
+# ========== CSV WRITING ==========
+with open("export.csv", "w", newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=["name", "score"])
+    writer.writeheader()
+    writer.writerow({"name": "Alice", "score": 95})
+    writer.writerow({"name": "Bob", "score": 87})
+
+# ========== JSON READING ==========
+with open("config.json", "r") as f:
+    config = json.load(f)   # returns dict/list
+    print(config["api_key"])
+
+# ========== JSON WRITING ==========
+data = {"users": [{"name": "Alice"}, {"name": "Bob"}]}
+with open("output.json", "w") as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="why-box"><strong>🔍 Key Insight:</strong> Always use <code>newline=''</code> when opening CSV files — the <code>csv</code> module handles newlines itself, and not doing so can cause extra blank lines on Windows.</div>
+                </div>
+
+                <!-- ========== DAY 7: PRODUCTION PATTERNS ========== -->
+                <div class="concept-card" id="day7">
+                    <h3><span class="day-badge">7</span> Production‑Grade File I/O Patterns</h3>
+                    <p>In production, use <code>pathlib</code> for elegant path manipulation, <code>tempfile</code> for secure temporary files, atomic writes to prevent corruption, and proper encoding handling.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> production_patterns.py</div>
+                        <pre class="line-numbers"><code class="language-python">from pathlib import Path
+import tempfile
+import os
+
+# ========== PATHLIB – modern path handling ==========
+data_dir = Path("data") / "2025" / "reports"
+data_dir.mkdir(parents=True, exist_ok=True)  # create dirs if needed
+report_path = data_dir / "summary.txt"
+report_path.write_text("Q1 Report\n", encoding="utf-8")
+content = report_path.read_text(encoding="utf-8")
+
+# ========== TEMPFILE – secure temporary files ==========
+with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as tmp:
+    tmp.write("Temporary data\n")
+    tmp_path = tmp.name  # get the path
+print(f"Temp file at: {tmp_path}")
+# Process the file, then clean up
+os.unlink(tmp_path)
+
+# ========== ATOMIC WRITE – prevent partial writes ==========
+def atomic_write(filepath, content):
+    """Write to a temp file first, then rename atomically."""
+    tmp_path = filepath + ".tmp"
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        f.write(content)
+        f.flush()
+        os.fsync(f.fileno())  # force write to disk
+    os.replace(tmp_path, filepath)  # atomic rename (Unix/Windows)
+
+atomic_write("important.txt", "Critical data here.\n")
+
+# ========== ENCODING – always specify ==========
+with open("unicode_file.txt", "w", encoding="utf-8") as f:
+    f.write("Café résumé – 日本語もOK\n")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="tip-box"><strong>💡 Best Practice:</strong> Always specify <code>encoding="utf-8"</code> explicitly. The system default varies by OS (Windows uses cp1252, not UTF‑8), leading to bugs that only appear on certain machines.</div>
+                    <div class="danger-box"><strong>⚠️ Atomic writes matter:</strong> If your program crashes mid‑write, a partially‑written file can corrupt downstream processes. Writing to a temp file + atomic rename guarantees either the old file or the complete new file — never a half‑written mess.</div>
+                </div>
+
+                <!-- ========== ERROR HANDLING IN FILE I/O ========== -->
+                <div class="concept-card" id="error-handling">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Error Handling in File Operations</h3>
+                    <p>File operations can fail for many reasons: missing files, permission errors, disk full, or encoding issues. Robust code handles these gracefully.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> error_handling.py</div>
+                        <pre class="line-numbers"><code class="language-python">def safe_read_file(filepath):
+    """Read a file safely, handling common errors."""
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            return f.read()
+    except FileNotFoundError:
+        print(f"❌ File not found: {filepath}")
+        return None
+    except PermissionError:
+        print(f"❌ Permission denied: {filepath}")
+        return None
+    except UnicodeDecodeError:
+        # Try with a different encoding
+        with open(filepath, "r", encoding="latin-1") as f:
+            return f.read()
+    except OSError as e:
+        print(f"❌ OS error: {e}")
+        return None
+
+content = safe_read_file("maybe_missing.txt")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <!-- ========== SOLVED PROBLEMS ========== -->
+                <div class="concept-card" id="solved-problems">
+                    <h3><i class="fas fa-check-double"></i> Solved Practice Problems</h3>
+                    <h4 style="color:var(--success);">🔰 Easy (3 problems)</h4>
+                    <div class="info-card"><div class="card-title">1. Write and Read a Greeting File</div><div class="code-block"><pre class="line-numbers"><code class="language-python">with open("greeting.txt", "w") as f:
+    f.write("Hello from Python!\n")
+with open("greeting.txt", "r") as f:
+    print(f.read())  # Hello from Python!</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">2. Count Lines in a File</div><div class="code-block"><pre class="line-numbers"><code class="language-python">def count_lines(filename):
+    with open(filename, "r") as f:
+        return sum(1 for _ in f)
+print(count_lines("poem.txt"))</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">3. Append Timestamp to Log</div><div class="code-block"><pre class="line-numbers"><code class="language-python">from datetime import datetime
+with open("app.log", "a") as f:
+    f.write(f"[{datetime.now()}] App started.\n")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <h4 style="color:var(--warning);">⚡ Intermediate (3 problems)</h4>
+                    <div class="info-card"><div class="card-title">4. Copy File in Chunks (Memory‑Safe)</div><div class="code-block"><pre class="line-numbers"><code class="language-python">def copy_file(src, dest, chunk_size=8192):
+    with open(src, "rb") as s, open(dest, "wb") as d:
+        while chunk := s.read(chunk_size):
+            d.write(chunk)
+copy_file("large.mp4", "large_copy.mp4")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">5. Read CSV and Filter Rows</div><div class="code-block"><pre class="line-numbers"><code class="language-python">import csv
+with open("data.csv", "r", newline='') as f:
+    reader = csv.DictReader(f)
+    high_scorers = [row for row in reader if int(row['score']) > 80]
+print(high_scorers)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">6. JSON Config Loader with Defaults</div><div class="code-block"><pre class="line-numbers"><code class="language-python">import json
+def load_config(path, defaults=None):
+    try:
+        with open(path, "r") as f:
+            config = json.load(f)
+        return {**defaults, **config} if defaults else config
+    except (FileNotFoundError, json.JSONDecodeError):
+        return defaults or {}
+cfg = load_config("config.json", {"port": 8080})</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <h4 style="color:var(--danger);">🚀 Advanced (3 problems)</h4>
+                    <div class="info-card"><div class="card-title">7. Custom Context Manager for Database File</div><div class="code-block"><pre class="line-numbers"><code class="language-python">class DatabaseFile:
+    def __init__(self, path):
+        self.path = path
+    def __enter__(self):
+        self.conn = open(self.path, "r+")
+        return self.conn
+    def __exit__(self, *args):
+        self.conn.flush()
+        self.conn.close()
+with DatabaseFile("db.txt") as db:
+    db.write("UPDATE users SET active=1;\n")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">8. Atomic JSON Writer</div><div class="code-block"><pre class="line-numbers"><code class="language-python">import json, os
+def atomic_json_write(path, data):
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp, path)
+atomic_json_write("state.json", {"count": 42})</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">9. Recursive Directory File Counter with pathlib</div><div class="code-block"><pre class="line-numbers"><code class="language-python">from pathlib import Path
+def count_files_by_extension(root_dir):
+    counts = {}
+    for file in Path(root_dir).rglob("*"):
+        if file.is_file():
+            ext = file.suffix or "(no extension)"
+            counts[ext] = counts.get(ext, 0) + 1
+    return counts
+print(count_files_by_extension("./project"))</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                </div>
+
+                <!-- ========== UNSOLVED PROBLEMS ========== -->
+                <div class="concept-card" id="practice-problems">
+                    <h3><i class="fas fa-question-circle"></i> Unsolved Practice Problems</h3>
+                    <h4 style="color:var(--success);">🔰 Easy (3 problems)</h4>
+                    <div class="practice-problem"><details><summary>1. Write a Shopping List to a File</summary><div class="solution"><p>Write a function <code>save_shopping_list(filename, items)</code> that takes a list of strings and writes each item on a new line. Then write <code>load_shopping_list(filename)</code> that reads them back into a list.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Count Words in a Text File</summary><div class="solution"><p>Write a function <code>word_count(filename)</code> that returns the total number of words in a text file. Treat any whitespace‑separated sequence as a word.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>3. File Exists Check Before Writing</summary><div class="solution"><p>Write a function <code>safe_write(filename, content)</code> that checks if the file exists. If it does, ask for confirmation (simulate with a boolean parameter <code>overwrite</code>). Use <code>'x'</code> mode for safe creation.</p></div></details></div>
+                    <h4 style="color:var(--warning);">⚡ Intermediate (3 problems)</h4>
+                    <div class="practice-problem"><details><summary>4. Merge Multiple Text Files</summary><div class="solution"><p>Write <code>merge_files(output, *input_files)</code> that concatenates the contents of all input files into the output file. Use chunked reading for memory safety.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>5. CSV to JSON Converter</summary><div class="solution"><p>Write a script that reads a CSV file (with headers) and converts it to a JSON array of objects. Handle missing values gracefully with a default.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>6. Logging Context Manager</summary><div class="solution"><p>Create a context manager <code>LogBlock(filename, message)</code> that writes a start message when entering and an end message (with duration) when exiting. Use <code>time.time()</code> to measure elapsed time.</p></div></details></div>
+                    <h4 style="color:var(--danger);">🚀 Advanced (3 problems)</h4>
+                    <div class="practice-problem"><details><summary>7. File Watcher with Polling</summary><div class="solution"><p>Write a function <code>watch_file(filename, interval=1.0)</code> that polls the file's modification time (<code>os.path.getmtime</code>) and yields the new content whenever the file changes. Use an infinite loop with <code>time.sleep</code>.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>8. Rotating File Writer</summary><div class="solution"><p>Create a class <code>RotatingFileWriter</code> that writes to a file but creates a new file (with a counter suffix) when the current file exceeds a given size limit (e.g., 1 MB).</p></div></details></div>
+                    <div class="practice-problem"><details><summary>9. Concurrent‑Safe File Append</summary><div class="solution"><p>Research and implement a function that safely appends to a file from multiple processes using <code>fcntl.flock</code> (Unix) or <code>msvcrt.locking</code> (Windows) for file locking. Explain why <code>mode='a'</code> alone isn't always safe for multi‑process writes.</p></div></details></div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#why-file-io">Why File I/O?</a></li>
+                <li><a href="#day1">File Basics</a></li>
+                <li><a href="#day2">File Modes</a></li>
+                <li><a href="#day3">Context Managers</a></li>
+                <li><a href="#day4">Reading Techniques</a></li>
+                <li><a href="#day5">Writing Techniques</a></li>
+                <li><a href="#day6">CSV & JSON</a></li>
+                <li><a href="#day7">Production Patterns</a></li>
+                <li><a href="#error-handling">Error Handling</a></li>
+                <li><a href="#solved-problems">Solved Problems</a></li>
+                <li><a href="#practice-problems">Unsolved Problems</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20File%20I/O%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Chat</a>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2026 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+    </footer>
+
+    <script src="../js/learn-python.js">
+    </script>
+    <script>
+        function scrollToDay(dayId) {
+            const el = document.getElementById(dayId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                el.classList.add('pulse-highlight');
+                setTimeout(() => el.classList.remove('pulse-highlight'), 3000);
+            }
+            updateProgressDots(dayId);
+        }
+
+        function updateProgressDots(activeDayId) {
+            const dayMap = { 'day1': 1, 'day2': 2, 'day3': 3, 'day4': 4, 'day5': 5, 'day6': 6, 'day7': 7 };
+            const activeDay = dayMap[activeDayId] || 1;
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                const d = parseInt(dot.getAttribute('data-day'));
+                dot.classList.remove('active', 'completed');
+                if (d === activeDay) dot.classList.add('active');
+                else if (d < activeDay) dot.classList.add('completed');
+            });
+            document.getElementById('weekProgressFill').style.width = ((activeDay / 7) * 100) + '%';
+        }
+        const dayIds = ['why-file-io', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7', 'error-handling',
+            'solved-problems', 'practice-problems'
+        ];
+        window.addEventListener('scroll', () => {
+            let currentDay = 'day1';
+            dayIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 160) currentDay = id;
+            });
+            if (dayIds.includes(currentDay)) updateProgressDots(currentDay);
+            document.querySelectorAll('.page-tracker a').forEach(a => {
+                const href = a.getAttribute('href');
+                a.style.fontWeight = href === '#' + currentDay ? '700' : '400';
+                a.style.color = href === '#' + currentDay ? 'var(--primary)' : '';
+            });
+        }, { passive: true });
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+        }, { passive: true });
+        if (typeof copyCode !== 'function') {
+            window.copyCode = function(btn) {
+                const code = btn.closest('.code-block')?.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.textContent).then(() => {
+                        const icon = btn.querySelector('i');
+                        if (icon) { icon.classList.replace('fa-copy', 'fa-check');
+                            setTimeout(() => icon.classList.replace('fa-check', 'fa-copy'), 2000); }
+                    });
+                }
+            };
+        }
+
+        function createParticles(element, event) {
+            const emojis = ['📁', '📄', '💾', '🔧', '✅', '⚡', '🛡️'];
+            const rect = element.getBoundingClientRect();
+            const centerX = event.clientX - rect.left;
+            const centerY = event.clientY - rect.top;
+            for (let i = 0; i < 6; i++) {
+                const particle = document.createElement('span');
+                particle.className = 'particle-emoji';
+                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = 25 + Math.random() * 50;
+                particle.style.setProperty('--px', Math.cos(angle) * distance + 'px');
+                particle.style.setProperty('--py', Math.sin(angle) * distance + 'px');
+                element.appendChild(particle);
+                setTimeout(() => particle.remove(), 700);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => updateProgressDots('day1'));
+        console.log('📁 File I/O & Context Managers Mastery – Ready!');
+    </script>
+</body>
+</html>

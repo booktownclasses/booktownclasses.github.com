@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>Python Modules & Packages: Complete Guide | BookTown Classes</title>
+    <meta name="description" content="Master Python modules, packages, imports, __init__.py, namespace packages, pip, virtual environments, and production-grade project structures. Solved examples and practice problems included." />
+    <meta name="keywords" content="Python modules, packages, import, __init__.py, pip, virtualenv, namespace package, __name__, __main__, sys.path, BookTown Classes" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Python Modules & Packages: Complete Guide | BookTown Classes" />
+    <meta property="og:description" content="From basic imports to production package structures – build scalable, maintainable Python projects with deep explanations, solved examples, and practice problems." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7c3aed" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js">
+    </script>
+
+    <!-- External stylesheets that load header & sidebar styling -->
+    <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --primary: #7c3aed;
+            --primary-light: #8b5cf6;
+            --accent: #a78bfa;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --success: #059669;
+            --info: #3b82f6;
+            --radius: 14px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+        body.dark-mode {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: #334155;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background 0.4s, color 0.4s;
+            overflow-x: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.06;
+            animation: floatShape 20s infinite ease-in-out;
+        }
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: #7c3aed;
+            top: -100px;
+            left: -100px;
+        }
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: #3b82f6;
+            bottom: -80px;
+            right: -80px;
+            animation-delay: -7s;
+        }
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            background: #059669;
+            top: 50%;
+            left: 60%;
+            animation-delay: -14s;
+        }
+        @keyframes floatShape {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(40px, -30px) scale(1.1);
+            }
+            50% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            75% {
+                transform: translate(30px, 15px) scale(1.05);
+            }
+        }
+
+        #header-container {
+            position: relative;
+            z-index: 10;
+        }
+        .main-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 16px;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .sidebar {
+            width: 240px;
+            flex-shrink: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            z-index: 5;
+        }
+        .sidebar h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 4px;
+        }
+        .sidebar ul li a {
+            display: block;
+            padding: 6px 10px;
+            border-radius: 6px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.82rem;
+            transition: 0.2s;
+        }
+        .sidebar ul li a:hover,
+        .sidebar ul li a.active {
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .content {
+            flex: 1;
+            min-width: 0;
+        }
+        .page-tracker {
+            width: 200px;
+            flex-shrink: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            z-index: 5;
+        }
+        .page-tracker h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .page-tracker ul {
+            list-style: none;
+            padding: 0;
+        }
+        .page-tracker ul li {
+            margin-bottom: 3px;
+        }
+        .page-tracker ul li a {
+            display: block;
+            padding: 4px 8px;
+            border-radius: 5px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: 0.2s;
+        }
+        .page-tracker ul li a:hover,
+        .page-tracker ul li a.active {
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        @media (max-width:1100px) {
+            .page-tracker {
+                display: none;
+            }
+        }
+        @media (max-width:860px) {
+            .sidebar {
+                display: none;
+            }
+            .main-container {
+                padding: 12px 8px;
+            }
+        }
+
+        .mini-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #2e1065 70%, #1e1b4b 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+        .mini-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 8s ease-in-out infinite;
+        }
+        .mini-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: -40px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(5, 150, 105, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 10s ease-in-out infinite reverse;
+        }
+        @keyframes heroFloat {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(15px, -10px) scale(1.05);
+            }
+        }
+        .mini-hero .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(124, 58, 237, 0.25);
+            color: #c4b5fd;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            border: 1px solid rgba(124, 58, 237, 0.35);
+            position: relative;
+            z-index: 1;
+        }
+        .mini-hero .hero-badge .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background: #a78bfa;
+            border-radius: 50%;
+            animation: dotPulse 2s infinite;
+        }
+        @keyframes dotPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(167, 139, 250, 0);
+            }
+        }
+        .mini-hero .hero-headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin: 0 0 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 5s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .mini-hero .hero-sub {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .week-progress-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 18px;
+            margin-bottom: 20px;
+            border-radius: 0 0 var(--radius) var(--radius);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .week-progress-wrap {
+            background: rgba(30, 41, 59, 0.85);
+        }
+        .progress-label {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .progress-track {
+            flex: 1;
+            height: 8px;
+            background: var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+        .progress-days {
+            display: flex;
+            gap: 5px;
+        }
+        .progress-dot {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            color: var(--muted);
+        }
+        .progress-dot.completed {
+            background: var(--success);
+            color: #fff;
+        }
+        .progress-dot.active {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            box-shadow: 0 0 14px rgba(124, 58, 237, 0.5);
+            animation: pulseDot2 2s infinite;
+        }
+        @keyframes pulseDot2 {
+            0%,
+            100% {
+                box-shadow: 0 0 8px rgba(124, 58, 237, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 22px rgba(124, 58, 237, 0.8);
+            }
+        }
+        .progress-dot:hover {
+            transform: scale(1.15);
+        }
+
+        .concept-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .concept-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        .concept-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .concept-card h3 .day-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            margin: 14px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.35s ease;
+        }
+        .info-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        .info-card .card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info-card .card-title i {
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(59, 130, 246, 0.1));
+            padding: 7px;
+            border-radius: 10px;
+        }
+
+        .genz-course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 1.1rem 0;
+        }
+        .genz-day-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
+            border-radius: 1.25rem;
+            padding: 1rem 0.6rem;
+            color: #f1f5f9;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .genz-day-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(124, 58, 237, 0.25);
+        }
+        .genz-day-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        .genz-day-card:hover::after {
+            left: 100%;
+        }
+        .genz-day-num {
+            font-size: 1.2rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(to right, #00c6ff, #ee0979);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.1rem;
+        }
+        .genz-day-icon {
+            font-size: 1.4rem;
+            margin-bottom: 0.2rem;
+            filter: drop-shadow(0 0 4px rgba(0, 198, 255, 0.5));
+        }
+        .genz-day-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin: 0.2rem 0 0.3rem;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+        .genz-day-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.15rem;
+            margin-top: 0.15rem;
+        }
+        .genz-day-tags span {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 20px;
+            margin: 1px 1px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .genz-day-card:hover .genz-day-tags span {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: #a78bfa;
+            color: #ffffff;
+        }
+
+        .code-block {
+            position: relative;
+            background: #1e293b;
+            border-radius: 10px;
+            margin: 14px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        .code-block-header {
+            background: #0f172a;
+            padding: 8px 14px;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-family: 'Fira Code', monospace;
+        }
+        .code-block pre {
+            margin: 0;
+            padding: 14px 16px;
+            overflow-x: auto;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            background: #1e293b;
+        }
+        .code-block code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 36px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #cbd5e1;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: 0.3s;
+            z-index: 5;
+        }
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .why-box {
+            background: #fffbeb;
+            border-left: 5px solid var(--warning);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 14px 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        body.dark-mode .why-box {
+            background: #3b2a0a;
+            border-left-color: #f59e0b;
+        }
+        .tip-box {
+            background: #f0fdf4;
+            border-left: 5px solid var(--success);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 14px 0;
+            font-size: 0.85rem;
+        }
+        body.dark-mode .tip-box {
+            background: #0a3328;
+        }
+        .danger-box {
+            background: #fef2f2;
+            border-left: 5px solid var(--danger);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 14px 0;
+            font-size: 0.85rem;
+        }
+        body.dark-mode .danger-box {
+            background: #3b0a0a;
+        }
+        .step-walkthrough {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        body.dark-mode .step-walkthrough {
+            background: #1e293b;
+            border-color: #7c3aed;
+        }
+
+        .section-intro {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        .section-intro p {
+            margin-bottom: 8px;
+        }
+        .section-intro p:last-child {
+            margin-bottom: 0;
+        }
+
+        .practice-problem {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 8px 0;
+        }
+        .practice-problem details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text);
+            padding: 4px 0;
+            outline: none;
+        }
+        .practice-problem .solution {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 99;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+            transition: 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .scroll-top-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.5);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 24px;
+            background: #25D366;
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            z-index: 99;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .whatsapp-float:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .pulse-highlight {
+            animation: gentlePulse 3s ease-in-out 1;
+        }
+        @keyframes gentlePulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 0 14px rgba(124, 58, 237, 0);
+            }
+        }
+        .particle-emoji {
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+            font-size: 1.2rem;
+            animation: particleBurst 0.7s cubic-bezier(0, 0.9, 0.3, 1) forwards;
+        }
+        @keyframes particleBurst {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--px), var(--py)) scale(0.2);
+            }
+        }
+
+        .module-tree {
+            background: #1e293b;
+            border-radius: 10px;
+            padding: 16px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            overflow-x: auto;
+            white-space: pre;
+            margin: 14px 0;
+        }
+        .module-tree .dir {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+        .module-tree .file {
+            color: #34d399;
+        }
+        .module-tree .comment {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    <!-- Header will be loaded here by external JS -->
+    <div id="header-container"></div>
+
+    <div class="main-container">
+        <!-- Sidebar will be loaded here by external JS -->
+        <aside class="sidebar" id="mainSidebar"></aside>
+
+        <main class="content">
+            <div class="mini-hero">
+                <div class="hero-badge"><span class="pulse-dot"></span> Python • Modules & Packages</div>
+                <h1 class="hero-headline"><span class="gradient-text">Modules & Packages</span> Complete Guide</h1>
+                <p class="hero-sub">Master Python's modular architecture — from basic imports to production-grade package structures with __init__.py, namespace packages, pip, virtual environments, and real-world patterns.</p>
+            </div>
+
+            <div class="week-progress-wrap">
+                <span class="progress-label">Topics</span>
+                <div class="progress-track"><div class="progress-fill" id="weekProgressFill" style="width:0%"></div></div>
+                <div class="progress-days">
+                    <div class="progress-dot" data-day="1" onclick="scrollToDay('day1')">1</div>
+                    <div class="progress-dot" data-day="2" onclick="scrollToDay('day2')">2</div>
+                    <div class="progress-dot" data-day="3" onclick="scrollToDay('day3')">3</div>
+                    <div class="progress-dot" data-day="4" onclick="scrollToDay('day4')">4</div>
+                    <div class="progress-dot" data-day="5" onclick="scrollToDay('day5')">5</div>
+                    <div class="progress-dot" data-day="6" onclick="scrollToDay('day6')">6</div>
+                    <div class="progress-dot" data-day="7" onclick="scrollToDay('day7')">7</div>
+                </div>
+            </div>
+
+            <div class="section-intro">
+                <p><strong>📌 What you'll learn:</strong> Modules let you split code into reusable files. Packages group related modules into directories. Together they form the backbone of Python's scalability — from a single script to enterprise applications with hundreds of files.</p>
+                <p><strong>🎯 Goal:</strong> Organize code like a pro using modules, packages, proper import styles, <code>__init__.py</code>, relative imports, and virtual environments — whether you're building a CLI tool or a web application.</p>
+            </div>
+
+            <div class="genz-course-grid">
+                <div class="genz-day-card" onclick="scrollToDay('day1')"><div class="genz-day-num">01</div><div class="genz-day-icon"><i class="fas fa-file-code"></i></div><h4 class="genz-day-title">Modules</h4><div class="genz-day-tags"><span>import</span><span>.py files</span></div></div>
+                <div class="genz-day-card" onclick="scrollToDay('day2')"><div class="genz-day-num">02</div><div class="genz-day-icon"><i class="fas fa-download"></i></div><h4 class="genz-day-title">Import Styles</h4><div class="genz-day-tags"><span>from</span><span>as</span><span>*</span></div></div>
+                <div class="genz-day-card" onclick="scrollToDay('day3')"><div class="genz-day-num">03</div><div class="genz-day-icon"><i class="fas fa-folder"></i></div><h4 class="genz-day-title">Packages</h4><div class="genz-day-tags"><span>__init__.py</span><span>subpackages</span></div></div>
+                <div class="genz-day-card" onclick="scrollToDay('day4')"><div class="genz-day-num">04</div><div class="genz-day-icon"><i class="fas fa-exchange-alt"></i></div><h4 class="genz-day-title">Relative Imports</h4><div class="genz-day-tags"><span>.</span><span>..</span></div></div>
+                <div class="genz-day-card" onclick="scrollToDay('day5')"><div class="genz-day-num">05</div><div class="genz-day-icon"><i class="fas fa-globe"></i></div><h4 class="genz-day-title">Namespace Pkgs</h4><div class="genz-day-tags"><span>PEP 420</span><span>no __init__</span></div></div>
+                <div class="genz-day-card" onclick="scrollToDay('day6')"><div class="genz-day-num">06</div><div class="genz-day-icon"><i class="fas fa-box"></i></div><h4 class="genz-day-title">Built-in & pip</h4><div class="genz-day-tags"><span>os</span><span>requests</span><span>venv</span></div></div>
+                <div class="genz-day-card" onclick="scrollToDay('day7')"><div class="genz-day-num">07</div><div class="genz-day-icon"><i class="fas fa-rocket"></i></div><h4 class="genz-day-title">Production</h4><div class="genz-day-tags"><span>src layout</span><span>pyproject.toml</span></div></div>
+            </div>
+
+            <!-- ========== WHY SECTION ========== -->
+            <div class="concept-card" id="why-modules-packages">
+                <h3><i class="fas fa-search"></i> Why Modules & Packages Matter</h3>
+                <div class="info-card">
+                    <div class="card-title"><i class="fas fa-question-circle"></i> What problem do they solve?</div>
+                    <p>A single <code>.py</code> file with 5000 lines is a nightmare to debug. Modules break code into logical, reusable units. Packages organize related modules, preventing name clashes and making large codebases manageable.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-title"><i class="fas fa-exclamation-triangle"></i> Why are they required?</div>
+                    <p>Without modules, every project would be one giant file. Without packages, all module names would have to be globally unique. Python's import system solves both: namespacing, encapsulation, and discoverability.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-title"><i class="fas fa-cogs"></i> Role in Production</div>
+                    <p>Production projects use a <code>src/</code> layout, <code>pyproject.toml</code> for metadata, virtual environments for isolation, and tools like <code>pip</code>, <code>uv</code>, or <code>poetry</code> for dependency management. Well-structured packages are publishable on PyPI.</p>
+                </div>
+            </div>
+
+            <!-- ========== DAY 1: MODULES ========== -->
+            <div class="concept-card" id="day1">
+                <h3><span class="day-badge">1</span> Modules – Every .py File Is a Module</h3>
+                <p>A <strong>module</strong> is simply a Python file (extension <code>.py</code>) containing functions, classes, or variables. You can import it and use its contents in another file. Python ships with dozens of built-in modules (like <code>math</code>, <code>os</code>, <code>json</code>).</p>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> my_math.py (the module)</div>
+                    <pre class="line-numbers"><code class="language-python"># my_math.py — a custom module
+PI = 3.14159
+
+def circle_area(radius):
+    """Return area of a circle."""
+    return PI * radius ** 2
+
+def circle_circumference(radius):
+    return 2 * PI * radius</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> main.py (using the module)</div>
+                    <pre class="line-numbers"><code class="language-python">import my_math
+
+print(my_math.circle_area(5))       # 78.53975
+print(my_math.PI)                   # 3.14159</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="why-box"><strong>🔍 Key Insight:</strong> When you <code>import my_math</code>, Python searches <code>sys.path</code> (current directory first, then standard library, then site-packages). The module's code runs once and a module object is cached in <code>sys.modules</code>.</div>
+            </div>
+
+            <!-- ========== DAY 2: IMPORT STYLES ========== -->
+            <div class="concept-card" id="day2">
+                <h3><span class="day-badge">2</span> Import Styles – Choose the Right One</h3>
+                <p>Python offers several import syntaxes. Each has trade-offs between readability, namespace pollution, and convenience.</p>
+                <table style="width:100%;border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:10px;overflow:hidden;color:#f1f5f9;">
+                    <thead>
+                        <tr style="background:#0f172a;">
+                            <th style="padding:10px;text-align:left;font-size:0.8rem;">Style</th>
+                            <th style="padding:10px;text-align:left;font-size:0.8rem;">Example</th>
+                            <th style="padding:10px;text-align:left;font-size:0.8rem;">Pros / Cons</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="padding:8px;"><code>import module</code></td><td style="padding:8px;"><code>import math</code></td><td style="padding:8px;">✅ Clear namespace ❌ More typing</td></tr>
+                        <tr><td style="padding:8px;"><code>import module as alias</code></td><td style="padding:8px;"><code>import numpy as np</code></td><td style="padding:8px;">✅ Short & readable</td></tr>
+                        <tr><td style="padding:8px;"><code>from module import name</code></td><td style="padding:8px;"><code>from math import pi</code></td><td style="padding:8px;">✅ Direct access ❌ Possible name clash</td></tr>
+                        <tr><td style="padding:8px;"><code>from module import *</code></td><td style="padding:8px;"><code>from math import *</code></td><td style="padding:8px;">❌ Pollutes namespace — avoid!</td></tr>
+                    </tbody>
+                </table>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> import_styles.py</div>
+                    <pre class="line-numbers"><code class="language-python"># Recommended styles
+import math                # Use math.sqrt(16)
+import numpy as np         # Use np.array([1,2])
+from datetime import datetime  # Use datetime.now()
+
+# Avoid this in production:
+from math import *         # Don't do this!</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="danger-box"><strong>⚠️ Warning:</strong> <code>from module import *</code> imports all public names (those not starting with <code>_</code>) into the current namespace. This can silently overwrite existing names and makes code hard to debug.</div>
+            </div>
+
+            <!-- ========== DAY 3: PACKAGES & __init__.py ========== -->
+            <div class="concept-card" id="day3">
+                <h3><span class="day-badge">3</span> Packages – Directories with <code>__init__.py</code></h3>
+                <p>A <strong>package</strong> is a directory containing an <code>__init__.py</code> file (and optionally subpackages). The <code>__init__.py</code> can be empty or can initialize the package, expose a public API, or run setup code.</p>
+                <div class="module-tree">
+                    <span class="dir">my_package/</span>
+                    <span class="file">├── __init__.py</span>          <span class="comment"># Makes this directory a package</span>
+                    <span class="file">├── core.py</span>              <span class="comment"># Module: my_package.core</span>
+                    <span class="file">├── utils.py</span>             <span class="comment"># Module: my_package.utils</span>
+                    <span class="dir">└── sub_package/</span>
+                    <span class="file">    ├── __init__.py</span>
+                    <span class="file">    └── helper.py</span>         <span class="comment"># Module: my_package.sub_package.helper</span>
+                </div>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> __init__.py — controlling the public API</div>
+                    <pre class="line-numbers"><code class="language-python"># my_package/__init__.py
+from .core import CoreEngine
+from .utils import format_data
+
+__all__ = ["CoreEngine", "format_data"]  # controls from package import *</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> using the package</div>
+                    <pre class="line-numbers"><code class="language-python"># Option A: import the package
+import my_package
+engine = my_package.CoreEngine()
+
+# Option B: import specific names
+from my_package import CoreEngine, format_data
+
+# Option C: import subpackage module
+from my_package.sub_package import helper</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="tip-box"><strong>💡 Best Practice:</strong> Keep <code>__init__.py</code> minimal. Import only the most important classes/functions. This makes the package's public API clear and avoids circular import problems.</div>
+            </div>
+
+            <!-- ========== DAY 4: RELATIVE IMPORTS ========== -->
+            <div class="concept-card" id="day4">
+                <h3><span class="day-badge">4</span> Relative Imports – Within a Package</h3>
+                <p>Inside a package, use <strong>relative imports</strong> (starting with <code>.</code>) to refer to sibling modules or parent packages. This makes the package self-contained and movable.</p>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> relative_imports_demo.py</div>
+                    <pre class="line-numbers"><code class="language-python"># Inside my_package/core.py
+from .utils import format_data          # sibling module (single dot)
+from .sub_package.helper import run     # subpackage module
+from .. import some_sibling_package     # parent package (double dot)
+
+def process():
+    data = format_data("raw")
+    run(data)</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <table style="width:100%;border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:10px;overflow:hidden;color:#f1f5f9;">
+                    <thead><tr style="background:#0f172a;"><th style="padding:10px;text-align:left;">Notation</th><th style="padding:10px;text-align:left;">Meaning</th></tr></thead>
+                    <tbody>
+                        <tr><td style="padding:8px;"><code>.</code></td><td style="padding:8px;">Current package (sibling modules)</td></tr>
+                        <tr><td style="padding:8px;"><code>..</code></td><td style="padding:8px;">Parent package</td></tr>
+                        <tr><td style="padding:8px;"><code>... </code></td><td style="padding:8px;">Grandparent package (rare)</td></tr>
+                    </tbody>
+                </table>
+                <div class="danger-box"><strong>⚠️ Common Pitfall:</strong> Relative imports only work inside a package. Running a file directly (e.g., <code>python core.py</code>) that uses relative imports will raise <code>ImportError: attempted relative import with no known parent package</code>. Always run from the project root or use <code>python -m my_package.core</code>.</div>
+            </div>
+
+            <!-- ========== DAY 5: NAMESPACE PACKAGES ========== -->
+            <div class="concept-card" id="day5">
+                <h3><span class="day-badge">5</span> Namespace Packages – PEP 420</h3>
+                <p>Python 3.3+ supports <strong>namespace packages</strong> — packages without <code>__init__.py</code> that can span multiple directories. This allows splitting a logical package across separate physical locations (useful for plugins and large monorepos).</p>
+                <div class="module-tree">
+                    <span class="comment"># Directory 1: /path/to/plugins/auth/</span>
+                    <span class="dir">my_company/</span>
+                    <span class="dir">└── plugins/</span>
+                    <span class="file">    └── auth.py</span>          <span class="comment"># importable as my_company.plugins.auth</span>
+
+                    <span class="comment"># Directory 2: /another/path/payments/</span>
+                    <span class="dir">my_company/</span>
+                    <span class="dir">└── plugins/</span>
+                    <span class="file">    └── payments.py</span>      <span class="comment"># same namespace: my_company.plugins.payments</span>
+                </div>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> namespace_usage.py</div>
+                    <pre class="line-numbers"><code class="language-python">import sys
+sys.path.extend(["/path/to/plugins/auth", "/another/path/payments"])
+
+from my_company.plugins import auth, payments
+# Both work even though they live in different directories!</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="why-box"><strong>🔍 When to use:</strong> Namespace packages are ideal for plugin systems, large organizations with many teams, or when you want to distribute a package in multiple parts. For most projects, regular packages with <code>__init__.py</code> are simpler and recommended.</div>
+            </div>
+
+            <!-- ========== DAY 6: BUILT-IN & THIRD-PARTY ========== -->
+            <div class="concept-card" id="day6">
+                <h3><span class="day-badge">6</span> Built-in Modules, pip & Virtual Environments</h3>
+                <p>Python's <strong>standard library</strong> is vast: <code>os</code>, <code>sys</code>, <code>json</code>, <code>re</code>, <code>datetime</code>, <code>collections</code>, <code>itertools</code>, <code>pathlib</code>, <code>sqlite3</code>, and many more. For everything else, use <code>pip</code> to install third-party packages from PyPI.</p>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> built_in_demo.py</div>
+                    <pre class="line-numbers"><code class="language-python">import os
+import json
+from pathlib import Path
+from collections import defaultdict
+
+# Work with paths
+home = Path.home()
+config_file = home / ".myapp" / "config.json"
+
+# JSON serialization
+data = {"users": ["alice", "bob"], "active": True}
+print(json.dumps(data, indent=2))
+
+# defaultdict avoids KeyError
+counts = defaultdict(int)
+counts["apples"] += 1  # no KeyError!</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="step-walkthrough">
+                    <strong>📦 Virtual Environment Setup (recommended for every project):</strong>
+                    <div class="code-block" style="margin-top:8px;">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> terminal</div>
+                        <pre class="line-numbers"><code class="language-bash"># Create a virtual environment
+python -m venv .venv
+
+# Activate it (Linux/macOS)
+source .venv/bin/activate
+# Activate it (Windows)
+.venv\Scripts\activate
+
+# Install packages
+pip install requests pandas
+
+# Freeze dependencies
+pip freeze > requirements.txt</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="tip-box"><strong>💡 Pro Tip:</strong> Always use a virtual environment per project. This isolates dependencies and prevents version conflicts. Modern tools like <code>uv</code> (by Astral) are 10-100x faster than pip.</div>
+            </div>
+
+            <!-- ========== DAY 7: PRODUCTION STRUCTURE ========== -->
+            <div class="concept-card" id="day7">
+                <h3><span class="day-badge">7</span> Production-Grade Package Structure</h3>
+                <p>A well-organized project uses the <strong>src layout</strong>, a <code>pyproject.toml</code> for metadata, and separates source code from tests and configuration.</p>
+                <div class="module-tree">
+                    <span class="dir">my_project/</span>
+                    <span class="file">├── pyproject.toml</span>        <span class="comment"># Package metadata & build config</span>
+                    <span class="file">├── README.md</span>
+                    <span class="file">├── LICENSE</span>
+                    <span class="dir">├── src/</span>
+                    <span class="dir">│   └── my_package/</span>       <span class="comment"># Actual source code</span>
+                    <span class="file">│       ├── __init__.py</span>
+                    <span class="file">│       ├── core.py</span>
+                    <span class="file">│       └── cli.py</span>         <span class="comment"># Entry point for CLI</span>
+                    <span class="dir">├── tests/</span>
+                    <span class="file">│   ├── __init__.py</span>
+                    <span class="file">│   ├── test_core.py</span>
+                    <span class="file">│   └── test_cli.py</span>
+                    <span class="dir">└── docs/</span>
+                </div>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> pyproject.toml</div>
+                    <pre class="line-numbers"><code class="language-toml">[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my_package"
+version = "0.1.0"
+description = "A production-ready Python package"
+requires-python = ">=3.10"
+dependencies = ["requests>=2.28", "click>=8.0"]
+
+[project.scripts]
+mycli = "my_package.cli:main"</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="why-box"><strong>🔍 Why src layout?</strong> It prevents accidentally importing the package from the project root during development (which would bypass the installed version). It forces you to install the package properly before testing, catching packaging bugs early.</div>
+            </div>
+
+            <!-- ========== SOLVED PROBLEMS ========== -->
+            <div class="concept-card" id="solved-problems">
+                <h3><i class="fas fa-check-double"></i> Solved Practice Problems</h3>
+                <h4 style="color:var(--success);">🔰 Easy (3 problems)</h4>
+                <div class="info-card"><div class="card-title">1. Create and Import a Module</div><p>Create a file <code>greetings.py</code> with a function <code>hello(name)</code>. Import and use it in <code>main.py</code>.</p>
+                    <div class="code-block"><pre class="line-numbers"><code class="language-python"># greetings.py
+def hello(name="World"):
+    return f"Hello, {name}!"
+
+# main.py
+import greetings
+print(greetings.hello("Alice"))  # Hello, Alice!</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                <div class="info-card"><div class="card-title">2. Use a Built-in Module</div><p>Use the <code>datetime</code> module to print today's date and the current time.</p>
+                    <div class="code-block"><pre class="line-numbers"><code class="language-python">from datetime import datetime, date
+today = date.today()
+now = datetime.now()
+print(f"Date: {today}, Time: {now.strftime('%H:%M:%S')}")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                <div class="info-card"><div class="card-title">3. Import with Alias</div><p>Import <code>numpy</code> as <code>np</code> and create a simple array.</p>
+                    <div class="code-block"><pre class="line-numbers"><code class="language-python">import numpy as np
+arr = np.array([1, 2, 3, 4, 5])
+print(arr * 2)  # [2 4 6 8 10]</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                <h4 style="color:var(--warning);">⚡ Intermediate (3 problems)</h4>
+                <div class="info-card"><div class="card-title">4. Package with __init__.py</div><p>Create a package <code>shapes</code> with modules <code>circle.py</code> and <code>square.py</code>. Expose both via <code>__init__.py</code>.</p>
+                    <div class="code-block"><pre class="line-numbers"><code class="language-python"># shapes/__init__.py
+from .circle import Circle
+from .square import Square
+__all__ = ["Circle", "Square"]
+
+# Usage
+from shapes import Circle, Square</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                <div class="info-card"><div class="card-title">5. Relative Import Inside a Package</div><p>In <code>shapes/circle.py</code>, import a utility function from <code>shapes/utils.py</code> using a relative import.</p>
+                    <div class="code-block"><pre class="line-numbers"><code class="language-python"># shapes/circle.py
+from .utils import validate_radius
+
+class Circle:
+    def __init__(self, radius):
+        validate_radius(radius)
+        self.radius = radius</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                <div class="info-card"><div class="card-title">6. Virtual Environment & requirements.txt</div><p>Create a venv, install <code>requests</code>, and generate <code>requirements.txt</code>.</p>
+                    <div class="code-block"><pre class="line-numbers"><code class="language-bash">python -m venv .venv
+source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+pip install requests
+pip freeze > requirements.txt</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                <h4 style="color:var(--danger);">🚀 Advanced (3 problems)</h4>
+                <div class="info-card"><div class="card-title">7. __name__ == "__main__" Guard</div><p>Write a module that can be both imported and run as a script.</p>
+                    <div class="code-block"><pre class="line-numbers"><code class="language-python"># calculator.py
+def add(a, b): return a + b
+def subtract(a, b): return a - b
+
+if __name__ == "__main__":
+    # Runs only when executed directly
+    print("Testing calculator:")
+    print(add(3, 4))       # 7
+    print(subtract(10, 3)) # 7</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                <div class="info-card"><div class="card-title">8. Dynamic Import with importlib</div><p>Import a module by name (string) at runtime.</p>
+                    <div class="code-block"><pre class="line-numbers"><code class="language-python">import importlib
+module_name = "json"
+json_module = importlib.import_module(module_name)
+data = json_module.dumps({"key": "value"})
+print(data)  # {"key": "value"}</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                <div class="info-card"><div class="card-title">9. Namespace Package Across Directories</div><p>Set up two directories containing <code>myorg/plugins/</code> and demonstrate that both are importable.</p>
+                    <div class="code-block"><pre class="line-numbers"><code class="language-python">import sys
+sys.path.extend(["/path/plugins-auth", "/path/plugins-pay"])
+
+from myorg.plugins import auth, payments
+auth.login()
+payments.process()</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+            </div>
+
+            <!-- ========== UNSOLVED PROBLEMS ========== -->
+            <div class="concept-card" id="practice-problems">
+                <h3><i class="fas fa-question-circle"></i> Unsolved Practice Problems</h3>
+                <h4 style="color:var(--success);">🔰 Easy (3 problems)</h4>
+                <div class="practice-problem"><details><summary>1. Create a Config Module</summary><div class="solution"><p>Create <code>config.py</code> with variables <code>DEBUG=True</code>, <code>PORT=8080</code>. Import and print them in <code>app.py</code>.</p></div></details></div>
+                <div class="practice-problem"><details><summary>2. Use the random Module</summary><div class="solution"><p>Import <code>random</code> and write a function that returns a random integer between 1 and 100. Call it 5 times.</p></div></details></div>
+                <div class="practice-problem"><details><summary>3. Import from a Subdirectory</summary><div class="solution"><p>Create a directory <code>lib/</code> with an <code>__init__.py</code> and a module <code>helpers.py</code>. Import a function from <code>lib.helpers</code> in your main script.</p></div></details></div>
+                <h4 style="color:var(--warning);">⚡ Intermediate (3 problems)</h4>
+                <div class="practice-problem"><details><summary>4. Circular Import Fix</summary><div class="solution"><p>Module A imports from B, and B imports from A. Refactor to break the circular dependency using a third module C.</p></div></details></div>
+                <div class="practice-problem"><details><summary>5. Package with __all__</summary><div class="solution"><p>Create a package <code>animals</code> with <code>cat.py</code>, <code>dog.py</code>, <code>_internal.py</code>. Set <code>__all__</code> in <code>__init__.py</code> to expose only <code>Cat</code> and <code>Dog</code>.</p></div></details></div>
+                <div class="practice-problem"><details><summary>6. Install from requirements.txt</summary><div class="solution"><p>Given a <code>requirements.txt</code> with <code>flask</code> and <code>sqlalchemy</code>, create a venv and install all dependencies.</p></div></details></div>
+                <h4 style="color:var(--danger);">🚀 Advanced (3 problems)</h4>
+                <div class="practice-problem"><details><summary>7. Lazy Import Pattern</summary><div class="solution"><p>Write a module that defers importing a heavy library (like <code>pandas</code>) until a function is actually called.</p></div></details></div>
+                <div class="practice-problem"><details><summary>8. Plugin Discovery System</summary><div class="solution"><p>Write code that scans a <code>plugins/</code> directory and imports all <code>.py</code> files as modules dynamically.</p></div></details></div>
+                <div class="practice-problem"><details><summary>9. Build a CLI Entry Point</summary><div class="solution"><p>Create a package with <code>pyproject.toml</code> that defines a <code>[project.scripts]</code> entry point. Install it with <code>pip install -e .</code> and test the CLI command.</p></div></details></div>
+            </div>
+        </main>
+
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#why-modules-packages">Why Modules & Packages?</a></li>
+                <li><a href="#day1">Modules Basics</a></li>
+                <li><a href="#day2">Import Styles</a></li>
+                <li><a href="#day3">Packages & __init__.py</a></li>
+                <li><a href="#day4">Relative Imports</a></li>
+                <li><a href="#day5">Namespace Packages</a></li>
+                <li><a href="#day6">Built-in & Third-party</a></li>
+                <li><a href="#day7">Production Structure</a></li>
+                <li><a href="#solved-problems">Solved Problems</a></li>
+                <li><a href="#practice-problems">Unsolved Problems</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20Modules%20&%20Packages%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Chat</a>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2026 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+    </footer>
+
+    <!-- External script that loads header & sidebar -->
+    <script src="../js/learn-python.js"></script>
+    <script>
+        function scrollToDay(dayId) {
+            const el = document.getElementById(dayId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                el.classList.add('pulse-highlight');
+                setTimeout(() => el.classList.remove('pulse-highlight'), 3000);
+            }
+            updateProgressDots(dayId);
+        }
+
+        function updateProgressDots(activeDayId) {
+            const dayMap = { 'day1': 1, 'day2': 2, 'day3': 3, 'day4': 4, 'day5': 5, 'day6': 6, 'day7': 7 };
+            const activeDay = dayMap[activeDayId] || 1;
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                const d = parseInt(dot.getAttribute('data-day'));
+                dot.classList.remove('active', 'completed');
+                if (d === activeDay) dot.classList.add('active');
+                else if (d < activeDay) dot.classList.add('completed');
+            });
+            document.getElementById('weekProgressFill').style.width = ((activeDay / 7) * 100) + '%';
+        }
+
+        const allSectionIds = ['why-modules-packages', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7',
+            'solved-problems', 'practice-problems'
+        ];
+        window.addEventListener('scroll', () => {
+            let currentSection = 'day1';
+            allSectionIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 160) currentSection = id;
+            });
+            if (allSectionIds.includes(currentSection)) updateProgressDots(currentSection);
+            document.querySelectorAll('.page-tracker a, .sidebar a').forEach(a => {
+                const href = a.getAttribute('href');
+                const isActive = href === '#' + currentSection;
+                a.style.fontWeight = isActive ? '700' : '400';
+                a.style.color = isActive ? 'var(--primary)' : '';
+                if (isActive) a.classList.add('active');
+                else a.classList.remove('active');
+            });
+        }, { passive: true });
+
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+        }, { passive: true });
+
+        if (typeof copyCode !== 'function') {
+            window.copyCode = function(btn) {
+                const code = btn.closest('.code-block')?.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.textContent).then(() => {
+                        const icon = btn.querySelector('i');
+                        if (icon) { icon.classList.replace('fa-copy', 'fa-check');
+                            setTimeout(() => icon.classList.replace('fa-check', 'fa-copy'), 2000); }
+                    });
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', () => updateProgressDots('day1'));
+        console.log('📦 Modules & Packages Mastery – Ready!');
+    </script>
+</body>
+</html>
