@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/oop-concepts.html" />
+    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <title>Python OOP: Classes, Inheritance & Polymorphism | BookTown Classes</title>
+    <meta name="description" content="Master Python Object-Oriented Programming – classes, objects, inheritance, polymorphism, encapsulation, abstraction, dunder methods, properties, and production‑grade OOP patterns with real‑world examples." />
+    <meta name="keywords" content="Python OOP, classes, inheritance, polymorphism, encapsulation, abstraction, __init__, super(), property, classmethod, staticmethod, dataclass, BookTown Classes" />
+    <meta name="author" content="BookTown Classes" />
+    <meta property="og:title" content="Python OOP: Classes, Inheritance & Polymorphism | BookTown Classes" />
+    <meta property="og:description" content="From basic classes to advanced OOP patterns – build robust, maintainable, and production‑ready code with real‑world examples, deep explanations, and practice problems." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7c3aed" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js">
+    </script>
+
+    <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --primary: #7c3aed;
+            --primary-light: #8b5cf6;
+            --accent: #a78bfa;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --success: #059669;
+            --info: #3b82f6;
+            --radius: 14px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+        body.dark-mode {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --border: #334155;
+        }
+        .mini-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #2e1065 70%, #1e1b4b 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+        .mini-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 8s ease-in-out infinite;
+        }
+        .mini-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: -40px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(5, 150, 105, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 10s ease-in-out infinite reverse;
+        }
+        @keyframes heroFloat {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(15px, -10px) scale(1.05);
+            }
+        }
+        .mini-hero .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(124, 58, 237, 0.25);
+            color: #c4b5fd;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            border: 1px solid rgba(124, 58, 237, 0.35);
+            position: relative;
+            z-index: 1;
+        }
+        .mini-hero .hero-badge .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background: #a78bfa;
+            border-radius: 50%;
+            animation: dotPulse 2s infinite;
+        }
+        @keyframes dotPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(167, 139, 250, 0);
+            }
+        }
+        .mini-hero .hero-headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin: 0 0 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 5s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .mini-hero .hero-sub {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .week-progress-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 18px;
+            margin-bottom: 20px;
+            border-radius: 0 0 var(--radius) var(--radius);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        body.dark-mode .week-progress-wrap {
+            background: rgba(30, 41, 59, 0.85);
+        }
+        .progress-label {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .progress-track {
+            flex: 1;
+            height: 8px;
+            background: var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+        .progress-days {
+            display: flex;
+            gap: 5px;
+        }
+        .progress-dot {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            color: var(--muted);
+        }
+        .progress-dot.completed {
+            background: var(--success);
+            color: #fff;
+        }
+        .progress-dot.active {
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            box-shadow: 0 0 14px rgba(124, 58, 237, 0.5);
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot {
+            0%,
+            100% {
+                box-shadow: 0 0 8px rgba(124, 58, 237, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 22px rgba(124, 58, 237, 0.8);
+            }
+        }
+        .progress-dot:hover {
+            transform: scale(1.15);
+        }
+
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .info-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        .info-card .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info-card .card-title i {
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(59, 130, 246, 0.1));
+            padding: 8px;
+            border-radius: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .badge.visual {
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+        .badge.concept {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .badge.why {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .genz-course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 1.1rem 0;
+        }
+        .genz-day-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
+            border-radius: 1.25rem;
+            padding: 1rem 0.6rem;
+            color: #f1f5f9;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .genz-day-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(124, 58, 237, 0.25);
+        }
+        .genz-day-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        .genz-day-card:hover::after {
+            left: 100%;
+        }
+        .genz-day-num {
+            font-size: 1.2rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(to right, #00c6ff, #ee0979);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.1rem;
+        }
+        .genz-day-icon {
+            font-size: 1.4rem;
+            margin-bottom: 0.2rem;
+            filter: drop-shadow(0 0 4px rgba(0, 198, 255, 0.5));
+        }
+        .genz-day-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin: 0.2rem 0 0.3rem;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+        .genz-day-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.15rem;
+            margin-top: 0.15rem;
+        }
+        .genz-day-tags span {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+            font-size: 0.6rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 20px;
+            margin: 1px 1px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .genz-day-card:hover .genz-day-tags span {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: #a78bfa;
+            color: #ffffff;
+        }
+
+        .comparative-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .comparative-table th,
+        .comparative-table td {
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+            font-size: 0.85rem;
+            color: #f1f5f9;
+        }
+        .comparative-table th {
+            background: #1e293b;
+            color: #f0f9ff;
+            font-weight: 600;
+        }
+        .comparative-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparative-table tr:hover td {
+            background: rgba(124, 58, 237, 0.08);
+        }
+
+        .step-walkthrough {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        body.dark-mode .step-walkthrough {
+            background: #1e293b;
+            border-color: #7c3aed;
+        }
+
+        .particle-emoji {
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+            font-size: 1.2rem;
+            animation: particleBurst 0.7s cubic-bezier(0, 0.9, 0.3, 1) forwards;
+        }
+        @keyframes particleBurst {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--px), var(--py)) scale(0.2);
+            }
+        }
+        .pulse-highlight {
+            animation: gentlePulse 3s ease-in-out 1;
+        }
+        @keyframes gentlePulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 0 12px rgba(124, 58, 237, 0);
+            }
+        }
+
+        .why-box {
+            background: #fffbeb;
+            border-left: 5px solid var(--warning);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 14px 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        body.dark-mode .why-box {
+            background: #3b2a0a;
+            border-left-color: #f59e0b;
+        }
+        .tip-box {
+            background: #f0fdf4;
+            border-left: 5px solid var(--success);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 14px 0;
+            font-size: 0.85rem;
+        }
+        body.dark-mode .tip-box {
+            background: #0a3328;
+        }
+        .danger-box {
+            background: #fef2f2;
+            border-left: 5px solid var(--danger);
+            border-radius: 0 12px 12px 0;
+            padding: 14px 18px;
+            margin: 14px 0;
+            font-size: 0.85rem;
+        }
+        body.dark-mode .danger-box {
+            background: #3b0a0a;
+        }
+
+        .code-block {
+            position: relative;
+            background: #1e293b;
+            border-radius: 10px;
+            margin: 14px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        .code-block-header {
+            background: #0f172a;
+            padding: 8px 14px;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-family: 'Fira Code', monospace;
+        }
+        .code-block pre {
+            margin: 0;
+            padding: 14px 16px;
+            overflow-x: auto;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            background: #1e293b;
+        }
+        .code-block code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 36px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #cbd5e1;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: 0.3s;
+            z-index: 5;
+        }
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 99;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+            transition: 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .scroll-top-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.5);
+        }
+
+        .concept-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            margin: 24px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.35s ease;
+        }
+        .concept-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .concept-card h3 .day-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .section-intro {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            line-height: 1.7;
+        }
+        .section-intro p {
+            margin: 0 0 8px;
+        }
+        .practice-problem {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            margin: 12px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .practice-problem summary {
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+        .practice-problem .solution {
+            margin-top: 10px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        body.dark-mode .practice-problem .solution {
+            background: #1e293b;
+        }
+
+        .oop-pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 1.2rem 0;
+        }
+        .oop-pillar-card {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 1.2rem;
+            text-align: center;
+            color: #f1f5f9;
+            transition: all 0.3s ease;
+        }
+        .oop-pillar-card:hover {
+            transform: translateY(-4px);
+            border-color: #7c3aed;
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.25);
+        }
+        .oop-pillar-card i {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+            color: #a78bfa;
+        }
+        .oop-pillar-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+            color: #e2e8f0;
+        }
+        .oop-pillar-card p {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        @media (max-width:768px) {
+            .mini-hero {
+                padding: 1.2rem;
+            }
+            .mini-hero .hero-headline {
+                font-size: 1.3rem;
+            }
+            .genz-course-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .oop-pillar-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width:500px) {
+            .genz-course-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .oop-pillar-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    <div id="header-container"></div>
+    <div class="main-container">
+        <aside class="sidebar" id="mainSidebar"></aside>
+        <main class="content">
+            <div class="mini-hero">
+                <div class="hero-badge"><span class="pulse-dot"></span> Python • Object-Oriented Programming</div>
+                <h1 class="hero-headline"><span class="gradient-text">OOP: Classes, Inheritance</span> & Polymorphism</h1>
+                <p class="hero-sub">Master Python Object-Oriented Programming – classes, objects, inheritance, polymorphism, encapsulation, abstraction, dunder methods, properties, and production‑grade OOP patterns with real‑world examples and practice problems.</p>
+            </div>
+
+            <div class="week-progress-wrap">
+                <span class="progress-label">Topics</span>
+                <div class="progress-track"><div class="progress-fill" id="weekProgressFill" style="width:0%"></div></div>
+                <div class="progress-days">
+                    <div class="progress-dot" data-day="1" onclick="scrollToDay('day1')">1</div>
+                    <div class="progress-dot" data-day="2" onclick="scrollToDay('day2')">2</div>
+                    <div class="progress-dot" data-day="3" onclick="scrollToDay('day3')">3</div>
+                    <div class="progress-dot" data-day="4" onclick="scrollToDay('day4')">4</div>
+                    <div class="progress-dot" data-day="5" onclick="scrollToDay('day5')">5</div>
+                    <div class="progress-dot" data-day="6" onclick="scrollToDay('day6')">6</div>
+                    <div class="progress-dot" data-day="7" onclick="scrollToDay('day7')">7</div>
+                </div>
+            </div>
+
+            <div class="content-section active">
+                <div class="section-intro">
+                    <p><strong>📌 What you'll learn:</strong> Object-Oriented Programming (OOP) is a paradigm that organizes code around <strong>objects</strong> — bundles of data (attributes) and behavior (methods). Python's OOP system lets you model real‑world entities, promote code reuse through inheritance, and build maintainable systems through encapsulation and polymorphism. This page covers the full OOP stack: from basic <code>class</code> syntax to abstract base classes and production patterns.</p>
+                    <p><strong>🎯 Goal:</strong> Write clean, reusable, and extensible code using Python's OOP features — whether you're building a simple CLI app, a web framework, or an enterprise‑grade system with thousands of classes.</p>
+                </div>
+
+                <!-- ========== 4 PILLARS VISUAL ========== -->
+                <div class="oop-pillar-grid">
+                    <div class="oop-pillar-card">
+                        <i class="fas fa-box"></i>
+                        <h4>Encapsulation</h4>
+                        <p>Bundling data and methods inside a class; restricting direct access to internal state using conventions and properties.</p>
+                    </div>
+                    <div class="oop-pillar-card">
+                        <i class="fas fa-copy"></i>
+                        <h4>Inheritance</h4>
+                        <p>Creating new classes from existing ones; reusing and extending functionality without rewriting code.</p>
+                    </div>
+                    <div class="oop-pillar-card">
+                        <i class="fas fa-shapes"></i>
+                        <h4>Polymorphism</h4>
+                        <p>Different classes implementing the same interface; writing code that works with any object that follows a contract.</p>
+                    </div>
+                    <div class="oop-pillar-card">
+                        <i class="fas fa-ghost"></i>
+                        <h4>Abstraction</h4>
+                        <p>Hiding complex implementation details behind simple interfaces; exposing only what's necessary.</p>
+                    </div>
+                </div>
+
+                <div class="genz-course-grid">
+                    <div class="genz-day-card" onclick="scrollToDay('day1')"><div class="genz-day-num">01</div><div class="genz-day-icon"><i class="fas fa-cube"></i></div><h4 class="genz-day-title">Classes & Objects</h4><div class="genz-day-tags"><span>class</span><span>__init__</span><span>self</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day2')"><div class="genz-day-num">02</div><div class="genz-day-icon"><i class="fas fa-lock"></i></div><h4 class="genz-day-title">Encapsulation</h4><div class="genz-day-tags"><span>_protected</span><span>@property</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day3')"><div class="genz-day-num">03</div><div class="genz-day-icon"><i class="fas fa-sitemap"></i></div><h4 class="genz-day-title">Inheritance</h4><div class="genz-day-tags"><span>super()</span><span>override</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day4')"><div class="genz-day-num">04</div><div class="genz-day-icon"><i class="fas fa-random"></i></div><h4 class="genz-day-title">Polymorphism</h4><div class="genz-day-tags"><span>duck typing</span><span>interface</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day5')"><div class="genz-day-num">05</div><div class="genz-day-icon"><i class="fas fa-magic"></i></div><h4 class="genz-day-title">Dunder Methods</h4><div class="genz-day-tags"><span>__str__</span><span>__eq__</span><span>__add__</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day6')"><div class="genz-day-num">06</div><div class="genz-day-icon"><i class="fas fa-star"></i></div><h4 class="genz-day-title">Advanced OOP</h4><div class="genz-day-tags"><span>@dataclass</span><span>ABC</span><span>Mixin</span></div></div>
+                    <div class="genz-day-card" onclick="scrollToDay('day7')"><div class="genz-day-num">07</div><div class="genz-day-icon"><i class="fas fa-rocket"></i></div><h4 class="genz-day-title">Production</h4><div class="genz-day-tags"><span>factory</span><span>DI</span><span>SOLID</span></div></div>
+                </div>
+
+                <!-- ========== WHY SECTION ========== -->
+                <div class="concept-card" id="why-oop">
+                    <h3><i class="fas fa-search"></i> Why OOP Matters in the Real World</h3>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-question-circle"></i> What problems does OOP solve?</div>
+                        <p>In procedural code, data and functions are separate — as the program grows, keeping track of which function modifies which data becomes a nightmare. OOP <strong>bundles data with the functions that operate on it</strong>, creating self‑contained units (objects) that are easier to reason about, test, and reuse.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-exclamation-triangle"></i> Why is OOP required in large projects?</div>
+                        <p>Without OOP, a banking application with 100,000 lines would have global variables scattered everywhere — changing one could break dozens of functions. OOP's <strong>encapsulation</strong> protects data, <strong>inheritance</strong> eliminates duplication, and <strong>polymorphism</strong> lets you swap implementations without rewriting code.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-cogs"></i> How OOP helps in production</div>
+                        <p>Production systems use OOP to model domain entities (User, Order, Payment), implement design patterns (Factory, Strategy, Observer), and enforce contracts through abstract base classes. Frameworks like Django, FastAPI, and SQLAlchemy are built entirely on OOP — understanding it is essential for professional Python development.</p>
+                    </div>
+                </div>
+
+                <!-- ========== DAY 1: CLASSES & OBJECTS ========== -->
+                <div class="concept-card" id="day1">
+                    <h3><span class="day-badge">1</span> Classes & Objects – The Blueprint and the Instance</h3>
+                    <p>A <strong>class</strong> is a blueprint for creating objects. An <strong>object</strong> (or instance) is a concrete realization of that blueprint with its own unique data. The <code>__init__</code> method (constructor) initializes instance attributes, and <code>self</code> refers to the current instance.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> classes_objects.py</div>
+                        <pre class="line-numbers"><code class="language-python">class BankAccount:
+    """A simple bank account class."""
+    bank_name = "National Bank"  # class attribute (shared)
+
+    def __init__(self, owner: str, balance: float = 0.0):
+        self.owner = owner        # instance attribute
+        self.balance = balance    # instance attribute
+
+    def deposit(self, amount: float) -> float:
+        """Add money to the account."""
+        self.balance += amount
+        return self.balance
+
+    def withdraw(self, amount: float) -> float:
+        """Withdraw money if sufficient balance."""
+        if amount > self.balance:
+            raise ValueError("Insufficient funds")
+        self.balance -= amount
+        return self.balance
+
+# Creating objects (instances)
+alice_acc = BankAccount("Alice", 1000.0)
+bob_acc = BankAccount("Bob", 500.0)
+
+print(alice_acc.owner)      # Alice
+print(bob_acc.bank_name)    # National Bank (shared)
+alice_acc.deposit(250)      # 1250.0
+bob_acc.withdraw(100)       # 400.0</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="why-box"><strong>🔍 Real‑World Analogy:</strong> A class is like a <strong>cookie cutter</strong> — it defines the shape. Each cookie (object) made from it has the same shape but can have different toppings (attribute values). The class attribute <code>bank_name</code> is shared like a common label on all cookies.</div>
+                </div>
+
+                <!-- ========== DAY 2: ENCAPSULATION ========== -->
+                <div class="concept-card" id="day2">
+                    <h3><span class="day-badge">2</span> Encapsulation – Protecting Your Data</h3>
+                    <p>Encapsulation means restricting direct access to an object's internal state. In Python, we use conventions: a single underscore <code>_</code> for <strong>protected</strong> (internal use) and double underscore <code>__</code> for <strong>name mangling</strong> (harder to access accidentally). Use <code>@property</code> for controlled access with getters/setters.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> encapsulation.py</div>
+                        <pre class="line-numbers"><code class="language-python">class Temperature:
+    def __init__(self, celsius: float):
+        self._celsius = celsius  # protected attribute (convention)
+
+    @property
+    def celsius(self) -> float:
+        """Getter – allows read access."""
+        return self._celsius
+
+    @celsius.setter
+    def celsius(self, value: float):
+        """Setter – validates before setting."""
+        if value < -273.15:
+            raise ValueError("Below absolute zero!")
+        self._celsius = value
+
+    @property
+    def fahrenheit(self) -> float:
+        """Computed property – no setter needed."""
+        return self._celsius * 9/5 + 32
+
+temp = Temperature(25)
+print(temp.celsius)       # 25 (via getter)
+print(temp.fahrenheit)    # 77.0 (computed)
+temp.celsius = 100        # via setter (validation passes)
+# temp.celsius = -500     # ❌ ValueError: Below absolute zero!</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="tip-box"><strong>💡 Why encapsulation?</strong> In a real banking system, you wouldn't want anyone to directly do <code>account.balance = -999999</code>. Encapsulation lets you validate changes (e.g., balance can't go below minimum) and log every modification — critical for audit trails in production.</div>
+                </div>
+
+                <!-- ========== DAY 3: INHERITANCE ========== -->
+                <div class="concept-card" id="day3">
+                    <h3><span class="day-badge">3</span> Inheritance – Reuse & Extend</h3>
+                    <p>Inheritance lets a <strong>child class</strong> (subclass) inherit attributes and methods from a <strong>parent class</strong> (superclass). Use <code>super()</code> to call the parent's methods. This eliminates code duplication and creates logical hierarchies.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> inheritance.py</div>
+                        <pre class="line-numbers"><code class="language-python">class Employee:
+    def __init__(self, name: str, salary: float):
+        self.name = name
+        self.salary = salary
+
+    def work(self) -> str:
+        return f"{self.name} is working."
+
+    def get_annual_bonus(self) -> float:
+        return self.salary * 0.10  # 10% bonus
+
+class Developer(Employee):
+    def __init__(self, name: str, salary: float, language: str):
+        super().__init__(name, salary)  # call parent constructor
+        self.language = language
+
+    def work(self) -> str:  # override parent method
+        return f"{self.name} is coding in {self.language}."
+
+    def get_annual_bonus(self) -> float:
+        return self.salary * 0.15  # developers get 15%
+
+class Manager(Employee):
+    def __init__(self, name: str, salary: float, team_size: int):
+        super().__init__(name, salary)
+        self.team_size = team_size
+
+    def work(self) -> str:
+        return f"{self.name} is managing a team of {self.team_size}."
+
+dev = Developer("Alice", 80000, "Python")
+mgr = Manager("Bob", 100000, 5)
+print(dev.work())            # Alice is coding in Python.
+print(mgr.get_annual_bonus())  # 10000.0</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="why-box"><strong>🔍 Real‑World Use:</strong> Imagine an e‑commerce platform with <code>Product</code>, <code>DigitalProduct</code>, and <code>PhysicalProduct</code>. All share <code>name</code>, <code>price</code>, but <code>PhysicalProduct</code> adds <code>weight</code> for shipping, while <code>DigitalProduct</code> adds <code>download_link</code>. Inheritance avoids repeating the common fields across all three classes.</div>
+                </div>
+
+                <!-- ========== DAY 4: POLYMORPHISM ========== -->
+                <div class="concept-card" id="day4">
+                    <h3><span class="day-badge">4</span> Polymorphism – One Interface, Many Forms</h3>
+                    <p>Polymorphism means "many shapes." In Python, it's achieved through <strong>duck typing</strong>: if an object has the required method, it can be used regardless of its class. This lets you write generic code that works with any object that follows a contract.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> polymorphism.py</div>
+                        <pre class="line-numbers"><code class="language-python">class PayPal:
+    def pay(self, amount: float) -> str:
+        return f"Paid ${amount:.2f} via PayPal."
+
+class Stripe:
+    def pay(self, amount: float) -> str:
+        return f"Paid ${amount:.2f} via Stripe."
+
+class CryptoWallet:
+    def pay(self, amount: float) -> str:
+        return f"Paid ${amount:.2f} via Crypto."
+
+def process_payment(payment_method, amount: float):
+    """Works with ANY object that has a pay() method."""
+    return payment_method.pay(amount)
+
+# All three work — polymorphic behavior
+print(process_payment(PayPal(), 99.99))      # Paid $99.99 via PayPal.
+print(process_payment(Stripe(), 49.50))      # Paid $49.50 via Stripe.
+print(process_payment(CryptoWallet(), 200))   # Paid $200.00 via Crypto.</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="tip-box"><strong>💡 Production Impact:</strong> Polymorphism is the backbone of <strong>dependency injection</strong> and <strong>strategy patterns</strong>. You can swap payment gateways, logging backends, or database drivers without changing the code that uses them — just pass a different object that follows the same interface.</div>
+                    <div class="step-walkthrough">
+                        <strong>🧠 Duck Typing in Python:</strong> "If it walks like a duck and quacks like a duck, it's a duck." Python doesn't check the type — it checks whether the object has the required method. This makes Python OOP flexible and less verbose than languages that require explicit interfaces or abstract classes.
+                    </div>
+                </div>
+
+                <!-- ========== DAY 5: DUNDER METHODS ========== -->
+                <div class="concept-card" id="day5">
+                    <h3><span class="day-badge">5</span> Dunder Methods – Operator Overloading & More</h3>
+                    <p>Dunder (double underscore) methods like <code>__str__</code>, <code>__repr__</code>, <code>__eq__</code>, <code>__add__</code>, and <code>__len__</code> let you define how your objects behave with built‑in Python operations — making them feel like native types.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> dunder_methods.py</div>
+                        <pre class="line-numbers"><code class="language-python">from dataclasses import dataclass
+
+class Vector:
+    def __init__(self, x: float, y: float):
+        self.x = x
+        self.y = y
+
+    def __repr__(self) -> str:          # unambiguous representation
+        return f"Vector({self.x}, {self.y})"
+
+    def __str__(self) -> str:           # human‑readable
+        return f"({self.x}, {self.y})"
+
+    def __add__(self, other: 'Vector') -> 'Vector':
+        return Vector(self.x + other.x, self.y + other.y)
+
+    def __eq__(self, other: 'Vector') -> bool:
+        return self.x == other.x and self.y == other.y
+
+    def __abs__(self) -> float:
+        return (self.x**2 + self.y**2) ** 0.5
+
+v1 = Vector(3, 4)
+v2 = Vector(1, 2)
+print(v1 + v2)       # (4, 6)
+print(abs(v1))       # 5.0
+print(v1 == Vector(3, 4))  # True</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <table class="comparative-table">
+                        <thead><tr><th>Dunder Method</th><th>Purpose</th><th>Example Usage</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>__init__</code></td><td>Constructor</td><td><code>obj = MyClass()</code></td></tr>
+                            <tr><td><code>__str__</code></td><td>String for users</td><td><code>print(obj)</code></td></tr>
+                            <tr><td><code>__repr__</code></td><td>String for developers</td><td><code>repr(obj)</code></td></tr>
+                            <tr><td><code>__eq__</code></td><td>Equality comparison</td><td><code>obj1 == obj2</code></td></tr>
+                            <tr><td><code>__add__</code></td><td>Addition</td><td><code>obj1 + obj2</code></td></tr>
+                            <tr><td><code>__len__</code></td><td>Length</td><td><code>len(obj)</code></td></tr>
+                            <tr><td><code>__getitem__</code></td><td>Indexing</td><td><code>obj[0]</code></td></tr>
+                            <tr><td><code>__enter__/__exit__</code></td><td>Context manager</td><td><code>with obj as o:</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ========== DAY 6: ADVANCED OOP ========== -->
+                <div class="concept-card" id="day6">
+                    <h3><span class="day-badge">6</span> Advanced OOP – Dataclasses, ABCs & Mixins</h3>
+                    <p><strong>Dataclasses</strong> auto‑generate <code>__init__</code>, <code>__repr__</code>, <code>__eq__</code>. <strong>Abstract Base Classes (ABCs)</strong> enforce that subclasses implement certain methods. <strong>Mixins</strong> add reusable functionality through multiple inheritance without creating a full parent class.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> advanced_oop.py</div>
+                        <pre class="line-numbers"><code class="language-python">from dataclasses import dataclass, field
+from abc import ABC, abstractmethod
+
+# Dataclass – reduces boilerplate
+@dataclass(frozen=True)  # immutable
+class Point:
+    x: float
+    y: float
+    label: str = "origin"  # default value
+
+# Abstract Base Class – enforces interface
+class Shape(ABC):
+    @abstractmethod
+    def area(self) -> float:
+        pass
+
+    @abstractmethod
+    def perimeter(self) -> float:
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius: float):
+        self.radius = radius
+    def area(self) -> float:
+        return 3.14159 * self.radius ** 2
+    def perimeter(self) -> float:
+        return 2 * 3.14159 * self.radius
+
+# Mixin – reusable behavior
+class LoggerMixin:
+    def log(self, message: str):
+        print(f"[{self.__class__.__name__}] {message}")
+
+class DatabaseConnection(LoggerMixin):
+    def connect(self):
+        self.log("Connecting to database...")
+        # connection logic here
+
+db = DatabaseConnection()
+db.connect()  # [DatabaseConnection] Connecting to database...</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="tip-box"><strong>💡 Production Use:</strong> Dataclasses are perfect for DTOs (Data Transfer Objects) and configuration. ABCs are used extensively in frameworks (e.g., Django's <code>models.Model</code>). Mixins power features like logging, serialization, and authentication that can be "mixed in" to any class.</div>
+                </div>
+
+                <!-- ========== DAY 7: PRODUCTION PATTERNS ========== -->
+                <div class="concept-card" id="day7">
+                    <h3><span class="day-badge">7</span> Production‑Grade OOP Patterns</h3>
+                    <p>Real‑world Python projects use OOP to implement <strong>design patterns</strong> that solve recurring problems. Here are three you'll encounter frequently.</p>
+                    <div class="code-block">
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> production_patterns.py</div>
+                        <pre class="line-numbers"><code class="language-python"># 1. FACTORY PATTERN – create objects without specifying exact class
+class PaymentFactory:
+    @staticmethod
+    def create(method: str):
+        if method == "paypal":
+            return PayPal()
+        elif method == "stripe":
+            return Stripe()
+        raise ValueError(f"Unknown method: {method}")
+
+# 2. SINGLETON PATTERN – ensure only one instance exists
+class DatabasePool:
+    _instance = None
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._instance.connections = []
+        return cls._instance
+
+# 3. DEPENDENCY INJECTION – pass dependencies instead of hardcoding
+class EmailService:
+    def send(self, to: str, body: str):
+        print(f"Sending email to {to}: {body}")
+
+class UserRegistration:
+    def __init__(self, email_service: EmailService):
+        self.email_service = email_service  # injected dependency
+
+    def register(self, user_email: str):
+        # registration logic...
+        self.email_service.send(user_email, "Welcome!")
+
+# Usage
+email_svc = EmailService()
+registration = UserRegistration(email_svc)
+registration.register("alice@example.com")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="why-box"><strong>🔍 Why these patterns?</strong> <strong>Factory</strong> centralizes object creation (easy to add new payment methods). <strong>Singleton</strong> ensures one database connection pool. <strong>Dependency Injection</strong> makes code testable — you can pass a mock <code>EmailService</code> in tests without sending real emails.</div>
+                </div>
+
+                <!-- ========== SOLVED PROBLEMS ========== -->
+                <div class="concept-card" id="solved-problems">
+                    <h3><i class="fas fa-check-double"></i> Solved Practice Problems</h3>
+                    <h4 style="color:var(--success);">🔰 Easy (3 problems)</h4>
+                    <div class="info-card"><div class="card-title">1. Create a Person Class</div><div class="code-block"><pre class="line-numbers"><code class="language-python">class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def greet(self):
+        return f"Hi, I'm {self.name}."
+p = Person("Alice", 30)
+print(p.greet())  # Hi, I'm Alice.</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">2. Rectangle Class with Area Method</div><div class="code-block"><pre class="line-numbers"><code class="language-python">class Rectangle:
+    def __init__(self, w, h):
+        self.w = w
+        self.h = h
+    def area(self):
+        return self.w * self.h
+r = Rectangle(5, 3)
+print(r.area())  # 15</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">3. Dog Inherits from Animal</div><div class="code-block"><pre class="line-numbers"><code class="language-python">class Animal:
+    def speak(self): return "Some sound"
+class Dog(Animal):
+    def speak(self): return "Woof!"
+d = Dog()
+print(d.speak())  # Woof!</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <h4 style="color:var(--warning);">⚡ Intermediate (3 problems)</h4>
+                    <div class="info-card"><div class="card-title">4. BankAccount with Encapsulation</div><div class="code-block"><pre class="line-numbers"><code class="language-python">class BankAccount:
+    def __init__(self, balance=0):
+        self._balance = balance
+    @property
+    def balance(self): return self._balance
+    def deposit(self, amt):
+        self._balance += amt
+acc = BankAccount(100)
+acc.deposit(50)
+print(acc.balance)  # 150</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">5. Polymorphic Shape Area Calculation</div><div class="code-block"><pre class="line-numbers"><code class="language-python">class Circle:
+    def __init__(self, r): self.r = r
+    def area(self): return 3.14 * self.r**2
+class Square:
+    def __init__(self, s): self.s = s
+    def area(self): return self.s**2
+def print_area(shape):
+    print(shape.area())
+print_area(Circle(5))  # 78.5
+print_area(Square(4))  # 16</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">6. Dataclass for Configuration</div><div class="code-block"><pre class="line-numbers"><code class="language-python">from dataclasses import dataclass
+@dataclass
+class Config:
+    host: str = "localhost"
+    port: int = 8080
+    debug: bool = False
+cfg = Config(port=3000)
+print(cfg)  # Config(host='localhost', port=3000, debug=False)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <h4 style="color:var(--danger);">🚀 Advanced (3 problems)</h4>
+                    <div class="info-card"><div class="card-title">7. Abstract Base Class for Plugin System</div><div class="code-block"><pre class="line-numbers"><code class="language-python">from abc import ABC, abstractmethod
+class Plugin(ABC):
+    @abstractmethod
+    def run(self, data): pass
+class LogPlugin(Plugin):
+    def run(self, data):
+        print(f"Logging: {data}")
+class AlertPlugin(Plugin):
+    def run(self, data):
+        print(f"Alert: {data}")
+plugins = [LogPlugin(), AlertPlugin()]
+for p in plugins:
+    p.run("system event")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">8. Custom Context Manager for Database</div><div class="code-block"><pre class="line-numbers"><code class="language-python">class DatabaseConnection:
+    def __init__(self, url): self.url = url
+    def __enter__(self):
+        print("Connecting..."); return self
+    def __exit__(self, *args):
+        print("Closing connection")
+with DatabaseConnection("db://...") as conn:
+    print("Running query...")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                    <div class="info-card"><div class="card-title">9. Dependency Injection for Testing</div><div class="code-block"><pre class="line-numbers"><code class="language-python">class MockEmailService:
+    def send(self, to, body):
+        print(f"Mock: Would send to {to}")
+
+class UserRegistration:
+    def __init__(self, email_svc):
+        self.email_svc = email_svc
+    def register(self, email):
+        self.email_svc.send(email, "Welcome!")
+
+# In tests, inject the mock
+reg = UserRegistration(MockEmailService())
+reg.register("test@test.com")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div>
+                </div>
+
+                <!-- ========== UNSOLVED PROBLEMS ========== -->
+                <div class="concept-card" id="practice-problems">
+                    <h3><i class="fas fa-question-circle"></i> Unsolved Practice Problems</h3>
+                    <h4 style="color:var(--success);">🔰 Easy (3 problems)</h4>
+                    <div class="practice-problem"><details><summary>1. Student Class</summary><div class="solution"><p>Create a <code>Student</code> class with <code>name</code> and <code>grades</code> (list). Add a method <code>average()</code> that returns the average grade.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Car Inherits from Vehicle</summary><div class="solution"><p>Create a <code>Vehicle</code> class with <code>speed</code> attribute. Create a <code>Car</code> subclass that adds a <code>brand</code> attribute and overrides a <code>info()</code> method.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>3. Book Class with __str__</summary><div class="solution"><p>Define a <code>Book</code> class with <code>title</code>, <code>author</code>. Override <code>__str__</code> to return <code>"title by author"</code>.</p></div></details></div>
+                    <h4 style="color:var(--warning);">⚡ Intermediate (3 problems)</h4>
+                    <div class="practice-problem"><details><summary>4. Temperature Converter with @property</summary><div class="solution"><p>Create a <code>Temperature</code> class with a private <code>_celsius</code> attribute. Add properties for <code>celsius</code> (get/set with validation) and <code>fahrenheit</code> (computed, read‑only).</p></div></details></div>
+                    <div class="practice-problem"><details><summary>5. Polymorphic Payment System</summary><div class="solution"><p>Create <code>CreditCard</code>, <code>UPI</code>, and <code>NetBanking</code> classes — each with a <code>pay(amount)</code> method. Write a <code>checkout(cart, payment_method)</code> function that works with any of them.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>6. Dataclass with Validation in __post_init__</summary><div class="solution"><p>Create a dataclass <code>Email</code> with fields <code>address</code> and <code>subject</code>. In <code>__post_init__</code>, validate that <code>address</code> contains '@'.</p></div></details></div>
+                    <h4 style="color:var(--danger);">🚀 Advanced (3 problems)</h4>
+                    <div class="practice-problem"><details><summary>7. Abstract Notification System</summary><div class="solution"><p>Create an abstract base class <code>Notification</code> with abstract method <code>send(message)</code>. Implement <code>EmailNotification</code>, <code>SMSNotification</code>, and <code>PushNotification</code> subclasses.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>8. Custom List Class with Dunder Methods</summary><div class="solution"><p>Create a <code>CustomList</code> class that wraps a list and implements <code>__len__</code>, <code>__getitem__</code>, <code>__setitem__</code>, <code>__add__</code> (concatenation), and <code>__eq__</code>.</p></div></details></div>
+                    <div class="practice-problem"><details><summary>9. Factory for Database Connections</summary><div class="solution"><p>Implement a <code>ConnectionFactory</code> that returns different database connection objects (<code>MySQLConnection</code>, <code>PostgresConnection</code>, <code>SQLiteConnection</code>) based on a URL prefix — all implementing the same interface.</p></div></details></div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="page-tracker" id="pageTracker">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#why-oop">Why OOP?</a></li>
+                <li><a href="#day1">Classes & Objects</a></li>
+                <li><a href="#day2">Encapsulation</a></li>
+                <li><a href="#day3">Inheritance</a></li>
+                <li><a href="#day4">Polymorphism</a></li>
+                <li><a href="#day5">Dunder Methods</a></li>
+                <li><a href="#day6">Advanced OOP</a></li>
+                <li><a href="#day7">Production Patterns</a></li>
+                <li><a href="#solved-problems">Solved Problems</a></li>
+                <li><a href="#practice-problems">Unsolved Problems</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+    <a href="https://wa.me/919414700737?text=I'm%20interested%20in%20Python%20OOP%20at%20BookTown" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Chat</a>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2026 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+    </footer>
+
+    <script src="../js/learn-python.js">
+    </script>
+    <script>
+        function scrollToDay(dayId) {
+            const el = document.getElementById(dayId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                el.classList.add('pulse-highlight');
+                setTimeout(() => el.classList.remove('pulse-highlight'), 3000);
+            }
+            updateProgressDots(dayId);
+        }
+
+        function updateProgressDots(activeDayId) {
+            const dayMap = { 'day1': 1, 'day2': 2, 'day3': 3, 'day4': 4, 'day5': 5, 'day6': 6, 'day7': 7 };
+            const activeDay = dayMap[activeDayId] || 1;
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                const d = parseInt(dot.getAttribute('data-day'));
+                dot.classList.remove('active', 'completed');
+                if (d === activeDay) dot.classList.add('active');
+                else if (d < activeDay) dot.classList.add('completed');
+            });
+            document.getElementById('weekProgressFill').style.width = ((activeDay / 7) * 100) + '%';
+        }
+        const dayIds = ['why-oop', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7',
+            'solved-problems', 'practice-problems'
+        ];
+        window.addEventListener('scroll', () => {
+            let currentDay = 'day1';
+            dayIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 160) currentDay = id;
+            });
+            if (dayIds.includes(currentDay)) updateProgressDots(currentDay);
+            document.querySelectorAll('.page-tracker a, .sidebar a').forEach(a => {
+                const href = a.getAttribute('href');
+                const isActive = href === '#' + currentDay;
+                a.style.fontWeight = isActive ? '700' : '400';
+                a.style.color = isActive ? 'var(--primary)' : '';
+                if (isActive) a.classList.add('active');
+                else a.classList.remove('active');
+            });
+        }, { passive: true });
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+        }, { passive: true });
+        if (typeof copyCode !== 'function') {
+            window.copyCode = function(btn) {
+                const code = btn.closest('.code-block')?.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.textContent).then(() => {
+                        const icon = btn.querySelector('i');
+                        if (icon) { icon.classList.replace('fa-copy', 'fa-check');
+                            setTimeout(() => icon.classList.replace('fa-check', 'fa-copy'), 2000); }
+                    });
+                }
+            };
+        }
+
+        function createParticles(element, event) {
+            const emojis = ['🏗️', '🧬', '🔄', '✅', '⚡', '🛡️', '💎'];
+            const rect = element.getBoundingClientRect();
+            const centerX = event.clientX - rect.left;
+            const centerY = event.clientY - rect.top;
+            for (let i = 0; i < 6; i++) {
+                const particle = document.createElement('span');
+                particle.className = 'particle-emoji';
+                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = 25 + Math.random() * 50;
+                particle.style.setProperty('--px', Math.cos(angle) * distance + 'px');
+                particle.style.setProperty('--py', Math.sin(angle) * distance + 'px');
+                element.appendChild(particle);
+                setTimeout(() => particle.remove(), 700);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => updateProgressDots('day1'));
+        console.log('🏗️ OOP Concepts Mastery – Ready!');
+    </script>
+</body>
+</html>
