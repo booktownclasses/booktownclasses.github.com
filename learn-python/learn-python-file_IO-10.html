@@ -1,32 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="canonical" href="https://booktownclasses.github.io/learn-python/file-io-context-managers.html" />
-    <meta property="og:image" content="https://booktownclasses.github.io/images/inside1.jpeg" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Canonical – live domain -->
+    <link rel="canonical" href="https://codewithbooktown.in/learn-python/learn-python-file_IO-10.html" />
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
-    <title>Python File I/O: Read, Write & Context Managers | BookTown Classes</title>
+    <meta name="robots" content="index, follow" />
+
+    <title>Python File I/O: Read, Write &amp; Context Managers | BookTown Classes</title>
     <meta name="description" content="Master Python File I/O – open, read, write, append, context managers, CSV, JSON, binary files, and production‑grade patterns. Solved examples, deep explanations, and practice problems included." />
     <meta name="keywords" content="Python file I/O, read, write, context manager, with statement, open, CSV, JSON, binary file, pathlib, tempfile, BookTown Classes" />
     <meta name="author" content="BookTown Classes" />
-    <meta property="og:title" content="Python File I/O: Read, Write & Context Managers | BookTown Classes" />
-    <meta property="og:description" content="From basic file operations to production‑grade file handling – build robust, safe, and efficient file I/O code with detailed walkthroughs, solved examples, and practice problems." />
-    <meta property="og:type" content="website" />
     <meta name="theme-color" content="#7c3aed" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://codewithbooktown.in/learn-python/learn-python-file_IO-10.html" />
+    <meta property="og:title" content="Python File I/O: Read, Write &amp; Context Managers | BookTown Classes" />
+    <meta property="og:description" content="From basic file operations to production‑grade file handling – build robust, safe, and efficient file I/O code with detailed walkthroughs, solved examples, and practice problems." />
+    <meta property="og:image" content="https://codewithbooktown.in/images/logo.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Python File I/O: Read, Write &amp; Context Managers | BookTown Classes" />
+    <meta name="twitter:description" content="From basic file operations to production‑grade file handling – build robust, safe, and efficient file I/O code with detailed walkthroughs, solved examples, and practice problems." />
+    <meta name="twitter:image" content="https://codewithbooktown.in/images/logo.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Python File I/O: Read, Write & Context Managers",
+      "description": "Master Python File I/O – open, read, write, append, context managers, CSV, JSON, binary files, and production‑grade patterns. Solved examples and practice problems included.",
+      "author": { "@type": "Organization", "name": "BookTown Classes" },
+      "image": "https://codewithbooktown.in/images/logo.png",
+      "url": "https://codewithbooktown.in/learn-python/learn-python-file_IO-10.html"
+    }
+    </script>
+
+    <!-- Fonts & Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
 
     <link rel="stylesheet" href="../css/learn-python.css" />
     <link rel="stylesheet" href="../css/learn-python-advance.css" />
