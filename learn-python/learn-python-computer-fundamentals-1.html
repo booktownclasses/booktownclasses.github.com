@@ -170,6 +170,62 @@
     .tracker-link.active { background: rgba(37,99,235,0.1); color: var(--primary); font-weight: 600; }
     .tracker-bullet { width: 8px; height: 8px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
     .tracker-link.active .tracker-bullet { background: var(--primary); }
+
+    /* --- NEXT PAGE NAVIGATION --- */
+    .next-page-nav {
+      margin: 2.5rem 0 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+    /* Top version can have a different margin if needed */
+    .next-page-nav.top-next {
+      margin: 0 0 1.5rem 0;
+      justify-content: flex-end;
+    }
+    .next-page-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.8rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 8px 20px rgba(37,99,235,0.3);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .next-page-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(37,99,235,0.4);
+      background: linear-gradient(135deg, var(--primary-light), #60a5fa);
+    }
+    .next-page-btn i {
+      font-size: 1.1rem;
+      transition: transform 0.2s;
+    }
+    .next-page-btn:hover i {
+      transform: translateX(4px);
+    }
+
+    /* Tracker next lesson item */
+    .tracker-link.next-lesson {
+      margin-top: 0.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .tracker-link.next-lesson i {
+      margin-left: auto;
+      transition: transform 0.2s;
+    }
+    .tracker-link.next-lesson:hover i {
+      transform: translateX(3px);
+    }
   </style>
 </head>
 <body>
@@ -185,10 +241,20 @@
     <aside class="sidebar" id="mainSidebar"></aside>
 
     <main class="content" id="mainContent">
+      
      
       <div class="content-section active" id="section-intro">
+                <div class="next-page-nav top-next">
+          <a href="learn-python-computer-fundamentals-2.html" class="next-page-btn" title="Continue to the next lesson">
+            Next Lesson <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
         <h1 class="section-title"><i class="fas fa-microchip"></i> Computer Fundamentals &amp; Python</h1>
         <p class="section-subtitle" style="font-size:1.1rem;color:var(--muted);">Understand how hardware runs your code and why Python is the perfect first language.</p>
+
+        <!-- NEXT PAGE NAVIGATION (top) – placed right after the subtitle -->
+        <!-- Adjust the href to point to your actual next lesson page -->
+
 
         <!-- Core Components with Tabs and Infographics -->
         <div class="concept-card" id="components-overview">
@@ -345,6 +411,14 @@ x = "hello"; print(type(x))</code></pre><button class="copy-btn" onclick="copyCo
 for item in os.listdir('.'):
     print(item)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
         </div>
+
+        <!-- NEXT PAGE NAVIGATION (bottom) -->
+        <!-- Adjust the href to point to your actual next lesson page -->
+        <div class="next-page-nav">
+          <a href="learn-python-computer-fundamentals-2.html" class="next-page-btn" title="Continue to the next lesson">
+            Next Lesson <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
       </div>
     </main>
 
@@ -356,6 +430,10 @@ for item in os.listdir('.'):
         <li><a href="#python-characteristics" class="tracker-link"><span class="tracker-bullet"></span> Python Characteristics</a></li>
         <li><a href="#python-comparison" class="tracker-link"><span class="tracker-bullet"></span> Language Comparison</a></li>
         <li><a href="#practice-problems" class="tracker-link"><span class="tracker-bullet"></span> Practice Problems</a></li>
+        <!-- Next lesson link (adjust href as needed) -->
+        <li><a href="learn-python-computer-fundamentals-2.html" class="tracker-link next-lesson">
+          <span class="tracker-bullet" style="background: var(--primary);"></span> Next Lesson <i class="fas fa-chevron-right"></i>
+        </a></li>
       </ul>
     </aside>
   </div>
@@ -512,7 +590,7 @@ for item in os.listdir('.'):
 
     // Scroll spy for page tracker
     const sections = document.querySelectorAll('#components-overview, #code-execution, #python-characteristics, #python-comparison, #practice-problems');
-    const trackerLinks = document.querySelectorAll('.tracker-link');
+    const trackerLinks = document.querySelectorAll('.tracker-link:not(.next-lesson)');
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach(section => {
