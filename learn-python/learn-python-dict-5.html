@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
     <meta name="robots" content="index, follow" />
 
-    <title>Python Dictionary | BookTown Classes</title>
-    <meta name="description" content="Master Python dictionaries with this comprehensive lesson. Learn key-value mapping, methods, dictionary comprehension, nested dictionaries, and practice problems including DSA‑oriented advanced exercises." />
-    <meta name="keywords" content="Python dictionary, Python dict, dictionary comprehension, nested dictionary, DSA, Python tutorial, BookTown Classes" />
+    <title>Python Dictionaries – Deep Dive | Learn Python+ | BookTown Classes</title>
+    <meta name="description" content="Master Python dictionaries from basics to advanced. Learn creation, methods, comprehension, nested dicts, defaultdict, Counter, and build a student grade manager mini project." />
+    <meta name="keywords" content="Python dictionary, dict, dictionary comprehension, nested dictionary, defaultdict, Counter, Python tutorial, mini project" />
     <meta name="author" content="BookTown Classes" />
     <meta name="theme-color" content="#3b82f6" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -19,14 +19,14 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://codewithbooktown.in/learn-python/learn-python-dict-5.html" />
-    <meta property="og:title" content="Python Dictionary | BookTown Classes" />
-    <meta property="og:description" content="Learn Python dictionaries from creation to dictionary comprehension. Hands-on examples, solved and unsolved exercises including Two Sum, First Non-Repeating Character, and Longest Substring for DSA prep." />
+    <meta property="og:title" content="Python Dictionaries – Deep Dive | Learn Python+ | BookTown Classes" />
+    <meta property="og:description" content="Master Python dictionaries from basics to advanced, including a student grade manager mini project." />
     <meta property="og:image" content="https://codewithbooktown.in/images/logo.png" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Python Dictionary | BookTown Classes" />
-    <meta name="twitter:description" content="Learn Python dictionaries from creation to dictionary comprehension. Hands-on examples, solved and unsolved exercises including Two Sum, First Non-Repeating Character, and Longest Substring for DSA prep." />
+    <meta name="twitter:title" content="Python Dictionaries – Deep Dive | Learn Python+ | BookTown Classes" />
+    <meta name="twitter:description" content="Master Python dictionaries, including a complete student grade manager project." />
     <meta name="twitter:image" content="https://codewithbooktown.in/images/logo.png" />
 
     <!-- Structured Data -->
@@ -34,8 +34,8 @@
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Python Dictionary",
-      "description": "Master Python dictionaries with this comprehensive lesson. Learn key-value mapping, methods, dictionary comprehension, nested dictionaries, and practice problems including DSA‑oriented advanced exercises.",
+      "headline": "Python Dictionaries – Deep Dive",
+      "description": "Master Python dictionaries from basics to advanced. Learn creation, methods, comprehension, nested dicts, defaultdict, Counter, and build a student grade manager mini project.",
       "author": { "@type": "Organization", "name": "BookTown Classes" },
       "image": "https://codewithbooktown.in/images/logo.png",
       "url": "https://codewithbooktown.in/learn-python/learn-python-dict-5.html"
@@ -53,58 +53,61 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
 
-    
     <link rel="stylesheet" href="../css/learn-python.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
     <link rel="stylesheet" href="../css/theme.css" />
 </head>
 <body>
-    <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </div>
+
+<div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+</div>
 
 <div id="header-container"></div>
 
-    <div class="main-container">
-        <aside class="sidebar" id="mainSidebar"></aside>
+<div class="main-container" id="mainContainer">
+    <aside class="sidebar" id="mainSidebar"></aside>
 
-        <main class="content">
-         
-            <!-- ========== DICTIONARY LESSON CONTENT ========== -->
-            <div class="content-section active" id="section-dictionary">
-                <h1 class="section-title"><i class="fas fa-book"></i> Python Dictionary</h1>
-                <div class="section-intro">
-                    <p><strong>A dictionary is a mutable, unordered<sup>*</sup> collection of key‑value pairs.</strong> It is optimised for retrieving values when you know the key. Think of it like a real‑world dictionary: you look up a <em>word</em> (key) to find its <em>definition</em> (value).</p>
-                    <p><small>* From Python 3.7 onward, dictionaries maintain insertion order.</small></p>
-                </div>
+    <main class="content" id="mainContent">
+        <div class="content-section active" id="section-intro">
 
-                <!-- Infographic overview -->
-                <div class="infographic-grid">
-                    <article class="infographic-card">
-                        <div class="infographic-icon">📖</div>
-                        <h3>Key‑Value Mapping</h3>
-                        <p>Keys must be immutable (str, int, tuple) and unique.</p>
-                    </article>
-                    <article class="infographic-card">
-                        <div class="infographic-icon">⚡</div>
-                        <h3>Ultra‑Fast Lookups</h3>
-                        <p>Implemented with hash tables – O(1) average for get/set.</p>
-                    </article>
-                    <article class="infographic-card">
-                        <div class="infographic-icon">🧩</div>
-                        <h3>Mutable &amp; Flexible</h3>
-                        <p>Add, remove, or change key‑value pairs at any time.</p>
-                    </article>
-                </div>
+            <!-- Hero Section -->
+            <div class="mini-hero">
+                <div class="hero-badge"><span class="pulse-dot"></span> Python • Key-Value Data</div>
+                <h1 class="hero-headline"><span class="gradient-text">Python Dictionaries</span> Deep Dive</h1>
+                <p class="hero-sub">Master dictionaries – from creation and methods to comprehension, nested structures, and advanced topics. Then build a real‑world student grade manager that ties everything together.</p>
+            </div>
 
-                <!-- 1. Creating Dictionaries -->
-                <div class="concept-card" id="creating">
-                    <h3>1. Creating a Dictionary</h3>
-                    <p>You can create a dictionary with curly braces <code>{}</code> or the <code>dict()</code> constructor.</p>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> create_dict.py</div>
-                        <pre class="line-numbers"><code class="language-python"># Empty dictionary
+            <!-- Top bar: breadcrumb left, next lesson right -->
+            <div class="top-nav-bar">
+                <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+                    <ol>
+                        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                        <li aria-current="page">Python Dictionaries</li>
+                    </ol>
+                </nav>
+                <a href="/learn-python/learn-python-map-filter-zip-6.html" class="next-page-btn" rel="next" title="Continue to map, filter, zip & comprehensions">
+                    Next Topic <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Infographic Cards -->
+            <div class="infographic-grid">
+                <div class="infographic-card"><div class="infographic-icon">📖</div><h3>Key‑Value Mapping</h3><p>Keys must be immutable (str, int, tuple) and unique.</p></div>
+                <div class="infographic-card"><div class="infographic-icon">⚡</div><h3>O(1) Lookups</h3><p>Implemented with hash tables – ultra‑fast get/set.</p></div>
+                <div class="infographic-card"><div class="infographic-icon">🧩</div><h3>Mutable & Flexible</h3><p>Add, remove, or change key‑value pairs anytime.</p></div>
+                <div class="infographic-card"><div class="infographic-icon">📚</div><h3>Collections Module</h3><p>defaultdict, Counter – built‑in power tools.</p></div>
+            </div>
+
+            <!-- ========== 1. CREATING DICTIONARIES ========== -->
+            <div class="concept-card" id="creating">
+                <h3>1. Creating a Dictionary</h3>
+                <p>You can create a dictionary with curly braces <code>{}</code> or the <code>dict()</code> constructor. Keys must be immutable (strings, numbers, tuples) while values can be any object.</p>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> create_dict.py</div>
+                    <pre class="line-numbers"><code class="language-python"># Empty dictionary
 student = {}
 
 # With initial values
@@ -117,42 +120,56 @@ student = {
 # Using dict() constructor
 grades = dict(maths=95, science=88, english=92)
 
+# Using fromkeys() – all keys get same value
+names = ["Alice", "Bob", "Charlie"]
+default_dict = dict.fromkeys(names, 0)
+print(default_dict)   # {'Alice': 0, 'Bob': 0, 'Charlie': 0}
+
 print(student)
 print(grades)</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                    </div>
-                    <div class="example-output">{'name': 'Aarav', 'grade': 8, 'subjects': ['Maths', 'Science', 'English']}
-{'maths': 95, 'science': 88, 'english': 92}</div>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
                 </div>
+                <div class="tip-box">
+                    <strong>✨ Pro Tip:</strong> Use <code>dict.fromkeys()</code> when you need a dictionary with the same default value for all keys (e.g., counters).
+                </div>
+            </div>
 
-                <!-- 2. Accessing Values -->
-                <div class="concept-card" id="accessing">
-                    <h3>2. Accessing Values</h3>
-                    <p>Use square brackets <code>[]</code> or the safer <code>.get()</code> method.</p>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> access_dict.py</div>
-                        <pre class="line-numbers"><code class="language-python">student = {"name": "Aarav", "grade": 8, "marks": 84.5}
+            <!-- ========== 2. ACCESSING VALUES ========== -->
+            <div class="concept-card" id="accessing">
+                <h3>2. Accessing Values</h3>
+                <p>Use square brackets <code>[]</code> (raises <code>KeyError</code> if missing) or the safer <code>.get()</code> method.</p>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> access_dict.py</div>
+                    <pre class="line-numbers"><code class="language-python">student = {"name": "Aarav", "grade": 8, "marks": 84.5}
 
 # Direct access (raises KeyError if key missing)
 print(student["name"])       # Aarav
 
 # Safe access with .get()
 print(student.get("age"))    # None
-print(student.get("age", 15)) # 15 (default value)</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                    </div>
-                    <div class="example-output">Aarav
-None
-15</div>
-                </div>
+print(student.get("age", 15)) # 15 (default value)
 
-                <!-- 3. Adding & Updating -->
-                <div class="concept-card" id="add-update">
-                    <h3>3. Adding and Updating Items</h3>
-                    <p>Assign a value to a new key to add it; assign to an existing key to update.</p>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> update_dict.py</div>
-                        <pre class="line-numbers"><code class="language-python">student = {"name": "Aarav", "grade": 8}
+# Set default if missing (modifies dictionary)
+student.setdefault("city", "Jaipur")
+print(student)</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="example-output">Aarav
+None
+15
+{'name': 'Aarav', 'grade': 8, 'marks': 84.5, 'city': 'Jaipur'}</div>
+                <div class="warning-box">
+                    <strong>⚠️ KeyError:</strong> Accessing a missing key with <code>student["age"]</code> crashes the program. Always use <code>.get()</code> when the key might not exist.
+                </div>
+            </div>
+
+            <!-- ========== 3. ADDING & UPDATING ========== -->
+            <div class="concept-card" id="add-update">
+                <h3>3. Adding and Updating Items</h3>
+                <p>Assign a value to a new key to add it; assign to an existing key to update.</p>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> update_dict.py</div>
+                    <pre class="line-numbers"><code class="language-python">student = {"name": "Aarav", "grade": 8}
 
 # Add new key
 student["school"] = "XYZ Public School"
@@ -164,18 +181,18 @@ student["grade"] = 9
 student.update({"marks": 88.5, "city": "Jaipur"})
 
 print(student)</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                    </div>
-                    <div class="example-output">{'name': 'Aarav', 'grade': 9, 'school': 'XYZ Public School', 'marks': 88.5, 'city': 'Jaipur'}</div>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
                 </div>
+                <div class="example-output">{'name': 'Aarav', 'grade': 9, 'school': 'XYZ Public School', 'marks': 88.5, 'city': 'Jaipur'}</div>
+            </div>
 
-                <!-- 4. Removing Items -->
-                <div class="concept-card" id="removing">
-                    <h3>4. Removing Items</h3>
-                    <p>Several ways to delete key‑value pairs:</p>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> remove_dict.py</div>
-                        <pre class="line-numbers"><code class="language-python">student = {"name": "Aarav", "grade": 8, "city": "Jaipur"}
+            <!-- ========== 4. REMOVING ITEMS ========== -->
+            <div class="concept-card" id="removing">
+                <h3>4. Removing Items</h3>
+                <p>Several ways to delete key‑value pairs.</p>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> remove_dict.py</div>
+                    <pre class="line-numbers"><code class="language-python">student = {"name": "Aarav", "grade": 8, "city": "Jaipur"}
 
 # Delete specific key with del
 del student["city"]
@@ -190,31 +207,31 @@ last_item = student.popitem()  # returns ('name', 'Aarav')
 student.clear()
 
 print(grade, last_item, student)</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                    </div>
-                    <div class="example-output">8 ('name', 'Aarav') {}</div>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
                 </div>
+                <div class="example-output">8 ('name', 'Aarav') {}</div>
+            </div>
 
-                <!-- 5. Dictionary Methods -->
-                <div class="concept-card" id="methods">
-                    <h3>5. Essential Dictionary Methods</h3>
-                    <p>Common methods that return dynamic views or perform actions:</p>
-                    <table class="info-table">
-                        <thead><tr><th>Method</th><th>Description</th></tr></thead>
-                        <tbody>
-                            <tr><td><code>keys()</code></td><td>Returns a view of all keys</td></tr>
-                            <tr><td><code>values()</code></td><td>Returns a view of all values</td></tr>
-                            <tr><td><code>items()</code></td><td>Returns a view of (key, value) tuples</td></tr>
-                            <tr><td><code>get(key, default)</code></td><td>Safely retrieves a key; returns <code>default</code> if missing</td></tr>
-                            <tr><td><code>update(other_dict)</code></td><td>Merges another dictionary into the current one</td></tr>
-                            <tr><td><code>pop(key, default)</code></td><td>Removes key and returns its value</td></tr>
-                            <tr><td><code>popitem()</code></td><td>Removes and returns the last inserted pair</td></tr>
-                            <tr><td><code>setdefault(key, default)</code></td><td>Returns value of key if exists; else sets it to <code>default</code></td></tr>
-                        </tbody>
-                    </table>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> dict_methods.py</div>
-                        <pre class="line-numbers"><code class="language-python">marks = {"maths": 95, "science": 88}
+            <!-- ========== 5. ESSENTIAL METHODS ========== -->
+            <div class="concept-card" id="methods">
+                <h3>5. Essential Dictionary Methods</h3>
+                <p>Common methods that return dynamic views or perform actions:</p>
+                <table class="info-table">
+                    <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>keys()</code></td><td>Returns a view of all keys</td></tr>
+                        <tr><td><code>values()</code></td><td>Returns a view of all values</td></tr>
+                        <tr><td><code>items()</code></td><td>Returns a view of (key, value) tuples</td></tr>
+                        <tr><td><code>get(key, default)</code></td><td>Returns value or default if key missing</td></tr>
+                        <tr><td><code>update(other_dict)</code></td><td>Merges another dictionary into the current one</td></tr>
+                        <tr><td><code>pop(key, default)</code></td><td>Removes key and returns its value</td></tr>
+                        <tr><td><code>popitem()</code></td><td>Removes and returns the last inserted pair</td></tr>
+                        <tr><td><code>setdefault(key, default)</code></td><td>Returns value if key exists; else sets it to default</td></tr>
+                    </tbody>
+                </table>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> dict_methods.py</div>
+                    <pre class="line-numbers"><code class="language-python">marks = {"maths": 95, "science": 88}
 
 # Looping through items
 for subject, score in marks.items():
@@ -227,21 +244,21 @@ print(list(marks.keys()))     # ['maths', 'science']
 marks.setdefault("english", 90)  # adds because missing
 marks.setdefault("maths", 0)     # does nothing (key exists)
 print(marks)</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                    </div>
-                    <div class="example-output">maths: 95
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="example-output">maths: 95
 science: 88
 ['maths', 'science']
 {'maths': 95, 'science': 88, 'english': 90}</div>
-                </div>
+            </div>
 
-                <!-- 6. Looping -->
-                <div class="concept-card" id="looping">
-                    <h3>6. Looping Through Dictionaries</h3>
-                    <p>Use <code>.keys()</code>, <code>.values()</code>, or <code>.items()</code> for clarity.</p>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> loop_dict.py</div>
-                        <pre class="line-numbers"><code class="language-python">student = {"name": "Aarav", "grade": 8, "marks": 84.5}
+            <!-- ========== 6. LOOPING THROUGH DICTIONARIES ========== -->
+            <div class="concept-card" id="looping">
+                <h3>6. Looping Through Dictionaries</h3>
+                <p>Use <code>.keys()</code>, <code>.values()</code>, or <code>.items()</code> for clarity and performance.</p>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> loop_dict.py</div>
+                    <pre class="line-numbers"><code class="language-python">student = {"name": "Aarav", "grade": 8, "marks": 84.5}
 
 # Loop through keys
 for key in student:
@@ -251,20 +268,20 @@ for key in student:
 for val in student.values():
     print(val)
 
-# Loop through key-value pairs
+# Loop through key‑value pairs (recommended)
 for key, val in student.items():
     print(f"{key}: {val}")</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                    </div>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
                 </div>
+            </div>
 
-                <!-- 7. Nested Dictionaries -->
-                <div class="concept-card" id="nested">
-                    <h3>7. Nested Dictionaries</h3>
-                    <p>Dictionaries can contain other dictionaries – ideal for complex data.</p>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> nested_dict.py</div>
-                        <pre class="line-numbers"><code class="language-python">class_8 = {
+            <!-- ========== 7. NESTED DICTIONARIES ========== -->
+            <div class="concept-card" id="nested">
+                <h3>7. Nested Dictionaries</h3>
+                <p>Dictionaries can contain other dictionaries – perfect for complex, hierarchical data.</p>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> nested_dict.py</div>
+                    <pre class="line-numbers"><code class="language-python">class_8 = {
     "Aarav": {"maths": 95, "science": 88},
     "Priya": {"maths": 91, "science": 93}
 }
@@ -279,21 +296,21 @@ class_8["Rohan"] = {"maths": 76, "science": 82}
 for name, marks in class_8.items():
     avg = sum(marks.values()) / len(marks)
     print(f"{name}: Avg = {avg:.1f}")</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                    </div>
-                    <div class="example-output">Aarav: Avg = 91.5
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="example-output">Aarav: Avg = 91.5
 Priya: Avg = 92.0
 Rohan: Avg = 79.0</div>
-                </div>
+            </div>
 
-                <!-- 8. Dictionary Comprehension -->
-                <div class="concept-card" id="comprehension">
-                    <h3>8. Dictionary Comprehension</h3>
-                    <p>A concise way to create dictionaries from iterables.</p>
-                    <div class="code-block">
-                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> dict_comp.py</div>
-                        <pre class="line-numbers"><code class="language-python"># Square numbers
-squares = {x: x**2 for x in range(1, 6)}
+            <!-- ========== 8. DICTIONARY COMPREHENSION ========== -->
+            <div class="concept-card" id="comprehension">
+                <h3>8. Dictionary Comprehension</h3>
+                <p>A concise, Pythonic way to create or transform dictionaries in a single line. Syntax: <code>{key_expression: value_expression for item in iterable if condition}</code>.</p>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> dict_comp.py</div>
+                    <pre class="line-numbers"><code class="language-python"># Square numbers
+squares = {x: x**2 for x in range(1, 6)}   # {1:1, 2:4, 3:9, 4:16, 5:25}
 
 # Convert list to dict
 words = ["apple", "banana", "cherry"]
@@ -303,42 +320,231 @@ word_len = {w: len(w) for w in words}
 marks = {"maths": 95, "science": 88, "history": 72}
 high_scores = {k: v for k, v in marks.items() if v >= 80}
 
+# Ternary condition (if‑else inside value)
+status = {num: "even" if num % 2 == 0 else "odd" for num in range(1, 6)}
+
 print(squares)
 print(word_len)
-print(high_scores)</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                    </div>
-                    <div class="example-output">{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+print(high_scores)
+print(status)</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+                <div class="example-output">{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 {'apple': 5, 'banana': 6, 'cherry': 6}
-{'maths': 95, 'science': 88}</div>
+{'maths': 95, 'science': 88}
+{1: 'odd', 2: 'even', 3: 'odd', 4: 'even', 5: 'odd'}</div>
+                <div class="tip-box">
+                    <strong>💡 Performance & Readability:</strong> Dictionary comprehensions are often faster and more readable than manual for‑loops. Use them when the logic is simple; for complex transformations, stick with explicit loops.
+                </div>
+            </div>
+
+            <!-- ========== 9. ADVANCED DICTIONARY TOPICS ========== -->
+            <div class="concept-card" id="advanced">
+                <h3>9. Advanced Dictionary Topics</h3>
+                <p>Beyond the basics: <code>defaultdict</code>, <code>Counter</code>, merging, and frequency counting.</p>
+
+                <h4 style="color:var(--accent);margin-top:1rem;">9.1 defaultdict – Auto‑Default for Missing Keys</h4>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> defaultdict_example.py</div>
+                    <pre class="line-numbers"><code class="language-python">from collections import defaultdict
+
+# Group words by their first letter
+words = ["apple", "ant", "banana", "ball", "cherry"]
+grouped = defaultdict(list)
+
+for word in words:
+    grouped[word[0]].append(word)
+
+print(dict(grouped))   # {'a': ['apple', 'ant'], 'b': ['banana', 'ball'], 'c': ['cherry']}</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
                 </div>
 
-                <!-- Solved Practice Problems -->
-                <div class="concept-card" id="practice-problems">
-                    <h3><i class="fas fa-code"></i> Practice Problems (Solved)</h3>
+                <h4 style="color:var(--accent);margin-top:1rem;">9.2 Counter – Counting Hashable Objects</h4>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> counter_example.py</div>
+                    <pre class="line-numbers"><code class="language-python">from collections import Counter
 
-                    <h4 style="color:var(--accent);">🔰 Beginner Level</h4>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>1. Word Frequency Counter</summary>
-                            <div class="solution">
-                                <p>Count how many times each word appears in a sentence.</p>
-                                <div class="code-block"><pre class="line-numbers"><code class="language-python">sentence = "hello world hello python world python python"
+# Count word frequencies
+text = "apple banana apple orange banana apple"
+word_counts = Counter(text.split())
+print(word_counts)        # Counter({'apple': 3, 'banana': 2, 'orange': 1})
+print(word_counts["apple"])  # 3</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+
+                <h4 style="color:var(--accent);margin-top:1rem;">9.3 Merging Dictionaries (Python 3.9+)</h4>
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> merge_dicts.py</div>
+                    <pre class="line-numbers"><code class="language-python">dict1 = {"a": 1, "b": 2}
+dict2 = {"b": 3, "c": 4}
+
+# Using | operator (Python 3.9+)
+merged = dict1 | dict2    # {'a':1, 'b':3, 'c':4}
+
+# Using ** unpacking (all versions)
+merged_v2 = {**dict1, **dict2}
+
+print(merged)
+print(merged_v2)</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+            </div>
+
+            <!-- ========== MINI PROJECT: STUDENT GRADE MANAGER ========== -->
+            <div class="concept-card" id="mini-project">
+                <h3>🎯 Mini Project: Student Grade Manager</h3>
+                <p>This project uses <strong>dictionaries, lists, tuples, sets, loops, conditionals, input validation and type casting</strong> – everything you’ve learned so far. You’ll build a complete program to manage students, store their marks, calculate averages, find toppers, and ensure data integrity.</p>
+
+                <div class="code-block">
+                    <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> student_grade_manager.py</div>
+                    <pre class="line-numbers"><code class="language-python">"""
+Student Grade Manager – Complete Mini Project
+Concepts used: dictionaries, lists, tuples, sets, loops, conditionals,
+input validation, type casting, f‑strings, and functions.
+"""
+
+def main():
+    students = []          # list to store dictionaries
+    roll_numbers = set()   # set to guarantee unique roll numbers
+    
+    while True:
+        print("\n📚 STUDENT GRADE MANAGER 📚")
+        print("1. Add new student")
+        print("2. View all students & averages")
+        print("3. Find class topper")
+        print("4. Students above class average")
+        print("5. Check duplicate roll numbers")
+        print("6. Exit")
+        choice = input("Choose option (1-6): ").strip()
+        
+        if choice == "1":
+            # Input student details
+            name = input("Enter student name: ").strip()
+            try:
+                roll = int(input("Enter roll number: "))
+                if roll in roll_numbers:
+                    print("⚠️ Roll number already exists! Duplicate not allowed.")
+                    continue
+            except ValueError:
+                print("Roll number must be an integer.")
+                continue
+            
+            # Grade (int)
+            try:
+                grade = int(input("Enter grade (1-12): "))
+                if grade < 1 or grade > 12:
+                    print("Invalid grade. Must be 1-12.")
+                    continue
+            except ValueError:
+                print("Invalid input. Grade must be an integer.")
+                continue
+            
+            # Marks for 3 subjects
+            marks = []
+            subjects = ["Math", "Science", "English"]
+            for sub in subjects:
+                while True:
+                    try:
+                        mark = float(input(f"Enter marks for {sub} (0-100): "))
+                        if 0 <= mark <= 100:
+                            marks.append(mark)
+                            break
+                        else:
+                            print("Marks must be between 0 and 100.")
+                    except ValueError:
+                        print("Please enter a valid number.")
+            
+            # Store student as a dictionary
+            student = {
+                "name": name,
+                "roll": roll,
+                "grade": grade,
+                "marks": tuple(marks),  # immutable tuple for subject marks
+                "total": sum(marks),
+                "average": sum(marks) / len(marks)
+            }
+            students.append(student)
+            roll_numbers.add(roll)
+            print(f"✅ Student {name} (Roll {roll}) added successfully!")
+        
+        elif choice == "2":
+            if not students:
+                print("No students yet.")
+                continue
+            # Display all students
+            print("\n📊 ALL STUDENTS REPORT 📊")
+            print(f"{'Name':<12} {'Roll':<6} {'Grade':<6} {'Marks':<25} {'Total':<6} {'Average':<8}")
+            print("-" * 75)
+            for s in students:
+                marks_str = ", ".join(str(m) for m in s["marks"])
+                print(f"{s['name']:<12} {s['roll']:<6} {s['grade']:<6} {marks_str:<25} {s['total']:<6} {s['average']:<8.2f}")
+        
+        elif choice == "3":
+            if not students:
+                print("No students yet.")
+                continue
+            # Find topper (maximum total)
+            topper = max(students, key=lambda x: x["total"])
+            print(f"🏆 Topper: {topper['name']} (Roll {topper['roll']}) with total {topper['total']} and average {topper['average']:.2f}")
+        
+        elif choice == "4":
+            if not students:
+                print("No students yet.")
+                continue
+            # Calculate class average
+            class_avg = sum(s["average"] for s in students) / len(students)
+            print(f"\n📈 Class Average: {class_avg:.2f}")
+            print("Students scoring above class average:")
+            for s in students:
+                if s["average"] > class_avg:
+                    print(f"  - {s['name']} (Roll {s['roll']}): {s['average']:.2f}")
+        
+        elif choice == "5":
+            # Check uniqueness of roll numbers using set
+            if len(roll_numbers) == len(students):
+                print("✅ All roll numbers are unique.")
+            else:
+                print("⚠️ Duplicate roll numbers found! (Should not happen with our validation)")
+            print(f"Total unique roll numbers: {len(roll_numbers)}")
+            print(f"Roll numbers: {sorted(roll_numbers)}")
+        
+        elif choice == "6":
+            print("Goodbye! Keep coding 🐍")
+            break
+        else:
+            print("Invalid option. Please try again.")
+
+if __name__ == "__main__":
+    main()</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                </div>
+
+                <div class="tip-box">
+                    <strong>💡 Project Highlights:</strong><br>
+                    – <strong>Dictionaries</strong> store each student record with named fields.<br>
+                    – <strong>Tuples</strong> keep subject marks immutable.<br>
+                    – <strong>Sets</strong> ensure unique roll numbers.<br>
+                    – <strong>Loops & conditionals</strong> validate input and compute results.<br>
+                    – <strong>Type casting</strong> converts user input to numbers.<br>
+                    – <strong>List comprehension</strong> calculates class average.<br>
+                    – <strong>Functions</strong> structure the code.<br>
+                    <br>
+                    Try extending the project: add subject‑wise toppers, sort students by average, save/load data to a file, or generate a grade letter (A/B/C) based on average.
+                </div>
+            </div>
+
+            <!-- ========== SOLVED PRACTICE PROBLEMS ========== -->
+            <div class="concept-card" id="practice-problems">
+                <h3><i class="fas fa-code"></i> Practice Problems (Solved)</h3>
+
+                <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner Level</h4>
+                <div class="practice-problem"><details><summary>1. Word Frequency Counter</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">sentence = "hello world hello python world python python"
 words = sentence.split()
 freq = {}
 for word in words:
     freq[word] = freq.get(word, 0) + 1
-print(freq)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
-                            </div>
-                        </details>
-                    </div>
-
-                    <div class="practice-problem">
-                        <details>
-                            <summary>2. Student Grade Aggregator</summary>
-                            <div class="solution">
-                                <p>Given a nested dictionary of students and their marks, find the student with the highest average.</p>
-                                <div class="code-block"><pre class="line-numbers"><code class="language-python">students = {
+print(freq)   # {'hello': 2, 'world': 2, 'python': 3}</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                <div class="practice-problem"><details><summary>2. Student Grade Aggregator</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">students = {
     "Aarav": {"maths": 95, "science": 88},
     "Priya": {"maths": 91, "science": 93}
 }
@@ -349,145 +555,103 @@ for name, marks in students.items():
     if avg > highest_avg:
         highest_avg = avg
         top_student = name
-print(f"{top_student} has the highest average: {highest_avg:.1f}")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
-                            </div>
-                        </details>
-                    </div>
+print(f"{top_student} has the highest average: {highest_avg:.1f}")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
 
-                    <h4 style="color:var(--accent);">⚡ Intermediate Level</h4>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>3. Invert a Dictionary</summary>
-                            <div class="solution">
-                                <p>Swap keys and values. Handle duplicate values by using a list.</p>
-                                <div class="code-block"><pre class="line-numbers"><code class="language-python">original = {"a": 1, "b": 2, "c": 1}
+                <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate Level</h4>
+                <div class="practice-problem"><details><summary>3. Invert a Dictionary</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">original = {"a": 1, "b": 2, "c": 1}
 inverted = {}
 for k, v in original.items():
-    if v not in inverted:
-        inverted[v] = [k]
-    else:
-        inverted[v].append(k)
-print(inverted)</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div>
-                                <div class="example-output">{1: ['a', 'c'], 2: ['b']}</div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- Unsolved Exercises -->
-                <div class="concept-card" id="unsolved-exercises">
-                    <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
-                    <p>Try these on your own – we've added new advanced DSA‑style problems at the bottom.</p>
-
-                    <h4 style="color:var(--accent);">🔰 Beginner Level</h4>
-                    <div class="practice-problem">
-                        <details><summary>1. Phone Book Lookup</summary>
-                            <div class="solution"><p>Create a dictionary with names and phone numbers. Ask the user for a name and print the number (or "Not found").</p>
-                            <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;">Write your code here – solution not shown.</div></div>
-                        </details>
-                    </div>
-                    <div class="practice-problem">
-                        <details><summary>2. Merge Two Dictionaries</summary>
-                            <div class="solution"><p>Combine <code>dict1</code> and <code>dict2</code> – values from <code>dict2</code> should overwrite <code>dict1</code> if keys conflict.</p>
-                            <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;">Write your code here – solution not shown.</div></div>
-                        </details>
-                    </div>
-
-                    <h4 style="color:var(--accent);">⚡ Intermediate Level</h4>
-                    <div class="practice-problem">
-                        <details><summary>3. Group Anagrams</summary>
-                            <div class="solution"><p>Given a list of words, group them based on anagram equivalence using a dictionary.</p>
-                            <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;">Write your code here – solution not shown.</div></div>
-                        </details>
-                    </div>
-
-                    <h4 style="color:var(--accent);">⚡ Advanced Level (DSA)</h4>
-                    <div class="practice-problem">
-                        <details><summary>4. Two Sum</summary>
-                            <div class="solution">
-                                <p>Given an array of integers <code>nums</code> and a target integer, find the indices of the two numbers that add up to target. You may assume exactly one solution exists. Use a dictionary to achieve O(n) time.</p>
-                                <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;">Write your code here – solution not shown.</div>
-                            </div>
-                        </details>
-                    </div>
-                    <div class="practice-problem">
-                        <details><summary>5. First Non‑Repeating Character</summary>
-                            <div class="solution">
-                                <p>Given a string, return the first character that occurs exactly once. Use a dictionary to count frequencies and then traverse the string once more.</p>
-                                <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;">Write your code here – solution not shown.</div>
-                            </div>
-                        </details>
-                    </div>
-                    <div class="practice-problem">
-                        <details><summary>6. Longest Substring Without Repeating Characters</summary>
-                            <div class="solution">
-                                <p>Given a string, find the length of the longest substring that contains no repeating characters. Use a dictionary to track the latest index of each character in a sliding window.</p>
-                                <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;">Write your code here – solution not shown.</div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
+    inverted.setdefault(v, []).append(k)
+print(inverted)   # {1: ['a', 'c'], 2: ['b']}</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                <div class="practice-problem"><details><summary>4. Group Anagrams</summary><div class="solution"><div class="code-block"><pre class="line-numbers"><code class="language-python">from collections import defaultdict
+words = ["eat", "tea", "tan", "ate", "nat", "bat"]
+anagrams = defaultdict(list)
+for word in words:
+    key = ''.join(sorted(word))
+    anagrams[key].append(word)
+print(list(anagrams.values()))</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
             </div>
-        </main>
 
-        <aside class="page-tracker" id="pageTracker">
-            <h4>On This Page</h4>
-            <ul>
-                <li><a href="#creating">1. Creating</a></li>
-                <li><a href="#accessing">2. Accessing</a></li>
-                <li><a href="#add-update">3. Add/Update</a></li>
-                <li><a href="#removing">4. Removing</a></li>
-                <li><a href="#methods">5. Methods</a></li>
-                <li><a href="#looping">6. Looping</a></li>
-                <li><a href="#nested">7. Nested Dicts</a></li>
-                <li><a href="#comprehension">8. Comprehension</a></li>
-                <li><a href="#practice-problems">Practice</a></li>
-                <li><a href="#unsolved-exercises">Unsolved</a></li>
-            </ul>
-        </aside>
-    </div>
+            <!-- ========== UNSOLVED EXERCISES ========== -->
+            <div class="concept-card" id="unsolved-exercises">
+                <h3><i class="fas fa-question-circle"></i> Unsolved Exercises</h3>
+                <p>Challenge yourself – no solutions here, but you can use the solved examples and the mini project as inspiration.</p>
 
+                <h4 style="color:var(--accent);margin-top:1.5rem;">🔰 Beginner Level</h4>
+                <div class="practice-problem"><details><summary>1. Phone Book Lookup</summary><div class="solution"><p>Create a dictionary with names and phone numbers. Ask the user for a name and print the number (or "Not found").</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details></div>
+                <div class="practice-problem"><details><summary>2. Merge Two Dictionaries</summary><div class="solution"><p>Combine <code>dict1</code> and <code>dict2</code> – values from <code>dict2</code> overwrite <code>dict1</code> if keys conflict.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details></div>
 
+                <h4 style="color:var(--accent);margin-top:2rem;">⚡ Intermediate Level</h4>
+                <div class="practice-problem"><details><summary>3. Count Character Frequencies (case‑insensitive)</summary><div class="solution"><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details></div>
+                <div class="practice-problem"><details><summary>4. Find the First Non‑Repeating Character in a String</summary><div class="solution"><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details></div>
 
-    <footer>
-        <div class="footer-links">
-            <a href="/index.html">Home</a>
-            <a href="/coding/coding.html">Coding</a>
-            <a href="/class-10/class10.html">Class 10</a>
-            <a href="/class-10/class10-testseries.html">Test Series</a>
-            <a href="/english.html">English</a>
-            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
-            <a href="/info-center/books-notes.html">Books & Notes</a>
+                <h4 style="color:var(--accent);margin-top:2rem;">🔥 Advanced (DSA / Interview)</h4>
+                <div class="practice-problem"><details><summary>5. Two Sum</summary><div class="solution"><p>Given an array of integers <code>nums</code> and a target integer, find the indices of the two numbers that add up to target. Use a dictionary for O(n) time.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here – solution not shown.</i></div><p><strong>Test case:</strong> <code>nums = [2,7,11,15], target = 9</code> → <code>[0,1]</code></p></div></details></div>
+                <div class="practice-problem"><details><summary>6. Longest Substring Without Repeating Characters</summary><div class="solution"><p>Given a string, find the length of the longest substring without repeating characters. Use a dictionary to track the latest index of each character.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details></div>
+                <div class="practice-problem"><details><summary>7. Group Anagrams from a List of Strings</summary><div class="solution"><p>Group words that are anagrams. Use <code>defaultdict(list)</code> with sorted word as key.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;padding:1rem;text-align:center;"><i>Write your code here – solution not shown.</i></div></div></details></div>
+            </div>
         </div>
-        <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
-        <p>Online &amp; Offline | Small batches | Expert faculty</p>
-    </footer>
+    </main>
 
-    <script src="../js/learn-python.js"></script>
-      <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://codewithbooktown.in/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Learn Python+",
-        "item": "https://codewithbooktown.in/learn-python/learn-python-dict-5.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Dictionaries"
-      }
-    ]
-  }
-  </script>
+    <aside class="page-tracker" id="pageTracker">
+        <h4>On This Page</h4>
+        <ul id="trackerList">
+            <li><a href="#creating" class="tracker-link"><span class="tracker-bullet"></span> 1. Creating</a></li>
+            <li><a href="#accessing" class="tracker-link"><span class="tracker-bullet"></span> 2. Accessing</a></li>
+            <li><a href="#add-update" class="tracker-link"><span class="tracker-bullet"></span> 3. Add/Update</a></li>
+            <li><a href="#removing" class="tracker-link"><span class="tracker-bullet"></span> 4. Removing</a></li>
+            <li><a href="#methods" class="tracker-link"><span class="tracker-bullet"></span> 5. Methods</a></li>
+            <li><a href="#looping" class="tracker-link"><span class="tracker-bullet"></span> 6. Looping</a></li>
+            <li><a href="#nested" class="tracker-link"><span class="tracker-bullet"></span> 7. Nested Dicts</a></li>
+            <li><a href="#comprehension" class="tracker-link"><span class="tracker-bullet"></span> 8. Comprehension</a></li>
+            <li><a href="#advanced" class="tracker-link"><span class="tracker-bullet"></span> 9. Advanced Topics</a></li>
+            <li><a href="#mini-project" class="tracker-link"><span class="tracker-bullet"></span> Mini Project</a></li>
+            <li><a href="#practice-problems" class="tracker-link"><span class="tracker-bullet"></span> Solved Problems</a></li>
+            <li><a href="#unsolved-exercises" class="tracker-link"><span class="tracker-bullet"></span> Unsolved Exercises</a></li>
+          
+        </ul>
+    </aside>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="../js/learn-python.js"></script>
+<script src="../js/learn-python-advance.js"></script>
+<script>
+    // copyCode fallback
+    if (typeof copyCode !== 'function') {
+        window.copyCode = function(btn) {
+            const code = btn.closest('.code-block')?.querySelector('code');
+            if (code) {
+                navigator.clipboard.writeText(code.textContent).then(() => {
+                    const icon = btn.querySelector('i');
+                    if (icon) { icon.classList.replace('fa-copy','fa-check'); setTimeout(() => icon.classList.replace('fa-check','fa-copy'), 2000); }
+                });
+            }
+        };
+    }
+
+    // Scroll spy for page tracker
+    const sections = document.querySelectorAll('#creating, #accessing, #add-update, #removing, #methods, #looping, #nested, #comprehension, #advanced, #mini-project, #practice-problems, #unsolved-exercises');
+    const trackerLinks = document.querySelectorAll('.tracker-link:not(.next-lesson)');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= 120) current = '#' + section.id;
+        });
+        trackerLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === current);
+        });
+    }, { passive: true });
+
+    // Load footer dynamically
+    fetch('/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));
+</script>
 </body>
 </html>
