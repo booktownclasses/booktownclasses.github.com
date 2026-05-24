@@ -43,13 +43,9 @@
     </script>
     <script src="../js/google-analytics.js"></script>
 
-    <!-- Fonts -->
+    <!-- Fonts & Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    
-    <!-- Prism for syntax highlighting -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
@@ -57,59 +53,45 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
 
-    
-    <!-- Only ONE theme file needed -->
     <link rel="stylesheet" href="../css/learn-python.css" />
-     <link rel="stylesheet" href="../css/learn-python-advance.css" />
+    <link rel="stylesheet" href="../css/learn-python-advance.css" />
     <link rel="stylesheet" href="../css/theme.css" />
-    
-
-   
-   
 </head>
 <body>
-    <!-- Floating background shapes -->
-    <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </div>
 
-    <!-- Navigation Bar -->
-  <div id="header-container"></div>
+    <div id="header-container"></div>
 
-    <!-- Main Layout -->
     <div class="main-container" id="mainContainer">
-        <!-- Sidebar (loaded dynamically) -->
-         <aside class="sidebar" id="mainSidebar"></aside>
-      
+        <aside class="sidebar" id="mainSidebar"></aside>
 
-        <!-- Main Content -->
         <main class="content" id="mainContent">
-           
             <div class="content-section active" id="section-intro">
-                <h1 class="section-title"><i class="fas fa-star"></i> Python Introduction</h1>
-                <div class="section-intro">
-                    <p><strong>Welcome to Python!</strong> Learn what Python is, why it's so popular, and master the fundamentals with clear, syntax‑highlighted examples.</p>
+
+                <!-- Hero Section -->
+                <div class="mini-hero">
+                    <div class="hero-badge"><span class="pulse-dot"></span> Python • Introduction</div>
+                    <h1 class="hero-headline"><span class="gradient-text">Python Introduction</span> & Fundamentals</h1>
+                    <p class="hero-sub">Welcome to Python! Learn what makes Python so popular, master the fundamentals, and build a strong foundation with practical examples.</p>
+                </div>
+                
+                <!-- Top bar: breadcrumb left, next lesson right -->
+                <div class="top-nav-bar">
+                    <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+                        <ol>
+                            <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                            <li aria-current="page">Python Introduction</li>
+                        </ol>
+                    </nav>
+                    <a href="/learn-python/learn-python-condition-loops-3.html" class="next-page-btn" rel="next" title="Continue to Conditional Statements & Loops">
+                        Next Topic <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
 
                 <!-- Infographic Cards -->
                 <div class="infographic-grid">
-                    <article class="infographic-card">
-                        <div class="infographic-icon">🐍</div>
-                        <h3>What is Python?</h3>
-                        <p>High-level, interpreted programming language created by Guido van Rossum in 1991</p>
-                    </article>
-                    <article class="infographic-card">
-                        <div class="infographic-icon">📈</div>
-                        <h3>Most Popular</h3>
-                        <p>Used by beginners and experts in data science, AI, web dev, and more</p>
-                    </article>
-                    <article class="infographic-card">
-                        <div class="infographic-icon">✨</div>
-                        <h3>Simple & Clean</h3>
-                        <p>Readable syntax that looks like English, perfect for beginners</p>
-                    </article>
+                    <div class="infographic-card"><div class="infographic-icon">🐍</div><h3>What is Python?</h3><p>High-level, interpreted programming language created by Guido van Rossum in 1991</p></div>
+                    <div class="infographic-card"><div class="infographic-icon">📈</div><h3>Most Popular</h3><p>Used by beginners and experts in data science, AI, web dev, and more</p></div>
+                    <div class="infographic-card"><div class="infographic-icon">✨</div><h3>Simple & Clean</h3><p>Readable syntax that looks like English, perfect for beginners</p></div>
                 </div>
 
                 <!-- 1. Python Variables -->
@@ -117,9 +99,7 @@
                     <h3 id="variables">1. Python Variables</h3>
                     <p>A variable is a <strong>name that stores a value</strong>. Python figures out the type automatically.</p>
                     <div class="code-block">
-                        <div class="code-block-header">
-                            <i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> variables.py
-                        </div>
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> variables.py</div>
                         <pre class="line-numbers"><code class="language-python"># School-themed variables
 student_name = "Aarav"      # string
 grade = 8                   # integer
@@ -143,11 +123,7 @@ print(student_name, "is in grade", grade)</code></pre>
                     <p>Python has several built‑in data types. The most common ones are:</p>
                     <table class="info-table">
                         <thead>
-                            <tr>
-                                <th>Data Type</th>
-                                <th>Example</th>
-                                <th>Description</th>
-                            </tr>
+                            <tr><th>Data Type</th><th>Example</th><th>Description</th></tr>
                         </thead>
                         <tbody>
                             <tr><td><code>int</code></td><td><code>8, -3, 0</code></td><td>Whole numbers</td></tr>
@@ -165,9 +141,7 @@ print(student_name, "is in grade", grade)</code></pre>
                     <h3 id="print-function">3. print() Function</h3>
                     <p>The <code>print()</code> function <strong>displays output</strong> on the screen.</p>
                     <div class="code-block">
-                        <div class="code-block-header">
-                            <i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> print_examples.py
-                        </div>
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> print_examples.py</div>
                         <pre class="line-numbers"><code class="language-python">print("Hello, World!")
 print("Aarav", "Grade", 8)
 print("Maths", "Science", sep=" | ")
@@ -186,9 +160,7 @@ Welcome --> Have a nice day!</div>
                     <h3 id="string-formatting">4. String Formatting (f‑strings)</h3>
                     <p>Python's modern way is <strong>f‑strings</strong> (Python 3.6+).</p>
                     <div class="code-block">
-                        <div class="code-block-header">
-                            <i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> fstring_example.py
-                        </div>
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> fstring_example.py</div>
                         <pre class="line-numbers"><code class="language-python">name = "Aarav"
 marks = 84.56
 print(f"{name} scored {marks} marks.")
@@ -202,9 +174,7 @@ print(f"Rounded: {marks:.1f}")</code></pre>
                     <h3 id="input-function">5. input() Function</h3>
                     <p><code>input()</code> waits for user input and returns a <strong>string</strong>. Convert to numbers when needed.</p>
                     <div class="code-block">
-                        <div class="code-block-header">
-                            <i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> user_input.py
-                        </div>
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> user_input.py</div>
                         <pre class="line-numbers"><code class="language-python">subject = input("What is your favorite subject? ")
 print("Great choice! You enjoy", subject)
 maths = int(input("Enter Maths marks: "))
@@ -221,9 +191,7 @@ print("Total marks:", total)</code></pre>
                     <h3 id="type-function">6. type() Function</h3>
                     <p><code>type()</code> returns the <strong>data type</strong> – great for debugging.</p>
                     <div class="code-block">
-                        <div class="code-block-header">
-                            <i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> type_check.py
-                        </div>
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> type_check.py</div>
                         <pre class="line-numbers"><code class="language-python">name = "Aarav"
 grade = 8
 average = 84.33
@@ -240,9 +208,7 @@ print(type(passed)) # <class 'bool'></code></pre>
                 <div class="concept-card" id="quick-practice">
                     <h3>Quick Practice: Putting It All Together</h3>
                     <div class="code-block">
-                        <div class="code-block-header">
-                            <i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> mini_project.py
-                        </div>
+                        <div class="code-block-header"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> mini_project.py</div>
                         <pre class="line-numbers"><code class="language-python">student = input("Enter student name: ")
 grade = int(input("Enter grade level: "))
 marks = float(input("Enter average marks: "))
@@ -270,70 +236,24 @@ Data types : &lt;class 'str'&gt;, &lt;class 'int'&gt;, &lt;class 'float'&gt;</di
                     <p>Apply what you've learned with these beginner and intermediate problems.</p>
                     
                     <h4 style="color:var(--accent);">🔰 Beginner Level</h4>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>1. Greeting Generator</summary>
-                            <div class="solution">
-                                <p><strong>Problem:</strong> Ask for first name and age, then print a personalized greeting.</p>
-                                <div class="code-block">
-                                    <pre class="line-numbers"><code class="language-python">first_name = input("Enter your first name: ")
+                    <div class="practice-problem"><details><summary>1. Greeting Generator</summary><div class="solution"><p><strong>Problem:</strong> Ask for first name and age, then print a personalized greeting.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">first_name = input("Enter your first name: ")
 age = int(input("Enter your age: "))
-print(f"Hello {first_name}, you are {age} years old!")</code></pre>
-                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-
-                    <div class="practice-problem">
-                        <details>
-                            <summary>2. Simple Interest Calculator</summary>
-                            <div class="solution">
-                                <p><strong>Problem:</strong> Accept principal, rate, and time. Calculate SI = (P*R*T)/100.</p>
-                                <div class="code-block">
-                                    <pre class="line-numbers"><code class="language-python">principal = float(input("Enter principal amount (₹): "))
+print(f"Hello {first_name}, you are {age} years old!")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Simple Interest Calculator</summary><div class="solution"><p><strong>Problem:</strong> Accept principal, rate, and time. Calculate SI = (P*R*T)/100.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">principal = float(input("Enter principal amount (₹): "))
 rate = float(input("Enter rate of interest (%): "))
 time = float(input("Enter time (years): "))
 simple_interest = (principal * rate * time) / 100
-print(f"Simple Interest: ₹{simple_interest:.2f}")</code></pre>
-                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-
-                    <div class="practice-problem">
-                        <details>
-                            <summary>3. Temperature Converter (Celsius → Fahrenheit)</summary>
-                            <div class="solution">
-                                <p><strong>Problem:</strong> Convert Celsius to Fahrenheit: F = (C × 9/5) + 32.</p>
-                                <div class="code-block">
-                                    <pre class="line-numbers"><code class="language-python">celsius = float(input("Enter temperature in Celsius: "))
+print(f"Simple Interest: ₹{simple_interest:.2f}")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
+                    <div class="practice-problem"><details><summary>3. Temperature Converter (Celsius → Fahrenheit)</summary><div class="solution"><p><strong>Problem:</strong> Convert Celsius to Fahrenheit: F = (C × 9/5) + 32.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">celsius = float(input("Enter temperature in Celsius: "))
 fahrenheit = (celsius * 9/5) + 32
-print(f"{celsius}°C is equal to {fahrenheit:.1f}°F")</code></pre>
-                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
+print(f"{celsius}°C is equal to {fahrenheit:.1f}°F")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
 
                     <h4 style="color:var(--accent);">⚡ Intermediate Level</h4>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>4. Swap Two Variables Without Third Variable</summary>
-                            <div class="solution">
-                                <p><strong>Problem:</strong> Swap two numbers using tuple unpacking.</p>
-                                <div class="code-block">
-                                    <pre class="line-numbers"><code class="language-python">a = int(input("Enter first number (a): "))
+                    <div class="practice-problem"><details><summary>4. Swap Two Variables Without Third Variable</summary><div class="solution"><p><strong>Problem:</strong> Swap two numbers using tuple unpacking.</p><div class="code-block"><pre class="line-numbers"><code class="language-python">a = int(input("Enter first number (a): "))
 b = int(input("Enter second number (b): "))
 print(f"Before swap: a = {a}, b = {b}")
 a, b = b, a
-print(f"After swap: a = {a}, b = {b}")</code></pre>
-                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
+print(f"After swap: a = {a}, b = {b}")</code></pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button></div></div></details></div>
                 </div>
 
                 <!-- Unsolved Exercises -->
@@ -342,100 +262,33 @@ print(f"After swap: a = {a}, b = {b}")</code></pre>
                     <p>Test yourself! No solutions here—just the problem statement.</p>
                     
                     <h4 style="color:var(--accent);">🔰 Beginner Level</h4>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>1. Rectangle Area Calculator</summary>
-                            <div class="solution">
-                                <p><strong>Problem:</strong> Ask for length and width, compute area, print rounded to 2 decimals.</p>
-                                <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;text-align:center;color:#64748b;">
-                                    <em>Write your code here – solution not shown.</em>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-                    <div class="practice-problem">
-                        <details>
-                            <summary>2. Minutes to Hours & Minutes Converter</summary>
-                            <div class="solution">
-                                <p><strong>Problem:</strong> Convert minutes to hours and remaining minutes. Use <code>//</code> and <code>%</code>.</p>
-                                <div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;text-align:center;color:#64748b;">
-                                    <em>Write your code here – solution not shown.</em>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
+                    <div class="practice-problem"><details><summary>1. Rectangle Area Calculator</summary><div class="solution"><p><strong>Problem:</strong> Ask for length and width, compute area, print rounded to 2 decimals.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;text-align:center;color:#64748b;"><em>Write your code here – solution not shown.</em></div></div></details></div>
+                    <div class="practice-problem"><details><summary>2. Minutes to Hours & Minutes Converter</summary><div class="solution"><p><strong>Problem:</strong> Convert minutes to hours and remaining minutes. Use <code>//</code> and <code>%</code>.</p><div class="code-block" style="background:#f1f5f9;border:1px dashed #94a3b8;text-align:center;color:#64748b;"><em>Write your code here – solution not shown.</em></div></div></details></div>
                 </div>
-            </div>
-
-            <!-- Week 1 Section (hidden by default) -->
-            <div class="content-section" id="section-week1">
-                <h1 class="section-title"><i class="fas fa-star"></i> Week 1: Python Fundamentals + Git</h1>
-                <p style="text-align:center;margin-top:3rem;color:var(--text-light);">📝 Week 1 content loads here...</p>
             </div>
         </main>
 
-        <!-- Page Tracker -->
         <aside class="page-tracker" id="pageTracker">
             <h4>On This Page</h4>
             <ul id="trackerList">
-                <li><a href="#variables">1. Python Variables</a></li>
-                <li><a href="#data-types">2. Python Data Types</a></li>
-                <li><a href="#print-function">3. print() Function</a></li>
-                <li><a href="#string-formatting">4. String Formatting</a></li>
-                <li><a href="#input-function">5. input() Function</a></li>
-                <li><a href="#type-function">6. type() Function</a></li>
-                <li><a href="#quick-practice">Quick Practice</a></li>
-                <li><a href="#practice-problems">Practice Problems</a></li>
-                <li><a href="#unsolved-exercises">Unsolved Exercises</a></li>
+                <li><a href="#variables" class="tracker-link"><span class="tracker-bullet"></span> 1. Python Variables</a></li>
+                <li><a href="#data-types" class="tracker-link"><span class="tracker-bullet"></span> 2. Python Data Types</a></li>
+                <li><a href="#print-function" class="tracker-link"><span class="tracker-bullet"></span> 3. print() Function</a></li>
+                <li><a href="#string-formatting" class="tracker-link"><span class="tracker-bullet"></span> 4. String Formatting</a></li>
+                <li><a href="#input-function" class="tracker-link"><span class="tracker-bullet"></span> 5. input() Function</a></li>
+                <li><a href="#type-function" class="tracker-link"><span class="tracker-bullet"></span> 6. type() Function</a></li>
+                <li><a href="#quick-practice" class="tracker-link"><span class="tracker-bullet"></span> Quick Practice</a></li>
+                <li><a href="#practice-problems" class="tracker-link"><span class="tracker-bullet"></span> Practice Problems</a></li>
+                <li><a href="#unsolved-exercises" class="tracker-link"><span class="tracker-bullet"></span> Unsolved Exercises</a></li>
+             
             </ul>
         </aside>
     </div>
 
-  
+    <div id="footer-placeholder"></div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="/index.html">Home</a>
-            <a href="/coding/coding.html">Coding</a>
-            <a href="/class-10/class10.html">Class 10</a>
-            <a href="/class-10/class10-testseries.html">Test Series</a>
-            <a href="/english.html">English</a>
-            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
-            <a href="/info-center/books-notes.html">Books & Notes</a>
-        </div>
-        <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
-        <p>Online &amp; Offline | Small batches | Expert faculty</p>
-    </footer>
-
-    <!-- Shared JavaScript -->
     <script src="../js/learn-python.js"></script>
-     <script src="../js/learn-python.js"></script>
-  <!-- Breadcrumb Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://booktownclasses.github.io/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Learn Python+",
-        "item": "https://booktownclasses.github.io/learn-python/learn-python-intro-2.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Python Introduction"
-      }
-    ]
-  }
-  </script>
+    <script src="../js/learn-python-advance.js"></script>
+   
 </body>
 </html>

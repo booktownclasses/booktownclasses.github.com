@@ -56,156 +56,22 @@
     <link rel="stylesheet" href="../css/learn-python-advance.css" />
     <link rel="stylesheet" href="../css/theme.css" />
 
-    <style>
-        :root {
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text: #0f172a;
-            --muted: #475569;
-            --border: #e2e8f0;
-            --primary: #7c3aed;
-            --primary-light: #8b5cf6;
-            --accent: #a78bfa;
-            --warning: #d97706;
-            --danger: #dc2626;
-            --success: #059669;
-            --info: #3b82f6;
-            --radius: 14px;
-            --shadow: 0 4px 20px rgba(0,0,0,0.04);
-            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
-        }
-        body.dark-mode {
-            --bg: #0f172a;
-            --card: #1e293b;
-            --text: #f1f5f9;
-            --muted: #94a3b8;
-            --border: #334155;
-        }
-        .mini-hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #2e1065 70%, #1e1b4b 100%);
-            border-radius: 20px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-        }
-        .mini-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:240px; height:240px; background:radial-gradient(circle,rgba(124,58,237,0.25) 0%,transparent 70%); border-radius:50%; animation:heroFloat 8s ease-in-out infinite; }
-        .mini-hero::after { content:''; position:absolute; bottom:-40px; left:-40px; width:200px; height:200px; background:radial-gradient(circle,rgba(5,150,105,0.2) 0%,transparent 70%); border-radius:50%; animation:heroFloat 10s ease-in-out infinite reverse; }
-        @keyframes heroFloat { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(15px,-10px) scale(1.05);} }
-        .mini-hero .hero-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(124,58,237,0.25); color:#c4b5fd; padding:5px 14px; border-radius:30px; font-size:0.7rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:0.8rem; border:1px solid rgba(124,58,237,0.35); position:relative; z-index:1; }
-        .mini-hero .hero-badge .pulse-dot { width:7px; height:7px; background:#a78bfa; border-radius:50%; animation:dotPulse 2s infinite; }
-        @keyframes dotPulse { 0%,100%{box-shadow:0 0 0 0 rgba(167,139,250,0.6);} 50%{box-shadow:0 0 0 10px rgba(167,139,250,0);} }
-        .mini-hero .hero-headline { font-size:1.8rem; font-weight:800; color:#f1f5f9; margin:0 0 0.5rem; position:relative; z-index:1; }
-        .gradient-text { background:linear-gradient(135deg,#a78bfa,#60a5fa,#34d399); background-size:300% 300%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 5s ease-in-out infinite; }
-        @keyframes shimmer { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
-        .mini-hero .hero-sub { font-size:0.9rem; color:#94a3b8; position:relative; z-index:1; }
-
-        .week-progress-wrap { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.75); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:10px 18px; margin-bottom:20px; border-radius:0 0 var(--radius) var(--radius); box-shadow:0 2px 12px rgba(0,0,0,0.04); display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-        body.dark-mode .week-progress-wrap { background:rgba(30,41,59,0.85); }
-        .progress-label { font-weight:700; font-size:0.8rem; color:var(--muted); white-space:nowrap; }
-        .progress-track { flex:1; height:8px; background:var(--border); border-radius:8px; overflow:hidden; }
-        .progress-fill { height:100%; background:linear-gradient(90deg,var(--primary),var(--success)); border-radius:8px; transition:width 0.5s ease; }
-        .progress-days { display:flex; gap:5px; }
-        .progress-dot { width:26px; height:26px; border-radius:50%; background:var(--border); display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; cursor:pointer; transition:0.3s; color:var(--muted); }
-        .progress-dot.completed { background:var(--success); color:#fff; }
-        .progress-dot.active { background:linear-gradient(135deg,var(--primary),var(--info)); color:#fff; box-shadow:0 0 14px rgba(124,58,237,0.5); animation:pulseDot 2s infinite; }
-        @keyframes pulseDot { 0%,100%{box-shadow:0 0 8px rgba(124,58,237,0.4);} 50%{box-shadow:0 0 22px rgba(124,58,237,0.8);} }
-        .progress-dot:hover { transform:scale(1.15); }
-
-        .info-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:22px 20px; margin:20px 0; box-shadow:var(--shadow); transition:all 0.35s ease; position:relative; overflow:hidden; }
-        .info-card:hover { box-shadow:var(--shadow-lg); border-color:var(--primary-light); transform:translateY(-2px); }
-        .info-card .card-title { font-size:1.05rem; font-weight:700; color:var(--primary); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
-        .info-card .card-title i { font-size:1.2rem; background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(59,130,246,0.1)); padding:8px; border-radius:10px; }
-        .badge { display:inline-block; padding:4px 10px; border-radius:20px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; }
-        .badge.visual { background:#ede9fe; color:#6d28d9; }
-        .badge.concept { background:#d1fae5; color:#065f46; }
-        .badge.why { background:#fef3c7; color:#92400e; }
-
-        .genz-course-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:10px; margin:1.1rem 0; }
-        .genz-day-card { background:linear-gradient(135deg,#0f172a 0%,#1e293b 40%,#1e3a5f 100%); border-radius:1.25rem; padding:1rem 0.6rem; color:#f1f5f9; cursor:pointer; transition:transform 0.25s ease, box-shadow 0.25s ease; box-shadow:0 4px 15px rgba(0,0,0,0.3); display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; overflow:hidden; }
-        .genz-day-card:hover { transform:translateY(-6px); box-shadow:0 12px 25px rgba(124,58,237,0.25); }
-        .genz-day-card::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); transition:left 0.7s ease; }
-        .genz-day-card:hover::after { left:100%; }
-        .genz-day-num { font-size:1.2rem; font-weight:800; line-height:1; background:linear-gradient(to right,#00c6ff,#ee0979); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:0.1rem; }
-        .genz-day-icon { font-size:1.4rem; margin-bottom:0.2rem; filter:drop-shadow(0 0 4px rgba(0,198,255,0.5)); }
-        .genz-day-title { font-size:0.75rem; font-weight:700; margin:0.2rem 0 0.3rem; color:#ffffff; letter-spacing:0.3px; }
-        .genz-day-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:0.15rem; margin-top:0.15rem; }
-        .genz-day-tags span { background:rgba(255,255,255,0.08); backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.15); color:#cbd5e1; font-size:0.6rem; padding:0.1rem 0.4rem; border-radius:20px; margin:1px 1px; font-weight:500; white-space:nowrap; }
-        .genz-day-card:hover .genz-day-tags span { background:rgba(124,58,237,0.2); border-color:#a78bfa; color:#ffffff; }
-
-        .comparative-table { width:100%; border-collapse:collapse; margin:1.5rem 0; background:rgba(15,23,42,0.6); backdrop-filter:blur(10px); border-radius:0.75rem; overflow:hidden; }
-        .comparative-table th, .comparative-table td { padding:0.6rem 0.8rem; text-align:left; border-bottom:1px solid #334155; font-size:0.85rem; color:#f1f5f9; }
-        .comparative-table th { background:#1e293b; color:#f0f9ff; font-weight:600; }
-        .comparative-table tr:last-child td { border-bottom:none; }
-        .comparative-table tr:hover td { background:rgba(124,58,237,0.08); }
-
-        .step-walkthrough { background:#f8fafc; border-left:4px solid var(--primary); padding:1rem; margin:1rem 0; border-radius:0 8px 8px 0; }
-        body.dark-mode .step-walkthrough { background:#1e293b; border-color:#7c3aed; }
-
-        .particle-emoji { position:absolute; pointer-events:none; z-index:10; font-size:1.2rem; animation:particleBurst 0.7s cubic-bezier(0,0.9,0.3,1) forwards; }
-        @keyframes particleBurst { 0%{opacity:1;transform:translate(0,0) scale(1);} 100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0.2);} }
-        .pulse-highlight { animation:gentlePulse 3s ease-in-out 1; }
-        @keyframes gentlePulse { 0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,0.3);} 50%{box-shadow:0 0 0 12px rgba(124,58,237,0);} }
-
-        .why-box { background:#fffbeb; border-left:5px solid var(--warning); border-radius:0 12px 12px 0; padding:14px 18px; margin:14px 0; font-size:0.85rem; line-height:1.5; }
-        body.dark-mode .why-box { background:#3b2a0a; border-left-color:#f59e0b; }
-        .tip-box { background:#f0fdf4; border-left:5px solid var(--success); border-radius:0 12px 12px 0; padding:14px 18px; margin:14px 0; font-size:0.85rem; }
-        body.dark-mode .tip-box { background:#0a3328; }
-        .danger-box { background:#fef2f2; border-left:5px solid var(--danger); border-radius:0 12px 12px 0; padding:14px 18px; margin:14px 0; font-size:0.85rem; }
-        body.dark-mode .danger-box { background:#3b0a0a; }
-
-        .code-block { position:relative; background:#1e293b; border-radius:10px; margin:14px 0; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,0.2); }
-        .code-block-header { background:#0f172a; padding:8px 14px; display:flex; gap:6px; align-items:center; font-size:0.7rem; color:#94a3b8; font-family:'Fira Code',monospace; }
-        .code-block pre { margin:0; padding:14px 16px; overflow-x:auto; font-size:0.82rem; line-height:1.5; background:#1e293b; }
-        .code-block code { font-family:'Fira Code',monospace; font-size:0.8rem; }
-        .copy-btn { position:absolute; top:36px; right:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#cbd5e1; padding:5px 10px; border-radius:6px; cursor:pointer; font-size:0.7rem; transition:0.3s; z-index:5; }
-        .copy-btn:hover { background:rgba(255,255,255,0.18); color:#fff; }
-
-        .scroll-top-btn { position:fixed; bottom:90px; right:24px; width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--info)); color:#fff; border:none; cursor:pointer; font-size:1.2rem; z-index:99; box-shadow:0 4px 16px rgba(124,58,237,0.3); transition:0.3s; opacity:0; pointer-events:none; display:flex; align-items:center; justify-content:center; }
-        .scroll-top-btn.visible { opacity:1; pointer-events:auto; }
-        .scroll-top-btn:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(124,58,237,0.5); }
-
-        @media (max-width:768px) {
-            .mini-hero { padding:1.2rem; }
-            .mini-hero .hero-headline { font-size:1.3rem; }
-            .genz-course-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width:500px) {
-            .genz-course-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-    </style>
+    
 </head>
 <body>
-    <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </div>
+
     <div id="header-container"></div>
     <div class="main-container">
         <aside class="sidebar" id="mainSidebar"></aside>
         <main class="content">
+
             <div class="mini-hero">
                 <div class="hero-badge"><span class="pulse-dot"></span> Python • Error & Exception Mastery</div>
                 <h1 class="hero-headline"><span class="gradient-text">Exception Handling</span> from Basics to Production</h1>
                 <p class="hero-sub">Understand every built‑in exception, try/except/else/finally, raise, custom exceptions, assertions, and production‑grade patterns — with solved and unsolved practice problems.</p>
             </div>
 
-            <div class="week-progress-wrap">
-                <span class="progress-label">Topics</span>
-                <div class="progress-track"><div class="progress-fill" id="weekProgressFill" style="width:0%"></div></div>
-                <div class="progress-days">
-                    <div class="progress-dot" data-day="1" onclick="scrollToDay('day1')">1</div>
-                    <div class="progress-dot" data-day="2" onclick="scrollToDay('day2')">2</div>
-                    <div class="progress-dot" data-day="3" onclick="scrollToDay('day3')">3</div>
-                    <div class="progress-dot" data-day="4" onclick="scrollToDay('day4')">4</div>
-                    <div class="progress-dot" data-day="5" onclick="scrollToDay('day5')">5</div>
-                    <div class="progress-dot" data-day="6" onclick="scrollToDay('day6')">6</div>
-                    <div class="progress-dot" data-day="7" onclick="scrollToDay('day7')">7</div>
-                </div>
-            </div>
-
+          
             <div class="content-section active">
                 <div class="section-intro">
                     <p><strong>📌 What you'll learn:</strong> Exception handling is not just about <code>try</code> and <code>except</code>. It’s a mindset that separates fragile scripts from production‑ready software. This page covers everything: syntax errors vs exceptions, the full hierarchy, best practices, and how to design your own error strategy.</p>

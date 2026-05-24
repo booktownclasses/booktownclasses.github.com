@@ -3028,3 +3028,48 @@ body.dark-mode {
       .bars-container { height: 220px; }
       .tech-item { width: 130px; padding: 1rem 0.6rem; }
     }
+
+
+     /* Sidebar icon colors – consistent with your existing palette */
+.icon-cheatsheet { color: #09f330; }
+.icon-fundamentals { color: #2196F3; }
+.icon-python { color: #3776ab; }
+.icon-condition { color: #ff9800; }
+.icon-list { color: #9c27b0; }
+.icon-dict { color: #f44336; }
+.icon-map { color: #2196F3; }
+.icon-class { color: #c1fd51; }
+.icon-oops { color: #f33131; }
+.icon-file { color: #27e915; }
+.icon-exception { color: #ff6b6b; }
+.icon-recursion { color: #ff9966; }
+.icon-module { color: #ff6b6b; }
+.icon-iterator { color: #4caf50; }
+
+/* Additional DSA icons */
+.fa-sort-amount-up { color: #ff9800; }
+.fa-project-diagram { color: #9c27b0; }
+.fa-chart-line { color: #2196F3; }
+
+/* Sidebar sections – collapsible */
+.sidebar-section .sidebar-items {
+    max-height: 0 !important;
+  overflow: hidden !important;
+  transition: max-height 0.3s ease-out;
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar-section .sidebar-items.open {
+  max-height: 1000px !important;
+  transition: max-height 0.4s ease-in;
+}
+
+/* Rotate chevron when open */
+.sidebar-title .toggle-icon {
+  transition: transform 0.25s ease;
+}
+.sidebar-title.open .toggle-icon {
+  transform: rotate(180deg);
+}

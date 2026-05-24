@@ -57,205 +57,41 @@
   <link rel="stylesheet" href="../css/learn-python-advance.css" />
   <link rel="stylesheet" href="../css/theme.css" />
 
-  <style>
-    :root {
-      --primary: #2563eb;
-      --primary-light: #3b82f6;
-      --accent: #3b82f6;
-      --warning: #d97706;
-      --danger: #dc2626;
-      --success: #059669;
-      --info: #7c3aed;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --border: #e2e8f0;
-      --shadow: 0 4px 20px rgba(0,0,0,0.04);
-      --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
-      --radius: 14px;
-      --radius-sm: 10px;
-    }
-    body.dark-mode {
-      --bg: #0f172a;
-      --card: #1e293b;
-      --text: #f1f5f9;
-      --muted: #94a3b8;
-      --border: #334155;
-    }
-
-    .infocard {
-      background: var(--infographic-bg, #f1f5f9);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px 20px;
-      margin: 20px 0;
-      box-shadow: var(--shadow);
-      transition: all 0.35s;
-    }
-    .infocard:hover { box-shadow: var(--shadow-lg); border-color: var(--primary-light); }
-    .infocard-title { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-    .infocard-title i { font-size: 1.3rem; background: rgba(37,99,235,0.1); padding: 8px; border-radius: 10px; }
-    .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; margin-left: auto; }
-    .badge.visual { background: #ede9fe; color: #6d28d9; }
-
-    .cpu-diagram { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; padding: 10px 0; }
-    .cpu-unit { background: var(--card); border: 2px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; cursor: pointer; transition: 0.3s; flex: 1; min-width: 120px; }
-    .cpu-unit:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(37,99,235,0.15); transform: translateY(-3px); }
-    .cpu-unit i { font-size: 2rem; color: var(--primary); margin-bottom: 8px; }
-
-    .mem-pyramid { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-    .mem-level { width: 100%; max-width: 500px; border-radius: 6px; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
-    .mem-level:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-    .mem-details { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; color: #fff; font-weight: 600; font-size: 0.85rem; }
-    .mem-registers { background: linear-gradient(135deg, #8b5cf6, #a78bfa); width: 30%; }
-    .mem-l1 { background: linear-gradient(135deg, #6366f1, #818cf8); width: 42%; }
-    .mem-l2 { background: linear-gradient(135deg, #4f46e5, #6366f1); width: 56%; }
-    .mem-l3 { background: linear-gradient(135deg, #4338ca, #4f46e5); width: 72%; }
-    .mem-ram { background: linear-gradient(135deg, #1e40af, #3b82f6); width: 88%; }
-    .mem-disk { background: linear-gradient(135deg, #1e3a8a, #2563eb); width: 100%; }
-
-    .journey-steps { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 16px 0; }
-    .journey-step { background: var(--card); border: 2px solid var(--border); border-radius: 12px; padding: 14px 12px; text-align: center; cursor: pointer; transition: 0.3s; min-width: 100px; }
-    .journey-step:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
-    .journey-step.active { border-color: var(--primary); background: rgba(37,99,235,0.05); }
-    .journey-step .step-icon { font-size: 1.8rem; color: var(--primary); margin-bottom: 4px; }
-    .journey-detail { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-top: 12px; display: none; }
-    .journey-detail.open { display: block; animation: fadeSlide 0.3s ease; }
-    @keyframes fadeSlide { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-    .py-feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
-    .py-feature { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; transition: 0.3s; cursor: pointer; }
-    .py-feature:hover { border-color: var(--primary); box-shadow: var(--shadow); transform: translateY(-2px); }
-    .py-feature.active { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(37,99,235,0.3); }
-    .py-feature h4 { margin: 0 0 6px; font-size: 1rem; color: var(--primary); }
-
-    /* SIDE DETAIL PANEL for Python feature cards */
-    .py-detail-panel {
-      display: none;
-      background: var(--card);
-      border: 1px solid var(--primary);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      margin-top: 1.5rem;
-      box-shadow: var(--shadow-lg);
-      position: relative;
-      animation: fadeSlide 0.3s ease;
-    }
-    .py-detail-panel.open { display: block; }
-    .py-detail-panel .detail-close {
-      position: absolute;
-      top: 10px;
-      right: 14px;
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: var(--muted);
-      transition: 0.2s;
-    }
-    .py-detail-panel .detail-close:hover { color: var(--danger); }
-
-    .compare-row { display: flex; align-items: center; margin: 8px 0; }
-    .compare-label { width: 120px; font-weight: 600; font-size: 0.85rem; }
-    .compare-bar-bg { flex: 1; height: 24px; background: var(--border); border-radius: 12px; overflow: hidden; }
-    .compare-bar-fill { height: 100%; border-radius: 12px; display: flex; align-items: center; padding-left: 10px; font-size: 0.7rem; font-weight: 700; color: #fff; transition: width 1s ease; }
-    .fill-primary { background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
-    .fill-accent { background: linear-gradient(90deg, var(--accent), #5eead4); }
-    .fill-warning { background: linear-gradient(90deg, var(--warning), #fbbf24); }
-
-    .page-tracker { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.2rem; box-shadow: var(--shadow); }
-    .tracker-link { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 6px; text-decoration: none; color: var(--muted); font-size: 0.85rem; transition: 0.2s; }
-    .tracker-link:hover { background: rgba(37,99,235,0.05); }
-    .tracker-link.active { background: rgba(37,99,235,0.1); color: var(--primary); font-weight: 600; }
-    .tracker-bullet { width: 8px; height: 8px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
-    .tracker-link.active .tracker-bullet { background: var(--primary); }
-
-    /* --- NEXT PAGE NAVIGATION --- */
-    .next-page-nav {
-      margin: 2.5rem 0 1rem;
-      display: flex;
-      justify-content: flex-end;
-    }
-    /* Top version can have a different margin if needed */
-    .next-page-nav.top-next {
-      margin: 0 0 1.5rem 0;
-      justify-content: flex-end;
-    }
-    .next-page-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.8rem 1.8rem;
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      color: #fff;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem;
-      box-shadow: 0 8px 20px rgba(37,99,235,0.3);
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-    }
-    .next-page-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(37,99,235,0.4);
-      background: linear-gradient(135deg, var(--primary-light), #60a5fa);
-    }
-    .next-page-btn i {
-      font-size: 1.1rem;
-      transition: transform 0.2s;
-    }
-    .next-page-btn:hover i {
-      transform: translateX(4px);
-    }
-
-    /* Tracker next lesson item */
-    .tracker-link.next-lesson {
-      margin-top: 0.5rem;
-      border-top: 1px solid var(--border);
-      padding-top: 0.8rem;
-      font-weight: 600;
-      color: var(--primary);
-    }
-    .tracker-link.next-lesson i {
-      margin-left: auto;
-      transition: transform 0.2s;
-    }
-    .tracker-link.next-lesson:hover i {
-      transform: translateX(3px);
-    }
-  </style>
 </head>
 <body>
-  <div class="floating-shapes">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-  </div>
+
 
   <div id="header-container"></div>
+  
 
   <div class="main-container" id="mainContainer">
     <aside class="sidebar" id="mainSidebar"></aside>
 
+    
     <main class="content" id="mainContent">
-      
-     
+        <div class="content-section active" id="section-intro"></div>
+
+       <div class="mini-hero">
+                <div class="hero-badge"><span class="pulse-dot"></span> Python • Computer Fundamentals</div>
+                <h1 class="hero-headline"><span class="gradient-text">Computer Fundamentals</span> & Python</h1>
+                <p class="hero-sub">Understand how a computer executes code: CPU, RAM, disk, OS, and other components. Plus, learn Python's key characteristics with interactive visuals.</p>
+            </div>
       <div class="content-section active" id="section-intro">
-                <div class="next-page-nav top-next">
-          <a href="learn-python-computer-fundamentals-2.html" class="next-page-btn" title="Continue to the next lesson">
-            Next Lesson <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-        <h1 class="section-title"><i class="fas fa-microchip"></i> Computer Fundamentals &amp; Python</h1>
-        <p class="section-subtitle" style="font-size:1.1rem;color:var(--muted);">Understand how hardware runs your code and why Python is the perfect first language.</p>
+  <!-- Top bar: breadcrumb left, next lesson right -->
 
-        <!-- NEXT PAGE NAVIGATION (top) – placed right after the subtitle -->
-        <!-- Adjust the href to point to your actual next lesson page -->
-
-
+   <div class="top-nav-bar">
+    <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+      <ol>
+        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+        <li aria-current="page">Computer Fundamentals &amp; Python</li>
+      </ol>
+    </nav>
+       <a href="/learn-python/learn-python-intro-2.html" class="next-page-btn" rel="next" title="Continue to Python Introduction – syntax, variables, data types">
+           Next Topic<i class="fas fa-arrow-right"></i>
+       </a>
+    </div>
+ 
+  
         <!-- Core Components with Tabs and Infographics -->
         <div class="concept-card" id="components-overview">
           <h3><i class="fas fa-desktop"></i> Core Components – Visual Overview</h3>
@@ -414,191 +250,35 @@ for item in os.listdir('.'):
 
         <!-- NEXT PAGE NAVIGATION (bottom) -->
         <!-- Adjust the href to point to your actual next lesson page -->
-        <div class="next-page-nav">
-          <a href="learn-python-computer-fundamentals-2.html" class="next-page-btn" title="Continue to the next lesson">
-            Next Lesson <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
+         </div>
+      
     </main>
 
-    <aside class="page-tracker" id="pageTracker">
-      <h4>On This Page</h4>
-      <ul id="trackerList">
-        <li><a href="#components-overview" class="tracker-link"><span class="tracker-bullet"></span> Core Components</a></li>
-        <li><a href="#code-execution" class="tracker-link"><span class="tracker-bullet"></span> How Code Executes</a></li>
-        <li><a href="#python-characteristics" class="tracker-link"><span class="tracker-bullet"></span> Python Characteristics</a></li>
-        <li><a href="#python-comparison" class="tracker-link"><span class="tracker-bullet"></span> Language Comparison</a></li>
-        <li><a href="#practice-problems" class="tracker-link"><span class="tracker-bullet"></span> Practice Problems</a></li>
-        <!-- Next lesson link (adjust href as needed) -->
-        <li><a href="learn-python-computer-fundamentals-2.html" class="tracker-link next-lesson">
-          <span class="tracker-bullet" style="background: var(--primary);"></span> Next Lesson <i class="fas fa-chevron-right"></i>
-        </a></li>
-      </ul>
-    </aside>
+<aside class="page-tracker" id="pageTracker">
+  <h4>On This Page</h4>
+  <ul id="trackerList">
+    <li><a href="#components-overview" class="tracker-link"><span class="tracker-bullet"></span> Core Components</a></li>
+    <li><a href="#code-execution" class="tracker-link"><span class="tracker-bullet"></span> How Code Executes</a></li>
+    <li><a href="#python-characteristics" class="tracker-link"><span class="tracker-bullet"></span> Python Characteristics</a></li>
+    <li><a href="#python-comparison" class="tracker-link"><span class="tracker-bullet"></span> Language Comparison</a></li>
+    <li><a href="#practice-problems" class="tracker-link"><span class="tracker-bullet"></span> Practice Problems</a></li>
+    </li>
+    
+   
+  </ul>
+   
+</aside>
+ 
+
   </div>
+</div>
+ 
 
 
-
-  <footer>
-    <div class="footer-links">
-      <a href="/index.html">Home</a>
-      <a href="/coding/coding.html">Coding</a>
-      <a href="/class-10/class10.html">Class 10</a>
-      <a href="/class-10/class10-testseries.html">Test Series</a>
-      <a href="/english.html">English</a>
-      <a href="/learn-python/learn-python-computer-fundamentals.html">Learn Python+</a>
-      <a href="/info-center/books-notes.html">Books & Notes</a>
-    </div>
-    <p>© 2025 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
-    <p>Online &amp; Offline | Small batches | Expert faculty</p>
-  </footer>
+  <div id="footer-placeholder"></div>
 
   <script src="../js/learn-python.js"></script>
   <script src="../js/learn-python-advance.js"></script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://booktownclasses.github.io/index.html" },
-        { "@type": "ListItem", "position": 2, "name": "Learn Python+", "item": "https://booktownclasses.github.io/learn-python/learn-python-computer-fundamentals-1.html" },
-        { "@type": "ListItem", "position": 3, "name": "Computer Fundamentals & Python" }
-      ]
-    }
-  </script>
-
-  <script>
-    // copyCode fallback
-    if (typeof copyCode !== 'function') {
-      window.copyCode = function(btn) {
-        const code = btn.closest('.code-block')?.querySelector('code');
-        if (code) {
-          navigator.clipboard.writeText(code.textContent).then(() => {
-            const icon = btn.querySelector('i');
-            if (icon) { icon.classList.replace('fa-copy','fa-check'); setTimeout(() => icon.classList.replace('fa-check','fa-copy'), 2000); }
-          });
-        }
-      };
-    }
-
-    // Tab switching
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const tabGroup = this.closest('.tab-container');
-        tabGroup.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        tabGroup.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        const target = document.getElementById(this.dataset.tab);
-        if (target) target.classList.add('active');
-      });
-    });
-
-    // CPU unit detail
-    document.querySelectorAll('#cpuDiagram .cpu-unit').forEach(unit => {
-      unit.addEventListener('click', function() {
-        const detail = document.getElementById('cpuDetail');
-        detail.textContent = this.dataset.detail;
-        detail.style.animation = 'none';
-        detail.offsetHeight;
-        detail.style.animation = 'fadeSlide 0.3s ease';
-      });
-    });
-
-    // Memory pyramid live info
-    const memInfo = document.createElement('div');
-    memInfo.id = 'memInfo';
-    memInfo.style.cssText = 'text-align:center;margin-top:8px;font-weight:500;color:var(--primary);';
-    document.querySelector('#ram-tab .infocard')?.appendChild(memInfo);
-    document.querySelectorAll('.mem-level').forEach(level => {
-      level.addEventListener('mouseenter', () => {
-        memInfo.textContent = `Speed: ${level.dataset.speed}, Size: ${level.dataset.size}`;
-      });
-      level.addEventListener('mouseleave', () => {
-        memInfo.textContent = 'Hover over a level to see details';
-      });
-    });
-
-    // Journey steps
-    const journeySteps = document.querySelectorAll('.journey-step');
-    const journeyDetail = document.getElementById('journeyDetail');
-    const detailContent = document.getElementById('detailContent');
-    const stepDetails = {
-      '1': 'The Python interpreter loads your <code>.py</code> file from disk into RAM. This is the first step – the code must be in memory.',
-      '2': 'Python’s parser reads your source code, checks syntax, and builds an <strong>Abstract Syntax Tree (AST)</strong>. Errors here cause syntax errors.',
-      '3': 'The AST is compiled into <strong>bytecode</strong> (stored in <code>__pycache__</code>). Bytecode is platform-independent.',
-      '4': 'The <strong>Python Virtual Machine (PVM)</strong> reads the bytecode and executes it. It’s a stack‑based virtual machine.',
-      '5': 'Bytecode instructions are translated to machine code (x86/ARM) that the CPU can understand. The CPU’s ALU and registers do the work.',
-      '6': 'The results appear on screen (stdout) or are written to files – the program’s output is delivered.'
-    };
-    journeySteps.forEach(step => {
-      step.addEventListener('click', function() {
-        const s = this.dataset.step;
-        journeySteps.forEach(s => s.classList.remove('active'));
-        this.classList.add('active');
-        detailContent.innerHTML = stepDetails[s] || '';
-        journeyDetail.classList.add('open');
-      });
-    });
-    // open first step by default
-    if (journeySteps.length) journeySteps[0].click();
-
-    // ---- PYTHON FEATURE CARDS: Show detail in side panel instead of alert ----
-    const pyFeatureCards = document.querySelectorAll('.py-feature');
-    const pyDetailPanel = document.getElementById('pyDetailPanel');
-    const pyDetailText = document.getElementById('pyDetailText');
-    const closePyDetail = document.getElementById('closePyDetail');
-
-    function showFeatureDetail(detailText, cardElement) {
-      // Remove active from all cards, add to current
-      pyFeatureCards.forEach(c => c.classList.remove('active'));
-      cardElement.classList.add('active');
-      pyDetailText.textContent = detailText;
-      pyDetailPanel.classList.add('open');
-      // Scroll panel into view if needed
-      pyDetailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    pyFeatureCards.forEach(card => {
-      card.addEventListener('click', function() {
-        showFeatureDetail(this.dataset.detail, this);
-      });
-      card.style.cursor = 'pointer';
-    });
-
-    closePyDetail.addEventListener('click', () => {
-      pyDetailPanel.classList.remove('open');
-      pyFeatureCards.forEach(c => c.classList.remove('active'));
-    });
-
-    // Animate comparison bars on scroll
-    const barObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.compare-bar-fill[data-width]').forEach(bar => {
-            const w = bar.getAttribute('data-width');
-            bar.style.width = w + '%';
-          });
-          barObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('.compare-metric').forEach(metric => barObserver.observe(metric));
-
-    // Scroll spy for page tracker
-    const sections = document.querySelectorAll('#components-overview, #code-execution, #python-characteristics, #python-comparison, #practice-problems');
-    const trackerLinks = document.querySelectorAll('.tracker-link:not(.next-lesson)');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= 120) current = '#' + section.id;
-      });
-      trackerLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === current);
-      });
-    }, { passive: true });
-  </script>
+  
 </body>
 </html>

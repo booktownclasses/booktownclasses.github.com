@@ -216,3 +216,95 @@ document.querySelectorAll('.prog-tab').forEach(tab => {
 
 
 // Inject Google Analytics dynamically
+ document.addEventListener('DOMContentLoaded', function() {
+  // Select all sidebar section titles
+  const sectionTitles = document.querySelectorAll('.sidebar-section .sidebar-title');
+  
+  sectionTitles.forEach(title => {
+    // Find the associated items container (next sibling or inside section)
+    const section = title.closest('.sidebar-section');
+    const itemsContainer = section.querySelector('.sidebar-items');
+    
+    // If items container exists, set up toggle
+    if (itemsContainer) {
+      // Initially, if title has class 'active', expand; otherwise collapse
+      if (title.classList.contains('active')) {
+        itemsContainer.classList.add('open');
+        title.classList.add('open');
+      } else {
+        itemsContainer.classList.remove('open');
+        title.classList.remove('open');
+      }
+      
+      title.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Toggle open class on items container
+        itemsContainer.classList.toggle('open');
+        // Toggle open class on title (for chevron rotation)
+        title.classList.toggle('open');
+        // Optional: keep 'active' class for styling
+        title.classList.toggle('active', itemsContainer.classList.contains('open'));
+      });
+    }
+  });
+});
+
+
+
+ if (typeof copyCode !== 'function') {
+      window.copyCode = function(btn) {
+        const code = btn.closest('.code-block')?.querySelector('code');
+        if (code) {
+          navigator.clipboard.writeText(code.textContent).then(() => {
+            const icon = btn.querySelector('i');
+            if (icon) { icon.classList.replace('fa-copy','fa-check'); setTimeout(() => icon.classList.replace('fa-check','fa-copy'), 2000); }
+          });
+        }
+      };
+    }
+
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const tabGroup = this.closest('.tab-container');
+        tabGroup.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        tabGroup.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById(this.dataset.tab);
+        if (target) target.classList.add('active');
+      });
+    });
+
+    // CPU unit detail
+    document.querySelectorAll('#cpuDiagram .cpu-unit').forEach(unit => {
+      unit.addEventListener('click', function() {
+        const detail = document.getElementById('cpuDetail');
+        detail.textContent = this.dataset.detail;
+        detail.style.animation = 'none';
+        detail.offsetHeight;
+        detail.style.animation = 'fadeSlide 0.3s ease';
+      });
+    });
+
+    // Memory pyramid live info
+    const memInfo = document.createElement('div');
+    memInfo.id = 'memInfo';
+    memInfo.style.cssText = 'text-align:center;margin-top:8px;font-weight:500;color:var(--primary);';
+    document.querySelector('#ram-tab .infocard')?.appendChild(memInfo);
+    document.querySelectorAll('.mem-level').forEach(level => {
+      level.addEventListener('mouseenter', () => {
+        memInfo.textContent = `Speed: ${level.dataset.speed}, Size: ${level.dataset.size}`;
+      });
+      level.addEventListener('mouseleave', () => {
+        memInfo.textContent = 'Hover over a level to see details';
+      });
+    });
+
+
+
+        fetch('/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));

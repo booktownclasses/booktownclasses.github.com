@@ -2,137 +2,137 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage (highest priority) -->
   <url>
-    <loc>https://booktownclasses.github.io/</loc>
+    <loc>https://codewithbooktown.in/</loc>
     <priority>1.0</priority>
   </url>
 
   <!-- All HTML files -->
   <url>
-    <loc>https://booktownclasses.github.io/coding.html</loc>
+    <loc>https://codewithbooktown.in/coding.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/class-10/class10.html</loc>
+    <loc>https://codewithbooktown.in/class-10/class10.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/class-10/class10-testseries.html</loc>
+    <loc>https://codewithbooktown.in/class-10/class10-testseries.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/english.html</loc>
+    <loc>https://codewithbooktown.in/english.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/info-center/books-notes.html</loc>
+    <loc>https://codewithbooktown.in/info-center/books-notes.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-computer-fundamentals-1.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-computer-fundamentals-1.html</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-intro-2.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-intro-2.html</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-condition-loops-3.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-condition-loops-3.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-list-tuple-set-4.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-list-tuple-set-4.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-dict-5.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-dict-5.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-map-filter-zip-6.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-map-filter-zip-6.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/3m-learn-python-week1.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/3m-learn-python-week1.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/3m-learn-python-week2.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/3m-learn-python-week2.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/3m-learn-python-week3.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/3m-learn-python-week3.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/3m-learn-python-week4.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/3m-learn-python-week4.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/AIML-regression.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/AIML-regression.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/DSA-advance-sorting-3-algo.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/DSA-advance-sorting-3-algo.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/DSA-basic-sorting-3-algo.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/DSA-basic-sorting-3-algo.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/DSA-divide_conquer.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/DSA-divide_conquer.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/DSA-graph-algorithm.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/DSA-graph-algorithm.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/Datasets.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/Datasets.html</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-class-method-9.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-class-method-9.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-cheat-sheet-0.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-cheat-sheet-0.html</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-exception-handling-8.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-exception-handling-8.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-file_IO-10.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-file_IO-10.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-iterator-generators-14.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-iterator-generators-14.html</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-map-filter-zip-6.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-map-filter-zip-6.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-module-packages-13.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-module-packages-13.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-oops-concepts-mastery-11.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-oops-concepts-mastery-11.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/learn-python-recursion-backtracking-7.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/learn-python-recursion-backtracking-7.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/learn-python/sidebar.html</loc>
+    <loc>https://codewithbooktown.in/learn-python/sidebar.html</loc>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://booktownclasses.github.io/snippets/coaching-banner.html</loc>
+    <loc>https://codewithbooktown.in/snippets/coaching-banner.html</loc>
     <priority>0.5</priority>
   </url>
 </urlset>
