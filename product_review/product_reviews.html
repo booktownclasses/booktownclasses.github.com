@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="robots" content="index, follow" />
+    <title>📱 Product Reviews · Smart Picks | BookTown Classes</title>
+    <meta name="description" content="BookTown Classes — curated tech reviews: best phones, laptops, tablets and more under budget. Expert insights, clean comparisons." />
+    <meta name="theme-color" content="#7c3aed" />
+
+    <!-- Google Fonts (same as reference) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+
+    <style>
+        /* ===== EXACT SAME THEME AS CHEAT SHEET ===== */
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #e2e8f0;
+            --primary: #7c3aed;
+            --primary-light: #8b5cf6;
+            --accent: #a78bfa;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --success: #059669;
+            --info: #3b82f6;
+            --radius: 14px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background 0.4s, color 0.4s;
+            overflow-x: hidden;
+            padding-top: 80px; /* space for fixed header */
+        }
+
+        /* Floating background shapes (same as reference) */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.06;
+            animation: floatShape 20s infinite ease-in-out;
+        }
+        .shape-1 { width: 400px; height: 400px; background: #7c3aed; top: -100px; left: -100px; }
+        .shape-2 { width: 300px; height: 300px; background: #3b82f6; bottom: -80px; right: -80px; animation-delay: -7s; }
+        .shape-3 { width: 200px; height: 200px; background: #059669; top: 50%; left: 60%; animation-delay: -14s; }
+        @keyframes floatShape {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(40px, -30px) scale(1.1); }
+            50% { transform: translate(-20px, 20px) scale(0.9); }
+            75% { transform: translate(30px, 15px) scale(1.05); }
+        }
+
+        /* Fixed header container (filled by JS) */
+        #header-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Main layout: left sidebar + content + right sidebar */
+        .main-container {
+            display: flex;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 20px 0 20px 0;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ---- LEFT SIDEBAR (EXPANDABLE) ---- */
+        .sidebar {
+            width: 290px;
+            flex-shrink: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 10px 16px 20px 20px;
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            z-index: 1;
+            border-left: none;
+            margin-left: 0;
+        }
+        .sidebar h4 {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin-bottom: 12px;
+            font-weight: 700;
+            padding-left: 10px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar li {
+            margin: 0;
+        }
+        /* Category toggle header */
+        .cat-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 12px 11px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            user-select: none;
+            background: transparent;
+        }
+        .cat-toggle i:first-child {
+            margin-right: 8px;
+            width: 20px;
+            text-align: center;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+        .cat-toggle .arrow-icon {
+            margin-left: auto;
+            font-size: 0.7rem;
+            color: var(--muted);
+            transition: transform 0.3s ease;
+        }
+        .cat-toggle:hover {
+            background: rgba(124, 58, 237, 0.06);
+            color: var(--primary);
+        }
+        .cat-toggle.open .arrow-icon {
+            transform: rotate(180deg);
+        }
+        .cat-toggle.active-cat {
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--primary);
+            font-weight: 700;
+            border-left: 3px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+        }
+        /* Submenu container */
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            padding-left: 20px;
+            background: #fafbff;
+            border-radius: 0 0 8px 8px;
+            margin: 0 8px 4px 8px;
+        }
+        .submenu.open {
+            max-height: 600px; /* enough for all items */
+        }
+        .submenu a {
+            display: block;
+            padding: 8px 14px 8px 24px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .submenu a:hover {
+            background: rgba(124, 58, 237, 0.06);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .submenu a.active-sub {
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* ---- MAIN CONTENT ---- */
+        .content {
+            flex: 1;
+            min-width: 0;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-right: 16px;
+        }
+
+        /* Hero banner (like mini-hero) */
+        .mini-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #2e1065 70%, #1e1b4b 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+        .mini-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 8s ease-in-out infinite;
+        }
+        .mini-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: -40px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(5, 150, 105, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroFloat 10s ease-in-out infinite reverse;
+        }
+        @keyframes heroFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(15px, -10px) scale(1.05); }
+        }
+        .mini-hero .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(124, 58, 237, 0.25);
+            color: #c4b5fd;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            border: 1px solid rgba(124, 58, 237, 0.35);
+            position: relative;
+            z-index: 1;
+        }
+        .mini-hero .hero-headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin: 0 0 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 5s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .mini-hero .hero-sub {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Product review cards – styled like cheat-sections */
+        .review-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 22px;
+            box-shadow: var(--shadow);
+            transition: all 0.35s ease;
+            overflow: hidden;
+        }
+        .review-card .section-header {
+            padding: 18px 24px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+        }
+        .review-card .section-header i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .review-card .section-body {
+            padding: 20px 24px;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: flex-start;
+        }
+        .product-tile {
+            flex: 1 1 160px;
+            min-width: 140px;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1rem 0.8rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+            background: #fefefe;
+        }
+        .product-tile:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-light);
+            box-shadow: 0 8px 18px rgba(124, 58, 237, 0.08);
+        }
+        .product-icon {
+            width: 64px;
+            height: 64px;
+            background: #f0ebff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        .product-tile p:first-of-type {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+        .price-tag {
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(124, 58, 237, 0.08);
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-top: 6px;
+        }
+
+        /* ---- RIGHT SIDEBAR (quick filters) ---- */
+        .page-tracker {
+            width: 220px;
+            flex-shrink: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            z-index: 5;
+        }
+        .page-tracker h4 {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .filter-chip {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--muted);
+            transition: 0.2s;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.82rem;
+        }
+        .filter-chip i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        .filter-chip:hover {
+            background: rgba(124, 58, 237, 0.06);
+            border-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        /* Footer – identical to reference */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 30px;
+            background: var(--card);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width:1100px) {
+            .page-tracker { display: none; }
+            .content { padding-right: 0; }
+        }
+        @media (max-width:860px) {
+            .sidebar { display: none; }
+            .main-container { padding: 12px 8px; }
+            .content { max-width: 100%; padding-right: 0; }
+            .product-tile { min-width: 130px; }
+        }
+        @media (max-width:550px) {
+            .product-tile { flex: 1 1 100%; max-width: 100%; }
+            .mini-hero { padding: 1.2rem; }
+            .mini-hero .hero-headline { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating background shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Header container – loaded dynamically by learn-python.js -->
+    <div id="header-container"></div>
+
+    <div class="main-container">
+      <aside class="sidebar" id="productReviewSidebar"></aside>
+        <!-- LEFT SIDEBAR (EXPANDABLE CATEGORIES) -->
+   
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+            <!-- Hero banner -->
+            <div class="mini-hero">
+                <div class="hero-badge"><i class="fas fa-star"></i> Expert Picks</div>
+                <h1 class="hero-headline"><span class="gradient-text">Top Picks</span> Under Budget</h1>
+                <p class="hero-sub">Curated reviews of the best phones, laptops, tablets, TVs & monitors – tested and compared for real value.</p>
+            </div>
+
+            <!-- Phones Section (for demo, currently shows under 12000) -->
+            <div class="review-card" id="section-phones" data-section="phones">
+                <div class="section-header"><i class="fas fa-mobile-alt"></i> Top 5 Phones Under ₹12,000</div>
+                <div class="section-body">
+                    <div class="product-grid">
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-mobile-alt"></i></div><p>Samsung Galaxy M04</p><span class="price-tag">₹9,999</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-mobile-alt"></i></div><p>Redmi 12C</p><span class="price-tag">₹11,499</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-mobile-alt"></i></div><p>Realme C55</p><span class="price-tag">₹11,999</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-mobile-alt"></i></div><p>OPPO A17k</p><span class="price-tag">₹11,999</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-mobile-alt"></i></div><p>POCO C51</p><span class="price-tag">₹11,499</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Laptops Section -->
+            <div class="review-card" id="section-laptops" data-section="laptops">
+                <div class="section-header"><i class="fas fa-laptop"></i> Top 5 Laptops Under ₹50,000</div>
+                <div class="section-body">
+                    <div class="product-grid">
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-laptop"></i></div><p>TVR Blade Ryzen</p><span class="price-tag">₹45,990</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-laptop"></i></div><p>TMR HAVOC i5</p><span class="price-tag">₹49,999</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-laptop"></i></div><p>CAP Hope Plus</p><span class="price-tag">₹47,990</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-laptop"></i></div><p>SCPJace Ultra</p><span class="price-tag">₹50,000</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-laptop"></i></div><p>Lenovo IdeaPad Slim</p><span class="price-tag">₹48,499</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tablets & Earbuds Section -->
+            <div class="review-card" id="section-tablets" data-section="tablets">
+                <div class="section-header"><i class="fas fa-tablet-alt"></i> Top 5 Tabs & Earbuds Under ₹20,000</div>
+                <div class="section-body">
+                    <div class="product-grid">
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-tablet-alt"></i></div><p>TVB PadAir</p><span class="price-tag">₹18,999</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-tablet-alt"></i></div><p>HexaTab Pro</p><span class="price-tag">₹19,499</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-tablet-alt"></i></div><p>SOCECO Tab M11</p><span class="price-tag">₹19,999</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-headphones"></i></div><p>Realme Buds Air 5</p><span class="price-tag">₹3,499</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-headphones"></i></div><p>OPPO Enco Buds2</p><span class="price-tag">₹2,199</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TVs Section -->
+            <div class="review-card" id="section-tvs" data-section="tvs">
+                <div class="section-header"><i class="fas fa-tv"></i> Top 5 Smart TVs Under ₹30,000</div>
+                <div class="section-body">
+                    <div class="product-grid">
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-tv"></i></div><p>RVE Mirage 43"</p><span class="price-tag">₹27,999</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-tv"></i></div><p>SureNova QLED</p><span class="price-tag">₹28,499</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-tv"></i></div><p>VTEI Blaze 4K</p><span class="price-tag">₹29,999</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-tv"></i></div><p>SCPro Vision</p><span class="price-tag">₹30,000</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-tv"></i></div><p>Mi TV 5X 43"</p><span class="price-tag">₹28,999</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monitors Section -->
+            <div class="review-card" id="section-monitors" data-section="monitors">
+                <div class="section-header"><i class="fas fa-desktop"></i> Top 5 Monitors Under ₹25,000</div>
+                <div class="section-body">
+                    <div class="product-grid">
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-desktop"></i></div><p>DELL View 24"</p><span class="price-tag">₹17,999</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-desktop"></i></div><p>LG UltraScreen</p><span class="price-tag">₹21,499</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-desktop"></i></div><p>Acer ProDisplay</p><span class="price-tag">₹23,990</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-desktop"></i></div><p>Samsung Vision</p><span class="price-tag">₹24,500</span></div>
+                        <div class="product-tile"><div class="product-icon"><i class="fas fa-desktop"></i></div><p>BenQ GW2790</p><span class="price-tag">₹22,899</span></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- RIGHT SIDEBAR (quick filters) -->
+        <aside class="page-tracker" id="quickFilters">
+            <h4><i class="fas fa-sliders-h"></i> Quick Filters</h4>
+            <button class="filter-chip"><i class="fas fa-microchip"></i> Technology</button>
+            <button class="filter-chip"><i class="fas fa-blender"></i> Home Appliances</button>
+            <button class="filter-chip"><i class="fas fa-headphones"></i> Accessories</button>
+            <hr style="margin: 15px 0; border-color: var(--border);">
+            <div style="font-size: 0.72rem; color: var(--muted);"><i class="fas fa-bolt"></i> Bestseller: TVR Blade & TVB PadAir</div>
+        </aside>
+    </div>
+
+    <!-- Footer (same as reference) -->
+    <footer>
+        <div class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/coding/coding.html">Coding</a>
+            <a href="/class-10/class10.html">Class 10</a>
+            <a href="/learn-python/learn-python-intro.html">Learn Python+</a>
+            <a href="/info-center/books-notes.html">Books & Notes</a>
+        </div>
+        <p>© 2026 BookTown Classes — Next‑Gen Coaching for Curious Minds. ✨</p>
+    </footer>
+
+    <!-- Load header dynamically (same as cheat sheet) -->
+    <script src="../js/learn-python.js"></script>
+
+    <!-- Expandable sidebar script + scroll spy -->
+    <script>
+fetch('product_review_sidebar.html')
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('productReviewSidebar').innerHTML = html;
+
+    const allSections = document.querySelectorAll('.sidebar-section');
+    allSections.forEach(section => {
+      const title = section.querySelector('.sidebar-title');
+      if (!title) return;
+
+      title.addEventListener('click', function () {
+        const shouldCollapse = section.classList.contains('collapsed');
+        allSections.forEach(other => {
+          other.classList.add('collapsed');
+          const otherTitle = other.querySelector('.sidebar-title');
+          if (otherTitle) otherTitle.setAttribute('aria-expanded', 'false');
+        });
+
+        if (shouldCollapse) {
+          section.classList.remove('collapsed');
+          title.setAttribute('aria-expanded', 'true');
+        } else {
+          section.classList.add('collapsed');
+          title.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    document.querySelectorAll('.sidebar-item').forEach(item => {
+      item.addEventListener('click', function (e) {
+        if (this.getAttribute('href') === '#') {
+          e.preventDefault();
+        }
+        document.querySelectorAll('.sidebar-item.active').forEach(active => active.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  })
+  .catch(err => console.error('Sidebar failed to load:', err));
+
+</script>
+</body>
+</html>

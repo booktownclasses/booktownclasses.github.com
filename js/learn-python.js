@@ -173,11 +173,11 @@ initSidebarCollapse();
 })();
 
 
-fetch('/header_bar.html')  // absolute path from root
+fetch('/header_bar.html')
+  .catch(() => fetch('../header_bar.html'))
   .then(res => res.text())
   .then(html => {
     document.getElementById('header-container').innerHTML = html;
-
     // Highlight current page link
     const currentPath = window.location.pathname;
     document.querySelectorAll('.nav-links a').forEach(link => {
